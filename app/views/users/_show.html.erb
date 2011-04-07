@@ -13,7 +13,6 @@
     <td><%=resource.default_org.try(:name)%></td>
     <td>默认角色:</td>
     <td><%=resource.default_role.try(:name)%></td>
-    <td>角色列表:</td>
-    <td><%=resource.roles.collect {|role| role.name}.join(",")%></td>
+    <td colspan='2'></td>
   </tr>
 </table>

@@ -6,6 +6,7 @@ class Org < ActiveRecord::Base
   before_save :gen_py
   #客户级别设置
   has_many :customer_level_configs
+  has_many :user_orgs
 
   accepts_nested_attributes_for :customer_level_configs
 

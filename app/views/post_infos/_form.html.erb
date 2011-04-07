@@ -2,21 +2,22 @@
   <%=f.error_messages %>
   <%= f.hidden_field :user_id,:value => current_user.id if f.object.new_record?%>
   <table class='table'>
-    <tr>
+    <tr class='odd'>
       <td>结算员:</td>
       <td><%= current_user %></td>
       <td>结算单位:</td>
       <td>
         <%=f.select :org_id,current_ability_orgs_for_select,{},{:class => "select_org",:id => "from_org_id"} %>
       </td>
-      <td colspan="5">结算日期:</td>
+      <td>结算日期:</td>
       <td> <%=Date.today().strftime('%Y-%m-%d')%></td>
+      <td colspan='4'>&nbsp;</td>
     </tr>
-    <tr>
+    <tr class='even'>
       <td colspan="9" class='text-right'>实领金额:</td>
       <td><%=f.text_field :amount_fee ,:size => 10 %></td>
     </tr>
-    <tr>
+    <tr class='odd'>
       <td>原货款:</td>
       <td><%=text_field_tag :sum_goods_fee,0,:readonly => true,:size => 10 %></td>
       <td>货款扣运费:</td>
@@ -28,11 +29,11 @@
       <td>实际提款:</td>
       <td><%=text_field_tag :sum_pay_fee,0,:readonly => true,:size => 10 %></td>
     </tr>
-    <tr>
+    <tr class='even'>
       <td colspan="9" class='text-right'>余额:</td>
       <td><%=text_field_tag :sum_rest_fee,"",:readonly => true,:size => 10 %></td>
     </tr>
-    <tr>
+    <tr class='odd'>
       <td>备注</td>
       <td colspan='9'>
         <%=f.text_field :note %>
