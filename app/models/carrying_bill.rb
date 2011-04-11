@@ -389,7 +389,9 @@ class CarryingBill < ActiveRecord::Base
       sum_info.merge!(sum_info_tmp)
       #实提货款合计
       sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_carrying_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee]
-      sum_info[:sum_agent_carrying_fee] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee]
+      sum_info[:sum_agent_carrying_fee] =0
+      #提付运费大于零时,才有代收运费,否则代收运费为0
+      sum_info[:sum_agent_carrying_fee] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] if sum_info[:sum_carrying_fee_th] > 0
       sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
       sum_info
     end
