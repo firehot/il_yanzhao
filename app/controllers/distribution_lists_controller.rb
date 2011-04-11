@@ -13,7 +13,7 @@ class DistributionListsController < BaseController
   end
   #GET load_list/1/export_excel
   def export_excel
-    @distribution_list = resource_class.find(params[:id],:include => [:from_org,:to_org,:user,:carrying_bills])
+    @distribution_list = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
   end
 
 end
