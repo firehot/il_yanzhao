@@ -1,11 +1,12 @@
 #coding: utf-8
-#贵宾客户
+#转账客户
 class Vip <  Customer
+
   attr_protected :code
   belongs_to :bank
   belongs_to :org
   belongs_to :config_transit
-  validates :config_transit_id,:id_number,:org_id,:bank_id,:presence => true
+  validates :config_transit_id,:name,:id_number,:org_id,:bank_id,:mobile,:presence => true
   validates :code,:uniqueness => true
   validates :bank_card,:length => {:maximum => 19}
 
@@ -28,6 +29,6 @@ class Vip <  Customer
   end
   #根据机构获取当前机构已有的VIP客户数量
   def get_sequence
-    se = "%04d" % (Vip.where(:org_id => self.org_id).count + 1)
+    se = "%04d" % (Vip.where(:org_id => self.org_id,:bank_id => self.bank_id).count + 1)
   end
 end

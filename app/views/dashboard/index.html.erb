@@ -1,5 +1,5 @@
 <div class="block">
-  <div class="content">          
+  <div class="content">
     <%= render :partial => "dynamic_toolbar" %>
     <h2 class="title">业务看板</h2>
     <div class="inner">
@@ -11,7 +11,7 @@
               <%= link_to "收货清单:(#{@shipped_load_list.to_a.sum(&:bill_count).to_i})张", arrive_load_lists_path %>
             </li>
             <li>
-              
+
               <%= link_to "收款清单:(#{@refunded.to_a.sum(&:bill_count).to_i})张", receive_refounds_path %>
             </li>
             <li>

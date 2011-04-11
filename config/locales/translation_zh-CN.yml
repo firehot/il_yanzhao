@@ -5,7 +5,7 @@ zh-CN:
   flash:
     actions:
       create:
-        notice: "{resource_name}} 保存成功!" 
+        notice: "{resource_name}} 保存成功!"
 
   formtastic:
     labels:
@@ -88,7 +88,7 @@ zh-CN:
         org: "机构"
         from_org: "发货地"
         to_org: "到货地"
-        
+
 
       bank:
         name: "名称"  #g
@@ -101,7 +101,7 @@ zh-CN:
         goods_no: "货号"  #g
         from_org_id: "发货地"
         transit_org_id: "中转地"
-        to_org_id: "发货地"
+        to_org_id: "到货地"
         customer_code: "客户编号"
         insured_rate_disp: "保价比例"
         from_customer_name: "发货人"  #g

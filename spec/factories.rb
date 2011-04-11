@@ -90,7 +90,7 @@ end
 #已发货机打票
 Factory.define :computer_bill_shipped,:parent => :computer_bill do |bill|
   bill.load_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
   end
@@ -98,7 +98,7 @@ end
 #已到货机打票
 Factory.define :computer_bill_reached,:parent => :computer_bill do |bill|
   bill.load_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -108,7 +108,7 @@ end
 Factory.define :computer_bill_distributed,:parent => :computer_bill do |bill|
   bill.load_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
   bill.distribution_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -120,7 +120,7 @@ Factory.define :computer_bill_deliveried,:parent => :computer_bill do |bill|
   bill.load_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
   bill.distribution_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
   bill.deliver_info_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -134,7 +134,7 @@ Factory.define :computer_bill_settlemented,:parent => :computer_bill do |bill|
   bill.distribution_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的装车单id
   bill.deliver_info_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.settlement_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -150,7 +150,7 @@ Factory.define :computer_bill_refounded_confirmed,:parent => :computer_bill do |
   bill.deliver_info_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.settlement_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.refound_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -169,7 +169,7 @@ Factory.define :computer_bill_payment_listed,:parent => :computer_bill do |bill|
   bill.settlement_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.refound_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.payment_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -190,7 +190,7 @@ Factory.define :computer_bill_paid,:parent => :computer_bill do |bill|
   bill.refound_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.payment_list_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
   bill.pay_info_id 1  #FIXME 为避免state_machine错误此处设置其对应的提货单id
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发货操作
     bill.standard_process   #到货操作
@@ -248,7 +248,7 @@ Factory.define :transit_bill do |bill|
 end
 Factory.define :transit_bill_reached,:parent => :transit_bill do |bill|
   bill.load_list_id 1
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发车操作
     bill.standard_process   #到货确认
@@ -257,7 +257,7 @@ end
 Factory.define :transit_bill_transited,:parent => :transit_bill do |bill|
   bill.load_list_id 1
   bill.transit_info_id 1
-  bill.after_create do |bill| 
+  bill.after_create do |bill|
     bill.standard_process   #装车操作
     bill.standard_process   #发车操作
     bill.standard_process   #到货确认
@@ -363,7 +363,7 @@ end
 #VIP客户信息
 Factory.define :vip do |vip|
   vip.name "张三"
-  vip.phone "1763636634343"
+  vip.mobile "1763636634343"
   vip.association :org,:factory => :zz
   vip.association :bank,:factory => :icbc
   vip.bank_card "6222032031714562349"
@@ -382,7 +382,7 @@ end
 #银行代收货款转账清单
 Factory.define :transfer_payment_list do |p_list|
   p_list.association :org,:factory => :zz
-  p_list.association :bank,:factory => :icbc 
+  p_list.association :bank,:factory => :icbc
 end
 Factory.define :transfer_payment_list_with_bills,:parent => :transfer_payment_list do |p_list|
   p_list.after_create do |pl|

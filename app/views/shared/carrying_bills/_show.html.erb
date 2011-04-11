@@ -1,5 +1,8 @@
 <table class='table carrying_bill_show' data-bill="<%=show.to_json%>" id="carrying_bill_show">
   <tr>
+    <td colspan='8' class='col_74mm text-right'><%=show.human_state_name%></td>
+  </tr>
+  <tr>
     <td class='col_17mm'><span class='label'>发货站:</span></td>
     <td colspan='2' class='col_29mm'><%=show.from_org_name%></td>
     <% if ["TransitBill","HandTransitBill"].include? show.type %>
@@ -100,7 +103,6 @@
   <td colspan='2' class='col_14mm'><span class='label'>开票人:</span><%= show.user %></td>
   <td colspan='2' class='col_18mm'><span class='label'>代理收货人:</span></td>
   <td class='col_19mm'><span class='label'>证件号码:</span></td>
-  <td colspan='3' class='col_74mm'>&nbsp;</td>
 </tr>
 </table>
 <script type='text/javascript'>

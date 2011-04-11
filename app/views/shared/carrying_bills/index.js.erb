@@ -12,16 +12,14 @@
       if($('#bill_<%=collection.first.id%>').length == 0)
       $('#bills_table_body').append('<%= escape_javascript(render("shared/carrying_bills/table_tr",:bill => collection.first)) %>');
     <%else%>
+      if($('#table_wrap').length == 0) $('.inner').html('<div id="table_wrap"></div>');
       $('#table_wrap').html('<%= escape_javascript(render("shared/carrying_bills/show",:show => collection.first)) %>');
     <%end%>
   <%else%>
     //如果传入了show_group,则显示 table_group_by_from_org
     var bill_list = '<%= escape_javascript(render(params[:show_group].blank? ? "shared/carrying_bills/table" : "shared/carrying_bills/table_group_by_from_org")) %>';
-    if($('#table_wrap').length > 0)
+      if($('#table_wrap').length == 0) $('.inner').html('<div id="table_wrap"></div>');
       $('#table_wrap').html(bill_list);
-    else
-      //如果找不到table_wrap元素,则更新inner元素
-      $('.inner').html('<div id="table_wrap">' + bill_list + '</div>');
   <%end%>
 <%end%>
 //以下设定显示字段

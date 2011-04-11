@@ -1,4 +1,4 @@
-#coding: utf-8 
+#coding: utf-8
 
 namespace :db do
   desc "对carrying_bills表进行分表操作"
@@ -13,7 +13,7 @@ namespace :db do
     c.execute("ALTER TABLE carrying_bills MODIFY id INT(11) NOT NULL AUTO_INCREMENT")
 
     #以下添加mysql 分区表
-    c.execute("ALTER TABLE carrying_bills 
+    c.execute("ALTER TABLE carrying_bills
             partition by list(completed)
             (
             partition p0 values in(0),
@@ -49,7 +49,7 @@ namespace :db do
     vip_config = ConfigTransit.create(:name => "VIP客户",:rate => 0.001)
     #客户资料
     50.times do |index|
-      Vip.create!(:name => "vip_#{index}",:phone => ("%07d" % index),:bank => Bank.first,:bank_card =>"%019d" % (index + 1),:org => Branch.first,:id_number => "%018d" % (index + 1),:config_transit => vip_config )
+      Vip.create!(:name => "vip_#{index}",:mobile => ("%07d" % index),:bank => Bank.first,:bank_card =>"%019d" % (index + 1),:org => Branch.first,:id_number => "%018d" % (index + 1),:config_transit => vip_config )
     end
 
     #生成示例票据数据
@@ -166,7 +166,7 @@ namespace :db do
     }
     }
     SystemFunction.create_by_hash(sf_hash)
-    
+
 
 
 
@@ -658,7 +658,7 @@ namespace :db do
       :default_action => 'vips_path',
       :subject => subject,
       :function => {
-      :read =>{:title => "查看"} ,
+      :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
       :create => {:title => "新建"},
       :update =>{:title =>"修改"},
       :destroy => {:title => "删除"}

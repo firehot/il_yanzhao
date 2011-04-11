@@ -22,7 +22,7 @@ class CarryingBill < ActiveRecord::Base
 
   #待提货票据(不包括中转票据)
   scope :ready_delivery,lambda {|to_org_ids| select('sum(1) as bill_count').where(:to_org_id => to_org_ids,:state => :distributed)}
-  #待提款票据 
+  #待提款票据
   scope :ready_pay,lambda {|from_org_ids| search(:from_customer_id_is_null => 1).where(:from_org_id => from_org_ids,:state => :payment_listed).select('sum(goods_fee) as goods_fee,sum(1) as bill_count')}
 
   scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:user]
@@ -35,9 +35,9 @@ class CarryingBill < ActiveRecord::Base
   before_save :cal_hand_fee
 
   belongs_to :user
-  belongs_to :from_org,:class_name => "Org" 
-  belongs_to :transit_org,:class_name => "Org" 
-  belongs_to :to_org,:class_name => "Org" 
+  belongs_to :from_org,:class_name => "Org"
+  belongs_to :transit_org,:class_name => "Org"
+  belongs_to :to_org,:class_name => "Org"
 
   belongs_to :from_customer,:class_name => "Customer"
 
@@ -92,11 +92,13 @@ class CarryingBill < ActiveRecord::Base
     #2 提货付运单,没有代收货款,日结算后(settlement),运单完成
     #3 现金提款运单,提款日接后(posted),运单完成
     #4 转账提款运单,提款后(paid),运单完成
+    #5 运单退货后
     #在这几种情况下,自动设置completed标志
 
     after_transition :on => :standard_process,:deliveried => :settlemented,:do => :set_completed_settlemented
     after_transition :on => :standard_process,:paid => :posted,:do => :set_completed_posted
     after_transition :on => :standard_process,:payment_listed => :paid,:do => :set_completed_paid
+    after_transition :on => :return,any => :returned,:do => :set_completed_returned
 
     #正常运单处理流程(包括机打运单/手工运单/退货单据)
     event :standard_process do
@@ -164,7 +166,7 @@ class CarryingBill < ActiveRecord::Base
         "现金付" => PAY_TYPE_CASH ,
         "提货付" => PAY_TYPE_TH,
         "回执付" => PAY_TYPE_RETURN,
-        "自货款扣除" => PAY_TYPE_K_GOODSFEE 
+        "自货款扣除" => PAY_TYPE_K_GOODSFEE
       }
     end
 
@@ -198,7 +200,7 @@ class CarryingBill < ActiveRecord::Base
       return '' if self.from_customer.blank?
       self.from_customer.code
     end
-    #代收货款转账银行 
+    #代收货款转账银行
     def from_customer_bank_name
       return '' if self.from_customer.blank?
       self.from_customer.bank.name
@@ -236,13 +238,13 @@ class CarryingBill < ActiveRecord::Base
     #原票运费支付方式为现金付的，代收运费为0
     def agent_carrying_fee
       ret = 0
-      ret = self.carrying_fee - self.transit_carrying_fee if pay_type == CarryingBill::PAY_TYPE_TH
+      ret = self.carrying_fee_th - self.transit_carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
       ret
     end
 
     #得到提货应收金额
     def th_amount
-      amount = self.agent_carrying_fee - self.transit_hand_fee + self.goods_fee
+      amount = self.carrying_fee_th - self.transit_hand_fee - self.transit_carrying_fee + self.goods_fee
       amount
     end
     #运费总计
@@ -385,10 +387,10 @@ class CarryingBill < ActiveRecord::Base
         sum_info_tmp[key.to_sym] = value.blank? ? 0 : value
       end
       sum_info.merge!(sum_info_tmp)
-      #实提货款合计 
+      #实提货款合计
       sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_carrying_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee]
       sum_info[:sum_agent_carrying_fee] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee]
-      sum_info[:sum_th_amount] = sum_info[:sum_agent_carrying_fee] - sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
+      sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
       sum_info
     end
     protected
@@ -429,8 +431,8 @@ class CarryingBill < ActiveRecord::Base
     #设置发货人关联信息
     def set_customer
       self.from_customer = nil if customer_code.blank?
-      if Customer.exists?(:code => customer_code,:name => from_customer_name,:is_active => true)
-        self.from_customer = Customer.where(:is_active => true).find_by_code(customer_code)
+      if Vip.exists?(:code => customer_code,:name => from_customer_name,:is_active => true)
+        self.from_customer = Vip.where(:is_active => true).find_by_code(customer_code)
       end
     end
     #计算手续费
@@ -468,5 +470,9 @@ class CarryingBill < ActiveRecord::Base
     #转账提款
     def set_completed_paid
       self.update_attributes(:completed => true) unless self.goods_fee_cash?
+    end
+    #退货
+    def set_completed_returned
+      self.update_attributes(:completed => true)
     end
     end

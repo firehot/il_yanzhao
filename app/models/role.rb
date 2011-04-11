@@ -5,6 +5,9 @@ class Role < ActiveRecord::Base
   has_many :user_roles
   has_many :users,:through => :user_roles,:uniq => true
   has_many :role_system_function_operates
+  #is_select标志为true的role_system_function_operates
+  has_many :selected_rsfos,:class_name => "RoleSystemFunctionOperate",:conditions => {:is_select => true}
+  has_many :selected_sfos,:class_name => "SystemFunctionOperate",:through => :selected_rsfos,:uniq => true,:source =>:system_function_operate,:include => :system_function
   has_many :system_function_operates,:through => :role_system_function_operates,:uniq => true,:include => :system_function
   accepts_nested_attributes_for :role_system_function_operates,:allow_destroy => true
 
@@ -39,7 +42,7 @@ class Role < ActiveRecord::Base
   end
   #得到被授权的system_function
   def system_functions
-    ids = self.system_function_operates.collect {|sfo| sfo.system_function_id}.uniq!
+    ids = self.selected_sfos.collect {|sfo| sfo.system_function_id}.uniq!
     if ids.blank?
       @system_finctions =[]
     else

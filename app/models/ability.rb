@@ -45,6 +45,8 @@ class Ability
     can :read,CarryingBill,['from_org_id in (?) or transit_org_id in (?) or to_org_id in (?)',ability_org_ids,ability_org_ids,ability_org_ids] do |bill|
       ability_org_ids.include?(bill.from_org_id) or ability_org_ids.include?(bill.to_org_id) or ability_org_ids.include?(bill.transit_org_id)
     end
+    #录入票据时,默认可读取转账客户信息
+    can :read,Vip,:org_id => user.current_ability_org_ids
 
     #登录时,可操作current_role_change action
     can :current_role_change,Role

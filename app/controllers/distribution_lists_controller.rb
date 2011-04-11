@@ -11,4 +11,9 @@ class DistributionListsController < BaseController
       format.csv {send_data resource.to_csv}
     end
   end
+  #GET load_list/1/export_excel
+  def export_excel
+    @distribution_list = resource_class.find(params[:id],:include => [:from_org,:to_org,:user,:carrying_bills])
+  end
+
 end

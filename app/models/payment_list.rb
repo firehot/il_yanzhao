@@ -4,7 +4,7 @@ class PaymentList < ActiveRecord::Base
   belongs_to :org
   has_many :carrying_bills
   belongs_to :user
- 
+
   default_value_for :bill_date,Date.today
   #导出到csv
   def to_csv
@@ -15,6 +15,22 @@ class PaymentList < ActiveRecord::Base
     ret = ret + ["备注:",self.note].export_line_csv
     csv_carrying_bills = CarryingBill.to_csv(self.carrying_bills.search,self.class.carrying_bill_export_options,false)
     ret + csv_carrying_bills
+  end
+  #运费合计
+  def sum_goods_fee
+    self.carrying_bills.to_a.sum(&:goods_fee)
+  end
+  #扣手续费
+  def sum_k_hand_fee
+    self.carrying_bills.to_a.sum(&:k_hand_fee)
+  end
+  #扣运费
+  def sum_k_carrying_fee
+    self.carrying_bills.to_a.sum(&:k_carrying_fee)
+  end
+  #应付合计
+  def sum_act_pay_fee
+    sum_goods_fee - sum_k_hand_fee - sum_k_carrying_fee
   end
   def self.carrying_bill_export_options
     {

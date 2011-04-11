@@ -1,7 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
-#coding: utf-8
 class ReceiveRefoundsController < RefoundsController
   include BillOperate
   defaults :resource_class => Refound, :collection_name => 'refounds', :instance_name => 'refound'

@@ -8,7 +8,7 @@
   <%end%>
   <%=f.inputs "选择角色" do %>
     <%=f.semantic_fields_for :user_roles,resource.all_user_roles! do |user_role|%>
-      <%=user_role.hidden_field :role_id%>
+      <%=user_role.hidden_field :role_id %>
       <%=user_role.check_box :is_select%>
       <%=user_role.label :is_select,user_role.object.role.name%>
     <%end%>
@@ -17,7 +17,7 @@
   <% cache "user_orgs_#{resource.id}_#{resource.updated_at.to_i}" do %>
     <%=f.inputs "可访问机构" do %>
       <table class="table">
-        <%=f.fields_for :user_orgs,resource.all_user_orgs!.select { |user_org| user_org.org.parent_id.blank?} do |user_org|%>
+        <%=f.semantic_fields_for :user_orgs,resource.all_user_orgs!.select { |user_org| user_org.org.parent_id.blank?} do |user_org|%>
           <%= render "user_org_recursive",:user_org => user_org,:f => f %>
         <%end%>
       </table>

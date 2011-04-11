@@ -23,7 +23,7 @@ module OrgsHelper
   #当前登录用户可使用的的org
   def current_ability_orgs_for_select
     default_org = current_user.default_org
-    ret = ActiveSupport::OrderedHash.new 
+    ret = ActiveSupport::OrderedHash.new
     ret["#{default_org.name}(#{default_org.py})"] = default_org.id
     default_org.children.each {|child_org|  ret["#{child_org.name}(#{child_org.py})"] = child_org.id}
     ret
@@ -35,7 +35,8 @@ module OrgsHelper
     default_org_id = current_user.default_org.id
     parent_id = current_user.default_org.parent_id
     exclude_ids =[current_user.default_org.id]
-    exclude_ids << parent_id += Org.where(:parent_id => parent_id).collect(&:id) if parent_id.present?
+    exclude_ids << parent_id if parent_id.present?
+    exclude_ids += Org.where(:parent_id => parent_id).collect(&:id) if parent_id.present?
     exclude_ids += Org.where(:parent_id => default_org_id).collect(&:id)
     exclude_ids.uniq!
     Branch.search(:is_active_eq => true,:id_ni => exclude_ids).all.map {|b| ["#{b.name}(#{b.py})",b.id]}

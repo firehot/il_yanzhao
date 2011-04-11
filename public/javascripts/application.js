@@ -160,7 +160,7 @@ jQuery(function($) {
 	var search_customer_by_code = function() {
 		var code = $(this).val();
 		if (code == "") return;
-		$.get('/customers', {
+		$.get('/vips', {
 			"search[code_eq]": code
 		},
 		null, 'script');
@@ -391,7 +391,7 @@ jQuery(function($) {
 		$('#sum_transit_hand_fee').html(sum_transit_hand_fee);
 		$('#sum_transit_carrying_fee').html(sum_transit_carrying_fee);
 		$('#sum_carrying_fee_th').html(sum_carrying_fee_th);
-		$('#sum_hand_fee').html(sum_k_hand_fee);
+		$('#sum_k_hand_fee').html(sum_k_hand_fee);
 		$('#sum_act_pay_fee').html(sum_act_pay_fee);
 		$('#sum_goods_fee').html(sum_goods_fee);
 		$('#sum_th_amount').html(sum_th_amount);
@@ -539,7 +539,7 @@ jQuery(function($) {
 		}
 		var params = {
 			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill"],
-			"search[state_eq]": "transfered",
+			"search[state_eq]": "payment_listed",
 			"search[payment_list_id_in][]": selected_bill_ids,
 			"hide_fields": ".carrying_fee,.insured_fee",
 			"show_fields": ".k_carrying_fee,.k_hand_fee,.transit_hand_fee,.act_pay_fee"

@@ -1,7 +1,13 @@
-var table ='<%= escape_javascript(render "shared/refounds/excel") %>';
+<%
+  #判断是显示分组还是显示普通表格
+  partial = "shared/refounds/excel"
+  partial = "shared/refounds/excel_group" if params[:show_group]
+
+%>
+var table ='<%= escape_javascript(render partial) %>';
 var set_style = function(work_sheet){
-  work_sheet.Columns.ColumnWidth = 7;  
-  work_sheet.Columns('A:A').ColumnWidth = 5;  
+  work_sheet.Columns.ColumnWidth = 7;
+  work_sheet.Columns('A:A').ColumnWidth = 5;
 
 };
 export_excel(table,set_style);
