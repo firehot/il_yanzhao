@@ -5,6 +5,7 @@
 .carrying_bill_show table{
   font-size : 12px;
 }
+.bill-state {display : none;}
 .carrying_bill_show td { height : 7mm;}
 .carrying_bill_show .label {display : none;}
 .col_17mm { width : 17mm;}
