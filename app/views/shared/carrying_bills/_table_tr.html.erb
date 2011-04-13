@@ -42,10 +42,14 @@
   <td class="insured_fee"><%=bill.insured_fee%></td>
   <td class="from_short_carrying_fee" style='display : none;'><%= bill.from_short_carrying_fee %></td>
   <td class="to_short_carrying_fee" style='display : none;'><%= bill.to_short_carrying_fee %></td>
-  <td class="note"><%= bill.note %></td>
+  <td class="note">
+    <div style='width : 50px;height : 30px;overflow : hidden;'>
+      <%= bill.note %>
+    </div>
+  </td>
   <td class="state"><%= bill.human_state_name %></td>
   <td class='send_state' style='display :none;'><%=bill.send_state%></td>
   <td>
     <%=link_to_function  image_tag("mouse--minus.png"),"$('#bill_#{bill.id}').remove()",:class => "tipsy",:title => '删除' %>
   </td>
-</tr>      
+</tr>

@@ -10,7 +10,7 @@ class Vip <  Customer
   validates :code,:uniqueness => true
   validates :bank_card,:length => {:maximum => 19}
 
-  before_save :set_code
+  before_create :set_code
 
   #导出
   def self.to_csv(search_obj)

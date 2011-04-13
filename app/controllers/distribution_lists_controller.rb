@@ -1,6 +1,7 @@
 #coding: utf-8
 class DistributionListsController < BaseController
   include BillOperate
+  table :bill_date,:org,:human_state_name,:user,:note
   #GET search
   #显示查询窗口
   def search

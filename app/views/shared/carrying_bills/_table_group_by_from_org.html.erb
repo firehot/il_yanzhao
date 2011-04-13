@@ -27,7 +27,7 @@
       <th class='short_fee_state' style='display : none;'>&nbsp;</th>
       <th class='send_state' style='display :none;'>&nbsp;</th>
     </tr>
-    <tr class='text-center'>             
+    <tr class='text-center'>
       <th class="cbx_select_bill" style='display : none;'>&nbsp;</th>
       <th class="first">序号</th>
       <th><%=sortable "bill_date","票据日期" %></th>
@@ -78,7 +78,7 @@
             <%=bill.goods_no%>
           </td>
           <td>
-          <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.to_area}" : bill.to_org_name%>
+            <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.to_area}" : bill.to_org_name%>
           </td>
           <td>
             <%=bill.from_customer_name%>
@@ -108,11 +108,15 @@
 
           <td class="from_short_carrying_fee" style='display : none;'><%= bill.from_short_carrying_fee %></td>
           <td class="to_short_carrying_fee" style='display : none;'><%= bill.to_short_carrying_fee %></td>
-          <td class="note"><%= bill.note %></td>
+          <td class="note">
+            <div style='width : 50px;height : 30px;overflow : hidden;'>
+              <%= bill.note %>
+            </div>
+          </td>
           <td class="state"><%= bill.human_state_name %></td>
           <td class="short_fee_state" style='display : none;'><%= bill.human_short_fee_state_name %></td>
           <th class='send_state' style='display :none;'><%=bill.send_state%></th>
-        </tr>          
+        </tr>
       <% end -%>
       <tr>
         <td class="cbx_select_bill" style='display : none;'>&nbsp;</td>

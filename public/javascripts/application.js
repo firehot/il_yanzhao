@@ -44,7 +44,7 @@ jQuery(function($) {
 		//计算保价费合计
 		var insured_amount = parseFloat($('#insured_amount').val());
 		var insured_rate = parseFloat($('#insured_rate').val());
-		var insured_fee = insured_amount * insured_rate / 1000;
+		var insured_fee = Math.ceil(insured_amount * insured_rate / 1000);
 		$('#insured_fee').val(insured_fee);
 		//计算运费合计
 		var carrying_fee = parseFloat($('#carrying_fee').val());
@@ -678,12 +678,12 @@ jQuery(function($) {
 	});
 
 	//未提货报表,处理各种票据列表底色
-	$('.rpt_no_delivery tr.white-bill').css('background', 'white');
-	$('.rpt_no_delivery tr.blue-bill').css('background', 'blue');
-	$('.rpt_no_delivery tr.green-bill').css('background', 'green');
+	$('.rpt_no_delivery tr.white-bill').css({backgroundColor, 'white',color : '#000'});
+	$('.rpt_no_delivery tr.blue-bill').css({backgroundColor : 'blue',color : '#fff'});
+	$('.rpt_no_delivery tr.green-bill').css({backgroundColor : 'green',color : '#fff'});
 	$('.rpt_no_delivery tr.yellow-bill').css('background', 'yellow');
-	$('.rpt_no_delivery tr.red-bill').css('background', 'red');
-	$('.rpt_no_delivery tr.black-bill').css('background', 'black');
+	$('.rpt_no_delivery tr.red-bill').css({backgroundColor : 'red',color ,'#fff'});
+	$('.rpt_no_delivery tr.black-bill').css({backgroundColor : 'black',color : '#fff'});
 	$('.turnover_chart').visualize({
 		width: '850px'
 	});
