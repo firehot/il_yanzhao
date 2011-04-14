@@ -9,7 +9,6 @@ class Claim < ActiveRecord::Base
 
   private
   def check_act_compensate_fee
-    errors.add(:act_compensate_fee, "实赔金额不能大于拟赔金额") if act_compensate_fee > self.goods_exception.gexception_authorize_info.compensation_fee
-    self.goods_exception.valid?
+    errors.add(:act_compensate_fee, "不能大于拟赔金额") if act_compensate_fee > self.goods_exception.gexception_authorize_info.compensation_fee
   end
 end

@@ -41,5 +41,4 @@ class GoodsExceptionsController < BaseController
   def search
     render :partial => "search"
   end
-
 end

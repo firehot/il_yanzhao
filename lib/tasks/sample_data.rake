@@ -771,7 +771,7 @@ namespace :db do
       :group_name => group_name,
       :subject_title => subject_title,
       :subject => subject,
-      :default_action => 'goods_exceptions_path',
+      :default_action => 'goods_exceptions_path("search[state_ne]" => "identified")',
       :function => {
       #查看相关运单,其他机构发往当前用户机构的运单
       :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},

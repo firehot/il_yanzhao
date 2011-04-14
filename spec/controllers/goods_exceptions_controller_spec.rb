@@ -87,7 +87,6 @@ describe GoodsExceptionsController do
     end
 
     describe "with invalid params" do
-
       it "re-renders the 'new' template" do
         post :create, :goods_exception => {}
         response.should render_template("new")
@@ -103,7 +102,7 @@ describe GoodsExceptionsController do
 
     describe "with valid params" do
       it "updates the requested goods_exception" do
-        put :update, :id => @goods_exception, :goods_exception => @attr 
+        put :update, :id => @goods_exception, :goods_exception => @attr
         @goods_exception.reload
         @goods_exception.note.should == @attr[:note]
       end
@@ -127,12 +126,12 @@ describe GoodsExceptionsController do
   describe "DELETE destroy" do
     it "destroys the requested goods_exception" do
       lambda do
-        delete :destroy, :id => @goods_exception 
+        delete :destroy, :id => @goods_exception
       end.should change(GoodsException,:count).by(-1)
     end
 
     it "redirects to the goods_exceptions list" do
-      delete :destroy, :id => @goods_exception 
+      delete :destroy, :id => @goods_exception
       response.should redirect_to(goods_exceptions_url)
     end
   end

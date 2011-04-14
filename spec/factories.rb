@@ -21,18 +21,18 @@ end
 
 
 Factory.define :zz,:parent => :branch do |org|
-  org.name 'A'
-  org.simp_name 'A'
+  org.name 'zz'
+  org.simp_name '郑'
   org.phone  '0371-67519902'
   org.manager  '张三'
   org.location  '南三环燕赵物流园'
-  org.code  "A"
+  org.code  "01"
   org.is_yard true
   org.lock_input_time  "23:59"
 end
 Factory.define :ay,:parent => :branch do |org|
   org.name '安阳'
-  org.simp_name 'AY'
+  org.simp_name '安'
   org.phone  '0371-67519902'
   org.manager  '张三'
   org.location  ''
@@ -46,7 +46,7 @@ Factory.define :sjz,:parent => :branch do |org|
   org.phone  '0371-67519902'
   org.manager  '张三'
   org.location  ''
-  org.code  "石"
+  org.code  "sjz"
   org.lock_input_time  "23:59"
 end
 Factory.define :kf,:parent => :branch do |org|
@@ -281,7 +281,7 @@ Factory.define :hand_transit_bill do |bill|
   bill.pay_type CarryingBill::PAY_TYPE_CASH
 
   bill.bill_no "0000002"
-  bill.goods_no "110320郑石1-3"
+  bill.goods_no "110320安郑1-3"
   bill.goods_info "手工中转运单"
   bill.association :from_org,:factory => :ay
   bill.association :transit_org,:factory => :zz

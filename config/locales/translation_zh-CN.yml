@@ -291,6 +291,7 @@ zh-CN:
         is_active: "有效"  #g
         org: "组织机构"  #g
         org_id: "组织机构"  #g
+        id_number: "身份证号"
 
       send_list:
         bill_date: "清单日期"  #g
@@ -561,9 +562,10 @@ zh-CN:
         user: "操作员"  #g
         org_id: "上报机构"  #g
         gexception_authorize_info: "货物异常核销信息"  #g
-        claim: "赔偿信息"  #g
         goods_exception_identify: "责任鉴定信息"  #g
-        "claim.act_compensate_fee": "实赔金额"
+        claim:
+          act_compensate_fee: "实赔金额"
+
 
       role_org:
         is_select: "选中"  #g
