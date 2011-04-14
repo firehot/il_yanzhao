@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110327130652) do
+ActiveRecord::Schema.define(:version => 20110414081435) do
 
   create_table "banks", :force => true do |t|
     t.string   "name",                                       :null => false
@@ -576,6 +576,7 @@ ActiveRecord::Schema.define(:version => 20110327130652) do
     t.boolean  "is_active",                :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "id_number",  :limit => 20
   end
 
   add_index "senders", ["is_active"], :name => "index_senders_on_is_active"

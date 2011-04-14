@@ -563,6 +563,7 @@ zh-CN:
         gexception_authorize_info: "货物异常核销信息"  #g
         claim: "赔偿信息"  #g
         goods_exception_identify: "责任鉴定信息"  #g
+        "claim.act_compensate_fee": "实赔金额"
 
       role_org:
         is_select: "选中"  #g

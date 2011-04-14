@@ -67,11 +67,14 @@ class CarryingBill < ActiveRecord::Base
   #当前活动的只能有一条
   has_one :send_list_line
 
+  #验证中转运费和中转手续费不可大运运费
+  validate :check_transit_fee
 
   validates :bill_no,:goods_no,:uniqueness => true
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
   validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:carrying_fee,:goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:goods_num
   validates :customer_code,:customer_code => true
+
   #定义state_machine
   #已开票
   #已装车
@@ -477,4 +480,9 @@ class CarryingBill < ActiveRecord::Base
     def set_completed_returned
       self.update_attributes(:completed => true)
     end
+    #验证中转费用
+    def check_transit_fee
+      errors.add(:transit_carrying_fee,"中转运费不能大于原运费.") if transit_carrying_fee >= carrying_fee
+      errors.add(:transit_hand_fee,"中转手续费不能大于原运费.") if transit_hand_fee >= carrying_fee
     end
+end

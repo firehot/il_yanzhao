@@ -18,7 +18,7 @@ class Ability
     alias_action :reset_usb_pin,:to => :edit #重设usb pin
 
     if user.is_admin?
-      SystemFunctionOperate.all.each do |sfo| 
+      SystemFunctionOperate.all.each do |sfo|
         f_obj = sfo.function_obj
         if f_obj[:conditions].present?
           can f_obj[:action],f_obj[:subject].constantize ,eval(f_obj[:conditions])
@@ -27,11 +27,11 @@ class Ability
         end
       end
     else
-      user.default_role.system_function_operates.each do |sfo| 
+      user.default_role.selected_sfos.each do |sfo|
         f_obj = sfo.function_obj
         the_model_class = f_obj[:subject].constantize
         if f_obj[:conditions].present?
-          can f_obj[:action],the_model_class ,eval(f_obj[:conditions]) 
+          can f_obj[:action],the_model_class ,eval(f_obj[:conditions])
         else
           can f_obj[:action],the_model_class
         end

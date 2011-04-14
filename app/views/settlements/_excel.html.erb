@@ -1,0 +1,65 @@
+<table cellspacing='0' cellpadding='0' border='0' style='border-collapse : collapse;border : thin solid #000;'>
+  <thead>
+    <tr>
+      <td colspan='12' style='text-align : center;font-size : 14px;'>(<%="#{@settlement.org_name}-#{@settlement.bill_date}" %>)结算员交款清单</td>
+    </tr>
+    <tr>
+    <tr>
+      <td colspan='2' style='border : thin solid #000;'>返程货款</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_goods_fee %></td>
+      <td style='border : thin solid #000;'>提付运费</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_carrying_fee %></td>
+      <td style='border : thin solid #000;'>中转运费</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_transit_carrying_fee %></td>
+      <td colspan='2' style='border : thin solid #000;'>中转手续费</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_transit_hand_fee %></td>
+      <td style='border : thin solid #000;'>合计</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_fee %></td>
+    </tr>
+
+    <tr>
+      <td style='border : thin solid #000;'>序号</td>
+      <td style='border : thin solid #000;'>运单号</td>
+      <td style='border : thin solid #000;'>货号</td>
+      <td style='border : thin solid #000;'>发货人</td>
+      <td style='border : thin solid #000;'>收货人</td>
+      <td style='border : thin solid #000;'>提付运费</td>
+      <td style='border : thin solid #000;'>代收货款</td>
+      <td style='border : thin solid #000;'>中转运费</td>
+      <td style='border : thin solid #000;'>中转手续费</td>
+      <td style='border : thin solid #000;'>合计</td>
+      <td style='border : thin solid #000;'>运费支付方式</td>
+      <td style='border : thin solid #000;'>备注</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%@settlement.carrying_bills.each_with_index do |bill,index| %>
+      <tr>
+        <td style='border : thin solid #000;'><%= index + 1 %></td>
+        <td style='border : thin solid #000;'>&nbsp;<%= bill.bill_no %></td>
+        <td style='border : thin solid #000;'><%= bill.goods_no %></td>
+        <td style='border : thin solid #000;'><%= bill.from_customer_name %></td>
+        <td style='border : thin solid #000;'><%= bill.to_customer_name %></td>
+        <td style='border : thin solid #000;'><%= bill.carrying_fee_th %></td>
+        <td style='border : thin solid #000;'><%= bill.goods_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.transit_carrying_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.transit_hand_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.th_amount%></td>
+        <td style='border : thin solid #000;'><%= bill.pay_type_des%></td>
+        <td style='border : thin solid #000;'><%= bill.note %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan='5' style='text-align : right;border : thin solid #000;'>合计</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_carrying_fee%></td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_goods_fee%></td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_transit_carrying_fee%></td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_transit_hand_fee%></td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_fee%></td>
+      <td style='border : thin solid #000;'></td>
+      <td style='border : thin solid #000;'></td>
+    </tr>
+  </tfoot>
+</table>

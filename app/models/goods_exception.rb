@@ -11,6 +11,8 @@ class GoodsException < ActiveRecord::Base
   has_one :goods_exception_identify
   accepts_nested_attributes_for :gexception_authorize_info,:claim,:goods_exception_identify
 
+  #异常数量不能大于货物数量
+  validate :check_except_num
   validates_presence_of :org_id
   #定义状态机
   state_machine :initial => :submited do
@@ -23,13 +25,13 @@ class GoodsException < ActiveRecord::Base
   #FIXME 缺省值设定应定义到state_machine之后
   default_value_for :bill_date,Date.today
 
-  EXCEPT_LACK= "LA"           #少货
+  #EXCEPT_LACK= "LA"           #少货
   EXCEPT_SHORTAGE = "SH"      #短缺
   EXCEPT_DAMAGED = "DA"       #破损
   #付款方式描述
   def self.exception_types
     {
-      "少货" => EXCEPT_LACK,          #少货
+#      "少货" => EXCEPT_LACK,          #少货
       "丢缺" => EXCEPT_SHORTAGE,      #短缺
       "破损" => EXCEPT_DAMAGED        #破损
     }
@@ -39,5 +41,8 @@ class GoodsException < ActiveRecord::Base
       GoodsException.exception_types.each {|des,code| except_des = des if code == self.exception_type }
       except_des
   end
-
+  private
+  def check_except_num
+    errors.add(:except_num,"不能大于货物数量") if self.except_num > self.carrying_bill.goods_num
+  end
 end

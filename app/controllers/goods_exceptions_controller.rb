@@ -12,8 +12,8 @@ class GoodsExceptionsController < BaseController
   def update
     bill = resource_class.find(params[:id])
     get_resource_ivar || set_resource_ivar(bill)
-    bill.process
     update!
+    bill.process if bill.valid?
   end
 
   #GET /goods_exceptions/1/show_authorize

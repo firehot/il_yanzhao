@@ -16,6 +16,9 @@ class SettlementsController < BaseController
       format.csv {send_data resource.to_csv}
     end
   end
-
+  #GET load_list/1/export_excel
+  def export_excel
+    @settlement = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
+  end
 end
 

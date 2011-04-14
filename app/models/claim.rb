@@ -5,5 +5,11 @@ class Claim < ActiveRecord::Base
   belongs_to :user
   default_value_for :bill_date,Date.today
 
-  #TODO 理赔金额不应大于拟赔金额
+  validate :check_act_compensate_fee
+
+  private
+  def check_act_compensate_fee
+    errors.add(:act_compensate_fee, "实赔金额不能大于拟赔金额") if act_compensate_fee > self.goods_exception.gexception_authorize_info.compensation_fee
+    self.goods_exception.valid?
+  end
 end

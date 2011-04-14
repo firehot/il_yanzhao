@@ -47,5 +47,4 @@ class Settlement < ActiveRecord::Base
           :note,:human_state_name
       ]}
   end
-
 end

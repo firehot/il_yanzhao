@@ -678,11 +678,11 @@ jQuery(function($) {
 	});
 
 	//未提货报表,处理各种票据列表底色
-	$('.rpt_no_delivery tr.white-bill').css({backgroundColor, 'white',color : '#000'});
+	$('.rpt_no_delivery tr.white-bill').css({backgroundColor : 'white',color : '#000'});
 	$('.rpt_no_delivery tr.blue-bill').css({backgroundColor : 'blue',color : '#fff'});
 	$('.rpt_no_delivery tr.green-bill').css({backgroundColor : 'green',color : '#fff'});
-	$('.rpt_no_delivery tr.yellow-bill').css('background', 'yellow');
-	$('.rpt_no_delivery tr.red-bill').css({backgroundColor : 'red',color ,'#fff'});
+	$('.rpt_no_delivery tr.yellow-bill').css({backgroundColor : 'yellow'});
+	$('.rpt_no_delivery tr.red-bill').css({backgroundColor : 'red',color :'#fff'});
 	$('.rpt_no_delivery tr.black-bill').css({backgroundColor : 'black',color : '#fff'});
 	$('.turnover_chart').visualize({
 		width: '850px'

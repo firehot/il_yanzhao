@@ -529,6 +529,7 @@ end
 #sender
 Factory.define :sender do |sender|
   sender.name 'sender'
+  sender.id_number '412929197510020418'
   sender.association :org ,:factory => :zz
 end
 #send_list
