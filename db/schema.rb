@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414081435) do
+ActiveRecord::Schema.define(:version => 20110415033514) do
 
   create_table "banks", :force => true do |t|
     t.string   "name",                                       :null => false
@@ -241,6 +241,15 @@ ActiveRecord::Schema.define(:version => 20110414081435) do
   add_index "distribution_lists", ["state"], :name => "index_distribution_lists_on_state"
   add_index "distribution_lists", ["user_id"], :name => "index_distribution_lists_on_user_id"
 
+  create_table "gerror_authorizes", :force => true do |t|
+    t.date     "bill_date",      :null => false
+    t.integer  "user_id"
+    t.integer  "goods_error_id", :null => false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "gexception_authorize_infos", :force => true do |t|
     t.date     "bill_date",                                                                        :null => false
     t.text     "note"
@@ -256,6 +265,32 @@ ActiveRecord::Schema.define(:version => 20110414081435) do
   add_index "gexception_authorize_infos", ["goods_exception_id"], :name => "index_gexception_authorize_infos_on_goods_exception_id"
   add_index "gexception_authorize_infos", ["op_type"], :name => "index_gexception_authorize_infos_on_op_type"
   add_index "gexception_authorize_infos", ["user_id"], :name => "index_gexception_authorize_infos_on_user_id"
+
+  create_table "goods_errors", :force => true do |t|
+    t.integer  "carrying_bill_id",                              :null => false
+    t.integer  "org_id",                                        :null => false
+    t.integer  "user_id"
+    t.date     "bill_date",                                     :null => false
+    t.string   "except_type",      :limit => 10,                :null => false
+    t.integer  "except_num",                     :default => 1
+    t.text     "note"
+    t.string   "state",            :limit => 20,                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "goods_exception2s", :force => true do |t|
+    t.integer  "carrying_bill_id",                              :null => false
+    t.integer  "org_id",                                        :null => false
+    t.integer  "user_id"
+    t.date     "bill_date",                                     :null => false
+    t.string   "except_type",      :limit => 10,                :null => false
+    t.integer  "except_num",                     :default => 1
+    t.text     "note"
+    t.string   "state",            :limit => 20,                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "goods_exception_identifies", :force => true do |t|
     t.date     "bill_date",                                                          :null => false

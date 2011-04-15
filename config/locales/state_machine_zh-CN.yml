@@ -92,6 +92,11 @@ zh-CN:
             authorized: "已核销"
             compensated: "已赔偿"
             identified: "责任已鉴定"
+      goods_error:
+        state:
+          states:
+            submited: "已提交"
+            authorized: "已核销"
 
       remittance:
         state:

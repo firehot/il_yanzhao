@@ -522,6 +522,14 @@ Factory.define :gexception_authorize_info do |authorize_info|
   authorize_info.op_type "FO"
   authorize_info.compensation_fee 100
 end
+#goods_exception_2 多货少货信息
+Factory.define :goods_error do |ge|
+  ge.association :org,:factory => :zz
+  ge.association :carrying_bill,:factory => :computer_bill
+  ge.except_type "SH"
+  ge.except_num 1
+end
+
 #journal
 Factory.define :journal do |journal|
   journal.association :org,:factory => :zz

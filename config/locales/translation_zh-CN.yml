@@ -66,6 +66,7 @@ zh-CN:
       role: "角色"  #g
       branch: "分理处/分公司"  #g
       goods_exception: "货物异常信息"  #g
+      goods_error: "少货/多货信息"  #g
       role_org: "角色-机构"  #g
 
 
@@ -566,6 +567,20 @@ zh-CN:
         claim:
           act_compensate_fee: "实赔金额"
 
+      goods_error:
+        except_type: "异常类别"  #g
+        bill_date: "日期"  #g
+        state: "状态"  #g
+        except_num: "异常数量"  #g
+        except_des: "异常类别"
+        note: "备注"  #g
+        carrying_bill_id: "运单"  #g
+        user: "操作员"  #g
+        org_id: "上报机构"  #g
+      gerror_authorize:
+        note: "核销备注"
+        user_id: "核销人"
+        user: "核销人"
 
       role_org:
         is_select: "选中"  #g

@@ -1,5 +1,10 @@
 IlYanzhao::Application.routes.draw do
 
+  resources :goods_errors do
+    #显示核销界面
+    get :show_authorize,:on => :member
+    get :search,:on => :collection
+  end
 
   resources :imported_customers
 
