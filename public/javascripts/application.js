@@ -436,7 +436,7 @@ jQuery(function($) {
 		$.get('/settlements', {
 			"search[carrying_bills_from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill"],
+			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","ReturnBill"],
 			"search[carrying_bills_state_eq]": "settlemented",
 			"search[carrying_bills_completed_eq]": 0,
 			"search[carrying_bills_goods_fee_or_carrying_bills_carrying_fee_gt]": 0
@@ -470,7 +470,7 @@ jQuery(function($) {
 		var params = {
 			"search[from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[to_org_id_or_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","ReturnBill"],
 			"search[state_eq]": "settlemented",
 			"search[completed_eq]": 0,
 			"search[goods_fee_or_carrying_fee_gt]": 0,

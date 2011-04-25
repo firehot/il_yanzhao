@@ -14,6 +14,11 @@ class CarryingBillsController < BaseController
       format.csv {send_data resource_class.to_csv(@search)}
     end
   end
+  #导出查询结果为excel
+  #GET carrying_bills/export_excel
+  def export_excel
+    @search = end_of_association_chain.accessible_by(current_ability).search(params[:search])
+  end
 
   #GET search
   #显示查询窗口

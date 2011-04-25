@@ -91,17 +91,18 @@ class CarryingBill < ActiveRecord::Base
   state_machine :initial => :billed do
     #运单处理完成后,设置completed标志
     #存在以下几种情况；
-    #1 现金付运单,没有代收货款,提货后,运单已经完成
-    #2 提货付运单,没有代收货款,日结算后(settlement),运单完成
-    #3 现金提款运单,提款日接后(posted),运单完成
-    #4 转账提款运单,提款后(paid),运单完成
-    #5 运单退货后
+    #1 现金付回执付运单,没有代收货款,提货后,运单已经完成
+    #2 现金提款运单,提款日接后(posted),运单完成
+    #3 转账提款运单,提款后(paid),运单完成
+    #4 运单退货后,自动完成
+    #5 退货单返款清单确认后,自动完成
     #在这几种情况下,自动设置completed标志
 
     after_transition :on => :standard_process,:deliveried => :settlemented,:do => :set_completed_settlemented
     after_transition :on => :standard_process,:paid => :posted,:do => :set_completed_posted
     after_transition :on => :standard_process,:payment_listed => :paid,:do => :set_completed_paid
     after_transition :on => :return,any => :returned,:do => :set_completed_returned
+    after_transition :on => :standard_process,:refunded => :returned_confirmed,:do => :set_completed_returned
 
     #正常运单处理流程(包括机打运单/手工运单/退货单据)
     event :standard_process do
@@ -464,9 +465,9 @@ class CarryingBill < ActiveRecord::Base
     end
 
     #根据运单不同情况设置completed标志
-    #提货付款/无代收货款
+    #现金付/回执付/无代收货款,自动置结束标记
     def set_completed_settlemented
-      self.update_attributes(:completed => true) if [PAY_TYPE_TH,PAY_TYPE_CASH].include?(self.pay_type) and self.goods_fee == 0
+      self.update_attributes(:completed => true) if [PAY_TYPE_RETURN,PAY_TYPE_CASH].include?(self.pay_type) and self.goods_fee == 0
     end
     #现金提款
     def set_completed_posted
@@ -476,10 +477,15 @@ class CarryingBill < ActiveRecord::Base
     def set_completed_paid
       self.update_attributes(:completed => true) unless self.goods_fee_cash?
     end
-    #退货
+    #退货后,原始单据直接标志为完成
     def set_completed_returned
       self.update_attributes(:completed => true)
     end
+    #提货付运费且货款为0,收款清单确认后,自动完成
+    def set_completed_refunded_confirmed
+      self.update_attributes(:completed => true) if self.pay_type.eql? PAY_TYPE_TH and self.goods_fee == 0
+    end
+
     #验证中转费用
     def check_transit_fee
       errors.add(:transit_carrying_fee,"中转运费不能大于原运费.") if transit_carrying_fee >= carrying_fee

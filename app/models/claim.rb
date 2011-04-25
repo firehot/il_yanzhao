@@ -5,7 +5,7 @@ class Claim < ActiveRecord::Base
   belongs_to :user
   default_value_for :bill_date,Date.today
 
-  validate :check_act_compensate_fee
+  #validate :check_act_compensate_fee
 
   private
   def check_act_compensate_fee

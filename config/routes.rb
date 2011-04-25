@@ -165,19 +165,23 @@ IlYanzhao::Application.routes.draw do
 
   resources :hand_transit_bills do
     get :search,:on => :collection
+    get :export_excel,:on => :collection
   end
 
   resources :transit_bills do
     get :search,:on => :collection
+    get :export_excel,:on => :collection
   end
 
   resources :hand_bills do
     get :search,:on => :collection
+    get :export_excel,:on => :collection
   end
 
   resources :return_bills do
     get :before_new,:on => :collection
     get :search,:on => :collection
+    get :export_excel,:on => :collection
   end
 
   resources :orgs
@@ -190,11 +194,13 @@ IlYanzhao::Application.routes.draw do
     get :turnover_chart,:on => :collection
     get :search,:on => :collection
     get :simple_search,:on => :collection
+    get :export_excel,:on => :collection
     put :reset,:on => :member
   end
 
   resources :computer_bills do
     get :search,:on => :collection
+    get :export_excel,:on => :collection
   end
 
   root :to => "dashboard#index"
