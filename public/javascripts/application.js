@@ -31,7 +31,6 @@ jQuery(function($) {
 	//	var formtasticValidation = new FormtasticValidation;
 	//	formtasticValidation.initialize();
 	//};
-
 	//init_formtastic_validation.apply();
 	//导出excel按钮绑定
 	$('.btn_export_excel').click(function() {
@@ -152,8 +151,8 @@ jQuery(function($) {
 	//组织机构列表
 	$('#role_system_functions_list').accordion({
 		collapsible: true,
-	       autoHeight : false,
-	       animated : false,
+		autoHeight: false,
+		animated: false,
 		active: false
 	});
 	//根据客户编号查询查询客户信息
@@ -276,7 +275,7 @@ jQuery(function($) {
 
 	});
 	//运单列表表头点击事件
-	$('#table_wrap th a[href!="#"],#table_wrap .pagination a[href!="#"]').live('click', function() {
+	$('#table_wrap tr.table-header th a[href!="#"],#table_wrap .pagination a[href!="#"]').live('click', function() {
 		$.getScript(this.href);
 		return false;
 	});
@@ -436,7 +435,7 @@ jQuery(function($) {
 		$.get('/settlements', {
 			"search[carrying_bills_from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","ReturnBill"],
+			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill"],
 			"search[carrying_bills_state_eq]": "settlemented",
 			"search[carrying_bills_completed_eq]": 0,
 			"search[carrying_bills_goods_fee_or_carrying_bills_carrying_fee_gt]": 0
@@ -470,7 +469,7 @@ jQuery(function($) {
 		var params = {
 			"search[from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[to_org_id_or_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","ReturnBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill"],
 			"search[state_eq]": "settlemented",
 			"search[completed_eq]": 0,
 			"search[goods_fee_or_carrying_fee_gt]": 0,
@@ -678,30 +677,31 @@ jQuery(function($) {
 	});
 
 	//未提货报表,处理各种票据列表底色
-	$('.rpt_no_delivery tr.white-bill').css({backgroundColor : 'white',color : '#000'});
-	$('.rpt_no_delivery tr.blue-bill').css({backgroundColor : 'blue',color : '#fff'});
-	$('.rpt_no_delivery tr.green-bill').css({backgroundColor : 'green',color : '#fff'});
-	$('.rpt_no_delivery tr.yellow-bill').css({backgroundColor : 'yellow'});
-	$('.rpt_no_delivery tr.red-bill').css({backgroundColor : 'red',color :'#fff'});
-	$('.rpt_no_delivery tr.black-bill').css({backgroundColor : 'black',color : '#fff'});
+	$('.rpt_no_delivery tr.white-bill').css({
+		backgroundColor: 'white',
+		color: '#000'
+	});
+	$('.rpt_no_delivery tr.blue-bill').css({
+		backgroundColor: 'blue',
+		color: '#fff'
+	});
+	$('.rpt_no_delivery tr.green-bill').css({
+		backgroundColor: 'green',
+		color: '#fff'
+	});
+	$('.rpt_no_delivery tr.yellow-bill').css({
+		backgroundColor: 'yellow'
+	});
+	$('.rpt_no_delivery tr.red-bill').css({
+		backgroundColor: 'red',
+		color: '#fff'
+	});
+	$('.rpt_no_delivery tr.black-bill').css({
+		backgroundColor: 'black',
+		color: '#fff'
+	});
 	$('.turnover_chart').visualize({
 		width: '850px'
-	});
-
-	//提货时,仅仅打印运单
-	$('.btn_deliver_only_print').click(function() {
-		if ($('.carrying_bill_show').length == 0) $.notifyBar({
-			html: "请先查询要提货的运单,然后再进行打印操作.",
-			delay: 3000,
-			animationSpeed: "normal",
-			cls: 'error'
-		});
-		else
-
-		$('.carrying_bill_show').printElement({
-			overrideElementCSS: ['/stylesheets/bill_print.css']
-		});
-
 	});
 
 	//自动获取明细信息
@@ -735,5 +735,18 @@ jQuery(function($) {
 		$(this).find('[name*="lock_time"]').attr('readonly', false);
 	});
 
+	//日营业额统计,月营业额统计导出
+	$('#btn_export_turnover').click(function() {
+		var table_doc = $('#rpt_turnover').clone();
+		table_doc.find('th,td').css({
+			border: 'thin solid #000'
+		});
+		var set_style = function(work_sheet) {
+			work_sheet.Columns.ColumnWidth = 7;
+			work_sheet.Columns('A:A').ColumnWidth = 5;
+
+		};
+		export_excel("<table>" + table_doc.html() + "</table>", set_style);
+	});
 });
 

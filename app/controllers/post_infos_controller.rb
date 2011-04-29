@@ -12,4 +12,8 @@ class PostInfosController < BaseController
       format.csv {send_data resource.to_csv}
     end
   end
+  #GET post_info/1/export_excel
+  def export_excel
+    @post_info = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
+  end
 end

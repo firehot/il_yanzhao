@@ -102,7 +102,7 @@ class CarryingBill < ActiveRecord::Base
     after_transition :on => :standard_process,:paid => :posted,:do => :set_completed_posted
     after_transition :on => :standard_process,:payment_listed => :paid,:do => :set_completed_paid
     after_transition :on => :return,any => :returned,:do => :set_completed_returned
-    after_transition :on => :standard_process,:refunded => :returned_confirmed,:do => :set_completed_returned
+    after_transition :on => :standard_process,:refunded => :refunded_confirmed,:do => :set_completed_returned
 
     #正常运单处理流程(包括机打运单/手工运单/退货单据)
     event :standard_process do

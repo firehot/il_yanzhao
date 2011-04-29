@@ -1,4 +1,4 @@
-<table class='table carrying_bill_show' data-bill="<%=show.to_json%>" id="carrying_bill_show">
+<table class='table carrying_bill_show' data-bill="<%=show.to_json%>" data-print="<%=show.to_print_json%>" id="carrying_bill_show">
   <tr>
     <td colspan='8' class='col_74mm text-right bill-state'><%=show.human_state_name%></td>
   </tr>
@@ -14,9 +14,7 @@
     <%end%>
     <td class='col_20mm'><span class='label'>运单编号</span></td>
     <td class='col_27mm'><%=show.bill_no%></td>
-
   </tr>
-
   <tr>
     <td class='col_10mm'><span class='label'>卡号</span></td>
     <td colspan='3' class='col_50mm'><%=show.customer_code%></td>

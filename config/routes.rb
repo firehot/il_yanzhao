@@ -81,6 +81,7 @@ IlYanzhao::Application.routes.draw do
 
   resources :post_infos do
     get :search,:on => :collection
+    get :export_excel,:on => :member
     resources :carrying_bills
   end
 

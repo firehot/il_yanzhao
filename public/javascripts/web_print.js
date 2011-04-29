@@ -182,7 +182,7 @@ jQuery(function($) {
 					height: '5.3mm'
 				},
 				to_org: {
-                                          text: the_bill.to_org.name + (the_bill.transit_org ? (the_bill.transit_org.name + "~") : "") +  (the_bill.to_area ? the_bill.to_area : ""),
+					text: the_bill.to_org.name + (the_bill.transit_org ? (the_bill.transit_org.name + "~") : "") + (the_bill.to_area ? the_bill.to_area: ""),
 					left: '80mm',
 					top: '16mm',
 					width: '30mm',
@@ -196,7 +196,7 @@ jQuery(function($) {
 					height: '5.3mm'
 				},
 				customer_code: {
-					text: the_bill.customer_code,
+					text: the_bill.customer_code ? the_bill.customer_code: "",
 					left: '28mm',
 					top: '23mm',
 					width: '40mm',
@@ -403,7 +403,7 @@ jQuery(function($) {
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org.name + ":" + the_bill.to_org.phone,
+					text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + the_bill.to_area + ":" + the_bill.transit_org.phone),
 					left: '20mm',
 					top: '118mm',
 					width: '100mm',
@@ -431,5 +431,23 @@ jQuery(function($) {
 		var bill = $(this).data('print');
 		$.print_bill(bill);
 	});
+
+	//提货时,仅仅打印运单
+	$('.btn_deliver_only_print').click(function() {
+		if ($('.carrying_bill_show').length == 0) $.notifyBar({
+			html: "请先查询要提货的运单,然后再进行打印操作.",
+			delay: 3000,
+			animationSpeed: "normal",
+			cls: 'error'
+		});
+		else {
+			var bill = $('.carrying_bill_show').data('print');
+			$.print_bill(bill);
+		}
+
+	});
+
+	//提货打印,触发自动打印事件
+	$('.auto_print_bill').trigger('click');
 });
 
