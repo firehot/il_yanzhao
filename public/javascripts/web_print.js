@@ -169,10 +169,10 @@ jQuery(function($) {
 			var config = {
 				page: {
 					name: "运单打印",
-					width: "174mm",
-					height: '135mm',
-					left: '5mm',
-					top: '3mm'
+					width: "185mm",
+					height: '140mm',
+					left: '-3mm',
+					top: '-3mm'
 				},
 				from_org: {
 					text: the_bill.from_org.name,
@@ -190,77 +190,77 @@ jQuery(function($) {
 				},
 				bill_no: {
 					text: the_bill.bill_no,
-					left: '100mm',
+					left: '130mm',
 					top: '16mm',
 					width: '36mm',
 					height: '5.3mm'
 				},
 				customer_code: {
 					text: the_bill.customer_code ? the_bill.customer_code: "",
-					left: '28mm',
+					left: '18mm',
 					top: '23mm',
 					width: '40mm',
 					height: '5.3mm'
 				},
 				goods_no: {
 					text: the_bill.goods_no,
-					left: '92mm',
+					left: '82mm',
 					top: '23mm',
 					width: '40mm',
 					height: '5.3mm'
 				},
 				bill_date: {
 					text: the_bill.bill_date,
-					left: '135mm',
+					left: '134mm',
 					top: '23mm',
 					width: '33mm',
 					height: '5.3mm'
 				},
 				from_customer_name: {
 					text: the_bill.from_customer_name,
-					left: '35mm',
+					left: '25mm',
 					top: '31mm',
 					width: '23mm',
 					height: '5.3mm'
 				},
 				from_customer_phone: {
 					text: the_bill.from_customer_phone,
-					left: '64mm',
+					left: '54mm',
 					top: '31mm',
 					width: '35mm',
 					height: '5.3mm'
 				},
 				from_customer_mobile: {
 					text: the_bill.from_customer_mobile,
-					left: '105mm',
+					left: '95mm',
 					top: '31mm',
 					width: '38mm',
 					height: '5.3mm'
 				},
 				to_customer_name: {
 					text: the_bill.to_customer_name,
-					left: '35mm',
+					left: '25mm',
 					top: '37mm',
 					width: '23mm',
 					height: '5.3mm'
 				},
 				to_customer_phone: {
 					text: the_bill.to_customer_phone,
-					left: '64mm',
+					left: '54mm',
 					top: '37mm',
 					width: '35mm',
 					height: '5.3mm'
 				},
 				to_customer_mobile: {
 					text: the_bill.to_customer_mobile,
-					left: '105mm',
+					left: '95mm',
 					top: '37mm',
 					width: '38mm',
 					height: '5.3mm'
 				},
 				pay_type_des: {
 					text: the_bill.pay_type_des,
-					left: '145mm',
+					left: '135mm',
 					top: '37mm',
 					width: '30mm',
 					height: '5.3mm'
@@ -268,7 +268,7 @@ jQuery(function($) {
 
 				goods_info: {
 					text: the_bill.goods_info,
-					left: '18mm',
+					left: '8mm',
 					top: '52mm',
 					width: '23mm',
 					height: '5.3mm'
@@ -421,9 +421,13 @@ jQuery(function($) {
 			print_object.SET_PRINT_PAGESIZE(1, config.page.width, config.page.height, "");
 			for (var c in config) {
 				if (typeof(config[c].text) != 'undefined') print_object.ADD_PRINT_TEXT(config[c].top, config[c].left, config[c].width, config[c].height, config[c].text);
+                                print_object.SET_PRINT_STYLEA(0,"FontSize",13);
+                                print_object.SET_PRINT_STYLEA(0,"LineSpacing",10);
+                                
 
 			}
 			print_object.PREVIEW();
+			//print_object.PRINT();
 		}
 	});
 	//绑定打印事件
