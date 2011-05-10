@@ -2,7 +2,7 @@
 #转账客户
 class Vip <  Customer
 
-  #attr_protected :code
+  attr_protected :code
   belongs_to :bank
   belongs_to :org
   belongs_to :config_transit
@@ -10,7 +10,7 @@ class Vip <  Customer
   validates :code,:uniqueness => true
   validates :bank_card,:length => {:maximum => 30}
 
-  #before_create :set_code
+  before_create :set_code
 
   #导出
   def self.to_csv(search_obj)

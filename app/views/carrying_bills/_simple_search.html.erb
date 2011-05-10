@@ -1,5 +1,7 @@
 <%= semantic_form_for @search,:html => {:id => "simple_search_bill_form",:method => :get } do |f|%>
   <%= f.inputs do %>
+    <%= hidden_field_tag :direction,params[:direction] %>
+    <%= hidden_field_tag :sort,params[:sort] %>
     <%= hidden_field_tag :rpt_type,params[:rpt_type]%>
     <%= hidden_field_tag :show_fields,params[:show_fields]%>
     <%= hidden_field_tag :hide_fields,params[:hide_fields]%>

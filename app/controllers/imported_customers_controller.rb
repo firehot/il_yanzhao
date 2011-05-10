@@ -1,13 +1,13 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
-#coding: utf-8
-#coding: utf-8
 class ImportedCustomersController < BaseController
   #检查上月是否有数据导入
   before_filter :check_data,:only => :index
   def create
-    CustomerFeeInfo.generate_data(params[:org_id])
+    if params[:org_id].present?
+      CustomerFeeInfo.generate_data(params[:org_id])
+    else
+      Branch.where(:is_active => true).all.each {|org| CustomerFeeInfo.generate_data(org.id)}
+    end
     flash[:success] = "生成客户分级数据完毕"
     redirect_to imported_customers_url("search[org_id_eq]" => params[:org_id])
   end

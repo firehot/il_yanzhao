@@ -47,6 +47,7 @@
       <td style='border : thin solid #000;'>代收货款</td>
       <td style='border : thin solid #000;'>扣运费</td>
       <td style='border : thin solid #000;'>扣手续费</td>
+      <td style='border : thin solid #000;'>扣中转手续费</td>
       <td style='border : thin solid #000;'>实提货款</td>
       <td style='border : thin solid #000;'>运费支付方式</td>
       <td style='border : thin solid #000;'>备注</td>
@@ -62,10 +63,23 @@
         <td style='border : thin solid #000;'><%= bill.goods_fee%></td>
         <td style='border : thin solid #000;'><%= bill.k_carrying_fee%></td>
         <td style='border : thin solid #000;'><%= bill.k_hand_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.transit_hand_fee%></td>
         <td style='border : thin solid #000;'><%= bill.act_pay_fee%></td>
         <td style='border : thin solid #000;'><%= bill.pay_type_des%></td>
         <td style='border : thin solid #000;'><%= bill.note %></td>
       </tr>
     <%end%>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan='4' style='text-align : right;border : thin solid #000;'>合计</td>
+      <td style='border : thin solid #000;'><%=resource.sum_goods_fee%></td>
+      <td style='border : thin solid #000;'><%=resource.sum_k_carrying_fee%></td>
+      <td style='border : thin solid #000;'><%=resource.sum_k_hand_fee%></td>
+      <td style='border : thin solid #000;'><%=resource.sum_transit_hand_fee%></td>
+      <td style='border : thin solid #000;'><%=resource.sum_act_pay_fee%></td>
+      <td style='border : thin solid #000;'></td>
+      <td style='border : thin solid #000;'></td>
+    </tr>
+  </tfoot>
 </table>

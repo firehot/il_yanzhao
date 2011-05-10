@@ -527,8 +527,10 @@ zh-CN:
         sum_goods_fee: "代收货款合计"  #g
         sum_carrying_fee: "运费合计"  #g
         carrying_bills: "运单明细"  #g
+        from_org_id: "付款机构"
         from_org: "付款机构"  #g
         to_org: "收款机构"  #g
+        to_org_id: "收款机构"  #g
         remittance: "汇款记录"  #g
 
       remittance:

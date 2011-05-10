@@ -1,13 +1,18 @@
 <div class='box text-center'>
   <%=form_tag imported_customers_path,:method => :post do %>
-    <p>
-      <label>数据月份:</label>
-      <%=1.months.ago.strftime('%Y年%m月')%>
-    </p>
-    <p>
-      <label>选择机构:</label>
-      <%=select_tag :org_id,options_for_select(current_ability_orgs_for_select)  %>
-    </p>
-    <%=submit_tag "生成客户分级数据", :class => "sexybutton sexysimple sexyblue"%>
+    <table class='table'>
+      <tr>
+        <td class='text-right' width='200'>数据月份:</td>
+        <td><%=1.months.ago.strftime('%Y年%m月')%></td>
+      </tr>
+      <tr>
+        <td class='text-right'>选择机构(不选择导入全部机构数据):</td>
+        <td><%=select_tag :org_id,options_for_select(branches_for_select),:include_blank => true  %></td>
+      </tr>
+      <tr>
+        <td colspan='2' class='text-center'><%=submit_tag "生成客户分级数据", :class => "sexybutton sexysimple sexyblue"%></td>
+      </tr>
+
+    </table>
   <%end%>
 </div>

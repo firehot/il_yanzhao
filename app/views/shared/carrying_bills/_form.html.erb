@@ -1,4 +1,4 @@
-<% 
+<%
   can_update =''
   can_update = 'update_carrying_fee'if can?(:update_carrying_fee_20,resource) or can?(:update_carrying_fee_50,resource) or can?(:update_carrying_fee_100,resource)
   can_update='update_all' if can?(:update_all,resource)
@@ -85,7 +85,10 @@
     </tr>
     <tr>
       <td>货物名称</td>
-      <td colspan='5'><%= f.text_field :goods_info,:size => 60 %></td>
+      <td colspan='3'><%= f.text_field :goods_info,:size => 60 %></td>
+      <td>包装</td>
+      <td><%= f.text_field :package,:size => 15%></td>
+
     </tr>
     <tr>
       <td>数量</td>
