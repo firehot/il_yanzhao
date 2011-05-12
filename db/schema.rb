@@ -280,19 +280,6 @@ ActiveRecord::Schema.define(:version => 20110509024544) do
     t.datetime "updated_at"
   end
 
-  create_table "goods_exception2s", :force => true do |t|
-    t.integer  "carrying_bill_id",                              :null => false
-    t.integer  "org_id",                                        :null => false
-    t.integer  "user_id"
-    t.date     "bill_date",                                     :null => false
-    t.string   "except_type",      :limit => 10,                :null => false
-    t.integer  "except_num",                     :default => 1
-    t.text     "note"
-    t.string   "state",            :limit => 20,                :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "goods_exception_identifies", :force => true do |t|
     t.date     "bill_date",                                                          :null => false
     t.text     "note"
