@@ -86,7 +86,6 @@ class Ability
       can :update,CarryingBill,:from_org_id => user.current_ability_org_ids
     end
     #管理员可操作所有
-    can :manage,:all if user.is_admin?
-
+    #can :manage,:all if user.is_admin?
   end
 end

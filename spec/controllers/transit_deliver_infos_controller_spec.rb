@@ -13,7 +13,7 @@ describe TransitDeliverInfosController do
   end
 
   describe "GET show" do
-    it "assigns the requested cash_pay_info as @transit_deliver_info" do
+    it "assigns the requested transit_deliver_info as @transit_deliver_info" do
       td = Factory(:transit_deliver_info_with_bill)
       get :show, :id => td
       assigns(:transit_deliver_info).should == td
@@ -33,7 +33,7 @@ describe TransitDeliverInfosController do
     end
 
     describe "with valid params" do
-      it "success create cash_pay_info" do
+      it "success create transit_deliver_info" do
         lambda do
           post :create,:transit_deliver_info => {:org_id => Factory(:zz),:transit_hand_fee => 10},:bill_ids => [@transit_bill.id]
         end.should change(TransitDeliverInfo,:count).by(1)
