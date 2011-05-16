@@ -41,17 +41,10 @@ describe SendListBacksController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested send_list_back as @send_list_back" do
-      get :edit, :id => @send_list_back
-      response.should render_template('edit')
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:send_list_back).attributes
-      @bill_ids = [Factory(:computer_bill).id,Factory(:hand_bill).id] 
+      @bill_ids = [Factory(:computer_bill).id,Factory(:hand_bill).id]
     end
     describe "success" do
       it "能够成功保存票据信息" do
@@ -78,12 +71,12 @@ describe SendListBacksController do
   describe "DELETE destroy" do
     it "destroys the requested send_list_back" do
       lambda do
-        delete :destroy, :id => @send_list_back 
+        delete :destroy, :id => @send_list_back
       end.should change(SendListBack,:count).by(-1)
     end
 
     it "redirects to the send_list_backs list" do
-      delete :destroy, :id => @send_list_back 
+      delete :destroy, :id => @send_list_back
       response.should redirect_to(send_list_backs_url)
     end
   end

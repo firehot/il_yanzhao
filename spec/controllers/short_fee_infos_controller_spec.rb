@@ -41,13 +41,6 @@ describe ShortFeeInfosController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested short_fee_info as @short_fee_info" do
-      get :edit, :id => @short_fee_info
-      response.should render_template('edit')
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:short_fee_info).attributes
@@ -74,43 +67,15 @@ describe ShortFeeInfosController do
 
   end
 
-  describe "PUT update" do
-    before :each do
-      @attr = {:note => 'update short fee info'}
-    end
-
-    describe "with valid params" do
-      it "updates the requested short_fee_info" do
-        put :update, :id => @short_fee_info, :short_fee_info => @attr 
-        @short_fee_info.reload
-        @short_fee_info.note == @attr[:note]
-      end
-
-
-      it "redirects to the short_fee_info" do
-        put :update, :id => @short_fee_info,:short_fee_info => @attr
-        response.should redirect_to(short_fee_info_path(@short_fee_info))
-      end
-    end
-
-    describe "with invalid params" do
-      it "re-renders the 'edit' template" do
-        put :update, :id => @short_fee_info,:short_fee_info => {:org_id => nil,:bill_date => nil}
-        response.should render_template("edit")
-      end
-    end
-
-  end
-
   describe "DELETE destroy" do
     it "destroys the requested short_fee_info" do
       lambda do
-        delete :destroy, :id => @short_fee_info 
+        delete :destroy, :id => @short_fee_info
       end.should change(ShortFeeInfo,:count).by(-1)
     end
 
     it "redirects to the short_fee_infos list" do
-      delete :destroy, :id => @short_fee_info 
+      delete :destroy, :id => @short_fee_info
       response.should redirect_to(short_fee_infos_url)
     end
   end

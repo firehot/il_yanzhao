@@ -62,13 +62,6 @@ describe GoodsExceptionsController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested goods_exception as @goods_exception" do
-      get :edit, :id => @goods_exception
-      response.should render_template('edit')
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:goods_exception).attributes
@@ -90,34 +83,6 @@ describe GoodsExceptionsController do
       it "re-renders the 'new' template" do
         post :create, :goods_exception => {}
         response.should render_template("new")
-      end
-    end
-
-  end
-
-  describe "PUT update" do
-    before :each do
-      @attr = {:note => 'updated goods_exception'}
-    end
-
-    describe "with valid params" do
-      it "updates the requested goods_exception" do
-        put :update, :id => @goods_exception, :goods_exception => @attr
-        @goods_exception.reload
-        @goods_exception.note.should == @attr[:note]
-      end
-
-
-      it "redirects to the goods_exception" do
-        put :update, :id => @goods_exception,:goods_exception => @attr
-        response.should redirect_to(goods_exception_path(@goods_exception))
-      end
-    end
-
-    describe "with invalid params" do
-      it "re-renders the 'edit' template" do
-        put :update, :id => @goods_exception,:goods_exception => {:org_id => nil}
-        response.should render_template("edit")
       end
     end
 

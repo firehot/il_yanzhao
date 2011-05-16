@@ -74,7 +74,6 @@ namespace :db do
   desc "向数据库中添加示例数据"
   task :gen_test_data => :environment do
     Rake::Task['db:reset'].invoke
-    Rake::Task['db:create_system_functions'].invoke
     zz_branch = Branch.create!(:name => "郑州公司",
                                :simp_name => "郑",
                                :manager => "李保庆",
@@ -103,21 +102,21 @@ namespace :db do
 
     #生成示例票据数据
     #各种票据生成50张
-    50.times do |index|
-      Factory(:computer_bill,:pay_type =>"TH",:from_org => Branch.first,:to_org => Branch.last,:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-      Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('A'),:to_org => Org.find_by_py('hd'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-      Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('B'),:to_org => Org.find_by_py('qx'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-      Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('C'),:to_org => Org.find_by_py('dm'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-      Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('D'),:to_org => Org.find_by_py('xc'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-      Factory(:hand_bill,:from_org => Branch.first,:to_org => Branch.last,:bill_no => "hand_bill_no_#{index}",:goods_no => "hand_goods_no_#{index}")
-      Factory(:transit_bill,:from_org => Branch.find_by_py('sjz'),:transit_org => Branch.find_by_py('zzgs'),:to_area => "开封")
-      Factory(:hand_transit_bill,:from_org => Branch.find_by_py('sjz'),:transit_org => Branch.find_by_py('zzgs'),:to_area => "开封",:bill_no => "hand_transit_bill_no_#{index}",:goods_no => "hand_transit_goods_no_#{index}")
-      10.times do |index|
-        TransitCompany.create(:name => "中转公司_#{index}",:address => "中转公司地址_#{index} ")
-      end
+    #50.times do |index|
+    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Branch.first,:to_org => Branch.last,:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
+    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('A'),:to_org => Org.find_by_py('hd'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
+    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('B'),:to_org => Org.find_by_py('qx'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
+    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('C'),:to_org => Org.find_by_py('dm'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
+    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('D'),:to_org => Org.find_by_py('xc'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
+    #  Factory(:hand_bill,:from_org => Branch.first,:to_org => Branch.last,:bill_no => "hand_bill_no_#{index}",:goods_no => "hand_goods_no_#{index}")
+    #  Factory(:transit_bill,:from_org => Branch.find_by_py('sjz'),:transit_org => Branch.find_by_py('zzgs'),:to_area => "开封")
+    #  Factory(:hand_transit_bill,:from_org => Branch.find_by_py('sjz'),:transit_org => Branch.find_by_py('zzgs'),:to_area => "开封",:bill_no => "hand_transit_bill_no_#{index}",:goods_no => "hand_transit_goods_no_#{index}")
+    #  10.times do |index|
+    #    TransitCompany.create(:name => "中转公司_#{index}",:address => "中转公司地址_#{index} ")
+    #  end
       #送货人
-      Sender.create(:name => "张三",:mobile => "1212121",:org => Org.find_by_py('xt'))
-      Sender.create(:name => "李四",:mobile => "1212121",:org => Org.find_by_py('zzgs'))
-    end
+    #  Sender.create(:name => "张三",:mobile => "1212121",:org => Org.find_by_py('xt'))
+    #  Sender.create(:name => "李四",:mobile => "1212121",:org => Org.find_by_py('zzgs'))
+    #end
   end
 end

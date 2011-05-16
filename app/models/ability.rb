@@ -83,8 +83,9 @@ class Ability
     #可修改全部运单字段
     if can? :update_all,CarryingBill or can? :update,CarryingBill
       cannot :update,CarryingBill
-      can :update,CarryingBill,:from_org_id => user.current_ability_org_ids
+      can :update,CarryingBill,:state => ["billed","loaded","reached","shipped"]
     end
+
     #管理员可操作所有
     #can :manage,:all if user.is_admin?
   end

@@ -41,13 +41,6 @@ describe SendListsController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested send_list as @send_list" do
-      get :edit, :id => @send_list
-      response.should render_template('edit')
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:send_list).attributes
@@ -77,17 +70,17 @@ describe SendListsController do
   describe "DELETE destroy" do
     it "destroys the requested send_list" do
       lambda do
-        delete :destroy, :id => @send_list 
+        delete :destroy, :id => @send_list
       end.should change(SendList,:count).by(-1)
     end
 
     it "redirects to the send_lists list" do
-      delete :destroy, :id => @send_list 
+      delete :destroy, :id => @send_list
       response.should redirect_to(send_lists_url)
     end
   end
   describe "GET search" do
-    it "should be success" do 
+    it "should be success" do
       get :search
       response.should be_success
     end

@@ -39,7 +39,6 @@ sf_hash = {
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :re_print => {:title => "票据重打",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
@@ -56,7 +55,6 @@ sf_hash = {
   :default_action => 'new_hand_bill_path',
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
 }
@@ -73,7 +71,6 @@ sf_hash = {
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :re_print => {:title => "票据重打",:conditions =>"{:state => 'billed'}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
@@ -92,15 +89,11 @@ sf_hash = {
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
-
-
-
 
 ##############################货物运输清单管理#############################################
 subject_title = "货物运输清单管理"
@@ -114,7 +107,8 @@ sf_hash = {
   :read =>{:title => "查看",:conditions =>"{:from_org_id => user.current_ability_org_ids }"} ,
   :create => {:title => "新建"},
   :export => {:title => "导出"},
-  :ship => {:title => "发车",:conditions =>"{:from_org_id => user.current_ability_org_ids,:state => 'loaded'}"}
+  :ship => {:title => "发车",:conditions =>"{:from_org_id => user.current_ability_org_ids,:state => 'loaded'}"},
+  :destroy => {:title => "导出",:conditions =>"{:from_org_id => user.current_ability_org_ids }"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
@@ -231,6 +225,7 @@ sf_hash = {
   :function => {
   :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
   :create => {:title => "新建"},
+  :destroy =>{:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
   :export => {:title => "导出"}
 }
 }
@@ -238,7 +233,7 @@ SystemFunction.create_by_hash(sf_hash)
 ############################################################################################
 group_name = "查询统计"
 ##############################运单查询/修改#################################################
-subject_title = "运单查询/修改"
+subject_title = "运单修改"
 subject = "CarryingBill"
 sf_hash = {
   :group_name => group_name,
@@ -250,7 +245,7 @@ sf_hash = {
   :update_carrying_fee_20 =>{:title =>"修改运费(20%)"},
   :update_carrying_fee_50 =>{:title =>"修改运费(50%)"},
   :update_carrying_fee_100 =>{:title =>"修改运费(100%)"},
-  :update_all =>{:title =>"修改运单全部信息"},
+  :update =>{:title =>"修改运单信息"},
   :reset =>{:title =>"重置运单",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :export => {:title => "导出"}
 }
@@ -395,7 +390,8 @@ sf_hash = {
   :subject => subject,
   :function => {
   :read =>{:title => "查看",:conditions =>"{:from_org_id => user.current_ability_org_ids }"} ,
-  :update => {:title => "录入汇款记录",:conditions =>"{:state =>'draft' ,:from_org_id => user.current_ability_org_ids }"}
+  :update => {:title => "录入汇款记录",:conditions =>"{:state =>'draft' ,:from_org_id => user.current_ability_org_ids }"},
+  :destroy => {:title => "删除"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
@@ -506,8 +502,10 @@ sf_hash = {
   :subject => subject,
   :function => {
   :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
+  :update =>{:title => "修改",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
   :create => {:title => "新建"},
-  :export => {:title => "导出"}
+  :export => {:title => "导出"},
+  :destroy => {:title => "删除"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
@@ -707,6 +705,7 @@ sf_hash = {
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
+  :destroy => {:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
   :show_authorize => {:title => "授权核销",:conditions =>"{:state => 'submited',:org_id => user.current_ability_org_ids  }"},
   :show_claim => {:title => "理赔",:conditions =>"{:state => 'authorized',:org_id => user.current_ability_org_ids }"},
@@ -745,6 +744,7 @@ sf_hash = {
   #查看相关运单,其他机构发往当前用户机构的运单
   :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
+  :destroy => {:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :export => {:title => "导出"}
 }
 }
@@ -760,7 +760,8 @@ sf_hash = {
   :function => {
   :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
-  :export => {:title => "导出"}
+  :export => {:title => "导出"},
+  :destroy => {:title => "删除"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
@@ -775,7 +776,27 @@ sf_hash = {
   :function => {
   :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
+  :destroy => {:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :export => {:title => "导出"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
+#################################多货少货登记################################################
+group_name = "理赔管理"
+subject_title = "多货少货登记"
+subject = "GoodsError"
+sf_hash = {
+  :group_name => group_name,
+  :subject_title => subject_title,
+  :subject => subject,
+  :default_action => 'goods_errors_path("search[state_ne]" => "authorized")',
+  :function => {
+  #查看相关运单,其他机构发往当前用户机构的运单
+  :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
+  :create => {:title => "新建"},
+  :show_authorize => {:title => "核销",:conditions =>"{:state => 'submited',:org_id => user.current_ability_org_ids  }"},
+  :destroy => {:title => "删除"}
+}
+}
+SystemFunction.create_by_hash(sf_hash)
+

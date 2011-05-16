@@ -30,10 +30,10 @@ describe DeliverInfosController do
   end
 
   describe "GET edit" do
-    it "assigns the requested deliver_info as @deliver_info" do
+    it "should be success" do
       deliver_info = Factory(:deliver_info_with_bills)
       get :edit, :id => deliver_info
-      assigns(:deliver_info).should == deliver_info
+      response.should be_success
     end
   end
 

@@ -41,17 +41,10 @@ describe SendListPostsController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested send_list_post as @send_list_post" do
-      get :edit, :id => @send_list_post
-      response.should render_template('edit')
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:send_list_post).attributes
-      @bill_ids = [Factory(:computer_bill).id,Factory(:hand_bill).id] 
+      @bill_ids = [Factory(:computer_bill).id,Factory(:hand_bill).id]
     end
     describe "success" do
       it "能够成功保存票据信息" do
@@ -78,17 +71,17 @@ describe SendListPostsController do
   describe "DELETE destroy" do
     it "destroys the requested send_list_post" do
       lambda do
-        delete :destroy, :id => @send_list_post 
+        delete :destroy, :id => @send_list_post
       end.should change(SendListPost,:count).by(-1)
     end
 
     it "redirects to the send_list_posts list" do
-      delete :destroy, :id => @send_list_post 
+      delete :destroy, :id => @send_list_post
       response.should redirect_to(send_list_posts_url)
     end
   end
   describe "GET search" do
-    it "should be success" do 
+    it "should be success" do
       get :search
       response.should be_success
     end

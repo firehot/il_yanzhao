@@ -36,10 +36,10 @@ describe SettlementsController do
   end
 
   describe "GET edit" do
-    it "assigns the requested settlement as @settlement" do
+    it "should be success" do
       settlement = Factory(:settlement_with_bills)
       get :edit, :id => settlement
-      assigns(:settlement).should == settlement
+      response.should be_success
     end
   end
 

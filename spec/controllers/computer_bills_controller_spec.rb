@@ -78,7 +78,7 @@ describe ComputerBillsController do
 
     describe "with valid params" do
       it "updates the requested computer_bill" do
-        put :update, :id => @computer_bill, :computer_bill => @attr 
+        put :update, :id => @computer_bill, :computer_bill => @attr
         @computer_bill.reload
         @computer_bill.goods_info.should == @attr[:goods_info]
         @computer_bill.from_customer_name.should == @attr[:from_customer_name]
@@ -103,17 +103,17 @@ describe ComputerBillsController do
   describe "DELETE destroy" do
     it "destroys the requested computer_bill" do
       lambda do
-        delete :destroy, :id => @computer_bill 
+        delete :destroy, :id => @computer_bill
       end.should change(ComputerBill,:count).by(-1)
     end
 
     it "redirects to the computer_bills list" do
-      delete :destroy, :id => @computer_bill 
+      delete :destroy, :id => @computer_bill
       response.should redirect_to(computer_bills_url)
     end
   end
   describe "GET search" do
-    it "should be success" do 
+    it "should be success" do
       get :search
       response.should be_success
     end
