@@ -6,24 +6,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-#创建系统默认用户
-role = Role.new_with_default(:name => '管理员角色')
-role.role_system_function_operates.each { |r| r.is_select = true }
-role.save!
-role2 = Role.new_with_default(:name => '普通用户角色')
-role2.role_system_function_operates.each { |r| r.is_select = true }
-role2.save!
-
-#管理员角色
-admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
-admin.user_orgs.each { |user_org| user_org.is_select = true }
-admin.user_roles.each {|user_role| user_role.is_select = true}
-admin.save!
-#普通用户角色
-user = User.new_with_roles(:username => '1001',:real_name => "分理处",:password => '1001')
-user.user_roles.each {|user_role| user_role.is_select = true}
-user.user_orgs.each { |user_org| user_org.is_select = true }
-user.save!
 #创建系统功能列表
 
 #配送管理模块
@@ -799,4 +781,24 @@ sf_hash = {
 }
 }
 SystemFunction.create_by_hash(sf_hash)
+
+#######################################################################################################3
+#创建系统默认用户
+role = Role.new_with_default(:name => '管理员角色')
+role.role_system_function_operates.each { |r| r.is_select = true }
+role.save!
+role2 = Role.new_with_default(:name => '普通用户角色')
+role2.role_system_function_operates.each { |r| r.is_select = true }
+role2.save!
+
+#管理员角色
+admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
+admin.user_orgs.each { |user_org| user_org.is_select = true }
+admin.user_roles.each {|user_role| user_role.is_select = true}
+admin.save!
+#普通用户角色
+user = User.new_with_roles(:username => '1001',:real_name => "分理处",:password => '1001')
+user.user_roles.each {|user_role| user_role.is_select = true}
+user.user_orgs.each { |user_org| user_org.is_select = true }
+user.save!
 
