@@ -1,0 +1,13 @@
+<%= semantic_form_for resource_class.search,:url => collection_path,:html => {:method => :get,:style => "width : 300px;" } do |f|%>
+  <%= hidden_field_tag :direction,params[:direction] %>
+  <%= hidden_field_tag :sort,params[:sort] %>
+  <%= f.inputs do %>
+    <%= f.input :bill_date_gte,:label => "核销日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
+    <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
+    <%= f.input :org_id_eq,:label => "分理处/分公司",:as => :select,:collection => branches_for_select,:input_html => {:class => "select_org",:title => "可录入拼音简写查询发货地(例如:安阳,可录入ay)"} %>
+
+  <% end %>
+  <%=f.buttons do %>
+    <%=submit_tag "查询短途运费核销信息",:class => "sexybutton sexysimple sexyblue" %>
+  <% end %>
+<% end%>

@@ -25,24 +25,26 @@
         <th>收货人手机</th>
         <th>运费</th>
         <th>货款</th>
+        <th>付款方式</th>
         <th>备注</th>
       </tr>
     </thead>
     <tbody>
-      <% resource.send_list_lines.each_with_index do |line,index| %>
+      <% resource.carrying_bills.each_with_index do |line,index| %>
         <tr>
           <td><%= index %></td>
-          <td><%= line.carrying_bill.bill_no %></td>
-          <td><%= line.carrying_bill.goods_no %></td>
-          <td><%= line.carrying_bill.from_customer_name %></td>
-          <td><%= line.carrying_bill.from_customer_phone %></td>
-          <td><%= line.carrying_bill.from_customer_mobile %></td>
-          <td><%= line.carrying_bill.to_customer_name %></td>
-          <td><%= line.carrying_bill.to_customer_phone %></td>
-          <td><%= line.carrying_bill.to_customer_mobile %></td>
-          <td><%= line.carrying_bill.carrying_fee_th %></td>
-          <td><%= line.carrying_bill.goods_fee %></td>
-          <td><%= line.carrying_bill.note %></td>
+          <td><%= line.bill_no %></td>
+          <td><%= line.goods_no %></td>
+          <td><%= line.from_customer_name %></td>
+          <td><%= line.from_customer_phone %></td>
+          <td><%= line.from_customer_mobile %></td>
+          <td><%= line.to_customer_name %></td>
+          <td><%= line.to_customer_phone %></td>
+          <td><%= line.to_customer_mobile %></td>
+          <td><%= line.carrying_fee %></td>
+          <td><%= line.goods_fee %></td>
+          <td><%= line.pay_type_des %></td>
+          <td><%= line.note %></td>
         </tr>
       <% end %>
     </tbody>
@@ -57,8 +59,9 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><%= resource.sum_carrying_fee_th %></td>
-        <td><%= resource.sum_goods_fee %></td>
+        <td><%= resource.carrying_bills.sum(:carrying_fee) %></td>
+        <td><%= resource.carrying_bills.sum(:goods_fee )%></td>
+        <td></td>
         <td></td>
       </tr>
     </tfoot>

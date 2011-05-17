@@ -1,0 +1,11 @@
+<table class='table' data-detailUrl='<%=short_fee_info_carrying_bills_path(resource,"hide_fields" => ".insured_fee","show_fields" => ".from_short_carrying_fee,.to_short_carrying_fee,.short_fee_state")%>'>
+  <tr>
+    <td>日期:</td>
+    <td><%=resource.bill_date.strftime('%Y-%m-%d')%></td>
+    <td>机构:</td>
+    <td><%=resource.org%></td>
+    <td>操作员:</td>
+    <td><%=resource.user%></td>
+  </tr>
+</table>
+<div id="table_wrap"></div>

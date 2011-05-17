@@ -5,6 +5,7 @@ class SendList < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
   has_many :send_list_lines
+  has_many :carrying_bills,:through => :send_list_lines
   validates_presence_of :org_id,:bill_date
 
   default_value_for :bill_date,Date.today

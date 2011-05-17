@@ -202,7 +202,7 @@ subject = "ShortFeeInfo"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'new_short_fee_info_path',
+  :default_action => "short_fee_infos_path",
   :subject => subject,
   :function => {
   :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
@@ -220,7 +220,7 @@ subject = "CarryingBill"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'carrying_bills_path',
+  :default_action => 'simple_search_carrying_bills_path("search[completed]" => false,"search[from_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date desc,carrying_bills.goods_no",:direction => "asc" )',
   :subject => subject,
   :function => {
   :read => {:title => "查询/查看",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
@@ -328,6 +328,20 @@ sf_hash = {
 }
 SystemFunction.create_by_hash(sf_hash)
 
+##############################退货未发票据统计#############################################
+subject_title = "退货未发票据统计"
+subject = "CarryingBill"
+sf_hash = {
+  :group_name => group_name,
+  :subject_title => subject_title,
+  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_return_no_ship",:show_fields =>".stranded_days",:hide_fields => ".insured_fee","search[state_eq]" => "billed","search[type_eq]" => "ReturnBill",:sort => "carrying_bills.bill_date asc,carrying_bills.goods_no",:direction => "asc" )',
+  :subject => subject,
+  :function => {
+  :rpt_return_no_ship =>{:title =>"退货未发票据统计"}
+}
+}
+SystemFunction.create_by_hash(sf_hash)
+##############################始发地收货统计#############################################
 
 #################################结算管理##########################################
 group_name = "结算管理"
@@ -715,7 +729,7 @@ sf_hash = {
 }
 SystemFunction.create_by_hash(sf_hash)
 ###############################送货登记##################################################
-subject_title = "送货登记"
+subject_title = "送货清单"
 subject = "SendList"
 sf_hash = {
   :group_name => group_name,
@@ -732,7 +746,7 @@ sf_hash = {
 }
 SystemFunction.create_by_hash(sf_hash)
 ###############################交票核销##################################################
-subject_title = "交票核销"
+subject_title = "交票清单"
 subject = "SendListPost"
 sf_hash = {
   :group_name => group_name,

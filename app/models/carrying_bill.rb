@@ -149,7 +149,7 @@ class CarryingBill < ActiveRecord::Base
     #短途运费状态声明
     state_machine :short_fee_state,:initial => :draft do
       event :write_off  do
-        transition :draft => :off
+        transition :draft => :offed
       end
       state :off do
         validates_presence_of :short_fee_info_id

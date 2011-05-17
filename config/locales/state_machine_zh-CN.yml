@@ -7,7 +7,7 @@ zh-CN:
       load_list:
         state:
           states:
-           billed: "已开票" 
+           billed: "已开票"
            loaded: "已装车"
            shipped: "在途"
            reached: "已到货"
@@ -15,7 +15,7 @@ zh-CN:
       carrying_bill:
         state:
           states:
-           billed: "已开票" 
+           billed: "已开票"
            loaded: "已装车"
            shipped: "在途"
            reached: "已到货"
@@ -33,12 +33,12 @@ zh-CN:
           states:
             draft: "草稿"
             offed: "已核销"
-            
+
 
       distribution_list:
         state:
           states:
-           billed: "草稿" 
+           billed: "草稿"
            distributed: "已分货"
 
       transit_info:
@@ -52,7 +52,7 @@ zh-CN:
           states:
             billed: "草稿"
             deliveried: "已提货"
-            
+
       settlement:
         state:
           states:
@@ -65,26 +65,26 @@ zh-CN:
             billed: "草稿"
             refunded: "已返款"
             refunded_confirmed: "已收款"
-            
+
       payment_list:
         state:
           states:
             billed: "草稿"
             payment_listed: "准备支付"
             transfered: "已转账"
-            
+
       pay_info:
         state:
           states:
             billed: "草稿"
             paid: "货款已付"
-            
+
       post_info:
         state:
           states:
             billed: "草稿"
             posted: "已结算"
-            
+
       goods_exception:
         state:
           states:
@@ -115,7 +115,7 @@ zh-CN:
         state:
           states:
             draft: "草稿"
-            off: "已核销"
+            offed: "已核销"
 
       transit_deliver_info:
         state:

@@ -36,7 +36,7 @@ zh-CN:
       send_list_line: "送货清单明细"  #g
       send_list_post: "送货清单核销"  #g
       settlement: "结算员交款清单"  #g
-      short_fee_info: "短途运费管理"  #g
+      short_fee_info: "短途运费核销信息"  #g
       system_function: "系统功能"  #g
       system_function_group: "系统功能分类"  #g
       system_function_operate: "功能-操作"  #g

@@ -20,14 +20,17 @@ IlYanzhao::Application.routes.draw do
 
   resources :send_list_backs do
     get :search,:on => :collection
+    get :export_excel,:on => :member
   end
 
   resources :send_list_posts do
     get :search,:on => :collection
+    get :export_excel,:on => :member
   end
 
   resources :send_lists do
     get :search,:on => :collection
+    get :export_excel,:on => :member
   end
 
   resources :senders
@@ -40,7 +43,10 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
   end
 
-  resources :short_fee_infos
+  resources :short_fee_infos do
+    get :search,:on => :collection
+    resources :carrying_bills
+  end
 
   resources :il_configs
 
