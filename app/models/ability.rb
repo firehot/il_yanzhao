@@ -1,7 +1,6 @@
 #coding: utf-8
 class Ability
   include CanCan::Ability
-
   def initialize(user)
     #search simple_search 都看作是read权限
     #rpt_turnover运单统计
@@ -46,7 +45,7 @@ class Ability
       ability_org_ids.include?(bill.from_org_id) or ability_org_ids.include?(bill.to_org_id) or ability_org_ids.include?(bill.transit_org_id)
     end
     #录入票据时,默认可读取转账客户信息
-    can :read,Vip,:org_id => user.current_ability_org_ids
+    can :read,Vip
 
     #登录时,可操作current_role_change action
     can :current_role_change,Role
@@ -57,6 +56,11 @@ class Ability
 
 
     #以下重新定义运单修改权限
+    if can? :update,CarryingBill
+      cannot :update,CarryingBill
+      can :update,CarryingBill,:state => ["billed","loaded","reached","shipped"]
+    end
+
     #可修改20%运费
     if can? :update_carrying_fee_20,CarryingBill
       #重新设置运单不可修改
@@ -83,7 +87,7 @@ class Ability
     #可修改全部运单字段
     if can? :update_all,CarryingBill or can? :update,CarryingBill
       cannot :update,CarryingBill
-      can :update,CarryingBill,:state => ["billed","loaded","reached","shipped"]
+      can :update,CarryingBill
     end
 
     #管理员可操作所有

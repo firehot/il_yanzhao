@@ -223,7 +223,7 @@ sf_hash = {
   :default_action => 'simple_search_carrying_bills_path("search[completed]" => false,"search[from_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date desc,carrying_bills.goods_no",:direction => "asc" )',
   :subject => subject,
   :function => {
-  :read => {:title => "查询/查看",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
+  #:read => {:title => "查询/查看",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :update_carrying_fee_20 =>{:title =>"修改运费(20%)"},
   :update_carrying_fee_50 =>{:title =>"修改运费(50%)"},
   :update_carrying_fee_100 =>{:title =>"修改运费(100%)"},
@@ -768,7 +768,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'new_send_list_back_path',
+  :default_action => 'send_list_backs_path',
   :function => {
   :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
@@ -801,18 +801,9 @@ SystemFunction.create_by_hash(sf_hash)
 role = Role.new_with_default(:name => '管理员角色')
 role.role_system_function_operates.each { |r| r.is_select = true }
 role.save!
-role2 = Role.new_with_default(:name => '普通用户角色')
-role2.role_system_function_operates.each { |r| r.is_select = true }
-role2.save!
 
 #管理员角色
 admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
 admin.user_orgs.each { |user_org| user_org.is_select = true }
 admin.user_roles.each {|user_role| user_role.is_select = true}
 admin.save!
-#普通用户角色
-user = User.new_with_roles(:username => '1001',:real_name => "分理处",:password => '1001')
-user.user_roles.each {|user_role| user_role.is_select = true}
-user.user_orgs.each { |user_org| user_org.is_select = true }
-user.save!
-
