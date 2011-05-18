@@ -12,10 +12,7 @@
     <td><%=resource.except_des %></td>
     <td>异常数量</td>
     <td><%=resource.except_num%></td>
-    <td>运单号/货号</td>
-    <td>
-      <%=link_to "#{resource.carrying_bill.bill_no}/#{resource.carrying_bill.goods_no}",polymorphic_path(resource.carrying_bill,:format => :js),:class => 'fancybox'%>
-    </td>
+    <td colspan='2'></td>
   </tr>
   <tr>
     <td>备注</td>

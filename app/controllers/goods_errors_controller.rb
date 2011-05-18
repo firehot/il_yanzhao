@@ -1,13 +1,7 @@
 class GoodsErrorsController < BaseController
-  table :bill_date,:org,:carrying_bill,:except_des,:except_num,:note,:user,:human_state_name
+  table :bill_date,:org,:except_des,:except_num,:note,:user,:human_state_name
   #需要跳过对update的权限检查,在进行核销/理赔/责任鉴定时候,使用了update
   skip_authorize_resource :only => :update
-  def create
-    bill = resource_class.new(params[resource_class.model_name.underscore])
-    get_resource_ivar || set_resource_ivar(bill)
-    bill.carrying_bill_id  = params[:bill_ids].first  unless params[:bill_ids].blank?
-    create!
-  end
   def update
     bill = resource_class.find(params[:id])
     get_resource_ivar || set_resource_ivar(bill)

@@ -13,7 +13,7 @@ class SendListsController < BaseController
   #GET search
   #显示查询窗口
   def search
-    render :partial => "search"
+    render :partial => "shared/send_lists/search"
   end
   def show
     super do |format|

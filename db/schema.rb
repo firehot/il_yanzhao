@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509024544) do
+ActiveRecord::Schema.define(:version => 20110518045928) do
 
   create_table "banks", :force => true do |t|
     t.string   "name",                                       :null => false
@@ -268,7 +268,7 @@ ActiveRecord::Schema.define(:version => 20110509024544) do
   add_index "gexception_authorize_infos", ["user_id"], :name => "index_gexception_authorize_infos_on_user_id"
 
   create_table "goods_errors", :force => true do |t|
-    t.integer  "carrying_bill_id",                              :null => false
+    t.integer  "carrying_bill_id"
     t.integer  "org_id",                                        :null => false
     t.integer  "user_id"
     t.date     "bill_date",                                     :null => false

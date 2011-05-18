@@ -6,7 +6,7 @@ class GoodsError < ActiveRecord::Base
   has_one :gerror_authorize
   accepts_nested_attributes_for :gerror_authorize
   #异常数量不能大于货物数量
-  validates_presence_of :org_id,:carrying_bill_id
+  validates_presence_of :org_id
   #定义状态机
   state_machine :initial => :submited do
     event :process do
