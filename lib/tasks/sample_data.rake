@@ -96,9 +96,9 @@ namespace :db do
     common_config = ConfigTransit.create(:name => "普通客户",:rate => 0.002)
     vip_config = ConfigTransit.create(:name => "VIP客户",:rate => 0.001)
     #客户资料
-    50.times do |index|
-      Vip.create!(:name => "vip_#{index}",:mobile => ("%07d" % index),:bank => Bank.first,:bank_card =>"%019d" % (index + 1),:org => Branch.first,:id_number => "%018d" % (index + 1),:config_transit => vip_config )
-    end
+    #50.times do |index|
+    #  Vip.create!(:name => "vip_#{index}",:mobile => ("%07d" % index),:bank => Bank.first,:bank_card =>"%019d" % (index + 1),:org => Branch.first,:id_number => "%018d" % (index + 1),:config_transit => vip_config )
+    #end
 
     #生成示例票据数据
     #各种票据生成50张
