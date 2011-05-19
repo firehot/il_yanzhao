@@ -114,9 +114,23 @@ namespace :db do
     #  10.times do |index|
     #    TransitCompany.create(:name => "中转公司_#{index}",:address => "中转公司地址_#{index} ")
     #  end
-      #送货人
+    #送货人
     #  Sender.create(:name => "张三",:mobile => "1212121",:org => Org.find_by_py('xt'))
     #  Sender.create(:name => "李四",:mobile => "1212121",:org => Org.find_by_py('zzgs'))
     #end
+  end
+  #######################################################################################################3
+  desc "向数据库中添加示例数据"
+  task :create_admin => :environment do
+    #创建系统默认用户
+    role = Role.new_with_default(:name => '管理员角色')
+    role.role_system_function_operates.each { |r| r.is_select = true }
+    role.save!
+
+    #管理员角色
+    admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
+    admin.user_orgs.each { |user_org| user_org.is_select = true }
+    admin.user_roles.each {|user_role| user_role.is_select = true}
+    admin.save!
   end
 end

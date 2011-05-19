@@ -798,12 +798,12 @@ SystemFunction.create_by_hash(sf_hash)
 
 #######################################################################################################3
 #创建系统默认用户
-role = Role.new_with_default(:name => '管理员角色')
-role.role_system_function_operates.each { |r| r.is_select = true }
-role.save!
+#role = Role.new_with_default(:name => '管理员角色')
+#role.role_system_function_operates.each { |r| r.is_select = true }
+#role.save!
 
 #管理员角色
-admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
-admin.user_orgs.each { |user_org| user_org.is_select = true }
-admin.user_roles.each {|user_role| user_role.is_select = true}
-admin.save!
+#admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
+#admin.user_orgs.each { |user_org| user_org.is_select = true }
+#admin.user_roles.each {|user_role| user_role.is_select = true}
+#admin.save!

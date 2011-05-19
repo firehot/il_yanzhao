@@ -2,9 +2,15 @@
 require 'bundler/capistrano'
 set :application, "il_yanzhao"
 set :repository,  "git://github.com/chengdh/il_yanzhao.git"
-#set :repository,  "file:///media/WORK/il_yanzhao/.git/"
+set :repository, "."
+set :local_repository, "file:///media//WORK/il_yanzhao/.git"
+set :deploy_via, :copy
+set :copy_cache, true
+#
+#set :repository,  "file:///media//WORK/il_yanzhao/.git"
 
 set :scm, :git
+set :branch,:master
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 #role :web, "your web-server here"                          # Your HTTP server, Apache/etc
