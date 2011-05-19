@@ -12,6 +12,7 @@ var export_excel = function(table_content, func_set_style) {
 		ExApp.DisplayAlerts = false;
 		if (func_set_style) func_set_style(ExWSh);
 		ExApp.visible = true;
+                ExWSh.Paste();
 	}
 	catch(e) {
 		$.notifyBar({
@@ -22,7 +23,6 @@ var export_excel = function(table_content, func_set_style) {
 		});
 		return false;
 	}
-	ExWSh.Paste();
 };
 
 jQuery(function($) {
