@@ -128,7 +128,7 @@ namespace :db do
     role.save!
 
     #管理员角色
-    admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
+    admin = User.new_with_roles(:username => 'admin',:real_name => "管理员",:password => 'admin',:is_admin => true)
     admin.user_orgs.each { |user_org| user_org.is_select = true }
     admin.user_roles.each {|user_role| user_role.is_select = true}
     admin.save!
