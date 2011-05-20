@@ -66,7 +66,7 @@ class Ability
       #重新设置运单不可修改
       cannot :update,CarryingBill
       can :update,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.2
+        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.2 and ["billed","loaded","reached","shipped"].include?(bill.state)
       end
     end
     #可修改50%运费
@@ -74,20 +74,20 @@ class Ability
 
       cannot :update,CarryingBill
       can :update,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.5
+        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.5 and ["billed","loaded","reached","shipped"].include?(bill.state)
       end
     end
     #可修改100%运费
     if can? :update_carrying_fee_100,CarryingBill
       cannot :update,CarryingBill
       can :update,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee) >= 0
+        (bill.original_carrying_fee - bill.carrying_fee) >= 0 and ["billed","loaded","reached","shipped"].include?(bill.state)
       end
     end
     #可修改全部运单字段
     if can? :update_all,CarryingBill or can? :update,CarryingBill
       cannot :update,CarryingBill
-      can :update,CarryingBill
+      can :update,CarryingBill,:state => ["billed","loaded","reached","shipped"]
     end
 
     #管理员可操作所有

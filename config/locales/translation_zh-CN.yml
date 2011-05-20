@@ -251,7 +251,7 @@ zh-CN:
         sum_th_fee: "提货应收金额"
 
       org:
-        name: "科室名称"  #g
+        name: "机构名称"  #g
         simp_name: "简称"  #g
         phone: "联系电话"  #g
         is_active: "有效"  #g

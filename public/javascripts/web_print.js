@@ -188,7 +188,7 @@ jQuery(function($) {
 					height: '5.3mm'
 				},
 				to_org: {
-					text: the_bill.to_org.name + (the_bill.transit_org ? (the_bill.transit_org.name + "~") : "") + (the_bill.to_area ? the_bill.to_area: ""),
+					text: (the_bill.to_org ? the_bill.to_org.name: "") + (the_bill.to_area ? the_bill.to_area: ""),
 					left: '80mm',
 					top: '13mm',
 					width: '30mm',
@@ -202,7 +202,7 @@ jQuery(function($) {
 					height: '5.3mm'
 				},
 				customer_code_1: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(0,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(0, 1) : "",
 					left: '18mm',
 					top: '23mm',
 					width: '5mm',
@@ -213,7 +213,7 @@ jQuery(function($) {
 
 				},
 				customer_code_2: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(1,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(1, 1) : "",
 					left: '21mm',
 					top: '23mm',
 					width: '5mm',
@@ -224,7 +224,7 @@ jQuery(function($) {
 
 				},
 				customer_code_3: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(2,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(2, 1) : "",
 					left: '24mm',
 					top: '23mm',
 					width: '5mm',
@@ -235,7 +235,7 @@ jQuery(function($) {
 
 				},
 				customer_code_4: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(3,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(3, 1) : "",
 					left: '27mm',
 					top: '23mm',
 					width: '5mm',
@@ -246,7 +246,7 @@ jQuery(function($) {
 
 				},
 				customer_code_5: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(4,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(4, 1) : "",
 					left: '30mm',
 					top: '23mm',
 					width: '5mm',
@@ -257,7 +257,7 @@ jQuery(function($) {
 
 				},
 				customer_code_6: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(5,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(5, 1) : "",
 					left: '33mm',
 					top: '23mm',
 					width: '5mm',
@@ -268,7 +268,7 @@ jQuery(function($) {
 
 				},
 				customer_code_7: {
-					text: the_bill.customer_code ? the_bill.customer_code.substr(6,1): "",
+					text: the_bill.customer_code ? the_bill.customer_code.substr(6, 1) : "",
 					left: '36mm',
 					top: '23mm',
 					width: '5mm',
@@ -287,7 +287,7 @@ jQuery(function($) {
 					height: '5.3mm'
 				},
 				bill_date_year: {
-					text: the_bill.bill_date.substr(0,4),
+					text: the_bill.bill_date.substr(0, 4),
 					left: '134mm',
 					top: '23mm',
 					width: '15mm',
@@ -298,7 +298,7 @@ jQuery(function($) {
 
 				},
 				bill_date_mth: {
-					text: the_bill.bill_date.substr(5,2),
+					text: the_bill.bill_date.substr(5, 2),
 					left: '154mm',
 					top: '23mm',
 					width: '10mm',
@@ -309,7 +309,7 @@ jQuery(function($) {
 
 				},
 				bill_date_day: {
-					text: the_bill.bill_date.substr(8,2),
+					text: the_bill.bill_date.substr(8, 2),
 					left: '169mm',
 					top: '23mm',
 					width: '10mm',
@@ -537,7 +537,7 @@ jQuery(function($) {
 				if (typeof(config[c].style) != 'undefined') {
 					var the_style = config[c].style;
 					for (var s in the_style)
-					print_object.SET_PRINT_STYLEA(0,s, the_style[s]);
+					print_object.SET_PRINT_STYLEA(0, s, the_style[s]);
 
 				}
 

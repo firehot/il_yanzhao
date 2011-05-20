@@ -1,7 +1,7 @@
 #coding: utf-8
 class CustomerLevelConfig < ActiveRecord::Base
   belongs_to :org
-  validates_presence_of :org_id,:name
+  validates_presence_of :name
   validates_numericality_of :from_fee,:to_fee
   VIP_DIAMOND = 'level_99'  #钻石
   VIP_GOLD = 'level_88'   #黄金
@@ -21,11 +21,11 @@ class CustomerLevelConfig < ActiveRecord::Base
     if level == VIP_NORMAL
       (0..1000)
     elsif level == VIP_SLIVER
-      (1000..5000) 
+      (1000..5000)
     elsif       level == VIP_GOLD
       (5000..10000)
     elsif level == VIP_DIAMOND
-      (10000..999999999) 
+      (10000..999999999)
     end
   end
   #根据金额和org_id获取所属级别
@@ -44,7 +44,7 @@ class CustomerLevelConfig < ActiveRecord::Base
       elsif (sliver_range.fee_from..sliver_range.fee_to).include?(fee)
         VIP_SLIVER
       elsif (normal_range.fee_from..normal_range.fee_to).include?(fee)
-        VIP_NORMAL 
+        VIP_NORMAL
       end
     else
       if self.system_level_range(VIP_DIAMOND).include?(fee)
