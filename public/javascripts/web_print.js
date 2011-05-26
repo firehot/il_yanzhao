@@ -168,7 +168,7 @@ jQuery(function($) {
 		get_print_config: function(the_bill) {
 			var config = {
 				page: {
-					name: "运单打印",
+					name: "运单打印-" +the_bill.bill_no,
 					width: "185mm",
 					height: '140mm',
 					left: '-8mm',
@@ -299,7 +299,7 @@ jQuery(function($) {
 				},
 				bill_date_mth: {
 					text: the_bill.bill_date.substr(5, 2),
-					left: '154mm',
+					left: '151mm',
 					top: '23mm',
 					width: '10mm',
 					height: '5.3mm',
@@ -310,7 +310,7 @@ jQuery(function($) {
 				},
 				bill_date_day: {
 					text: the_bill.bill_date.substr(8, 2),
-					left: '169mm',
+					left: '166mm',
 					top: '23mm',
 					width: '10mm',
 					height: '5.3mm',
