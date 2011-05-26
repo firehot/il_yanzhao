@@ -12,7 +12,7 @@ var export_excel = function(table_content, func_set_style) {
 		ExApp.DisplayAlerts = false;
 		if (func_set_style) func_set_style(ExWSh);
 		ExApp.visible = true;
-                ExWSh.Paste();
+		ExWSh.Paste();
 	}
 	catch(e) {
 		$.notifyBar({
@@ -302,30 +302,38 @@ jQuery(function($) {
 	$('.search_box').livequery(function() {
 		$(this).watermark('录入运单编号查询', {
 			userNative: false
-		}).change(function() {
-			if ($(this).val() == "") return;
-			var params = $(this).data('params');
-			$.extend(params, {
-				"search[bill_no_eq]": $(this).val()
-			});
-			//添加发货站或到货站id
-			if ($('#from_org_id').length > 0) $.extend(params, {
-				"search[from_org_id_eq]": $('#from_org_id').val()
-			});
-			if ($('#to_org_id').length > 0) $.extend(params, {
-				"search[to_org_id_eq]": $('#to_org_id').val()
-			});
-			if ($('#transit_org_id').length > 0) $.extend(params, {
-				"search[transit_org_id_eq]": $('#transit_org_id').val()
-			});
-			$.get('/carrying_bills', params, null, 'script');
-			$(this).select();
 		}).focus(function() {
 			$(this).select();
+		}).keypress(function(e) {
+			if (e.keyCode == 13) {
+				if ($(this).val() == "") return;
+				var params = $(this).data('params');
+				$.extend(params, {
+					"search[bill_no_eq]": $(this).val()
+				});
+				//添加发货站或到货站id
+				if ($('#from_org_id').length > 0) $.extend(params, {
+					"search[from_org_id_eq]": $('#from_org_id').val()
+				});
+				if ($('#to_org_id').length > 0) $.extend(params, {
+					"search[to_org_id_eq]": $('#to_org_id').val()
+				});
+				if ($('#transit_org_id').length > 0) $.extend(params, {
+					"search[transit_org_id_eq]": $('#transit_org_id').val()
+				});
+				if ($('#from_org_id_or_to_org_id').length > 0) $.extend(params, {
+					"search[from_org_id_or_to_org_id_eq]": $('#from_org_id_or_to_org_id').val()
+				});
+
+				$.get('/carrying_bills', params, null, 'script');
+				$(this).select();
+
+			}
+
 		})
 	});
 	//绑定提货/提款/中转/中转提货处理的ajax:before
-	$('#deliver_info_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#goods_error_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
+	$('#deliver_info_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
 			var bill_ids = [];

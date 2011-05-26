@@ -53,12 +53,12 @@ class CarryingBillsController < BaseController
   end
   #日/月营业额统计
   def rpt_turnover
-    @search = resource_class.accessible_by(current_ability).turnover.search(params[:search])
+    @search = resource_class.where(:from_org_id =>current_user.current_ability_org_ids).turnover.search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.all)
   end
   #营业额统计柱状图
   def turnover_chart
-    @search = resource_class.accessible_by(current_ability).turnover.search(params[:search])
+    @search = resource_class.where(:from_org_id =>current_user.current_ability_org_ids).turnover.search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.all)
   end
   private

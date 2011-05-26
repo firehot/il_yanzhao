@@ -37,7 +37,7 @@ class BaseController < InheritedResources::Base
     return if params[:search].blank?
     new_search_params ={}
     params[:search].each do |key,value|
-      if  ['carrying_bills_from_org_id_eq','carrying_bills_to_org_id_eq','carrying_bills_transit_org_id_eq','carrying_bills_to_org_id_or_transit_org_id_eq','from_org_id_eq','to_org_id_eq','transit_org_id_eq','to_org_id_or_transit_org_id_eq'].include?(key) and value.present? and (the_org = Org.includes(:children).find(value)).children.present?
+      if  ['carrying_bills_from_org_id_eq','carrying_bills_to_org_id_eq','carrying_bills_transit_org_id_eq','carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq','from_org_id_eq','to_org_id_eq','from_org_id_or_to_org_id_eq','transit_org_id_eq','to_org_id_or_transit_org_id_eq'].include?(key) and value.present? and (the_org = Org.includes(:children).find(value)).children.present?
         change_key = key.to_s.gsub(/_eq/,'_in')
         new_search_params[change_key] = [value] + the_org.children.collect(&:id)
         new_search_params[key]= nil

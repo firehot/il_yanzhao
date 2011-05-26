@@ -420,7 +420,7 @@ class CarryingBill < ActiveRecord::Base
     #机打运单编号从4000000开始
     #生成票据编号
     def generate_bill_no
-      self.bill_no = "%07d" % (CarryingBill.count > 0 ? 4000000 + CarryingBill.count : 4000000)
+      self.bill_no = "%07d" % (CarryingBill.where(:type => ["ComputerBill","TransitBill"]).count > 0 ? 4000000 + CarryingBill.count : 4000000)
     end
     def generate_goods_no
       #货号规则
