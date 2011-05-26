@@ -236,7 +236,7 @@ jQuery(function($) {
 				},
 				customer_code_4: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(3, 1) : "",
-					left: '52mm',
+					left: '50mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -247,7 +247,7 @@ jQuery(function($) {
 				},
 				customer_code_5: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(4, 1) : "",
-					left: '60mm',
+					left: '58mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -258,7 +258,7 @@ jQuery(function($) {
 				},
 				customer_code_6: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(5, 1) : "",
-					left: '66mm',
+					left: '64mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -269,7 +269,7 @@ jQuery(function($) {
 				},
 				customer_code_7: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(6, 1) : "",
-					left: '73mm',
+					left: '71mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -299,7 +299,7 @@ jQuery(function($) {
 				},
 				bill_date_mth: {
 					text: the_bill.bill_date.substr(5, 2),
-					left: '144mm',
+					left: '145mm',
 					top: '23mm',
 					width: '10mm',
 					height: '5.3mm',
@@ -310,7 +310,7 @@ jQuery(function($) {
 				},
 				bill_date_day: {
 					text: the_bill.bill_date.substr(8, 2),
-					left: '160mm',
+					left: '158mm',
 					top: '23mm',
 					width: '10mm',
 					height: '5.3mm',
@@ -448,7 +448,7 @@ jQuery(function($) {
 
 				insured_fee: {
 					text: the_bill.insured_fee,
-					left: '85mm',
+					left: '100mm',
 					top: '66mm',
 					width: '20mm',
 					height: '5.3mm'
