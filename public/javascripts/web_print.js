@@ -542,8 +542,8 @@ jQuery(function($) {
 				}
 
 			}
-			print_object.PREVIEW();
-			//print_object.PRINT();
+			//print_object.PREVIEW();
+			print_object.PRINT();
 		}
 	});
 	//绑定打印事件
