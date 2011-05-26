@@ -203,7 +203,7 @@ jQuery(function($) {
 				},
 				customer_code_1: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(0, 1) : "",
-					left: '30mm',
+					left: '28mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -214,7 +214,7 @@ jQuery(function($) {
 				},
 				customer_code_2: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(1, 1) : "",
-					left: '37mm',
+					left: '35mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -225,7 +225,7 @@ jQuery(function($) {
 				},
 				customer_code_3: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(2, 1) : "",
-					left: '45mm',
+					left: '43mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
@@ -247,7 +247,7 @@ jQuery(function($) {
 				},
 				customer_code_5: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(4, 1) : "",
-					left: '58mm',
+					left: '57mm',
 					top: '23mm',
 					width: '5mm',
 					height: '5.3mm',
