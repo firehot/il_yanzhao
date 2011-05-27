@@ -2,7 +2,12 @@
 class CustomerCodeValidator < ActiveModel::EachValidator
   def validate_each(object,attribute,value)
     if value.present?
-      object.errors[attribute] <<(options[:message] || "客户编号与姓名不匹配" ) unless Customer.exists?(:code => value,:name => object.from_customer_name,:is_active => true)
+      from_customer = Customer.find_by_code_and_name_and_is_active(value,object.from_customer_name,true)
+      if from_customer.blank?
+        object.errors[attribute] <<(options[:message] || "客户编号与姓名不匹配" )
+      else
+        object.from_customer = from_customer
+      end
     end
   end
 end
@@ -28,7 +33,7 @@ class CarryingBill < ActiveRecord::Base
   scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:user]
 
 
-  before_validation :set_customer
+  #before_validation :set_customer
   #保存成功后,设置原始费用
   before_create :set_original_fee
   #计算手续费
@@ -439,10 +444,10 @@ class CarryingBill < ActiveRecord::Base
       sequence = CarryingBill.where(:bill_date => Date.today,:from_org_id => from_org_id,:transit_org_id => transit_org_id).count + 1 if self.transit_org_id.present?
       sequence
     end
-    #设置发货人关联信息
     def set_customer
-      self.from_customer = nil if customer_code.blank?
-      if Vip.exists?(:code => customer_code,:name => from_customer_name,:is_active => true)
+      if customer_code.blank?
+        self.from_customer = nil
+      elsif Vip.exists?(:code => customer_code,:name => from_customer_name,:is_active => true)
         self.from_customer = Vip.where(:is_active => true).find_by_code(customer_code)
       end
     end
@@ -496,4 +501,4 @@ class CarryingBill < ActiveRecord::Base
       errors.add(:transit_carrying_fee,"中转运费不能大于原运费.") if transit_carrying_fee >= carrying_fee
       errors.add(:transit_hand_fee,"中转手续费不能大于原运费.") if transit_hand_fee >= carrying_fee
     end
-end
+    end

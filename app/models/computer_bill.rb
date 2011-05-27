@@ -5,5 +5,4 @@ class ComputerBill < CarryingBill
   before_save :generate_goods_no
   before_create :generate_bill_no
   validates_presence_of :to_org_id
-
 end

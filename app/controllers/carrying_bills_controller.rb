@@ -30,7 +30,7 @@ class CarryingBillsController < BaseController
     @search = resource_class.search(params[:search])
   end
   def show
-    bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id],:include => [:from_org,:to_org,:transit_org,:user]))
+    bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id],:include => [:from_org,:to_org,:transit_org,:from_customer,:user]))
     respond_with(bill) do |format|
       format.html
       format.js { render :partial => "shared/carrying_bills/show",:object => bill}
