@@ -1,13 +1,24 @@
 <tr>
   <td style='padding-left : <%="#{@cur_level*30}px"%>;'>
-    <%=link_to org.name,edit_org_path(org,:format => :js),:class => 'fancybox'%>
+    <% if can? :update,resource_class %>
+      <%=link_to org.name,edit_org_path(org,:format => :js),:class => 'fancybox'%>
+    <%else%>
+      <%=org.name%>
+    <%end%>
   </td>
   <td><%=org.simp_name %></td>
   <td><%=org.code %></td>
   <td><%=org.phone %></td>
   <td><%=org.manager %></td>
   <td><%=org.location %></td>
-  <td><%=org.lock_input_time %></td>
+  <td class='text-center'>
+    <%lock_input_time = org.lock_input_time.blank? ? "未设置" : org.lock_input_time %>
+    <%if can? :edit_lock_time,resource_class %>
+      <%=link_to lock_input_time,edit_lock_time_org_path(org,:format => :js),:class => 'fancybox'%>
+    <%else%>
+      <%=lock_input_time%>
+    <%end%>
+  </td>
   <td>
   </td>
 </tr>

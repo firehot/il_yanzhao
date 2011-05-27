@@ -191,7 +191,10 @@ IlYanzhao::Application.routes.draw do
     get :export_excel,:on => :collection
   end
 
-  resources :orgs
+  resources :orgs do
+    get :edit_lock_time,:on => :member
+  end
+
   resources :branches
   resources :departments
 

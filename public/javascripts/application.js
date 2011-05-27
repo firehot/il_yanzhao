@@ -742,6 +742,17 @@ jQuery(function($) {
 		$(this).find('select').attr('disabled', true);
 		$(this).find('[name*="lock_time"]').attr('readonly', false);
 	});
+	//修改org的录单限制时间
+	$('.only_edit_lock_time').livequery(function() {
+		$('#org_form :input[type="text"],#org_form :input[type="checkbox"],#org_form select').attr('readonly', true);
+		$('#org_form [name*="lock_input_time"]').attr('readonly', false);
+	});
+	//修改readonly底色
+	$('[readonly]').livequery(function() {
+		$(this).css({
+			backgroundColor: '#E5E5E5'
+		});
+	});
 
 	//日营业额统计,月营业额统计导出
 	$('#btn_export_turnover').click(function() {
