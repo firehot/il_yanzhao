@@ -1,6 +1,7 @@
-<%if collection.blank?%>
-  $.notifyBar({
-  html: "未查询到客户信息,请检查客户编号!",
+<% if params[:in_witch].present?%>
+  <%if collection.blank?%>
+    $.notifyBar({
+html: "未查询到客户信息,请检查客户编号!",
 delay: 3000,
 animationSpeed: "normal",
 cls : 'error'
@@ -18,4 +19,7 @@ $('#from_customer_id').val('<%=collection.first.id%>');
 $('#from_customer_name').val('<%=collection.first.name%>');
 $('#from_customer_phone').val('<%=collection.first.phone%>');
 $('#from_customer_mobile').val('<%=collection.first.mobile%>');
+<%end%>
+<%else%>
+  $('#table_wrap').html('<%= escape_javascript(render("table")) %>');
 <%end%>

@@ -134,4 +134,11 @@ namespace :db do
     admin.user_roles.each {|user_role| user_role.is_select = true}
     admin.save!
   end
+  desc "初始化系统"
+  task :init_system => :environment do
+    Rake::Task['db:reset'].invoke
+    Rake::Task['db:imp_org'].invoke
+    Rake::Task['db:imp_customer'].invoke
+    Rake::Task['db:create_admin'].invoke
+  end
 end

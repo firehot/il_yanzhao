@@ -160,7 +160,8 @@ jQuery(function($) {
 		var code = $(this).val();
 		if (code == "") return;
 		$.get('/vips', {
-			"search[code_eq]": code
+			"search[code_eq]": code,
+                        "in_wich" : 'carrying_bill_form'
 		},
 		null, 'script');
 
@@ -441,6 +442,7 @@ jQuery(function($) {
 	//生成返款清单时,收款单位变化时,列出结算清单
 	$('#btn_refound_refresh').click(function() {
 		$.get('/settlements', {
+                        "show_select" : 1, //是否显示选择列表
 			"search[carrying_bills_from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
 			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill"],
