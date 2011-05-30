@@ -1,6 +1,8 @@
 #coding: utf-8
 class ShortFeeInfo < ActiveRecord::Base
   belongs_to :org
+  #核销部门
+  belongs_to :op_org,:class_name => "Org"
   belongs_to :user
   has_many :carrying_bills
   validates_presence_of :org_id,:bill_date

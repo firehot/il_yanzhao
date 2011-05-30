@@ -2,6 +2,8 @@
 class GoodsError < ActiveRecord::Base
   belongs_to :carrying_bill
   belongs_to :org
+  #处理部门
+  belongs_to :op_org,:class_name => "Org"
   belongs_to :user
   has_one :gerror_authorize
   accepts_nested_attributes_for :gerror_authorize

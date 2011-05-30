@@ -29,7 +29,8 @@ namespace :db do
     Org.destroy_all
     rows = FasterCSV::read(FILE_NAME)
     rows.each do |row|
-      Branch.create(:name => row[1],:simp_name => row[2],:location => row[7],:code => row[8])
+      org = Branch.new_with_config(:name => row[1],:simp_name => row[2],:location => row[7],:code => row[8])
+      org.save!
     end
     #查找郑州总公司
     zz_branch = Branch.find_by_name("郑州总公司")

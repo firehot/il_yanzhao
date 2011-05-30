@@ -30,7 +30,7 @@ module OrgsHelper
   end
 
   #当前登录用户可用之外的orgs
-  def exclude_current_ability_orgs_for_select
+  def exclude_current_ability_orgs_for_select(with_yard = false)
     #除去当前默认org和当前org的上级机构
     default_org_id = current_user.default_org.id
     parent_id = current_user.default_org.parent_id
@@ -38,6 +38,7 @@ module OrgsHelper
     exclude_ids << parent_id if parent_id.present?
     exclude_ids += Org.where(:parent_id => parent_id).collect(&:id) if parent_id.present?
     exclude_ids += Org.where(:parent_id => default_org_id).collect(&:id)
+    exclude_ids += Org.where(:is_active => true,:is_yard => true).collect(&:id) if with_yard
     exclude_ids.uniq!
     Branch.search(:is_active_eq => true,:id_ni => exclude_ids).all.map {|b| ["#{b.name}(#{b.py})",b.id]}
   end

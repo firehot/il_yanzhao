@@ -6,6 +6,7 @@ class TransitInfo < ActiveRecord::Base
   belongs_to :transit_company  #中转公司
   has_one :carrying_bill
   validates_presence_of :org_id
+  validates_associated :carrying_bill,:message => "中转运费不能大于原运费."
 
   accepts_nested_attributes_for :transit_company
 

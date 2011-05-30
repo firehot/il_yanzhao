@@ -10,7 +10,7 @@ class Org < ActiveRecord::Base
 
   accepts_nested_attributes_for :customer_level_configs
 
-  def self.new_with_config(attrs)
+  def self.new_with_config(attrs={})
     org = self.new(attrs)
     CustomerLevelConfig.levels.each do |key,value|
       org.customer_level_configs.build(:name => key,:from_fee => CustomerLevelConfig.system_level_range(key).begin,:to_fee => CustomerLevelConfig.system_level_range(key).end)

@@ -4,6 +4,9 @@ class TransitDeliverInfo < ActiveRecord::Base
   belongs_to :user
   has_one :carrying_bill
   validates_presence_of :org_id
+
+  validates_associated :carrying_bill,:message => "中转手续费不能大于原运费."
+
   default_scope :include => :carrying_bill
   #定义状态机
   state_machine :initial => :billed do

@@ -3,6 +3,9 @@ class GoodsException < ActiveRecord::Base
   belongs_to :carrying_bill
   belongs_to :user
   belongs_to :org
+  #处理部门
+  belongs_to :op_org,:class_name => "Org"
+
   #授权核销信息
   has_one :gexception_authorize_info
   #理赔信息

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518045928) do
+ActiveRecord::Schema.define(:version => 20110530034727) do
 
   create_table "banks", :force => true do |t|
     t.string   "name",                                       :null => false
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(:version => 20110518045928) do
     t.string   "state",            :limit => 20,                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "op_org_id"
   end
 
   create_table "goods_exception_identifies", :force => true do |t|
@@ -305,6 +306,7 @@ ActiveRecord::Schema.define(:version => 20110518045928) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "op_org_id"
   end
 
   add_index "goods_exceptions", ["bill_date"], :name => "index_goods_exceptions_on_bill_date"
@@ -634,6 +636,7 @@ ActiveRecord::Schema.define(:version => 20110518045928) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "op_org_id"
   end
 
   add_index "short_fee_infos", ["bill_date"], :name => "index_short_fee_infos_on_bill_date"

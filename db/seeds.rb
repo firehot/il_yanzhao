@@ -205,7 +205,7 @@ sf_hash = {
   :default_action => "short_fee_infos_path",
   :subject => subject,
   :function => {
-  :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
+  :read =>{:title => "查看"} ,
   :create => {:title => "新建"},
   :destroy =>{:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
   :export => {:title => "导出"}
@@ -703,9 +703,9 @@ sf_hash = {
   :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :destroy => {:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
-  :show_authorize => {:title => "授权核销",:conditions =>"{:state => 'submited',:org_id => user.current_ability_org_ids  }"},
-  :show_claim => {:title => "理赔",:conditions =>"{:state => 'authorized',:org_id => user.current_ability_org_ids }"},
-  :show_identify => {:title => "责任鉴定",:conditions =>"{:state => 'compensated',:org_id => user.current_ability_org_ids }"},
+  :show_authorize => {:title => "授权核销",:conditions =>"{:state => 'submited' }"},
+  :show_claim => {:title => "理赔",:conditions =>"{:state => 'authorized'}"},
+  :show_identify => {:title => "责任鉴定",:conditions =>"{:state => 'compensated'}"},
   :print => {:title => "打印"}
 }
 }
@@ -788,9 +788,9 @@ sf_hash = {
   :default_action => 'goods_errors_path("search[state_ne]" => "authorized")',
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
-  :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
+  :read => {:title => "查看"},
   :create => {:title => "新建"},
-  :show_authorize => {:title => "核销",:conditions =>"{:state => 'submited',:org_id => user.current_ability_org_ids  }"},
+  :show_authorize => {:title => "核销",:conditions =>"{:state => 'submited'}"},
   :destroy => {:title => "删除"}
 }
 }

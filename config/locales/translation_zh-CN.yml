@@ -345,6 +345,8 @@ zh-CN:
         state: "状态"  #g
         note: "备注"  #g
         org_id: "所属机构"  #g
+        op_org_id: "处理部门"
+        op_org: "处理部门"
         user: "操作员"  #g
         carrying_bills: "清单明细"  #g
 
@@ -564,6 +566,8 @@ zh-CN:
         carrying_bill_id: "运单"  #g
         user: "操作员"  #g
         org_id: "上报机构"  #g
+        op_org_id: "处理部门"
+        op_org: "处理部门"
         gexception_authorize_info: "货物异常核销信息"  #g
         goods_exception_identify: "责任鉴定信息"  #g
         claim:
@@ -579,6 +583,9 @@ zh-CN:
         carrying_bill_id: "运单"  #g
         user: "操作员"  #g
         org_id: "上报机构"  #g
+        op_org_id: "处理部门"
+        op_org: "处理部门"
+
       gerror_authorize:
         note: "核销备注"
         user_id: "核销人"
