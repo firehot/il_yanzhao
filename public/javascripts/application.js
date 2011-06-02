@@ -756,9 +756,10 @@ jQuery(function($) {
 		});
 	});
 
-	//日营业额统计,月营业额统计导出
-	$('#btn_export_turnover').click(function() {
-		var table_doc = $('#rpt_turnover').clone();
+	//日营业额统计,月营业额统计/代收货款收入-支出统计导出
+	$('a[data-table]').click(function() {
+		var table_doc = $($(this).data('table')).clone();
+
 		table_doc.find('th,td').css({
 			border: 'thin solid #000'
 		});

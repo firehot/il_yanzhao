@@ -71,9 +71,15 @@
     <%end%>
     <%if params[:action] == "rpt_turnover"%>
       <li>
-        <%= link_to_function image_tag("document-excel-table.png",:alt => "导出为EXCEL"), "",:title => "导出为EXCEL",:class => "tipsy",:id => "btn_export_turnover"  %>
+        <%= link_to_function image_tag("document-excel-table.png",:alt => "导出为EXCEL"), "",:title => "导出为EXCEL",:class => "tipsy",:id => "btn_export_turnover","data-table" => "#rpt_turnover"  %>
       </li>
     <%end%>
+    <%if params[:action] == "sum_goods_fee_inout"%>
+      <li>
+        <%= link_to_function image_tag("document-excel-table.png",:alt => "导出为EXCEL"), "",:title => "导出为EXCEL",:class => "tipsy",:id => "btn_export_sum_goods_fee_inout","data-table" => "#sum_goods_fee_inout"  %>
+      </li>
+    <%end%>
+
     <%= render "extra_toolbar" %>
   </ul>
 </div>
