@@ -61,6 +61,11 @@ class CarryingBillsController < BaseController
     @search = resource_class.where(:from_org_id =>current_user.current_ability_org_ids).turnover.search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.all)
   end
+  #货款出入情况
+  def sum_goods_fee_inout
+    @sum_goods_fee_in = resource_class.sum_goods_fee_in(current_user.current_ability_org_ids,params[:date_from] || Date.today.beginning_of_month,params[:date_to] || Date.today.end_of_month)
+    @sum_goods_fee_out = resource_class.sum_goods_fee_out(current_user.current_ability_org_ids,params[:date_from] || Date.today.beginning_of_month,params[:date_to] || Date.today.end_of_month)
+  end
   private
   def check_expire
     if current_user.default_org.input_expire?

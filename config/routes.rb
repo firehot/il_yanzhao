@@ -205,6 +205,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :simple_search,:on => :collection
     get :export_excel,:on => :collection
+    get :sum_goods_fee_inout,:on => :collection
     put :reset,:on => :member
   end
 

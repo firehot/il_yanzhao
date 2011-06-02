@@ -1,7 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
-#coding: utf-8
 class DashboardController < ApplicationController
   def index
     #今日收货
@@ -21,6 +18,5 @@ class DashboardController < ApplicationController
     @shipped_load_list = LoadList.shipped(org_ids)
     #待确认付款清单
     @refunded = Refound.refunded(org_ids)
-
   end
 end
