@@ -27,7 +27,6 @@
               <div id='home-search-box-wrap'>
                 <%=form_tag carrying_bills_path(:show_multi => ""),:id => 'home-search-form',:remote => true,:method => :get do%>
                   <%=text_field_tag "search[bill_no_or_goods_no_eq]","",:id => 'home-search-box'%>
-                  <%=image_submit_tag 'magnifier.png',:id => "btn_home_search" %>
                 <%end%>
               </div>
             </li>

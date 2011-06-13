@@ -289,15 +289,10 @@ jQuery(function($) {
 		$.fancybox.hideActivity();
 	});
 	//首页运单查询
-	$('#home-search-box').watermark('录入运单号/货号查询').keyup(function(e) {
+	$('#home-search-box').watermark('录入运单号/货号查询').keypress(function(e) {
 		if (e.keyCode == 13) {
-			$.fancybox.showActivity();
 			$('#home-search-form').trigger('submit');
 		}
-	});
-	$('#btn_home_search').click(function() {
-		$('#home-search-form').trigger('submit');
-		return false;
 	});
 	//search box
 	$('.search_box').livequery(function() {

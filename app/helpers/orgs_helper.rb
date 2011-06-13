@@ -38,9 +38,9 @@ module OrgsHelper
     exclude_ids << parent_id if parent_id.present?
     exclude_ids += Org.where(:parent_id => parent_id).collect(&:id) if parent_id.present?
     exclude_ids += Org.where(:parent_id => default_org_id).collect(&:id)
+    yards_ids = Org.where(:is_active => true,:is_yard => true).collect(&:id)
+    exclude_ids -= yards_ids if with_yard
     exclude_ids.uniq!
     ret_orgs = Branch.search(:is_active_eq => true,:id_ni => exclude_ids).all.map {|b| ["#{b.name}(#{b.py})",b.id]}
-
-    ret_orgs = Org.where(:is_active => true,:is_yard => true).all.map {|b| ["#{b.name}(#{b.py})",b.id]} + ret_orgs if with_yard
   end
 end

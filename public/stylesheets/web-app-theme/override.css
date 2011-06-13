@@ -15,7 +15,7 @@
 
 /*accordion icon 显示问题*/
 #menu_bar .ui-icon,#role_system_functions_list .ui-icon{ position : absolute;}
-.ui-accordion-header a { 
+.ui-accordion-header a {
   display : block;
   padding-left : 26px;
 }
@@ -67,7 +67,7 @@
 .table tr{background-color: #EAFDFF;}
 .table tr.odd{background-color: #FFFFFF;}
 .table tbody tr:hover{background-color: #FFCCCC;cursor : pointer;}
-  
+
 .table td, .table th{border: 1px dotted #CCCCCC;}
 .table tbody td{padding: 0.5em;}
 .table td  a:link,.table th a:link{color: black;}
@@ -98,7 +98,7 @@
 }
 
 #util-navigation ul li a:link,#util-navigation ul li a:visited,#util-navigation ul li a:hover,#util-navigation ul li a:active {
-  color : #FFFFFF;  
+  color : #FFFFFF;
   text-decoration : none;
 }
 #util-navigation a.logout {
@@ -110,10 +110,14 @@
 #home-search-box-wrap{
   padding : 5px 0;
 }
+#home-search-box{
+  font-size : 14px;
+  height : 1.5em;
+}
 #adv-query-wrap a:hover, #adv-query-wrap a:active {
   text-decoration : underline;
 }
-#user-navigation { 
+#user-navigation {
   top : 62px;
   width : 300px;
 }
@@ -182,13 +186,13 @@
   list-style:none;
   line-height:1em;
 }
- 
+
 .tabs li {
   float:left;
   margin:0;
   padding:0;
 }
- 
+
 .tabs a {
   display:block;
   color:#444;
@@ -201,7 +205,7 @@
   border-top:1px solid #fff;
   border-right:1px solid #aaa;
 }
- 
+
 .tabs a:hover,
 .tabs a:active,
 .tabs a.here:link,
@@ -209,7 +213,7 @@
   background:#406B9E;
   color : #ffffff;
 }
- 
+
 .tabs a.here:link,
 .tabs a.here:visited {
   position:relative;
@@ -237,18 +241,18 @@ bigger-font {font-size : 1.5em;}
 /* color */
 
 /*排序图标*/
-th .current_sort_column {  
-  padding-right: 20px;  
-  background-repeat: no-repeat;  
-  background-position: right center;  
-}  
-th .asc {   
-  background-image: url(/images/sort--plus.png);   
-}  
-  
-th .desc {   
-  background-image: url(/images/sort--minus.png);   
-}  
+th .current_sort_column {
+  padding-right: 20px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+th .asc {
+  background-image: url(/images/sort--plus.png);
+}
+
+th .desc {
+  background-image: url(/images/sort--minus.png);
+}
 /*退货单新建界面上的说明*/
 #return_bill_before_new_form { margin-left : 200px;}
 ul.hint {
