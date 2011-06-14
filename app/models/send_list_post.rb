@@ -5,7 +5,8 @@ class SendListPost < ActiveRecord::Base
   belongs_to :org
   belongs_to :sender
   has_many :send_list_lines
-  has_many :carrying_bills,:through => :send_list_lines
+  has_many :carrying_bills,:through => :send_list_lines,:order => "goods_no ASC"
+
   default_value_for :bill_date,Date.today
   validates_presence_of :sender_id,:org_id
 end

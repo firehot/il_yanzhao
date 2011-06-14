@@ -1,7 +1,8 @@
 #coding: utf-8
 class DistributionList < ActiveRecord::Base
   belongs_to :user
-  has_many :carrying_bills
+  has_many :carrying_bills,:order => "goods_no ASC"
+
   belongs_to :org
   validates_presence_of :org_id,:bill_date
   #定义状态机

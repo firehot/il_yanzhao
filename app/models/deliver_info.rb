@@ -2,7 +2,8 @@
 class DeliverInfo < ActiveRecord::Base
   belongs_to :user
   belongs_to :org
-  has_many :carrying_bills
+  has_many :carrying_bills,:order => "goods_no ASC"
+
   validates_presence_of :customer_name,:deliver_date,:org_id
   #定义状态机
   state_machine :initial => :billed do

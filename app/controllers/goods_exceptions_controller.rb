@@ -47,5 +47,4 @@ class GoodsExceptionsController < BaseController
     @search = end_of_association_chain.where(["goods_exceptions.org_id = ? or goods_exceptions.op_org_id =?",current_user.default_org.id,current_user.default_org.id]).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
-
 end

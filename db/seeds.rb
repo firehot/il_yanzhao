@@ -17,12 +17,12 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'new_computer_bill_path',
+  :default_action => 'computer_bills_path',
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :create => {:title => "新建"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
-  :re_print => {:title => "票据重打",:conditions =>"{:state => 'billed'}"},
+  :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
 }
@@ -34,7 +34,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'new_hand_bill_path',
+  :default_action => 'hand_bills_path',
   :function => {
   :create => {:title => "新建"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
@@ -49,11 +49,11 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
 
-  :default_action => 'new_transit_bill_path',
+  :default_action => 'transit_bills_path',
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :re_print => {:title => "票据重打",:conditions =>"{:state => 'billed'}"},
+  :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
 
@@ -67,7 +67,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
 
-  :default_action => 'new_hand_transit_bill_path',
+  :default_action => 'hand_transit_bills_path',
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
@@ -90,7 +90,7 @@ sf_hash = {
   :create => {:title => "新建"},
   :export => {:title => "导出"},
   :ship => {:title => "发车",:conditions =>"{:from_org_id => user.current_ability_org_ids,:state => 'loaded'}"},
-  :destroy => {:title => "导出",:conditions =>"{:from_org_id => user.current_ability_org_ids }"}
+  :destroy => {:title => "删除",:conditions =>"{:from_org_id => user.current_ability_org_ids }"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
@@ -190,7 +190,7 @@ sf_hash = {
   :create => {:title => "新建"},
   :update =>{:title =>"修改",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
-  :re_print => {:title => "票据重打",:conditions =>"{:state => 'billed'}"},
+  :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
 }
@@ -508,7 +508,7 @@ SystemFunction.create_by_hash(sf_hash)
 
 group_name = "基础信息管理"
 #################################分理处/分公司管理################################################
-subject_title = "分理处/分公司管理"
+subject_title = "组织机构管理"
 subject = "Org"
 sf_hash = {
   :group_name => group_name,
@@ -700,7 +700,7 @@ sf_hash = {
   :default_action => 'goods_exceptions_path("search[state_ne]" => "identified")',
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
-  :read => {:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
+  :read => {:title => "查看"},
   :destroy => {:title => "删除",:conditions =>"{:org_id => user.current_ability_org_ids }"},
   :create => {:title => "新建"},
   :show_authorize => {:title => "授权核销",:conditions =>"{:state => 'submited' }"},

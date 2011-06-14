@@ -2,7 +2,8 @@
 #返款清单
 class Refound < ActiveRecord::Base
   belongs_to :user
-  has_many :carrying_bills
+  has_many :carrying_bills,:order => "goods_no ASC"
+
   belongs_to :from_org,:class_name => "Org"
   belongs_to :to_org,:class_name => "Org"
   has_one :remittance

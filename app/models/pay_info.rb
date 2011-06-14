@@ -1,6 +1,7 @@
 #coding: utf-8
 class PayInfo < ActiveRecord::Base
-  has_many :carrying_bills
+  has_many :carrying_bills,:order => "goods_no ASC"
+
   belongs_to :org
   validates_presence_of :customer_name
   belongs_to :user
@@ -36,7 +37,7 @@ class PayInfo < ActiveRecord::Base
     self.carrying_bills.join(",")
   end
   #发货人
-  def from_customer 
+  def from_customer
     ret = self.carrying_bills.collect {|bill| bill.from_customer_name}.join("-")
     ret
   end

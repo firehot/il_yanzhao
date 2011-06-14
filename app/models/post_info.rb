@@ -2,7 +2,8 @@
 class PostInfo < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
-  has_many :carrying_bills
+  has_many :carrying_bills,:order => "goods_no ASC"
+
   validates_presence_of :org_id
 
   #定义状态机
@@ -22,7 +23,7 @@ class PostInfo < ActiveRecord::Base
     self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:carrying_fee)
   end
   #原运费合计
-  def sum_goods_fee 
+  def sum_goods_fee
     self.carrying_bills.sum(:goods_fee)
   end
   #扣手续费合计

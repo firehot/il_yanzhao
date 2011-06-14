@@ -15,7 +15,7 @@ class GoodsException < ActiveRecord::Base
   accepts_nested_attributes_for :gexception_authorize_info,:claim,:goods_exception_identify
 
   #异常数量不能大于货物数量
-  validates_presence_of :org_id,:carrying_bill
+  validates_presence_of :org_id,:carrying_bill,:op_org_id
   validate :check_except_num
   #定义状态机
   state_machine :initial => :submited do
