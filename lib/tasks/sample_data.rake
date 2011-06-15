@@ -141,4 +141,9 @@ namespace :db do
     Rake::Task['db:imp_customer'].invoke
     Rake::Task['db:create_admin'].invoke
   end
+  desc "清空业务数据(保留机构/人员/权限)"
+  task :clear_business_data => :environment do
+    models = Dir['app/models/*.rb'].map {|f| File.basename(f, '.*').camelize.constantize } - [Ability,AbilityObj,Bank,Branch,ConfigCash,ConfigTransit,Customer,CustomerFeeInfo,CustomerFeeInfoLine,CustomerFeeInfoLineObserver,CustomerLevelConfig,Department,IlConfig,ImportedCustomer,Org,Role,RoleSystemFunctionOperate,SystemFunction,SystemFunctionOperate,User,UserOrg,UserRole,Vip,RefoundObserver,SendListModule]
+    models.each {|model_class| model_class.destroy_all}
+  end
 end

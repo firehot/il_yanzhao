@@ -512,6 +512,7 @@ end
 #goods_exception
 Factory.define :goods_exception do |gx|
   gx.association :org,:factory => :zz
+  gx.association :op_org,:factory => :zz
   gx.association :carrying_bill,:factory => :computer_bill
   gx.exception_type "LA"
   gx.except_num 10
@@ -526,6 +527,7 @@ end
 Factory.define :goods_error do |ge|
   ge.association :org,:factory => :zz
   ge.association :carrying_bill,:factory => :computer_bill
+  ge.association :op_org,:factory => :zz
   ge.except_type "SH"
   ge.except_num 1
 end

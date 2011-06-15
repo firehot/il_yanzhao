@@ -10,6 +10,8 @@ class Org < ActiveRecord::Base
 
   accepts_nested_attributes_for :customer_level_configs
 
+  default_value_for :lock_input_time,"21:30"
+
   def self.new_with_config(attrs={})
     org = self.new(attrs)
     CustomerLevelConfig.levels.each do |key,value|

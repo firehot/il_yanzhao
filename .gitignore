@@ -10,6 +10,6 @@ doc/app
 *.sw?
 *~
 .DS_Store
-public/javascripts/il-cache.js
-public/javascripts/il-ie-cache.js
-public/stylesheets/il.css
+public/javascripts/il-javascripts.js
+public/javascripts/il-ie-javascripts.js
+public/stylesheets/il-stylesheets.css
