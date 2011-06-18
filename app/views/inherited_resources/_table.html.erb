@@ -10,12 +10,12 @@
   </thead>
   <tbody>
     <% collection.each_with_index do |resource,index| %>
-      <tr class="<%= cycle 'odd', 'even' %>",title="双击显示详细信息" class='tipsy' <%=can?(:read,resource_class) ? "data-dblclick='true'" : "" %>>
+      <tr class="<%= cycle 'odd', 'even' %>",title="双击显示详细信息" class='tipsy' <%=can?(:read,resource) ? "data-dblclick='true'" : "" %>>
         <td>
           <%= order_no(index,params[:page]) %>
         </td>
         <% index_table_columns.each do |column| %>
-          <% 
+          <%
             value = resource.send(foreign_key_to_association(column))
             value = '是' if value == true
             value = '否' if value == false
