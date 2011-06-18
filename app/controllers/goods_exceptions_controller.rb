@@ -44,7 +44,7 @@ class GoodsExceptionsController < BaseController
   #需要重写collection方法
   protected
   def collection
-    @search = end_of_association_chain.where(["goods_exceptions.org_id = ? or goods_exceptions.op_org_id =?",current_user.default_org.id,current_user.default_org.id]).search(params[:search])
+    @search = end_of_association_chain.where(["goods_exceptions.org_id in (?) or goods_exceptions.op_org_id in (?)",current_user.current_ability_org_ids,current_user.current_ability_org_ids]).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
