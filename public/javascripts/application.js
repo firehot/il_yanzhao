@@ -161,7 +161,7 @@ jQuery(function($) {
 		if (code == "") return;
 		$.get('/vips', {
 			"search[code_eq]": code,
-                        "in_wich" : 'carrying_bill_form'
+			"in_wich": 'carrying_bill_form'
 		},
 		null, 'script');
 
@@ -437,7 +437,8 @@ jQuery(function($) {
 	//生成返款清单时,收款单位变化时,列出结算清单
 	$('#btn_refound_refresh').click(function() {
 		$.get('/settlements', {
-                        "show_select" : 1, //是否显示选择列表
+			"show_select": 1,
+			//是否显示选择列表
 			"search[carrying_bills_from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
 			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill"],
@@ -454,7 +455,7 @@ jQuery(function($) {
 		});
 
 	});
-	//绑定生成支付清单按钮
+	//绑定生成返款清单按钮
 	$('#btn_generate_refound').bind('ajax:before', function() {
 		var selected_bill_ids = [];
 		$('input[name^="selector"]').each(function() {
@@ -462,7 +463,7 @@ jQuery(function($) {
 		});
 		if (selected_bill_ids.length == 0) {
 			$.notifyBar({
-				html: "请选择要生成支付清单的结算清单!",
+				html: "请选择要生成返款清单的结算清单!",
 				delay: 3000,
 				animationSpeed: "normal",
 				cls: 'error'
@@ -483,15 +484,19 @@ jQuery(function($) {
 			'show_fields': ".carrying_fee_th,.th_amount,.transit_hand_fee,.transit_carrying_fee"
 		};
 		$(this).data('params', params);
-		//选定单据改变时,修改对应返款清单相关金额字段
-		$($.bill_selector).bind('select:change', function() {
-			$('#refound_sum_goods_fee').val($.bill_selector.sum_info.sum_goods_fee);
-			$('#refound_sum_carrying_fee').val($.bill_selector.sum_info.sum_carrying_fee_th);
-			$('#refound_sum_transit_carrying_fee').val($.bill_selector.sum_info.sum_transit_carrying_fee);
-			$('#refound_sum_transit_hand_fee').val($.bill_selector.sum_info.sum_transit_hand_fee);
-			$('#refound_sum_fee').html($.bill_selector.sum_info.sum_th_amount);
-		});
+	}).bind('ajax:complete', function() {
+		if ($('#bills_table').length == 0) return;
+		var sum_info = $('#bills_table').data('sum');
+		var ids = $('#bills_table').data('ids');
+		$('#refound_sum_goods_fee').val(sum_info.sum_goods_fee);
+		$('#refound_sum_carrying_fee').val(sum_info.sum_carrying_fee_th);
+		$('#refound_sum_transit_carrying_fee').val(sum_info.sum_transit_carrying_fee);
+		$('#refound_sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
+		$('#refound_sum_fee').html(sum_info.sum_th_amount);
 
+		$('#refound_form').data('params', {
+			'bill_ids[]': ids
+		});
 	});
 	//生成代收货款支付清单
 	var gen_payment_list = function(evt) {
