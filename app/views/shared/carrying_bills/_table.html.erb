@@ -15,6 +15,12 @@
       <th class="k_carrying_fee" style='display : none;'><span id="sum_k_carrying_fee"></span></th>
       <th class="act_pay_fee" style='display : none;'><span id="sum_act_pay_fee"></span></th>
       <th class="insured_fee"><span id="sum_insured_fee"></span></th>
+
+      <th class="transit_company" style='display : none;'>&nbps;</th>
+      <th class="transit_bill_no" style='display : none;'>&nbsp;</th>
+      <th class="transit_to_phone" style='display : none;'>&nbsp;</th>
+
+
       <th class="transit_carrying_fee" style='display : none;'><span id="sum_transit_carrying_fee"></span></th>
       <th class="transit_hand_fee" style='display : none;'><span id="sum_transit_hand_fee"></span></th>
       <th class="agent_carrying_fee" style='display : none;'><span id="sum_agent_carrying_fee"></span></th>
@@ -43,6 +49,12 @@
       <th class="k_carrying_fee" style='display : none;'>扣运费</th>
       <th class="act_pay_fee" style='display : none;'>实提货款</th>
       <th class="insured_fee">保价费</th>
+
+      <th class="transit_company" style='display : none;'>中转公司</th>
+      <th class="transit_bill_no" style='display : none;'>中转票号</th>
+      <th class="transit_to_phone" style='display : none;'>到货电话</th>
+
+
       <th class="transit_carrying_fee" style='display : none;'>中转运费</th>
       <th class="transit_hand_fee" style='display : none;'>中转手续费</th>
       <th class="agent_carrying_fee" style='display : none;'>代收运费</th>
@@ -76,7 +88,7 @@
           <%=bill.goods_no%>
         </td>
         <td>
-          <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.to_area}" : bill.to_org_name%>
+          <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.area}" : bill.to_org_name%>
         </td>
         <td>
           <%=bill.from_customer_name%>
@@ -99,6 +111,11 @@
         <td class="k_carrying_fee" style='display : none;'><%= bill.k_carrying_fee %></td>
         <td class="act_pay_fee" style='display : none;'><%= bill.act_pay_fee %></td>
         <td class="insured_fee"><%=bill.insured_fee%></td>
+        <td class="transit_company" style='display : none;'><%= bill.transit_info.try(:transit_company) %></td>
+        <td class="transit_bill_no" style='display : none;'><%= bill.transit_bill_no %></td>
+        <td class="transit_to_phone" style='display : none;'><%= bill.transit_to_phone %></td>
+
+
         <td class="transit_carrying_fee" style='display : none;'><%=bill.transit_carrying_fee%></td>
         <td class="transit_hand_fee" style='display : none;'><%=bill.transit_hand_fee%></td>
         <td class="agent_carrying_fee" style='display : none;'><%=bill.agent_carrying_fee%></td>
@@ -135,6 +152,11 @@
       <td class="k_carrying_fee" style='display : none;'><%= sum_info[:sum_k_carrying_fee] %></td>
       <td class="act_pay_fee" style='display : none;'><%= sum_info[:sum_act_pay_fee] %></td>
       <td class="insured_fee"><%=sum_info[:sum_insured_fee]%></td>
+      <td class="transit_company" style='display : none;'>&nbsp;</td>
+      <td class="transit_bill_no" style='display : none;'>&nbsp;</td>
+      <td class="transit_to_phone" style='display : none;'>&nbsp;</td>
+
+
       <td class="transit_carrying_fee" style='display : none;'><%=sum_info[:sum_transit_carrying_fee]%></td>
       <td class="transit_hand_fee" style='display : none;'><%=sum_info[:sum_transit_hand_fee]%></td>
       <td class="agent_carrying_fee" style='display : none;'><%=sum_info[:sum_agent_carrying_fee]%></td>

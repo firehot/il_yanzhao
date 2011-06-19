@@ -68,6 +68,7 @@ zh-CN:
       goods_exception: "货物异常信息"  #g
       goods_error: "少货/多货信息"  #g
       role_org: "角色-机构"  #g
+      area: "中转到货地"
 
 
     attributes:
@@ -89,7 +90,14 @@ zh-CN:
         org: "机构"
         from_org: "发货地"
         to_org: "到货地"
+        is_active: "有效"
+        note: "备注"
 
+      area:
+        name: "名称"
+        order_by: "排序"
+        is_active: "有效"
+        note: "备注"
 
       bank:
         name: "名称"  #g

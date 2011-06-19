@@ -38,18 +38,6 @@ describe LoadListsController do
     end
   end
 
-  describe "GET edit" do
-    before(:each) do
-      @load_list ||= Factory(:load_list_with_bills)
-    end
-
-    it "should be success" do
-
-      get :edit, :id => @load_list 
-      response.should be_success
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @computer_bill = Factory(:computer_bill)
@@ -98,14 +86,14 @@ describe LoadListsController do
       @load_list ||= Factory(:load_list_with_bills)
     end
     it "load_list state should become shipped" do
-      put :process_handle,:id =>@load_list 
+      put :process_handle,:id =>@load_list
       response.should be_success
     end
 
     it "load_list state should become 'reached' after reach process" do
       shipped_list = Factory(:load_list_shipped)
-      put :process_handle,:id =>shipped_list 
-      response.should be_success 
+      put :process_handle,:id =>shipped_list
+      response.should be_success
     end
   end
 end

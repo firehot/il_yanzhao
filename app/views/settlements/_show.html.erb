@@ -8,7 +8,8 @@
     </td>
     <td>结算日期:</td>
     <td> <%=resource.created_at.strftime('%Y-%m-%d')%></td>
-    <td colspan='4'>&nbsp;</td>
+    <td colspan='3'>&nbsp;</td>
+    <td><%= resource.human_state_name %></td>
   </tr>
   <tr>
     <td>返程货款:</td>

@@ -48,6 +48,7 @@ class CarryingBill < ActiveRecord::Base
   belongs_to :from_org,:class_name => "Org"
   belongs_to :transit_org,:class_name => "Org"
   belongs_to :to_org,:class_name => "Org"
+  belongs_to :area
 
   belongs_to :from_customer,:class_name => "Customer"
 
@@ -147,6 +148,12 @@ class CarryingBill < ActiveRecord::Base
     event :reset do
       transition any => :billed
     end
+    #中转部结算交款后,直接进行交款确认,无需再进行返款
+    event :direct_refunded_confirmed do
+      transition :settlemented => :refunded_confirmed
+    end
+
+
     #根据运单状态进行验证操作
     state :loaded,:shipped,:reached do
       validates_presence_of :load_list_id

@@ -1,5 +1,7 @@
 IlYanzhao::Application.routes.draw do
 
+  resources :areas
+
   resources :goods_errors do
     #显示核销界面
     get :show_authorize,:on => :member
@@ -75,14 +77,14 @@ IlYanzhao::Application.routes.draw do
 
   resources :transit_deliver_infos do
     get :search,:on => :collection
-    resource :carrying_bill
+    resources :carrying_bills
   end
 
   resources :transit_companies
 
   resources :transit_infos do
     get :search,:on => :collection
-    resource :carrying_bill
+    resources :carrying_bills
   end
 
   resources :post_infos do
@@ -141,6 +143,7 @@ IlYanzhao::Application.routes.draw do
   resources :settlements do
     get :search,:on => :collection
     get :export_excel,:on => :member
+    put :direct_refunded_confirmed,:on => :member
     resources :carrying_bills
   end
 

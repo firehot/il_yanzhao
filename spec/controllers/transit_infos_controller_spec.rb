@@ -38,17 +38,6 @@ describe TransitInfosController do
     end
   end
 
-  describe "GET edit" do
-    before(:each) do
-      @transit_info ||= Factory(:transit_info_with_bill)
-    end
-
-    it "should be success" do
-      get :edit, :id => @transit_info
-      response.should be_success
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @transit_bill = Factory(:transit_bill_reached)
@@ -56,19 +45,19 @@ describe TransitInfosController do
     describe "with valid params" do
       it "the load_list should success create" do
         lambda do
-          post :create,:transit_info => {:org_id => Factory(:zz),:transit_carrying_fee => 100,:transit_company_id => Factory(:transit_company)},:bill_ids=> [@transit_bill.id]
+          post :create,:transit_info => {:org_id => Factory(:zz),:transit_company_id => Factory(:transit_company)},:bill_ids=> [@transit_bill.id],:transit_carrying_fee_edit => [1.99],:transit_bill_no_edit => ['transit_bill_no'],:transit_to_phone_edit => ["231231231"]
         end.should change(TransitInfo,:count).by(1)
       end
 
       it "redirects to the created load_list" do
-        post :create,:transit_info => {:org_id => Factory(:zz),:transit_carrying_fee => 100,:transit_company_id => Factory(:transit_company)},:bill_ids=> [@transit_bill.id]
+        post :create,:transit_info => {:org_id => Factory(:zz),:transit_carrying_fee => 100,:transit_company_id => Factory(:transit_company)},:bill_ids=> [@transit_bill.id],:transit_carrying_fee_edit => [1.99],:transit_bill_no_edit => ['transit_bill_no'],:transit_to_phone_edit => ["231231231"]
         response.should redirect_to(assigns[:transit_info])
       end
     end
 
     describe "with invalid params" do
       it "re-renders the 'new' template" do
-        post :create,:transit_info => {},:bill_ids=> [@transit_bill.id]
+        post :create,:transit_info => {},:bill_ids=> [@transit_bill.id],:transit_carrying_fee_edit => [1.99],:transit_bill_no_edit => ['transit_bill_no'],:transit_to_phone_edit => ["231231231"]
         response.should render_template('new')
       end
     end

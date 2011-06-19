@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110602134607) do
+ActiveRecord::Schema.define(:version => 20110619092049) do
+
+  create_table "areas", :force => true do |t|
+    t.string   "name",       :limit => 20,                   :null => false
+    t.integer  "order_by",                 :default => 0
+    t.boolean  "is_active",                :default => true
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "banks", :force => true do |t|
     t.string   "name",                                       :null => false
@@ -35,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20110602134607) do
     t.integer  "from_org_id"
     t.integer  "transit_org_id"
     t.integer  "to_org_id"
-    t.string   "to_area",                          :limit => 20
     t.decimal  "insured_amount",                                 :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "insured_rate",                                   :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "insured_fee",                                    :precision => 10, :scale => 2, :default => 0.0
@@ -78,6 +86,9 @@ ActiveRecord::Schema.define(:version => 20110602134607) do
     t.decimal  "original_from_short_carrying_fee",               :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "original_to_short_carrying_fee",                 :precision => 15, :scale => 2, :default => 0.0
     t.string   "package",                          :limit => 30
+    t.string   "transit_bill_no",                  :limit => 20
+    t.string   "transit_to_phone",                 :limit => 20
+    t.integer  "area_id"
   end
 
   add_index "carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"

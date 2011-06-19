@@ -14,6 +14,5 @@ describe TransitDeliverInfo do
     @transit_deliver_info.process
     @transit_deliver_info.reload
     @transit_deliver_info.should be_deliveried
-    @transit_deliver_info.carrying_bill.should be_deliveried
   end
 end

@@ -13,6 +13,5 @@ describe TransitInfo do
     @transit_info.process
     @transit_info.reload
     @transit_info.should be_transited
-    @transit_info.carrying_bill.should be_transited
   end
 end

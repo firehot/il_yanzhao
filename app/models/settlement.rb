@@ -7,11 +7,19 @@ class Settlement < ActiveRecord::Base
   validates_presence_of :org_id
   #定义状态机
   state_machine :initial => :billed do
-    after_transition do |settlement,transition|
+    after_transition :on => :process do |settlement,transition|
       settlement.carrying_bills.each {|bill| bill.standard_process}
     end
     event :process do
       transition :billed =>:settlemented
+    end
+    #直接返款确认,中转部门使用
+    after_transition :on => :direct_refunded_confirmed do |settlement,transition|
+      settlement.carrying_bills.each {|bill| bill.direct_refunded_confirmed}
+    end
+
+    event :direct_refunded_confirmed do
+      transition :settlemented =>:refunded_confirmed
     end
   end
 

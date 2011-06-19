@@ -244,7 +244,7 @@ Factory.define :transit_bill do |bill|
   bill.goods_info "中转运单"
   bill.association :from_org,:factory => :sjz
   bill.association :transit_org,:factory => :zz
-  bill.to_area "开封"
+  bill.association :area,:factory => :area
 end
 Factory.define :transit_bill_reached,:parent => :transit_bill do |bill|
   bill.load_list_id 1
@@ -285,7 +285,7 @@ Factory.define :hand_transit_bill do |bill|
   bill.goods_info "手工中转运单"
   bill.association :from_org,:factory => :ay
   bill.association :transit_org,:factory => :zz
-  bill.to_area "开封"
+  bill.association :area,:factory => :area
 end
 #大车装车单,还未装车
 Factory.define :load_list do |load_list|
@@ -428,18 +428,20 @@ end
 Factory.define :transit_info do |ti|
   ti.association :org,:factory => :zz
   ti.association :transit_company
-  ti.transit_carrying_fee 100
 end
 Factory.define :transit_info_with_bill,:parent => :transit_info do |ti|
-  ti.association :carrying_bill,:factory => :transit_bill_reached
+  ti.after_create do |tif|
+    tif.carrying_bills << Factory(:transit_bill_reached)
+  end
 end
 #中转票据提货信息
 Factory.define :transit_deliver_info do |td|
   td.association :org,:factory => :zz
-  td.transit_hand_fee 10
 end
 Factory.define :transit_deliver_info_with_bill,:parent => :transit_deliver_info do |td|
-  td.association :carrying_bill,:factory => :transit_bill_transited
+  td.after_create do |tdf|
+  tdf.carrying_bills << Factory(:transit_bill_transited)
+  end
 end
 Factory.define :role do |role|
   role.name "admin_role"
@@ -574,4 +576,8 @@ Factory.define :customer_level_config do |config|
   config.association :org,:factory => :zz
   config.from_fee 0
   config.to_fee 1000
+end
+#Area
+Factory.define :area do |area|
+  area.name "西安"
 end

@@ -333,6 +333,18 @@ jQuery(function($) {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
 			var bill_ids = [];
+			//中转提货相关费用
+			//获取中转相关费用array
+			var get_transit_edit_fields_val = function(el_name) {
+				var ret_val = [];
+
+				$('[name^="' + el_name + '"]').each(function() {
+					ret_val.push($(this).val());
+
+				});
+				return ret_val;
+			};
+
 			if (bill_els.length == 0) {
 				$.notifyBar({
 					html: "未查找到任何运单,请先查询要处理的运单",
@@ -348,7 +360,12 @@ jQuery(function($) {
 					bill_ids.push(bill_id);
 				});
 				$(this).data('params', {
-					"bill_ids[]": bill_ids
+					"bill_ids[]": bill_ids,
+					"transit_carrying_fee_edit[]": get_transit_edit_fields_val('transit_carrying_fee_edit'),
+					"transit_hand_fee_edit[]": get_transit_edit_fields_val('transit_hand_fee_edit'),
+					"transit_to_phone_edit[]": get_transit_edit_fields_val('transit_to_phone_edit'),
+					"transit_bill_no_edit[]": get_transit_edit_fields_val('transit_bill_no_edit')
+
 				});
 			}
 			return true;
@@ -399,15 +416,24 @@ jQuery(function($) {
 		$('#sum_goods_fee').html(sum_goods_fee);
 		$('#sum_th_amount').html(sum_th_amount);
 		$('#sum_insured_fee').html(sum_insured_fee);
+		//计算可修改字段
+		var cal_edit_field_sum = function(field_class) {
+			var sum = 0;
+			$(".bill_cal_sum " + "." + field_class + " input").each(function() {
+				var val = parseFloat($(this).val());
+				sum += val;
+			});
+			$("#sum_" + field_class).html(sum);
+		};
+		var edit_fields = ["transit_carrying_fee_edit", "transit_hand_fee_edit"]
+		$.each(edit_fields, function(index, value) {
+			cal_edit_field_sum(value)
+		});
 
 	};
+	$('.bill_cal_sum').livequery(cal_sum, cal_sum);
+	$(".transit_carrying_fee_edit input, .transit_hand_fee_edit input").livequery('change', cal_sum);
 
-	$('.bill_cal_sum').livequery(function() {
-		cal_sum();
-	},
-	function() {
-		cal_sum();
-	});
 	//生成结算清单时,绑定查询条件
 	$('#btn_generate_settlement').bind('ajax:before', function() {
 		var params = {

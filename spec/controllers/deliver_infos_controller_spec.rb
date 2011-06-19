@@ -29,14 +29,6 @@ describe DeliverInfosController do
     end
   end
 
-  describe "GET edit" do
-    it "should be success" do
-      deliver_info = Factory(:deliver_info_with_bills)
-      get :edit, :id => deliver_info
-      response.should be_success
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @computer_bill = Factory(:computer_bill_distributed)

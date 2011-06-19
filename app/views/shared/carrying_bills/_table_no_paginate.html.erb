@@ -1,7 +1,7 @@
 <!--不带分页的运单列表,在批量提货/批量提款时使用-->
 <table class="table" id="bills_table" >
   <thead>
-    <tr class='text-center'>             
+    <tr class='text-center'>
       <th>票据日期</th>
       <th>票号</th>
       <th>货号</th>
@@ -14,8 +14,16 @@
       <th class="th_amount" style='display : none;'>提货应收</th>
       <th class="k_hand_fee" style='display : none;'>扣手续费</th>
       <th class="k_carrying_fee" style='display : none;'>扣运费</th>
-      <th class="transit_hand_fee" style='display : none;'>中转手续费</th>
+      <th class="transit_company" style='display : none;'>中转公司</th>
+      <th class="transit_bill_no" style='display : none;'>中转票号</th>
+      <th class="transit_bill_no_edit" style='display : none;'>中转票号</th>
+      <th class="transit_to_phone" style='display : none;'>到货电话</th>
+      <th class="transit_to_phone_edit" style='display : none;'>到货电话</th>
       <th class="transit_carrying_fee" style='display : none;'>中转运费</th>
+      <th class="transit_carrying_fee_edit" style='display : none;'>中转运费</th>
+      <th class="agent_carrying_fee" style='display : none;'>代收运费</th>
+      <th class="transit_hand_fee" style='display : none;'>中转手续费</th>
+      <th class="transit_hand_fee_edit" style='display : none;'>中转手续费</th>
       <th class="act_pay_fee" style='display : none;'>实提货款</th>
       <th class="insured_fee">保价费</th>
       <th class="from_short_carrying_fee" style='display : none;'>发货地短途运费</th>
@@ -41,8 +49,18 @@
       <td class="th_amount" style='display : none;'><span id="sum_th_amount"></span></td>
       <td class="k_hand_fee" style='display : none;'><span id="sum_k_hand_fee"></span></td>
       <td class="k_carrying_fee" style='display : none;'><span id="sum_k_carrying_fee"></span></td>
-      <td class="transit_hand_fee" style='display : none;'><span id="sum_transit_hand_fee"></span></td>
+      <td class="transit_company" style='display : none;'>&nbsp;</td>
+      <td class="transit_bill_no" style='display : none;'>&nbsp;</td>
+      <td class="transit_bill_no_edit" style='display : none;'>&nbsp;</td>
+      <td class="transit_to_phone" style='display : none;'>&nbsp;</td>
+      <td class="transit_to_phone_edit" style='display : none;'>&nbsp;</td>
+
       <td class="transit_carrying_fee" style='display : none;'><span id="sum_transit_carrying_fee"></span></td>
+      <td class="transit_carrying_fee_edit" style='display : none;'><span id="sum_transit_carrying_fee_edit"></span></td>
+      <td class="agent_carrying_fee" style='display : none;'><span id="sum_agent_carrying_fee"></span></td>
+      <td class="transit_hand_fee" style='display : none;'><span id="sum_transit_hand_fee"></span></td>
+      <td class="transit_hand_fee_edit" style='display : none;'><span id="sum_transit_hand_fee_edit"></span></td>
+
       <td class="act_pay_fee" style='display : none;'><span id="sum_act_pay_fee"></span></td>
       <td class="insured_fee"><span id="sum_insured_fee"></span></td>
       <td class="from_short_carrying_fee" style='display : none;'><span id="sum_from_short_carrying_fee"></span></td>

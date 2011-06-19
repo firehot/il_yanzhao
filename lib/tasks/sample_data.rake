@@ -122,7 +122,7 @@ namespace :db do
   end
   #######################################################################################################3
   desc "向数据库中添加示例数据"
-  task :create_admin => :environment do
+  task :create_user => :environment do
     #创建系统默认用户
     role = Role.new_with_default(:name => '管理员角色')
     role.role_system_function_operates.each { |r| r.is_select = true }
@@ -133,13 +133,18 @@ namespace :db do
     admin.user_orgs.each { |user_org| user_org.is_select = true }
     admin.user_roles.each {|user_role| user_role.is_select = true}
     admin.save!
+    #普通用户角色
+    user = User.new_with_roles(:username => 'user',:real_name => "普通用户",:password => 'user')
+    user.user_orgs.each { |user_org| user_org.is_select = true }
+    user.user_roles.each {|user_role| user_role.is_select = true}
+    user.save!
   end
   desc "初始化系统"
   task :init_system => :environment do
     Rake::Task['db:reset'].invoke
     Rake::Task['db:imp_org'].invoke
     Rake::Task['db:imp_customer'].invoke
-    Rake::Task['db:create_admin'].invoke
+    Rake::Task['db:create_user'].invoke
   end
   desc "清空业务数据(保留机构/人员/权限)"
   task :clear_business_data => :environment do

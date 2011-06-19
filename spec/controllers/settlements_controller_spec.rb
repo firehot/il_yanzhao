@@ -35,14 +35,6 @@ describe SettlementsController do
     end
   end
 
-  describe "GET edit" do
-    it "should be success" do
-      settlement = Factory(:settlement_with_bills)
-      get :edit, :id => settlement
-      response.should be_success
-    end
-  end
-
   describe "POST create" do
     before(:each) do
       @computer_bill = Factory(:computer_bill_deliveried)

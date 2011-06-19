@@ -1,19 +1,15 @@
-<div id="table_wrap"></div>
-<table class='table'>
+<table class='table' data-detailUrl="<%=transit_deliver_info_carrying_bills_path(resource,:show_fields => ".transit_carrying_fee,.transit_bill_no,.transit_to_phone,.transit_hand_fee,.transit_company",:hide_fields => ".insured_fee,.note")%>">
   <tbody>
     <tr>
-      <td>中转部门:</td>
-      <td><%=resource.org.name %></td>
+      <td>提货部门:</td>
+      <td><%="#{resource.org.name} | #{resource.user}" %></td>
       <td>提货日期:</td>
       <td><%=resource.bill_date.strftime('%Y-%m-%d')%></td>
-      <td>中转手续费:</td>
-      <td><%=resource.transit_hand_fee%></td>
-      <td>运单号:</td>
-      <td><%= link_to "#{resource.carrying_bill.bill_no}/#{resource.carrying_bill.goods_no}",carrying_bill_path(resource.carrying_bill,:format => :js),:class => 'fancybox'%></td>
     </tr>
     <tr>
       <td>备注:</td>
-      <td colspan="7"><%=resource.note%></td>
+      <td colspan="3"><%=resource.note%></td>
     </tr>
   </tbody>
 </table>
+<div id="table_wrap"></div>

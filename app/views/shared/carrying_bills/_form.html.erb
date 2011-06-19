@@ -24,7 +24,7 @@
         <td>中转站</td>
         <td><%= f.select :transit_org_id,yards_for_select ,{},:class => 'select_org'%></td>
         <td>到货地</td>
-        <td><%= f.text_field :to_area,:size => 20 %></td>
+        <td><%= f.select :area,areas_for_select %></td>
       <%else%>
         <td>到货站</td>
         <td><%= f.select :to_org_id,exclude_current_ability_orgs_for_select ,{:include_blank => true},:class => 'select_org'%></td>

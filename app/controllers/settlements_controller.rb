@@ -20,5 +20,13 @@ class SettlementsController < BaseController
   def export_excel
     @settlement = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
   end
+
+  #直接返款处理
+  #PUT settlement/:id/direct_refunded_confirmed
+  def direct_refunded_confirmed
+    @settlement = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
+    @settlement.direct_refunded_confirmed ? flash[:success] = "数据处理成功!" : flash[:error] = "数据处理失败!"
+    render  :show
+  end
 end
 

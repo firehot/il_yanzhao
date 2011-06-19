@@ -10,7 +10,7 @@ class Ability
     alias_action :new,:before_new,:to => :create
     alias_action :process_handle,:to => :ship  #发车
     alias_action :process_handle,:to => :reach #到货确认
-    alias_action :process_handle,:to => :refounc_confirm #收款清单确认
+    alias_action :process_handle,:to => :refound_confirm #收款清单确认
     #代收货款支付清单(转账)转账确认
     alias_action :process_handle,:to => :transfer  #转账确认
     #user 重设置usb key
@@ -85,7 +85,7 @@ class Ability
       end
     end
     #可修改全部运单字段
-    if can? :update_all,CarryingBill or can? :update,CarryingBill
+    if can? :update_all,CarryingBill
       cannot :update,CarryingBill
       can :update,CarryingBill,:state => ["billed","loaded","reached","shipped"]
     end

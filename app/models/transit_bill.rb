@@ -3,5 +3,5 @@
 class TransitBill < CarryingBill
   before_save :generate_goods_no
   before_create :generate_bill_no
-  validates_presence_of :transit_org_id
+  validates_presence_of :transit_org_id,:area_id
 end
