@@ -10,7 +10,7 @@
       </li>
       <%if self.respond_to?("search_#{controller_name.tableize}_path")%>
         <li>
-          <%= link_to image_tag("application-search-result.png",:alt => "查询运单"),defined?(search_bill_path) ? search_bill_path : search_carrying_bills_path(:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc"),:title => "查询全部运单",:class => "fancybox tipsy" %>
+          <%= link_to image_tag("application-search-result.png",:alt => "查询运单"),defined?(search_bill_path) ? search_bill_path : search_carrying_bills_path(:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc",:not_remote => true),:title => "查询全部运单",:class => "fancybox tipsy" %>
         </li>
       <%end%>
     <%end%>

@@ -25,13 +25,13 @@
           <ul class="wat-cf">
             <li>
               <div id='home-search-box-wrap'>
-                <%=form_tag carrying_bills_path(:show_multi => ""),:id => 'home-search-form',:remote => true,:method => :get do%>
+                <%=form_tag carrying_bills_path,:id => 'home-search-form',:method => :get do%>
                   <%=text_field_tag "search[bill_no_or_goods_no_eq]","",:id => 'home-search-box'%>
                 <%end%>
               </div>
             </li>
             <li id='adv-query-wrap'>
-              <%=link_to "高级查询",search_carrying_bills_path,:class => 'fancybox' %>
+              <%=link_to "高级查询",search_carrying_bills_path(:not_remote => true),:class => 'fancybox' %>
             </li>
           </ul>
         </div>

@@ -748,23 +748,24 @@ jQuery(function($) {
 	});
 
 	//根据参数显示或隐藏字段
-	$('[data-showFields]').livequery(function() {
-		$($(this).data('showFields')).show();
+//	$('[data-showFields]').livequery(function() {
+//		$($(this).data('showFields')).show();
 
-	});
-	$('[data-hideFields]').livequery(function() {
-		$($(this).data('hideFields')).hide();
+//	});
+//	$('[data-hideFields]').livequery(function() {
+//		$($(this).data('hideFields')).hide();
 
-	});
+//	});
 	//运单修改时,判断权限
-	$('.update_all').livequery(function() {
-		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
-	});
 	$('.update_carrying_fee').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);
 		$('#carrying_bill_form select').attr('disabled', true);
 		$('#carrying_fee').attr('readonly', false);
 	});
+	$('.update_all').livequery(function() {
+		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
+	});
+
 	$('.edit_lock_time').livequery(function() {
 		$(this).find(':input').attr('readonly', true);
 		$(this).find('select').attr('disabled', true);

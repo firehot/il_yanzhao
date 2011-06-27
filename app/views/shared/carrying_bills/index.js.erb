@@ -1,26 +1,20 @@
 <%if collection.blank?%>
   $.notifyBar({
-      html: "未查询到符合条件的运单!",
-      delay: 3000,
-      animationSpeed: "normal",
-      cls : 'error'
-  });
-  $('#table_wrap').html('');
+html: "未查询到符合条件的运单!",
+delay: 3000,
+animationSpeed: "normal",
+cls : 'error'
+});
+$('#table_wrap').html('');
 <%else%>
-  <%if params[:show_multi]%>
-    <%if params[:show_multi].present?%>
-      if($('#bill_<%=collection.first.id%>').length == 0)
-      $('#bills_table_body').append('<%= escape_javascript(render("shared/carrying_bills/table_tr",:bill => collection.first)) %>');
-    <%else%>
-      if($('#table_wrap').length == 0) $('.inner').html('<div id="table_wrap"></div>');
-      $('#table_wrap').html('<%= escape_javascript(render("shared/carrying_bills/show",:show => collection.first)) %>');
-    <%end%>
+  <%if params[:show_multi].present?%>
+    if($('#bill_<%=collection.first.id%>').length == 0)
+    $('#bills_table_body').append('<%= escape_javascript(render("shared/carrying_bills/table_tr",:bill => collection.first)) %>');
   <%else%>
     //如果传入了show_group,则显示 table_group_by_from_org
-    var bill_list = '<%= escape_javascript(render(params[:show_group].blank? ? "shared/carrying_bills/table" : "shared/carrying_bills/table_group_by_from_org")) %>';
-      if($('#table_wrap').length == 0) $('.inner').html('<div id="table_wrap"></div>');
-      $('#table_wrap').html(bill_list);
-  <%end%>
+  var bill_list = '<%= escape_javascript(render(params[:show_group].blank? ? "shared/carrying_bills/table" : "shared/carrying_bills/table_group_by_from_org")) %>';
+  $('#table_wrap').html(bill_list);
+<%end%>
 <%end%>
 //以下设定显示字段
 $('<%=params[:hide_fields]%>').hide();
