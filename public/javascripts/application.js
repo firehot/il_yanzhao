@@ -166,7 +166,7 @@ jQuery(function($) {
 		null, 'script');
 
 	};
-	$('#customer_code').live('change', search_customer_by_code);
+	$('form.computer_bill #customer_code,form.transit_bill #customer_code').live('change', search_customer_by_code);
 	$('form.carrying_bill').live("change", calculate_carrying_bill);
 	$('form.carrying_bill').livequery(calculate_carrying_bill);
 
@@ -748,14 +748,15 @@ jQuery(function($) {
 	});
 
 	//根据参数显示或隐藏字段
-//	$('[data-showFields]').livequery(function() {
-//		$($(this).data('showFields')).show();
+        //render shared/carrying_bills/table时使用
+	$('[data-showFields]').livequery(function() {
+		$($(this).data('showFields')).show();
 
-//	});
-//	$('[data-hideFields]').livequery(function() {
-//		$($(this).data('hideFields')).hide();
+	});
+	$('[data-hideFields]').livequery(function() {
+		$($(this).data('hideFields')).hide();
 
-//	});
+	});
 	//运单修改时,判断权限
 	$('.update_carrying_fee').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);

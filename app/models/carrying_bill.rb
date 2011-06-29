@@ -80,6 +80,8 @@ class CarryingBill < ActiveRecord::Base
 
   #验证中转运费和中转手续费不可大运运费
   validate :check_transit_fee
+  #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
+  validate :check_k_carrying_fee
 
   validates :bill_no,:goods_no,:uniqueness => true
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
@@ -512,5 +514,9 @@ class CarryingBill < ActiveRecord::Base
     def check_transit_fee
       errors.add(:transit_carrying_fee,"中转运费不能大于原运费.") if transit_carrying_fee >= carrying_fee
       errors.add(:transit_hand_fee,"中转手续费不能大于原运费.") if transit_hand_fee >= carrying_fee
+    end
+    #运费支付方式为从货款扣时,货款必须大于运费
+    def check_k_carrying_fee
+      errors.add(:k_carrying_fee,"货款金额必须大于运费金额.") if pay_type.eql?(PAY_TYPE_K_GOODSFEE) and goods_fee <= carrying_fee
     end
     end

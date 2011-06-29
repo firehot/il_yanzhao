@@ -31,5 +31,11 @@ module CarryingBillsHelper
     ret_class="black-bill" if days >= 21
     ret_class
   end
-
+  #生成show_fields/hide_fields css selector
+  def gen_fields_selector(fields_selector="",show=true)
+    css_array=[]
+    css_array << (show ? params[:show_fields] : params[:hide_fields]) << (defined?(fields_selector) ? fields_selector : nil)
+    css_array.delete_if {|x| x.blank?}
+    css_array.join(",")
+  end
 end
