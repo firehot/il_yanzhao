@@ -34,7 +34,7 @@ module CarryingBillsHelper
   #生成show_fields/hide_fields css selector
   def gen_fields_selector(fields_selector="",show=true)
     css_array=[]
-    css_array << (show ? params[:show_fields] : params[:hide_fields]) << (defined?(fields_selector) ? fields_selector : nil)
+    css_array << (show ? params[:show_fields] : params[:hide_fields]) << fields_selector
     css_array.delete_if {|x| x.blank?}
     css_array.join(",")
   end

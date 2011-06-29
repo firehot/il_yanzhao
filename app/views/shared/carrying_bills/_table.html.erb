@@ -1,5 +1,5 @@
 <% sum_info = search_sum%>
-<table class="table <%=params[:rpt_type]%>" id="bills_table" data-ids='<%=search_ids%>' data-sum = '<%=sum_info.to_json%>' data-showFields='<%=gen_fields_selector(show_fields)%>' data-hideFields='<%=gen_fields_selector(hide_fields,false)%>'>
+<table class="table <%=params[:rpt_type]%>" id="bills_table" data-ids='<%=search_ids%>' data-sum = '<%=sum_info.to_json%>' data-showFields='<%=gen_fields_selector(defined?(show_fields) ? show_fields : "")%>' data-hideFields='<%=gen_fields_selector(defined?(hide_fields) ? hide_fields : "",false)%>'>
   <thead>
     <tr class='select_bill_bar' style='display : none;'>
       <th colspan="7">

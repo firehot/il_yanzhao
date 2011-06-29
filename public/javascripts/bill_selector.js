@@ -6,7 +6,7 @@
 	$.extend($.bill_selector, {
 		//初始化函数
 		//el 初始化的table_el
-		//option 初始化的一些选项 
+		//option 初始化的一些选项
 		initialize: function(el, options) {
 
 			if ($.bill_selector.initialized);
@@ -20,7 +20,7 @@
 				$.bill_selector.options = $.extend({},
 				$.bill_selector.default_options, options);
 				$.bill_selector.selected_ids = $.bill_selector.el.data('ids');
-				$('[data-bill]').live('click', $.bill_selector.bill_click);
+				$('.cbx_select_bill [data-bill]').live('click', $.bill_selector.bill_click);
 				$($.bill_selector).bind('set_all', $.bill_selector.set_all);
 				//绑定全选和不选按钮
 				$($.bill_selector.options.btn_select_all).live("click", function() {
@@ -100,7 +100,7 @@
 			$.bill_selector.update_html();
 
 		},
-		//根据选择情况,设置checkbox的选中情况         
+		//根据选择情况,设置checkbox的选中情况
 		set_checkbox: function() {
 			$('input[type|="checkbox"][data-bill]').attr('checked', false);
 			jQuery.each($.bill_selector.selected_ids, function(index, value) {
@@ -248,7 +248,7 @@
 				});
 			}
 
-                        //传递了要查询的单据状态 
+                        //传递了要查询的单据状态
 			$('#search_bill_form').data('params', default_values)
 		};
 		$('#search_bill_form').livequery(function() {
@@ -262,7 +262,7 @@
 		bills_table: '#bills_table',
 		//是否与search_bill_form关联
 		with_search_bill_form: true,
-		//form提交时附加到form上的已选择的运单数组 
+		//form提交时附加到form上的已选择的运单数组
 		search_bill_params: function() {
 			return {
 				"from_org_id_eq": ($('#from_org_id').length == 0) ? "": $('#from_org_id').val(),
@@ -272,9 +272,7 @@
 				"search[state_eq]": ($('#state_eq').length == 0) ? "": $('#state_eq').val(),
 				"search[type_in][]": ($('#type_in').length == 0) ? ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill'] : $('#type_in').data('type') //要查询的运单类型
 			}
-		},
-		//查询运单参数
-		listen_change_els: ["from_org_id", "to_org_id", "org_id", "bill_date_eq"] //值发生变化时触发运单查询的元素
+		}
 	}
 })(jQuery);
 
