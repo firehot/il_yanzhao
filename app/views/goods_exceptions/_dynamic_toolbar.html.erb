@@ -41,6 +41,11 @@
           <%= link_to image_tag("document-stamp.png",:alt => "责任鉴定"),  show_identify_goods_exception_path(resource),:title => "责任鉴定",:class => "tipsy" %>
         </li>
       <%end%>
+      <%if can? :print,resource%>
+        <li>
+          <%= link_to_function image_tag("printer.png",:alt => "打印"),  "",:title => "打印",:class => "tipsy",:class => "btn_print_goods_exception" %>
+        </li>
+      <%end%>
     <%end%>
   </ul>
 </div>

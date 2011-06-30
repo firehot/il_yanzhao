@@ -22,6 +22,9 @@ gem 'uuid'
 gem 'factory_girl_rails', '1.0'
 gem 'easy_http_cache'
 gem "meta_search"
+#js compressor
+gem 'jammit'
+gem 'yui-compressor'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -50,6 +53,8 @@ group :development do
   gem 'annotate-models', '1.0.4'
   gem 'jquery-rails'
   gem "bullet"
+  #在unix、linux运行环境下不需要
+  gem "win32-open3"
 end
 group :development, :test do
   gem 'rspec-rails','~>2.4.1'

@@ -44,6 +44,14 @@ class GoodsException < ActiveRecord::Base
       GoodsException.exception_types.each {|des,code| except_des = des if code == self.exception_type }
       except_des
   end
+  #发货地赔付金额
+  def from_fee
+    self.goods_exception_identify.try(:from_org_fee)
+  end
+  def to_fee
+    self.goods_exception_identify.try(:to_org_fee)
+  end
+  #到货地赔付金额
   private
   def check_except_num
     errors.add(:except_num,"不能大于货物数量") if self.carrying_bill and self.except_num > self.carrying_bill.goods_num

@@ -410,6 +410,8 @@ class CarryingBill < ActiveRecord::Base
         sum_info_tmp[key.to_sym] = value.blank? ? 0 : value
       end
       sum_info.merge!(sum_info_tmp)
+      #运费合计 运费+保价费
+      sum_info[:sum_total_carrying_fee] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee]
       #实提货款合计
       sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_carrying_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee]
       sum_info[:sum_agent_carrying_fee] =0

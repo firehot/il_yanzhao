@@ -576,6 +576,8 @@ zh-CN:
         org_id: "上报机构"  #g
         op_org_id: "处理部门"
         op_org: "处理部门"
+        from_fee: "发货地赔付"
+        to_fee: "到货地赔付"
         gexception_authorize_info: "货物异常核销信息"  #g
         goods_exception_identify: "责任鉴定信息"  #g
         claim:

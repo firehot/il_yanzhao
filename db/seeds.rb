@@ -709,7 +709,7 @@ sf_hash = {
   :show_authorize => {:title => "授权核销",:conditions =>"{:state => 'submited' }"},
   :show_claim => {:title => "理赔",:conditions =>"{:state => 'authorized'}"},
   :show_identify => {:title => "责任鉴定",:conditions =>"{:state => 'compensated'}"},
-  :print => {:title => "打印"}
+  :print => {:title => "打印",:conditions => "{:state => 'identified'}"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)

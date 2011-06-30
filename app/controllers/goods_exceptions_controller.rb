@@ -1,6 +1,6 @@
 #coding: utf-8
 class GoodsExceptionsController < BaseController
-  table :bill_date,:org,:carrying_bill,:except_des,:except_num,:human_state_name,:note,:user
+  table :bill_date,:org,:carrying_bill,:except_des,:except_num,:from_fee,:to_fee,:human_state_name,:note
   #需要跳过对update的权限检查,在进行核销/理赔/责任鉴定时候,使用了update
   skip_authorize_resource :only => :update
   def create

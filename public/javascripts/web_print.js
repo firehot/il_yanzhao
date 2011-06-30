@@ -168,7 +168,7 @@ jQuery(function($) {
 		get_print_config: function(the_bill) {
 			var config = {
 				page: {
-					name: "运单打印-" +the_bill.bill_no,
+					name: "运单打印-" + the_bill.bill_no,
 					width: "185mm",
 					height: '140mm',
 					left: '-8mm',
@@ -188,7 +188,7 @@ jQuery(function($) {
 					height: '5.3mm'
 				},
 				to_org: {
-					text: (the_bill.to_org ? the_bill.to_org.name: "") + (the_bill.to_area ? the_bill.to_area: ""),
+					text: (the_bill.to_org ? the_bill.to_org.name: "") + (the_bill.area ? the_bill.area.name: ""),
 					left: '80mm',
 					top: '13mm',
 					width: '30mm',
@@ -513,7 +513,7 @@ jQuery(function($) {
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + the_bill.to_area + ":" + the_bill.transit_org.phone),
+					text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + the_bill.area.name + ":" + the_bill.transit_org.phone),
 					left: '20mm',
 					top: '115mm',
 					width: '100mm',
@@ -524,9 +524,8 @@ jQuery(function($) {
 			return config;
 		},
 		//打印运单
-		print_bill: function(bill_obj) {
+		print_bill: function(config) {
 			var print_object = $.get_print_object();
-			var config = $.get_print_config(bill_obj);
 			print_object.PRINT_INITA(config.page.top, config.page.left, config.page.width, config.page.height, config.page.name);
 			print_object.SET_PRINT_PAGESIZE(1, config.page.width, config.page.height, "");
 			for (var c in config) {
@@ -544,12 +543,23 @@ jQuery(function($) {
 			}
 			//print_object.PREVIEW();
 			print_object.PRINT();
+		},
+		//打印html内容
+		print_html: function(config) {
+			var print_object = $.get_print_object();
+			print_object.PRINT_INITA(config.top, config.left, config.width, config.height, config.print_name);
+			print_object.SET_PRINT_PAGESIZE(1, config.width, config.height, "");
+			//添加content
+			print_object.ADD_PRINT_HTM(config.top, config.left, config.width, config.height, config.content);
+			print_object.PRINT();
+
 		}
 	});
 	//绑定打印事件
 	$('.print_carrying_bill').click(function() {
 		var bill = $(this).data('print');
-		$.print_bill(bill);
+		var config = $.get_print_config(bill);
+		$.print_bill(config);
 	});
 
 	//提货时,仅仅打印运单
@@ -562,10 +572,24 @@ jQuery(function($) {
 		});
 		else {
 			var bill = $('.carrying_bill_show').data('print');
-			$.print_bill(bill);
+			var config = $.get_print_config(bill);
+			$.print_bill(config);
 		}
 
 	});
+        //货损理赔信息打印
+        $('.btn_print_goods_exception').click(function(){
+          var config= {
+            print_name : "货损理赔信息",
+            top : "0mm",
+            left : "0mm",
+            width : "240mm",
+            height : "200mm",
+            content : $('#goods_exception_show').html()
+          
+          };
+          $.print_html(config);
+        });
 
 	//提货打印,触发自动打印事件
 	$('.auto_print_bill').trigger('click');
