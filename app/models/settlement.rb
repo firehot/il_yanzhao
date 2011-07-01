@@ -7,20 +7,26 @@ class Settlement < ActiveRecord::Base
   validates_presence_of :org_id
   #定义状态机
   state_machine :initial => :billed do
-    after_transition :on => :process do |settlement,transition|
+    after_transition :on => :process,:billed => :settlemented do |settlement,transition|
       settlement.carrying_bills.each {|bill| bill.standard_process}
     end
     event :process do
-      transition :billed =>:settlemented
+      transition :billed =>:settlemented,:settlemented => :confirmed
     end
+
     #直接返款确认,中转部门使用
+    event :direct_refunded_confirmed do
+      transition :settlemented =>:refunded_confirmed
+    end
     after_transition :on => :direct_refunded_confirmed do |settlement,transition|
       settlement.carrying_bills.each {|bill| bill.direct_refunded_confirmed}
     end
 
-    event :direct_refunded_confirmed do
-      transition :settlemented =>:refunded_confirmed
+    #财务收款确认
+    event :confirm do
+      transition :settlemented =>:confirmed
     end
+
   end
 
   default_value_for :bill_date,Date.today

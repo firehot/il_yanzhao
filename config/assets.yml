@@ -14,7 +14,6 @@ javascripts:
     - public/javascripts/jquery.cookies.2.2.0.min.js
     - public/javascripts/chart/visualize.jQuery.js
     - public/javascripts/jquery.printElement.min.js
-    - public/javascripts/jquery.editable-select.pack.js
     - public/javascripts/enter2tab.js
     - public/javascripts/bill_selector.js
     - public/javascripts/application.js
@@ -36,7 +35,6 @@ stylesheets:
     - public/stylesheets/jquery.notifyBar.css
     - public/stylesheets/chart/visualize.css
     - public/stylesheets/chart/visualize-light.css
-    - public/stylesheets/jquery.editable-select.css
     - public/stylesheets/web-app-theme/override.css
     - public/stylesheets/formtastic.css
     - public/stylesheets/formtastic_changes.css

@@ -551,7 +551,9 @@ jQuery(function($) {
 			print_object.SET_PRINT_PAGESIZE(1, config.width, config.height, "");
 			//添加content
 			print_object.ADD_PRINT_HTM(config.top, config.left, config.width, config.height, config.content);
-			print_object.PRINT();
+
+			print_object.PREVIEW();
+			//print_object.PRINT();
 
 		}
 	});
@@ -579,14 +581,31 @@ jQuery(function($) {
 	});
         //货损理赔信息打印
         $('.btn_print_goods_exception').click(function(){
+          var table_doc = $('#goods_exception_show').clone();
+          table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
+          
           var config= {
             print_name : "货损理赔信息",
-            top : "0mm",
-            left : "0mm",
-            width : "240mm",
-            height : "200mm",
-            content : $('#goods_exception_show').html()
+            top : "10mm",
+            left : "10mm",
+            width : "200mm",
+            height : "140mm",
+            content : "<table>" + table_doc.html() + "</table>"
+          };
+          $.print_html(config);
+        });
+        //打印客户转账凭条
+        $('.btn_print_pay_info_certificate').click(function(){
+          var table_doc = $('.pay_info_certificate');
+          //table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
           
+          var config= {
+            print_name : "客户转账凭条",
+            top : "0",
+            left : "0",
+            width : "210mm",
+            height : "110mm",
+            content : "<table>" + table_doc.html() + "</table>"
           };
           $.print_html(config);
         });

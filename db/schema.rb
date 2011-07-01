@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110619092049) do
+ActiveRecord::Schema.define(:version => 20110701082117) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -428,6 +428,8 @@ ActiveRecord::Schema.define(:version => 20110619092049) do
     t.datetime "updated_at"
     t.date     "bill_date",                   :null => false
     t.string   "type",          :limit => 20
+    t.string   "account_name",  :limit => 20
+    t.string   "account_no",    :limit => 30
   end
 
   add_index "pay_infos", ["bill_date"], :name => "index_pay_infos_on_bill_date"

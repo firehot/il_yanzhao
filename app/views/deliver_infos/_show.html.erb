@@ -19,6 +19,6 @@
 <div id="table_wrap"></div>
 <div style='display : none;'>
   <%resource.carrying_bills.each do |bill|%>
-    <%= link_to_function "打印运单", "",:class =>"tipsy print_carrying_bill #{params[:print].present? ? auto_print_bill : ''}",:title => "打印运单","data-print" => "#{bill.to_print_json}" %>
+    <%= link_to_function "打印运单", "",:class =>"tipsy print_carrying_bill #{params[:print].present? ? 'auto_print_bill' : ''}",:title => "打印运单","data-print" => "#{bill.to_print_json}" %>
   <%end%>
 </div>

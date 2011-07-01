@@ -358,9 +358,10 @@ sf_hash = {
   :subject => subject,
   :function => {
   :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"},
-  :direct_refunded_confirmed => {:title => "中转交款确认",:conditions =>"{:org_id => user.current_ability_org_ids,:state => 'settlemented' }" },
+  :direct_refunded_confirmed => {:title => "<b>中转交款</b>确认",:conditions =>"{:org_id => user.current_ability_org_ids,:state => 'settlemented' }" },
   :create => {:title => "新建"},
-  :export => {:title => "导出"}
+  :export => {:title => "导出"},
+  :confirm => {:title => "交款确认",:conditions => "{:org_id => user.current_ability_org_ids,:state => 'settlemented'}"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
@@ -455,7 +456,8 @@ sf_hash = {
   :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
   :batch_pay =>{:title => "批量提款"} ,
   :create => {:title => "新建"},
-  :export => {:title => "导出"}
+  :export => {:title => "导出"},
+  :print => {:title => "打印客户转账凭条",:conditions => "{:state => 'paid'}"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)

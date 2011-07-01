@@ -9,10 +9,14 @@
     <td>身份证号:</td>
     <td><%=resource.id_number%></td>
     <td>状态:</td>
-    <td><%=resource.human_state_name%></td>
+    <td><%=resource.human_state_nametd>
   </tr>
   <tr>
     <td>备注:</td>
     <td colspan='10'><%= resource.note %></td>
   </tr>
 </table>
+<!--客户提款凭条-->
+<div>
+  <%= render "shared/pay_infos/certificate" %>
+</div>

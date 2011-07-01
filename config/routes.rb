@@ -143,7 +143,10 @@ IlYanzhao::Application.routes.draw do
   resources :settlements do
     get :search,:on => :collection
     get :export_excel,:on => :member
+    #中转交款确认
     put :direct_refunded_confirmed,:on => :member
+    #交款确认
+    get :process_handle,:on => :member
     resources :carrying_bills
   end
 
