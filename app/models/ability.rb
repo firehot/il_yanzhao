@@ -11,6 +11,8 @@ class Ability
     alias_action :process_handle,:to => :ship  #发车
     alias_action :process_handle,:to => :reach #到货确认
     alias_action :process_handle,:to => :refound_confirm #收款清单确认
+    #结算员交款清单-交款确认
+    alias_action :process_handle,:to => :settlement_confirm
     #代收货款支付清单(转账)转账确认
     alias_action :process_handle,:to => :transfer  #转账确认
     #user 重设置usb key

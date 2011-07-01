@@ -361,7 +361,7 @@ sf_hash = {
   :direct_refunded_confirmed => {:title => "<b>中转交款</b>确认",:conditions =>"{:org_id => user.current_ability_org_ids,:state => 'settlemented' }" },
   :create => {:title => "新建"},
   :export => {:title => "导出"},
-  :confirm => {:title => "交款确认",:conditions => "{:org_id => user.current_ability_org_ids,:state => 'settlemented'}"}
+  :settlement_confirm => {:title => "交款确认",:conditions => "{:org_id => user.current_ability_org_ids,:state => 'settlemented'}"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)

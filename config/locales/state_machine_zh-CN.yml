@@ -59,6 +59,7 @@ zh-CN:
             billed: "草稿"
             settlemented: "已结算"
             refunded_confirmed: "已到帐"
+            confirmed: "已收款"
 
       refound:
         state:
