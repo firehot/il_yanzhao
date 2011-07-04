@@ -1,4 +1,4 @@
-<%if params[:action] == "show"%>
+<%if params[:action] == "show" or params[:action] == "process_handle"%>
   <%if can? :direct_refunded_confirmed,resource%>
     <li>
       <%= link_to image_tag("calendar-task.png",:alt => "中转交款确认"), direct_refunded_confirmed_settlement_path(resource),:method => :put,:title => "中转交款确认",:class => "tipsy"  %>

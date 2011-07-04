@@ -343,7 +343,19 @@ sf_hash = {
 }
 }
 SystemFunction.create_by_hash(sf_hash)
-##############################始发地收货统计#############################################
+##############################代收货款收入/支出统计#############################################
+subject_title = "代收货款收入/支出统计"
+subject = "CarryingBill"
+sf_hash = {
+  :group_name => group_name,
+  :subject_title => subject_title,
+  :default_action => 'sum_goods_fee_inout_carrying_bills_path',
+  :subject => subject,
+  :function => {
+  :sum_goods_fee_inout =>{:title =>"代收货款收入/支出统计"}
+}
+}
+SystemFunction.create_by_hash(sf_hash)
 
 #################################结算管理##########################################
 group_name = "结算管理"
@@ -561,6 +573,26 @@ sf_hash = {
 }
 }
 SystemFunction.create_by_hash(sf_hash)
+#################################中转到货地管理################################################
+subject_title = "中转到货地管理"
+subject = "Area"
+sf_hash = {
+  :group_name => group_name,
+  :subject_title => subject_title,
+  :default_action => 'areas_path',
+  :subject => subject,
+  :function => {
+  :read =>{:title => "查看"} ,
+  :create => {:title => "新建"},
+  :update =>{:title =>"修改"},
+  :destroy => {:title => "删除"}
+}
+}
+SystemFunction.create_by_hash(sf_hash)
+#添加几个到货地区
+["西安","上海","济南","北京"].each {|city_name| Area.create!(:name => city_name)}
+
+###########################################################################################
 
 group_name ="客户关系管理"
 #################################客户关系管理################################################
