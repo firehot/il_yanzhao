@@ -470,7 +470,7 @@ class CarryingBill < ActiveRecord::Base
     #计算手续费
     def cal_hand_fee
       if self.goods_fee_cash?
-        self.k_hand_fee = ConfigCash.cal_hand_fee(self.goods_fee).ceil
+        self.k_hand_fee = ConfigCash.cal_hand_fee(:goods_fee => self.goods_fee,:from_org_id => self.from_org_id,:to_org_id => self.to_org_id).ceil
       else
         self.k_hand_fee = (self.from_customer.config_transit.rate * self.goods_fee).ceil
       end

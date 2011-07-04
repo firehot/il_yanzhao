@@ -6,7 +6,7 @@ class Vip <  Customer
   belongs_to :bank
   belongs_to :org
   belongs_to :config_transit
-  validates :config_transit_id,:name,:id_number,:org_id,:bank_id,:presence => true
+  validates :name,:id_number,:org_id,:bank_id,:presence => true
   validates :code,:uniqueness => true
   validates :bank_card,:length => {:maximum => 30}
 

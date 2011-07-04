@@ -96,32 +96,9 @@ namespace :db do
     #转账手续费设置
     common_config = ConfigTransit.create(:name => "普通客户",:rate => 0.002)
     vip_config = ConfigTransit.create(:name => "VIP客户",:rate => 0.001)
-    #客户资料
-    #50.times do |index|
-    #  Vip.create!(:name => "vip_#{index}",:mobile => ("%07d" % index),:bank => Bank.first,:bank_card =>"%019d" % (index + 1),:org => Branch.first,:id_number => "%018d" % (index + 1),:config_transit => vip_config )
-    #end
-
-    #生成示例票据数据
-    #各种票据生成50张
-    #50.times do |index|
-    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Branch.first,:to_org => Branch.last,:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('A'),:to_org => Org.find_by_py('hd'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('B'),:to_org => Org.find_by_py('qx'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('C'),:to_org => Org.find_by_py('dm'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-    #  Factory(:computer_bill,:pay_type =>"TH",:from_org => Org.find_by_py('D'),:to_org => Org.find_by_py('xc'),:from_customer => Vip.first,:from_customer_name => Vip.first.name,:from_customer_phone => Vip.first.phone)
-    #  Factory(:hand_bill,:from_org => Branch.first,:to_org => Branch.last,:bill_no => "hand_bill_no_#{index}",:goods_no => "hand_goods_no_#{index}")
-    #  Factory(:transit_bill,:from_org => Branch.find_by_py('sjz'),:transit_org => Branch.find_by_py('zzgs'),:to_area => "开封")
-    #  Factory(:hand_transit_bill,:from_org => Branch.find_by_py('sjz'),:transit_org => Branch.find_by_py('zzgs'),:to_area => "开封",:bill_no => "hand_transit_bill_no_#{index}",:goods_no => "hand_transit_goods_no_#{index}")
-    #  10.times do |index|
-    #    TransitCompany.create(:name => "中转公司_#{index}",:address => "中转公司地址_#{index} ")
-    #  end
-    #送货人
-    #  Sender.create(:name => "张三",:mobile => "1212121",:org => Org.find_by_py('xt'))
-    #  Sender.create(:name => "李四",:mobile => "1212121",:org => Org.find_by_py('zzgs'))
-    #end
   end
   #######################################################################################################3
-  desc "向数据库中添加示例数据"
+  desc "创建默认用户"
   task :create_user => :environment do
     #创建系统默认用户
     role = Role.new_with_default(:name => '管理员角色')
@@ -150,5 +127,20 @@ namespace :db do
   task :clear_business_data => :environment do
     models = Dir['app/models/*.rb'].map {|f| File.basename(f, '.*').camelize.constantize } - [Ability,AbilityObj,Bank,Branch,ConfigCash,ConfigTransit,Customer,CustomerFeeInfo,CustomerFeeInfoLine,CustomerFeeInfoLineObserver,CustomerLevelConfig,Department,IlConfig,ImportedCustomer,Org,Role,RoleSystemFunctionOperate,SystemFunction,SystemFunctionOperate,User,UserOrg,UserRole,Vip,RefoundObserver,SendListModule]
     models.each {|model_class| model_class.destroy_all}
+  end
+
+  desc "生成示例数据"
+  task :create_bill => :environment do
+    #生成1000000张历史票
+    from_org = Org.find_by_name('A')
+    to_org = Org.find_by_name('邯郸')
+    (1..100).each do
+      ComputerBill.create!(:from_org => from_org,:to_org => to_org,:from_customer_name => "张三",:from_customer_phone => "1367904567",:to_customer_name => "李四",:to_customer_phone => "2343243",:carrying_fee => 44,:goods_fee => 1000,:pay_type =>"CA",:goods_num => 3,:goods_info => "示例",:user => User.first,:completed => true )
+    end
+    #生成200000张待处理票
+    (1..100).each do
+      ComputerBill.create!(:from_org => from_org,:to_org => to_org,:from_customer_name => "张三",:from_customer_phone => "1367904567",:to_customer_name => "李四",:to_customer_phone => "2343243",:carrying_fee => 44,:goods_fee => 1000,:pay_type =>"CA",:goods_num => 3,:goods_info => "示例",:user => User.first )
+    end
+
   end
 end

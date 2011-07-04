@@ -198,10 +198,14 @@ zh-CN:
         fee_to: "结束金额"  #g
         hand_fee: "手续费"  #g
         is_active: "有效"  #g
+        org: "发货地"
+        to_org: "到达地"
 
       config_transit:
         name: "名称"  #g
         rate: "费率"  #g
+        org: "发货地"
+        to_org: "到达地"
         is_active: "有效"  #g
         note: "备注"  #g
 
@@ -284,7 +288,7 @@ zh-CN:
         bill_date: "日期"  #g
         note: "备注"  #g
         op_type: "赔偿处理方式"  #g
-        compensation_fee: "拟赔偿金额"  #g
+        compensation_fee: "赔偿金额"  #g
         user: "操作员"  #g
         goods_exception: "货物异常信息"  #g
 
@@ -441,7 +445,7 @@ zh-CN:
 
       goods_exception_identify:
         bill_date: "日期"  #g
-        note: "备注"  #g
+        note: "赔偿原因"  #g
         from_org_fee: "发货地赔偿"  #g
         to_org_fee: "到货地赔偿"  #g
         goods_exception: "货物异常信息"  #g

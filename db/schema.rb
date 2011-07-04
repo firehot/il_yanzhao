@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701082117) do
+ActiveRecord::Schema.define(:version => 20110704093054) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20110701082117) do
     t.boolean  "is_active",                                 :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "org_id"
+    t.integer  "to_org_id"
   end
 
   create_table "config_transits", :force => true do |t|
@@ -148,6 +150,8 @@ ActiveRecord::Schema.define(:version => 20110701082117) do
     t.string   "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "org_id"
+    t.integer  "to_org_id"
   end
 
   create_table "customer_fee_info_lines", :force => true do |t|

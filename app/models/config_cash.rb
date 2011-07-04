@@ -1,5 +1,7 @@
 #coding: utf-8
 class ConfigCash < ActiveRecord::Base
+  belongs_to :org
+  belongs_to :to_org,:class_name => "Org"
   validates_presence_of :fee_from,:fee_to,:hand_fee
   #得到默认的手续费设置
   #客户需求中
@@ -14,25 +16,14 @@ class ConfigCash < ActiveRecord::Base
       q
     end
   end
-  #得到手续费设置比例数组
-  def self.hand_fee_a
-    ret =[]
-    self.where(:is_active => true).order('created_at DESC').each do |config|
-      ret += [[(config.fee_from..config.fee_to),config.hand_fee]]
-    end
-    ret
-  end
   #根据设置计算手续费
-  def self.cal_hand_fee(goods_fee)
-    found = false
-    ret = 0
-    hand_fee_a.each do |fee_rate|
-      if fee_rate[0].include? goods_fee
-        found = true
-        ret = fee_rate[1]
-      end
-    end
-    ret = default_hand_fee(goods_fee) if !found
+  def self.cal_hand_fee(args={:goods_fee => 0,:from_org_id => nil,:to_org_id => nil})
+    goods_fee = args.delete(:goods_fee) {|gf| 0 }
+    from_org_id = args.delete(:from_org_id)
+    to_org_id = args.delete(:to_org_id)
+    configs = ConfigCash.search(:org_id_eq => from_org_id,:to_org_id_eq => to_org_id,:fee_from_lte => goods_fee,:fee_to_gt => goods_fee,:is_active_eq => true).all
+    ret = default_hand_fee(goods_fee)
+    ret = configs.first.hand_fee if configs.present?
     ret
   end
 end
