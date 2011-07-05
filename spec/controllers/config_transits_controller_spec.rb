@@ -66,9 +66,8 @@ describe ConfigTransitsController do
     end
 
     describe "with invalid params" do
-
       it "re-renders the 'new' template" do
-        post :create, :config_transit => {}
+        post :create, :config_transit => {:rate => nil}
         response.should render_template("new")
       end
     end
@@ -82,7 +81,7 @@ describe ConfigTransitsController do
 
     describe "with valid params" do
       it "updates the requested config_transit" do
-        put :update, :id => @config_transit, :config_transit => @attr 
+        put :update, :id => @config_transit, :config_transit => @attr
         @config_transit.reload
         @config_transit.name.should == @attr[:name]
       end
@@ -106,12 +105,12 @@ describe ConfigTransitsController do
   describe "DELETE destroy" do
     it "destroys the requested config_transit" do
       lambda do
-        delete :destroy, :id => @config_transit 
+        delete :destroy, :id => @config_transit
       end.should change(ConfigTransit,:count).by(-1)
     end
 
     it "redirects to the config_transits list" do
-      delete :destroy, :id => @config_transit 
+      delete :destroy, :id => @config_transit
       response.should redirect_to(config_transits_url)
     end
   end
