@@ -28,7 +28,7 @@ namespace :db do
     Org.destroy_all
     rows = FasterCSV::read(FILE_NAME)
     rows.each do |row|
-      org = Branch.new_with_config(:name => row[9],:simp_name => row[9],:location => row[14],:code => row[8])
+      org = Branch.new_with_config(:name => row[9],:simp_name => row[9],:location => row[8],:code => row[14])
       org.save!
     end
     #查找郑州总公司
