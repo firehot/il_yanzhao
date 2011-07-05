@@ -28,6 +28,11 @@ default_run_options[:pty]=true
 # these http://github.com/rails/irs_process_scripts
 
 namespace :deploy do
+  desc "Generate assets with Jammit"
+  task :generate_assets, :roles => :web do
+      run "cd #{deploy_to}/current && bundle exec jammit"
+  end
+  after "deploy:symlink", "deploy:generate_assets"
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
