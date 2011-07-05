@@ -24,8 +24,7 @@ namespace :db do
   end
   desc "自lmis系统中导入org资料"
   task :imp_org => :environment do
-    FILE_NAME="c:/orgs.csv"
-    FILE_NAME="/media/DAT/燕赵项目/orgs.csv"
+    FILE_NAME="/root/shared_dir/info_org.csv"
     Org.destroy_all
     rows = FasterCSV::read(FILE_NAME)
     rows.each do |row|
@@ -44,7 +43,7 @@ namespace :db do
 
   desc "自lmis系统中导入转账客户资料"
   task :imp_customer => :environment do
-    FILE_NAME="/media/DAT/燕赵项目/crm_customer.csv"
+    FILE_NAME="/root/shared_dir/crm_customer.csv"
     Vip.destroy_all
     Bank.destroy_all
     ConfigTransit.destroy_all

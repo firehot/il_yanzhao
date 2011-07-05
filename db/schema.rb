@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110704093054) do
+ActiveRecord::Schema.define(:version => 20110705065422) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(:version => 20110704093054) do
   end
 
   create_table "config_transits", :force => true do |t|
-    t.string   "name",       :limit => 30,                                                   :null => false
+    t.string   "name",       :limit => 20
     t.decimal  "rate",                     :precision => 10, :scale => 4, :default => 0.001
     t.boolean  "is_active",                                               :default => true,  :null => false
     t.string   "note"
