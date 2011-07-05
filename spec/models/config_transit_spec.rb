@@ -8,8 +8,8 @@ describe ConfigTransit do
   it "应能正确保存转账手续费用信息" do
     @config_transit.save!
   end
-  it "必须录入名称和费率,否则不能保存" do
-    attrs = @config_transit.attributes.merge("name" => nil,"rate" => nil)
+  it "必须录入费率,否则不能保存" do
+    attrs = @config_transit.attributes.merge("rate" => nil)
     config = ConfigTransit.new(attrs)
     config.should_not be_valid
   end

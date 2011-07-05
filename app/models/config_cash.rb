@@ -24,6 +24,6 @@ class ConfigCash < ActiveRecord::Base
     configs = ConfigCash.search(:org_id_eq => from_org_id,:to_org_id_eq => to_org_id,:fee_from_lte => goods_fee,:fee_to_gt => goods_fee,:is_active_eq => true).all
     ret = default_hand_fee(goods_fee)
     ret = configs.first.hand_fee if configs.present?
-    ret
+    ret.ceil
   end
 end
