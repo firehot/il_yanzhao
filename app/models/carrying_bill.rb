@@ -456,8 +456,8 @@ class CarryingBill < ActiveRecord::Base
     #获取当日发货单序列
     def today_sequence
       sequence = 1
-      sequence = CarryingBill.where(:bill_date => Date.today,:from_org_id => from_org_id,:to_org_id => to_org_id).count + 1 if self.to_org_id.present?
-      sequence = CarryingBill.where(:bill_date => Date.today,:from_org_id => from_org_id,:transit_org_id => transit_org_id).count + 1 if self.transit_org_id.present?
+      sequence = CarryingBill.where(:bill_date => bill_date,:from_org_id => from_org_id,:to_org_id => to_org_id).count + 1 if self.to_org_id.present?
+      sequence = CarryingBill.where(:bill_date => bill_date,:from_org_id => from_org_id,:transit_org_id => transit_org_id).count + 1 if self.transit_org_id.present?
       sequence
     end
     def set_customer
