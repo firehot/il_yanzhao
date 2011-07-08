@@ -22,7 +22,7 @@ class AppCache
       seq = Rails.cache.read(seq_key)
       #如果当日没有缓存
       if seq.blank?
-        seq = CarryingBill.where(:bill_date => bill.bill_date,:from_org_id => bill.from_org_id,:transit_org_id => bill.to_org_id).count + 1
+        seq = CarryingBill.where(:bill_date => bill.bill_date,:from_org_id => bill.from_org_id,:transit_org_id => bill.transit_org_id).count + 1
       end
     else
       seq_key = "#{bill.bill_date.strftime('%y%m%d')}_#{bill.from_org_id}_#{bill.to_org_id}_seq"
