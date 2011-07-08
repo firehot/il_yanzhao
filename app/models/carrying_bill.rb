@@ -441,25 +441,17 @@ class CarryingBill < ActiveRecord::Base
     #机打运单编号从4000000开始
     #生成票据编号
     def generate_bill_no
-      self.bill_no = "%07d" % (CarryingBill.where(:type => ["ComputerBill","TransitBill"]).count > 0 ? 4000000 + CarryingBill.where(:type => ["ComputerBill","TransitBill"]).count : 4000000)
+      self.bill_no = AppCache.gen_bill_no
     end
     def generate_goods_no
       #货号规则
       #6位年月日+始发地市+到达地市+始发组织机构代码（如返程货则为到达地组织机构代码）+序列号+“-”+件数
       #新建单据/修改发货地/到货地/中转地 重新生成货号
       if self.new_record?  or (self.changes[:from_org_id].present? or self.changes[:to_org_id].present? or self.changes[:transit_org_id].present?)
-        self.goods_no ="#{bill_date.strftime('%y%m%d')}#{from_org.simp_name}#{to_org.simp_name}#{today_sequence}-#{goods_num}" if self.to_org.present?
-        self.goods_no ="#{bill_date.strftime('%y%m%d')}#{from_org.simp_name}#{transit_org.simp_name}#{today_sequence}-#{goods_num}" if self.transit_org.present?
+        self.goods_no = AppCache.gen_goods_no(self)
       end
     end
     private
-    #获取当日发货单序列
-    def today_sequence
-      sequence = 1
-      sequence = CarryingBill.where(:bill_date => bill_date,:from_org_id => from_org_id,:to_org_id => to_org_id).count + 1 if self.to_org_id.present?
-      sequence = CarryingBill.where(:bill_date => bill_date,:from_org_id => from_org_id,:transit_org_id => transit_org_id).count + 1 if self.transit_org_id.present?
-      sequence
-    end
     def set_customer
       if customer_code.blank?
         self.from_customer = nil
