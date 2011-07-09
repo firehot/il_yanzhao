@@ -748,7 +748,7 @@ jQuery(function($) {
 	});
 
 	//根据参数显示或隐藏字段
-        //render shared/carrying_bills/table时使用
+	//render shared/carrying_bills/table时使用
 	$('[data-showFields]').livequery(function() {
 		$($(this).data('showFields')).show();
 
@@ -797,6 +797,51 @@ jQuery(function($) {
 
 		};
 		export_excel("<table>" + table_doc.html() + "</table>", set_style);
+	});
+	//模拟mouseclick
+	var fireClick = function(el) {
+		if (!el) return;
+
+		if (document.dispatchEvent) { // W3C
+			var oEvent = document.createEvent("MouseEvents");
+			oEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, el);
+			el.dispatchEvent(oEvent);
+		}
+		else if (document.fireEvent) { // IE
+			el.click();
+		}
+	};
+
+	//快捷键设置
+	$(document).bind('keydown', 'n', function() {
+		fireClick($('.btn_new')[0]);
+	}).bind('keydown', 's', function() {
+		fireClick($('.btn_save')[0]);
+	}).bind('keydown', 'e', function() {
+		fireClick($('.btn_modify')[0]);
+	}).bind('keydown', 'f', function() {
+		fireClick($('.btn_search')[0]);
+	}).bind('keydown', 'd', function() {
+		fireClick($('.btn_delete')[0]);
+	}).bind('keydown', 'x', function() {
+		fireClick($('.btn_export_excel')[0]);
+	}).bind('keydown', 'l', function() {
+		fireClick($('.btn_index')[0]);
+	}).bind('keydown', 'p', function() {
+		fireClick($('.btn_print')[0]);
+	});
+	//设置notify cookie
+	//如果cookie中找到了对应的notify_id，则不显示
+	$('[data-notify]').livequery(function() {
+		var notify = $(this).data('notify');
+		if ($.cookies.get('il_notify_' + notify.id)) $('#notify-bar').hide();
+		else $('#notify-bar').show();
+	});
+	//关闭提醒
+	$('span.notify-close').click(function() {
+		var notify = $('[data-notify]').data('notify');
+                $.cookies.set('il_notify_' + notify.id, notify.notify_text);
+		$('#notify-bar').hide();
 	});
 });
 

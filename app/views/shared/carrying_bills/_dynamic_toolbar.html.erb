@@ -3,59 +3,59 @@
   <ul class="wat-cf">
     <%if can? :read,resource_class%>
       <li class="first">
-        <%= link_to image_tag("grid.png",:alt => "#{resource_class.model_name.human}列表") , collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc"),:title => "#{resource_class.model_name.human}列表",:class => "tipsy"  %>
+        <%= link_to image_tag("grid.png",:alt => "#{resource_class.model_name.human}列表") , collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc"),:title => "#{resource_class.model_name.human}列表",:class => "tipsy btn_index"  %>
       </li>
       <li>
         <%= link_to image_tag("grid-snap.png",:alt => "返程/中转#{resource_class.model_name.human}列表") , collection_path("search[from_org_id_ni]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today),:title => "返程/中转#{resource_class.model_name.human}列表",:class => "tipsy"  %>
       </li>
       <%if self.respond_to?("search_#{controller_name.tableize}_path")%>
         <li>
-          <%= link_to image_tag("application-search-result.png",:alt => "查询运单"),defined?(search_bill_path) ? search_bill_path : search_carrying_bills_path(:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc",:not_remote => true),:title => "查询全部运单",:class => "fancybox tipsy" %>
+          <%= link_to image_tag("application-search-result.png",:alt => "查询运单"),defined?(search_bill_path) ? search_bill_path : search_carrying_bills_path(:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc",:not_remote => true),:title => "查询全部运单",:class => "fancybox tipsy btn_search" %>
         </li>
       <%end%>
     <%end%>
     <%if can? :create,resource_class%>
       <li>
-        <%= link_to image_tag("application--plus.png",:alt => "新建#{resource_class.model_name.human}"), new_resource_path,:title => "新建#{resource_class.model_name.human}",:class => "tipsy"  %>
+        <%= link_to image_tag("application--plus.png",:alt => "新建#{resource_class.model_name.human}"), new_resource_path,:title => "新建#{resource_class.model_name.human}",:class => "tipsy btn_new"  %>
       </li>
     <%end%>
 
     <%if params[:action] == "new"%>
       <li>
-        <%= link_to_function image_tag("disk-black.png",:alt => "保存#{resource_class.model_name.human}"), "$.fancybox.showActivity();$('#carrying_bill_form').trigger('submit')",:title => "保存#{resource_class.model_name.human}",:class => "tipsy"  %>
+        <%= link_to_function image_tag("disk-black.png",:alt => "保存#{resource_class.model_name.human}"), "$.fancybox.showActivity();$('#carrying_bill_form').trigger('submit')",:title => "保存#{resource_class.model_name.human}",:class => "tipsy btn_save"  %>
       </li>
     <%end%>
     <%if params[:action] == "edit"%>
       <li>
-        <%= link_to_function image_tag("disk-black.png",:alt => "保存#{resource_class.model_name.human}"), "$.fancybox.showActivity();$('#carrying_bill_form').trigger('submit')",:title => "保存#{resource_class.model_name.human}",:class => "tipsy"  %>
+        <%= link_to_function image_tag("disk-black.png",:alt => "保存#{resource_class.model_name.human}"), "$.fancybox.showActivity();$('#carrying_bill_form').trigger('submit')",:title => "保存#{resource_class.model_name.human}",:class => "tipsy btn_save"  %>
       </li>
       <%if can? :destroy,resource_class%>
         <li>
-          <%= link_to image_tag("cross.png",:alt => "删除该记录"), resource,:method => :delete,:class =>"tipsy",:title => "删除该记录",:confirm => "你确定要删除吗?" %>
+          <%= link_to image_tag("cross.png",:alt => "删除该记录"), resource,:method => :delete,:class =>"tipsy btn_delete",:title => "删除该记录",:confirm => "你确定要删除吗?" %>
         </li>
       <%end%>
     <%end%>
     <%if params[:action] == "show"%>
       <%if can? :update,resource%>
         <li>
-          <%= link_to image_tag("application--pencil.png",:alt => "修改当前记录"),  edit_resource_path(resource),:title => "修改当前记录",:class => "tipsy" %>
+          <%= link_to image_tag("application--pencil.png",:alt => "修改当前记录"),  edit_resource_path(resource),:title => "修改当前记录",:class => "tipsy btn_modify" %>
         </li>
       <%end%>
       <%if can? :reset,resource%>
         <li>
-          <%= link_to image_tag("minus-shield.png",:alt =>"重置运单"),  reset_carrying_bill_path(resource),:method => :put,:title => "重置运单",:class => "tipsy",:confirm => "重置后,将丢失运单所有的操作信息,您确定吗？" %>
+          <%= link_to image_tag("minus-shield.png",:alt =>"重置运单"),  reset_carrying_bill_path(resource),:method => :put,:title => "重置运单",:class => "tipsy btn_reset",:confirm => "重置后,将丢失运单所有的操作信息,您确定吗？" %>
         </li>
       <%end%>
 
       <%if can? :destroy,resource%>
         <li>
-          <%= link_to image_tag("cross.png",:alt => "删除该记录"), resource,:method => :delete,:class =>"tipsy",:title => "删除该记录",:confirm => "你确定要删除吗?" %>
+          <%= link_to image_tag("cross.png",:alt => "删除该记录"), resource,:method => :delete,:class =>"tipsy btn_delete",:title => "删除该记录",:confirm => "你确定要删除吗?" %>
         </li>
 
       <%end%>
       <%if can? :re_print,resource%>
         <li>
-          <%= link_to_function image_tag("printer.png",:alt => "打印运单"), "",:class =>"tipsy print_carrying_bill",:title => "打印运单","data-print" => "#{resource.to_print_json}" %>
+          <%= link_to_function image_tag("printer.png",:alt => "打印运单"), "",:class =>"tipsy print_carrying_bill btn_print",:title => "打印运单","data-print" => "#{resource.to_print_json}" %>
         </li>
       <%end%>
     <%end%>

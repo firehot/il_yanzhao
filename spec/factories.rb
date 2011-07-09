@@ -581,3 +581,7 @@ end
 Factory.define :area do |area|
   area.name "西安"
 end
+#Notify
+Factory.define :notify do |n|
+  n.notify_text "提醒信息"
+end

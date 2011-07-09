@@ -14,6 +14,7 @@ javascripts:
     - public/javascripts/jquery.cookies.2.2.0.min.js
     - public/javascripts/chart/visualize.jQuery.js
     - public/javascripts/jquery.printElement.min.js
+    - public/javascripts/jquery.hotkeys.js
     - public/javascripts/enter2tab.js
     - public/javascripts/bill_selector.js
     - public/javascripts/application.js

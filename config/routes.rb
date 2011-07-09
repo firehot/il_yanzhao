@@ -1,5 +1,7 @@
 IlYanzhao::Application.routes.draw do
 
+  resources :notifies
+
   resources :areas
 
   resources :goods_errors do

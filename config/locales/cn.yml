@@ -19,6 +19,7 @@ cn:
       carrying_bill: "运单"
       computer_bill: "机打运单"
       load_list: "装车单"
+      notify: "通知提醒"
     attributes:
       carrying_bill:
         goods_no: "货号"

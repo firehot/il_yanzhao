@@ -5,7 +5,7 @@ zh-CN:
   flash:
     actions:
       create:
-        notice: "{{resource_name}} 保存成功!"
+        notice: "%{resource_name} 保存成功!"
 
   formtastic:
     labels:
@@ -69,6 +69,7 @@ zh-CN:
       goods_error: "少货/多货信息"  #g
       role_org: "角色-机构"  #g
       area: "中转到货地"
+      notify: "通知提醒"
 
 
     attributes:
@@ -208,6 +209,9 @@ zh-CN:
         to_org: "到达地"
         is_active: "有效"  #g
         note: "备注"  #g
+      notify:
+        notify_text: "通知信息"
+        user: "创建人"
 
       customer:
         name: "姓名"  #g

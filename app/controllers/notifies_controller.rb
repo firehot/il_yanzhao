@@ -1,0 +1,2 @@
+class NotifiesController < BaseController
+end
