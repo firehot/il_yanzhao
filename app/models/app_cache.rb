@@ -53,5 +53,4 @@ class AppCache
     Rails.cache.write('bill_count',cur_bill_count)
     cur_bill_count
   end
-
 end
