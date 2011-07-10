@@ -70,7 +70,7 @@ class CarryingBillsController < BaseController
   def check_expire
     if current_user.default_org.input_expire?
       flash[:error]="录单时间截至到#{current_user.default_org.lock_input_time},已过录单时间."
-      redirect_to :action => :index
+      redirect_to :back
     end
   end
   protected
