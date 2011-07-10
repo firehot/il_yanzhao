@@ -48,7 +48,9 @@ class AppCache
       #机打运单从4000000开始
       cur_bill_count = 4000000 + CarryingBill.where(:type => ["ComputerBill","TransitBill"]).count
     end
-    Rails.cache.write('bill_count',cur_bill_count + 1)
+
+    cur_bill_count += 1
+    Rails.cache.write('bill_count',cur_bill_count)
     cur_bill_count
   end
 
