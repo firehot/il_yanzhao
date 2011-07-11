@@ -60,7 +60,7 @@ jQuery(function($) {
 	};
 
 	//双击某条记录打开详细信息
-	$('tr[data-dblclick]').livequery('dblclick', function() {
+	$('tr[data-dblclick]').live('dblclick', function() {
 		var el_anchor = $(this).find('.show_link');
 		if ($(el_anchor).hasClass('fancybox')) $(el_anchor).click();
 		else {
@@ -71,7 +71,7 @@ jQuery(function($) {
 
 	});
 	//单击某条记录选中
-	$('tr[data-dblclick]').livequery('click', function() {
+	$('tr[data-dblclick]').live('click', function() {
 		$('tr[data-dblclick]').removeClass('cur_select');
 		$(this).addClass('cur_select');
 
@@ -96,7 +96,7 @@ jQuery(function($) {
 		var cur_select = $('tr[data-dblclick].cur_select .edit_delete');
 		if (cur_select.length == 0) {
 			$.notifyBar({
-				html: "请先选择要编辑的数据!",
+				html: "请先选择要删除的数据!",
 				delay: 3000,
 				animationSpeed: "normal",
 				cls: 'error'
@@ -386,7 +386,7 @@ jQuery(function($) {
 		var sum_insured_fee = 0;
 		var sum_th_amount = 0;
 
-		$('[data-bill]').each(function() {
+		$('#bills_table_body tr[data-bill]').each(function() {
 			var the_bill = $(this).data('bill');
 			sum_carrying_fee += parseFloat(the_bill.carrying_fee);
 			sum_carrying_fee_th += parseFloat(the_bill.carrying_fee_th);
@@ -419,7 +419,7 @@ jQuery(function($) {
 		//计算可修改字段
 		var cal_edit_field_sum = function(field_class) {
 			var sum = 0;
-			$(".bill_cal_sum " + "." + field_class + " input").each(function() {
+			$("tr.bill_cal_sum " + "." + field_class + " input").each(function() {
 				var val = parseFloat($(this).val());
 				sum += val;
 			});
@@ -431,8 +431,18 @@ jQuery(function($) {
 		});
 
 	};
-	$('.bill_cal_sum').livequery(cal_sum, cal_sum);
-	$(".transit_carrying_fee_edit input, .transit_hand_fee_edit input").livequery('change', cal_sum);
+	//绑定明细变化事件
+	$('#bills_table_body').bind('tr_changed', cal_sum);
+	//$('tr.bill_cal_sum').livequery(cal_sum, cal_sum);
+	//货物中转及中转提货时,进行合计
+	//$(".transit_carrying_fee_edit input, .transit_hand_fee_edit input").live('change', cal_sum);
+	$("#bills_table_body").bind('change', function(evt) {
+		var target_el = evt.currentTarget;
+		if (target_el.hasClass('transit_carrying_fee_edit') || target_el.hasClass('transit_hand_fee_edit'))
+		//触发运单明细改变事件
+		$('#bills_table_body').trigger('tr_changed');
+
+	});
 
 	//生成结算清单时,绑定查询条件
 	$('#btn_generate_settlement').bind('ajax:before', function() {
@@ -822,7 +832,7 @@ jQuery(function($) {
 	}).bind('keydown', 'f', function() {
 		fireClick($('.btn_search')[0]);
 	}).bind('keydown', 'd', function() {
-		fireClick($('.btn_delete')[0]);
+		fireClick($('.btn_destroy')[0]);
 	}).bind('keydown', 'x', function() {
 		fireClick($('.btn_export_excel')[0]);
 	}).bind('keydown', 'l', function() {
@@ -840,7 +850,7 @@ jQuery(function($) {
 	//关闭提醒
 	$('span.notify-close').click(function() {
 		var notify = $('[data-notify]').data('notify');
-                $.cookies.set('il_notify_' + notify.id, notify.notify_text);
+		$.cookies.set('il_notify_' + notify.id, notify.notify_text);
 		$('#notify-bar').hide();
 	});
 });

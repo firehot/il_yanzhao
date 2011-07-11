@@ -56,7 +56,7 @@
               <p><%=image_tag "box.png"%></p>
               <p>
                 货物件数:
-                <%=@today_billed.to_a.sum(&:bill_count).to_i%>件
+                <%=@today_billed.to_a.sum(&:goods_num).to_i%>件
               </p>
             </li>
           </ul>

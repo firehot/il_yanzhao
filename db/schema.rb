@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709065210) do
+ActiveRecord::Schema.define(:version => 20110711065218) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(:version => 20110709065210) do
     t.string   "name",                                       :null => false
     t.string   "code",       :limit => 20,                   :null => false
     t.boolean  "is_active",                :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bill_nos", :force => true do |t|
+    t.integer  "bill_count", :default => 4000000
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -330,6 +336,15 @@ ActiveRecord::Schema.define(:version => 20110709065210) do
   add_index "goods_exceptions", ["org_id"], :name => "index_goods_exceptions_on_org_id"
   add_index "goods_exceptions", ["state"], :name => "index_goods_exceptions_on_state"
   add_index "goods_exceptions", ["user_id"], :name => "index_goods_exceptions_on_user_id"
+
+  create_table "goods_nos", :force => true do |t|
+    t.integer  "from_org_id",                :null => false
+    t.integer  "to_org_id",                  :null => false
+    t.date     "gen_date",                   :null => false
+    t.integer  "bill_count",  :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "il_configs", :force => true do |t|
     t.string   "key",        :limit => 60, :null => false

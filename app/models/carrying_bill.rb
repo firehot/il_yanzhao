@@ -441,14 +441,14 @@ class CarryingBill < ActiveRecord::Base
     #机打运单编号从4000000开始
     #生成票据编号
     def generate_bill_no
-      self.bill_no = AppCache.gen_bill_no
+      self.bill_no = BillNo.gen_bill_no
     end
     def generate_goods_no
       #货号规则
       #6位年月日+始发地市+到达地市+始发组织机构代码（如返程货则为到达地组织机构代码）+序列号+“-”+件数
       #新建单据/修改发货地/到货地/中转地 重新生成货号
       if self.new_record?  or (self.changes[:from_org_id].present? or self.changes[:to_org_id].present? or self.changes[:transit_org_id].present?)
-        self.goods_no = AppCache.gen_goods_no(self)
+        self.goods_no = GoodsNo.gen_goods_no(self)
       end
     end
     private
