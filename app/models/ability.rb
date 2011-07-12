@@ -57,11 +57,6 @@ class Ability
     can :update_password,User
 
 
-    #以下重新定义运单修改权限
-    if can? :update,CarryingBill
-      cannot :update,CarryingBill
-      can :update,CarryingBill,:state => ["billed","loaded","reached","shipped"]
-    end
 
     #可修改20%运费
     if can? :update_carrying_fee_20,CarryingBill

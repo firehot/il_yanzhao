@@ -7,7 +7,8 @@ jQuery(function($) {
 			var idx = inputs.index(this);
 
 			if (idx == inputs.length - 1) {
-				inputs[0].focus();
+                          //自动跳到保存按钮上
+				$('.btn_save:first').focus();
 			} else {
 				inputs[idx + 1].focus(); //  handles submit buttons
 				var tag_name = $(inputs[idx + 1]).attr('tagName').toLowerCase();

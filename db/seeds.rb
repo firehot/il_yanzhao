@@ -21,6 +21,7 @@ sf_hash = {
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :create => {:title => "新建"},
+  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
@@ -37,6 +38,7 @@ sf_hash = {
   :default_action => 'hand_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :function => {
   :create => {:title => "新建"},
+  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
 }
@@ -53,6 +55,7 @@ sf_hash = {
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
+  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
@@ -71,7 +74,7 @@ sf_hash = {
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-
+  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :export => {:title => "导出"}
 }
@@ -190,7 +193,7 @@ sf_hash = {
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
+  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}

@@ -20,7 +20,7 @@
       </li>
       <%if can? :refound_confirm,resource %>
         <li>
-          <%= link_to image_tag("auction-hammer--arrow.png",:alt => "收款确认") , process_handle_receive_refound_path(resource),:title => "收款确认",:class => "tipsy"  %>
+          <%= link_to image_tag("auction-hammer--arrow.png",:alt => "收款确认") , process_handle_receive_refound_path(resource),:title => "收款确认",:class => "tipsy btn_process_handle"  %>
         </li>
       <%end%>
       <li>
