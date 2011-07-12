@@ -189,7 +189,7 @@ class CarryingBill < ActiveRecord::Base
         "现金付" => PAY_TYPE_CASH ,
         "提货付" => PAY_TYPE_TH,
         "回执付" => PAY_TYPE_RETURN,
-        "自货款扣除" => PAY_TYPE_K_GOODSFEE
+        "货款扣运费" => PAY_TYPE_K_GOODSFEE
       }
     end
 

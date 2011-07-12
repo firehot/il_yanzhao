@@ -61,7 +61,7 @@ jQuery(function($) {
 
 	//双击某条记录打开详细信息
 	//tr[data-dblclick]
-	$('#bills_table,table.table[id$="index_table"]').bind('dblclick', function(evt) {
+	$('#bills_table,table.table[id$="index_table"]').live('dblclick', function(evt) {
 		var target_el = $(evt.target).parent('tr');
 		if (target_el.attr('data-dblclick')) {
 
@@ -73,7 +73,7 @@ jQuery(function($) {
 			}
 		}
 
-	}).bind('click', function(evt) { //单击某条记录选中
+	}).live('click', function(evt) { //单击某条记录选中
 		var target_el = $(evt.target).parent('tr');
 		if (target_el.attr('data-dblclick')) {
 
@@ -278,7 +278,7 @@ jQuery(function($) {
 		});
 
 	});
-        $.blockUI.defaults.message = '<h1>处理中,请稍候...</h1>';
+	$.blockUI.defaults.message = '<h1><img src="/images/ajax-spinner.gif" width="20px" height="20px"/>处理中,请稍候...</h1>';
 	//运单列表表头点击事件
 	$('#table_wrap tr.table-header th a[href!="#"],#table_wrap .pagination a[href!="#"]').live('click', function() {
 		$.getScript(this.href);
@@ -289,8 +289,8 @@ jQuery(function($) {
 	});
 
 	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-        //对需要长时间处理的操作,显示blockUI
-        $('.btn_process_handle').bind('click',$.blockUI);
+	//对需要长时间处理的操作,显示blockUI
+	$('.btn_process_handle').bind('click', $.blockUI);
 
 	//首页运单查询
 	$('#home-search-box').watermark('录入运单号/货号查询').keypress(function(e) {
@@ -436,13 +436,11 @@ jQuery(function($) {
 
 	};
 	//绑定明细变化事件
-	$('#bills_table_body').bind('tr_changed', cal_sum);
-	//$('tr.bill_cal_sum').livequery(cal_sum, cal_sum);
 	//货物中转及中转提货时,进行合计
-	//$(".transit_carrying_fee_edit input, .transit_hand_fee_edit input").live('change', cal_sum);
-	$("#bills_table_body").bind('change', function(evt) {
-		var target_el = evt.currentTarget;
-		if (target_el.hasClass('transit_carrying_fee_edit') || target_el.hasClass('transit_hand_fee_edit'))
+	$('#bills_table_body').bind('tr_changed', cal_sum).bind('change', function(evt) {
+		var target_el = $(evt.target).parent('td');
+
+		if (target_el && (target_el.hasClass('transit_carrying_fee_edit') || target_el.hasClass('transit_hand_fee_edit')))
 		//触发运单明细改变事件
 		$('#bills_table_body').trigger('tr_changed');
 
@@ -846,6 +844,12 @@ jQuery(function($) {
 		fireClick($('.btn_index')[0]);
 	}).bind('keydown', 'p', function() {
 		fireClick($('.btn_print')[0]);
+	}).bind('keydown', 'ctrl+b', function() {
+		//任何情况下,点击ctrl+b打开运单录入
+		window.location = "/computer_bills/new";
+	}).bind('keydown', 'ctrl+z', function() {
+		//任何情况下，可点击ctrl_z打开运单查询界面
+		fireClick(document.getElementById('btn_advanced_search'));
 	});
 
 	//设置notify cookie

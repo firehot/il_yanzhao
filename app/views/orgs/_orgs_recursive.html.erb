@@ -19,10 +19,11 @@
       <%=lock_input_time%>
     <%end%>
   </td>
-  <td>
-  </td>
+  <td><%=org.is_active? ? "是" : "否"%></td>
+  <td><%=org.order_by%></td>
+  <td></td>
 </tr>
-<%@orgs.select {|the_org| org.id == the_org.parent_id }.each do |child_org|%>
+<%@orgs.select {|the_org| org.id == the_org.parent_id }.sort{|a,b| a.order_by <=> b.order_by}.each do |child_org|%>
   <% @cur_level+=1 %>
   <%= render "orgs_recursive",:org => child_org %>
   <% @cur_level-=1 %>

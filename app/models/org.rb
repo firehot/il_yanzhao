@@ -1,6 +1,7 @@
 #coding: utf-8
 require 'ruby-pinyin/pinyin'
 class Org < ActiveRecord::Base
+  default_scope order("order_by ASC")
   validates_presence_of :name
   acts_as_tree :order => :name
   before_save :gen_py

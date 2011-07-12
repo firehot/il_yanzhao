@@ -7,7 +7,8 @@ jQuery(function($) {
 			var idx = inputs.index(this);
 
 			if (idx == inputs.length - 1) {
-                          //自动跳到保存按钮上
+				//自动跳到保存按钮上
+				$(inputs[idx]).change();
 				$('.btn_save:first').focus();
 			} else {
 				inputs[idx + 1].focus(); //  handles submit buttons
