@@ -4,6 +4,7 @@ set :application, "il_yanzhao"
 #set :repository,  "git://github.com/chengdh/il_yanzhao.git"
 set :repository, "."
 set :local_repository, "file:///media//WORK/il_yanzhao/.git"
+#set :local_repository, "file://f:/il_yanzhao/.git"
 set :deploy_via, :copy
 set :copy_cache, true
 #

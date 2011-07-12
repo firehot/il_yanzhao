@@ -278,7 +278,7 @@ jQuery(function($) {
 		});
 
 	});
-        $.blockUI.defaults = { message : '<h1>处理中,请稍后...</h1>'};
+        $.blockUI.defaults.message = '<h1>处理中,请稍候...</h1>';
 	//运单列表表头点击事件
 	$('#table_wrap tr.table-header th a[href!="#"],#table_wrap .pagination a[href!="#"]').live('click', function() {
 		$.getScript(this.href);
@@ -287,6 +287,7 @@ jQuery(function($) {
 	$('form.bill_selector').livequery(function() {
 		$(this).form_with_select_bills();
 	});
+
 	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
         //对需要长时间处理的操作,显示blockUI
         $('.btn_process_handle').bind('click',$.blockUI);

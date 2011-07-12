@@ -12,6 +12,6 @@ class HandTransitBill < CarryingBill
   default_value_for :goods_no,Date.today.strftime('%y%m%d')
   #手工运单验证货号与发货地和收货地是否匹配
   def check_goods_no
-    errors.add(:goods_no,"与发货地或中转地不匹配.") unless self.goods_no.include?("#{self.from_org.simp_name}#{self.transit_org.simp_name}")
+    errors.add(:goods_no,"与发货地或中转地不匹配.") unless self.goods_no.include?("#{self.from_org.try(:simp_name)}#{self.transit_org.try(:simp_name)}")
   end
 end
