@@ -100,7 +100,7 @@ jQuery(function($) {
 
 	});
 	$('.btn_delete').click(function() {
-		var cur_select = $('tr[data-dblclick].cur_select .edit_delete');
+		var cur_select = $('tr[data-dblclick].cur_select .delete_link');
 		if (cur_select.length == 0) {
 			$.notifyBar({
 				html: "请先选择要删除的数据!",
@@ -825,7 +825,9 @@ jQuery(function($) {
 	};
 
 	//form 自动获取焦点
-	$('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
+	$('.inner form').livequery(function() {
+		$('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
+	});
 
 	//快捷键设置
 	$(document).bind('keydown', 'n', function() {
@@ -844,7 +846,7 @@ jQuery(function($) {
 		fireClick($('.btn_index')[0]);
 	}).bind('keydown', 'p', function() {
 		fireClick($('.btn_print')[0]);
-	}).bind('keydown', 'ctrl+b', function() {
+	}).bind('keydown', 'alt+t', function() {
 		//任何情况下,点击ctrl+b打开运单录入
 		window.location = "/computer_bills/new";
 	}).bind('keydown', 'ctrl+z', function() {
