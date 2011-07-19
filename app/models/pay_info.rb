@@ -18,16 +18,21 @@ class PayInfo < ActiveRecord::Base
   default_value_for :bill_date,Date.today
   #合计货款
   def sum_goods_fee
-    self.carrying_bills.to_a.sum(&:goods_fee)
+    self.carrying_bills.sum(:goods_fee)
   end
   #合计扣手续费
   def sum_k_hand_fee
-    self.carrying_bills.to_a.sum(&:k_hand_fee)
+    self.carrying_bills.sum(:k_hand_fee)
   end
   #合计扣运费
   def sum_k_carrying_fee
     self.carrying_bills.to_a.sum(&:k_carrying_fee)
   end
+  #合计扣运费
+  def sum_transit_hand_fee
+    self.carrying_bills.sum(:transit_hand_fee)
+  end
+
   #合计应付金额
   def sum_act_pay_fee
     self.carrying_bills.to_a.sum(&:act_pay_fee)

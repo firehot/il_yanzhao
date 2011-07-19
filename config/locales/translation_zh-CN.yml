@@ -524,6 +524,7 @@ zh-CN:
         sum_k_hand_fee: "扣手续费"
         sum_act_pay_fee: "实付货款"
         sum_goods_fee: "代收货款"
+        sum_transit_hand_fee: "中转手续费"
         bill_no: "货号"
         from_customer: "发货人"
         account_name: "转账户名"
