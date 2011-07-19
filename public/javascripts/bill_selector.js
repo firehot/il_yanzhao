@@ -274,5 +274,4 @@ jQuery(function($) {
 			}
 		}
 	}
-})(jQuery);
-
+});

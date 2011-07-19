@@ -73,7 +73,7 @@ jQuery(function($) {
 		var target_el = $(evt.target).parent('tr');
 		if (target_el.attr('data-dblclick')) {
 
-			var el_anchor = $(target_el).find('.show_link');
+			var el_anchor = $(target_el).find('a.show_link');
 			if ($(el_anchor).hasClass('fancybox')) $.fireClick($(el_anchor)[0]);
 			else {
 				window.location = $(el_anchor).attr('href');
