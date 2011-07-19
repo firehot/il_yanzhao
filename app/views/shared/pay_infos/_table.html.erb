@@ -13,7 +13,7 @@
   </tr>
   <% collection.each do |pay_info|%>
     <% pay_info.carrying_bills.each do |bill|%>
-      <tr>
+      <tr data-dblclick='true'>
         <td><%= pay_info.org.name %></td>
         <td><%= pay_info.bill_date %></td>
         <td><%= bill.bill_no %></td>

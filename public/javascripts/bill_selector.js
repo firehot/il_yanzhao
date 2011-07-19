@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 //bill_selector
-(function($) {
+jQuery(function($) {
 	$.bill_selector = function() {};
 	$.extend($.bill_selector, {
 		//初始化函数

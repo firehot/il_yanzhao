@@ -1,6 +1,6 @@
 #coding: utf-8
 class TransferPayInfosController < BaseController
-  table :bill_date,:customer_name,:bill_no,:from_customer,:sum_goods_fee,:sum_k_carrying_fee,:sum_k_hand_fee,:sum_act_pay_fee
+  table :bill_date,:customer_name,:sum_goods_fee,:sum_k_carrying_fee,:sum_k_hand_fee,:sum_act_pay_fee
   include BillOperate
   #GET search
   #显示查询窗口

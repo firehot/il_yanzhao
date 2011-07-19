@@ -66,8 +66,12 @@
 </html>
 <%= include_javascripts :il_javascripts %>
 <!--[if lt IE 9]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 <!--[if IE]>
 <%= include_javascripts :il_ie_javascripts %>
+<![endif]-->
+<!--[if lte IE 6]>
+<%= include_javascripts :il_ie6_javascripts %>
 <![endif]-->
 <%=notify_bar :flash => [:notice,:success,:error,:alert],:delay => 4500,:animation_speed => "slow" %>
