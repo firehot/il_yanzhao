@@ -2,7 +2,7 @@
 class PaymentList < ActiveRecord::Base
   belongs_to :bank
   belongs_to :org
-  has_many :carrying_bills,:order => "goods_no ASC"
+  has_many :carrying_bills,:order => "carrying_bills.to_org_id,carrying_bills.bill_date,carrying_bills.from_org_id,carrying_bills.goods_no ASC"
 
   belongs_to :user
 

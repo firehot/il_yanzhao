@@ -78,14 +78,13 @@ class CarryingBill < ActiveRecord::Base
   #当前活动的只能有一条
   has_one :send_list_line
 
-  #验证中转运费和中转手续费不可大运运费
-  validate :check_transit_fee
   #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
   validate :check_k_carrying_fee
 
   validates :bill_no,:goods_no,:uniqueness => true
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
-  validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:carrying_fee,:goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:goods_num
+  validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:goods_num
+  validates_numericality_of :carrying_fee,:goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000
   validates :customer_code,:customer_code => true
 
   #定义state_machine
@@ -178,6 +177,9 @@ class CarryingBill < ActiveRecord::Base
     default_value_for :bill_date,Date.today
     default_value_for :goods_num,1
     default_value_for :insured_rate,0.003#IlConfig.insured_rate
+    default_value_for :from_short_carrying_fee,0
+    default_value_for :to_short_carrying_fee,0
+    default_value_for :insured_amount,0
 
     PAY_TYPE_CASH = "CA"    #现金付
     PAY_TYPE_TH = "TH"      #提货付
@@ -185,12 +187,12 @@ class CarryingBill < ActiveRecord::Base
     PAY_TYPE_K_GOODSFEE = "KG"  #自货款扣除
     #付款方式描述
     def self.pay_types
-      {
-        "现金付" => PAY_TYPE_CASH ,
-        "提货付" => PAY_TYPE_TH,
-        "回执付" => PAY_TYPE_RETURN,
-        "货款扣运费" => PAY_TYPE_K_GOODSFEE
-      }
+      ret = ActiveSupport::OrderedHash.new
+      ret["提货付"] = PAY_TYPE_TH
+      ret["现金付"] = PAY_TYPE_CASH
+      ret["回执付"] = PAY_TYPE_RETURN
+      ret["货款扣运费"] = PAY_TYPE_K_GOODSFEE
+      ret
     end
 
     #付款方式描述
@@ -506,8 +508,8 @@ class CarryingBill < ActiveRecord::Base
 
     #验证中转费用
     def check_transit_fee
-      errors.add(:transit_carrying_fee,"中转运费不能大于原运费.") if transit_carrying_fee >= carrying_fee
-      errors.add(:transit_hand_fee,"中转手续费不能大于原运费.") if transit_hand_fee >= carrying_fee
+      errors.add(:transit_carrying_fee,"中转运费不能大于原运费.") if transit_carrying_fee > carrying_fee
+      errors.add(:transit_hand_fee,"中转手续费不能大于原运费.") if transit_hand_fee > carrying_fee
     end
     #运费支付方式为从货款扣时,货款必须大于运费
     def check_k_carrying_fee

@@ -5,7 +5,7 @@ class TransferPaymentList < PaymentList
 
   #定义状态机
   state_machine :initial => :billed do
-    #FIXME 转账确认操作时,不改变运单状态
+    #NOTE 转账确认操作时,不改变运单状态
     after_transition :billed => :payment_listed do |payment_list,transition|
       payment_list.carrying_bills.each {|bill| bill.standard_process}
     end
@@ -31,5 +31,4 @@ class TransferPaymentList < PaymentList
           :bill_no,:act_pay_fee,:from_customer_bank_card,:from_customer_name,:from_customer_code,:from_customer_bank_name,:goods_fee,:k_hand_fee,:k_carrying_fee,:goods_no
       ]}
   end
-
 end

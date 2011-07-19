@@ -12,7 +12,7 @@
         <%= link_to image_tag("grid.png",:alt => "#{resource_class.model_name.human}列表") , collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc"),:title => "#{resource_class.model_name.human}列表",:class => "tipsy btn_index"  %>
       </li>
       <li>
-        <%= link_to image_tag("grid-snap.png",:alt => "返程/中转#{resource_class.model_name.human}列表") , collection_path("search[from_org_id_ni]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today),:title => "返程/中转#{resource_class.model_name.human}列表",:class => "tipsy"  %>
+        <%= link_to image_tag("grid-snap.png",:alt => "返程/中转#{resource_class.model_name.human}列表") , collection_path("search[to_org_id_or_transit_org_id_in]" => current_user.current_ability_org_ids,"search[state_ni]" =>['billed','loaded','shipped'],"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today),:title => "返程/中转#{resource_class.model_name.human}列表",:class => "tipsy"  %>
       </li>
       <%if self.respond_to?("search_#{controller_name.tableize}_path")%>
         <li>

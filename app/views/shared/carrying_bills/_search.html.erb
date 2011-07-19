@@ -22,8 +22,8 @@
 
     <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => branches_for_select,:input_html => {:class => "select_org",:title => "可录入拼音简写查询到货地(例如:安阳,可录入ay)"} %>
 
-    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
-    <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select %>
+    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types,:input_html =>{:class => "ufd-select"} %>
+    <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select,:input_html =>{:class => "ufd-select"}  %>
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>
   <% end %>
   <%=f.buttons do %>

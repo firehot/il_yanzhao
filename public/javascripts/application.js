@@ -255,7 +255,7 @@ jQuery(function($) {
 		});
 	});
 	//初始化区域选择
-	$('.select_org').livequery(function() {
+	$('.select_org,.ufd-select').livequery(function() {
 		$(this).ufd();
 	});
 	//提高select_org list-wrapper的z-index
@@ -333,7 +333,7 @@ jQuery(function($) {
 		})
 	});
 	//绑定提货/提款/中转/中转提货处理的ajax:before
-	$('#deliver_info_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
+	$('#deliver_info_form,#settlement_form,#refound_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
 			var bill_ids = [];
@@ -467,9 +467,9 @@ jQuery(function($) {
 		$('#settlement_sum_transit_carrying_fee').val(sum_info.sum_transit_carrying_fee);
 		$('#settlement_sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		$('#settlement_sum_fee').html(parseFloat(sum_info.sum_goods_fee) + parseFloat(sum_info.sum_carrying_fee_th) - parseFloat(sum_info.sum_transit_carrying_fee) - parseFloat(sum_info.sum_transit_hand_fee));
-		$('#settlement_form').data('params', {
-			'bill_ids[]': ids
-		});
+		//$('#settlement_form').data('params', {
+		//		'bill_ids[]': ids
+		//	});
 	});
 
 	//生成返款清单时,收款单位变化时,列出结算清单
@@ -525,16 +525,16 @@ jQuery(function($) {
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
 		var sum_info = $('#bills_table').data('sum');
-		var ids = $('#bills_table').data('ids');
+	//	var ids = $('#bills_table').data('ids');
 		$('#refound_sum_goods_fee').val(sum_info.sum_goods_fee);
 		$('#refound_sum_carrying_fee').val(sum_info.sum_carrying_fee_th);
 		$('#refound_sum_transit_carrying_fee').val(sum_info.sum_transit_carrying_fee);
 		$('#refound_sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		$('#refound_sum_fee').html(sum_info.sum_th_amount);
 
-		$('#refound_form').data('params', {
-			'bill_ids[]': ids
-		});
+	//	$('#refound_form').data('params', {
+	//		'bill_ids[]': ids
+	//	});
 	});
 	//生成代收货款支付清单
 	var gen_payment_list = function(evt) {
@@ -826,7 +826,16 @@ jQuery(function($) {
 
 	//form 自动获取焦点
 	$('.inner form').livequery(function() {
-		$('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
+		var the_form = $(this);
+		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill')) {
+
+			//机打运单,默认焦点定位到到货地
+			$('#ufd-computer_bill_to_org_id').focus();
+			$('#ufd-transit_bill_transit_org_id').focus();
+			$('#ufd-return_bill_to_org_id').focus();
+		}
+		else $('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
+
 	});
 
 	//快捷键设置
@@ -847,7 +856,7 @@ jQuery(function($) {
 	}).bind('keydown', 'p', function() {
 		fireClick($('.btn_print')[0]);
 	}).bind('keydown', 'alt+t', function() {
-		//任何情况下,点击ctrl+b打开运单录入
+		//任何情况下,点击alt+t打开运单录入
 		window.location = "/computer_bills/new";
 	}).bind('keydown', 'ctrl+z', function() {
 		//任何情况下，可点击ctrl_z打开运单查询界面
