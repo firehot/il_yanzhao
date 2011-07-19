@@ -9,6 +9,7 @@ doc/app
 *.swp
 *.sw?
 *~
+._*
 .DS_Store
 public/assets/il_javascripts.js
 public/assets/il_ie_javascripts.js

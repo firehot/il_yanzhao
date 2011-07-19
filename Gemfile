@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'mysql2','0.2.6'
+gem 'mysql2'
 gem "will_paginate", "~> 3.0.pre2"
 gem "devise",'1.1.5'
 gem "cancan",'1.5.0'
@@ -50,7 +50,6 @@ gem 'yui-compressor'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development do
-  gem 'annotate-models', '1.0.4'
   gem 'jquery-rails'
   gem "bullet"
   #在unix、linux运行环境下不需要
