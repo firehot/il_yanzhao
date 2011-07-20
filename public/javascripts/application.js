@@ -341,7 +341,7 @@ jQuery(function($) {
 		})
 	});
 	//绑定提货/提款/中转/中转提货处理的ajax:before
-	$('#deliver_info_form,#settlement_form,#refound_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
+	$('#deliver_info_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
 			var bill_ids = [];
@@ -475,9 +475,9 @@ jQuery(function($) {
 		$('#settlement_sum_transit_carrying_fee').val(sum_info.sum_transit_carrying_fee);
 		$('#settlement_sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		$('#settlement_sum_fee').html(parseFloat(sum_info.sum_goods_fee) + parseFloat(sum_info.sum_carrying_fee_th) - parseFloat(sum_info.sum_transit_carrying_fee) - parseFloat(sum_info.sum_transit_hand_fee));
-		//$('#settlement_form').data('params', {
-		//		'bill_ids[]': ids
-		//	});
+		$('#settlement_form').data('params', {
+			'bill_ids[]': ids
+		});
 	});
 
 	//生成返款清单时,收款单位变化时,列出结算清单
@@ -540,9 +540,26 @@ jQuery(function($) {
 		$('#refound_sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		$('#refound_sum_fee').html(sum_info.sum_th_amount);
 
-		//	$('#refound_form').data('params', {
-		//		'bill_ids[]': ids
-		//	});
+		$('#refound_form').data('params', {
+			'bill_ids[]': ids
+		});
+	});
+	//保存结算清单和返款清单时,判断是否查询了相关的运单
+	$('#settlement_form,#refound_form').livequery(function() {
+		$(this).bind('ajax:before', function() {
+			var selected_bill_ids = $(this).data('params');
+			if (typeof(selected_bill_ids) == 'undefined' || selected_bill_ids.length == 0) {
+				$.notifyBar({
+					html: "当前未选择任何运单!",
+					delay: 3000,
+					animationSpeed: "normal",
+					cls: 'error'
+				});
+				return false;
+
+			}
+
+		});
 	});
 	//生成代收货款支付清单
 	var gen_payment_list = function(evt) {
