@@ -533,7 +533,7 @@ jQuery(function($) {
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
 		var sum_info = $('#bills_table').data('sum');
-		//	var ids = $('#bills_table').data('ids');
+                var ids = $('#bills_table').data('ids');
 		$('#refound_sum_goods_fee').val(sum_info.sum_goods_fee);
 		$('#refound_sum_carrying_fee').val(sum_info.sum_carrying_fee_th);
 		$('#refound_sum_transit_carrying_fee').val(sum_info.sum_transit_carrying_fee);
