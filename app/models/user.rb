@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   has_many :roles,:through => :user_roles
   has_many :user_orgs
   has_many :orgs,:through => :user_orgs
-  belongs_to :default_org,:class_name => "Org"
-  belongs_to :default_role,:class_name => "Role"
+  belongs_to :default_org,:class_name => "Org",:touch => true
+  belongs_to :default_role,:class_name => "Role",:touch => true
   accepts_nested_attributes_for :user_roles,:user_orgs,:allow_destroy => true
   default_scope :include => [:default_role,:default_org]
 
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   #显示所有部门,包括当前角色具备与不具备的部门
   def all_user_roles!
     Role.where(:is_active => true).each do |role|
-      self.user_roles.build(:role => role) unless self.user_roles.detect { |the_user_role| the_user_role.role.id == role.id } 
+      self.user_roles.build(:role => role) unless self.user_roles.detect { |the_user_role| the_user_role.role.id == role.id }
     end
     self.user_roles
   end
@@ -39,10 +39,10 @@ class User < ActiveRecord::Base
   def all_user_orgs!
     if self.all_user_orgs.blank?
       Org.where(:is_active => true).order("name ASC").each do |org|
-        self.user_orgs.build(:org => org) unless self.user_orgs.detect { |the_user_org| the_user_org.org.id == org.id } 
-      end 
+        self.user_orgs.build(:org => org) unless self.user_orgs.detect { |the_user_org| the_user_org.org.id == org.id }
+      end
     end
-    self.all_user_orgs ||= self.user_orgs 
+    self.all_user_orgs ||= self.user_orgs
   end
 
   #得到当前用户可访问的部门

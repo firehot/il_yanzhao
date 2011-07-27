@@ -1,15 +1,16 @@
 #coding: utf-8
 class ReturnBillsController <  CarryingBillsController
+  skip_authorize_resource :only => [:edit,:update]
   def before_new
   end
   def new
-    if params[:search].blank? or params[:search][:bill_no_eq].blank? 
-      flash[:error] = "请录入原运单号码." 
+    if params[:search].blank? or params[:search][:bill_no_eq].blank?
+      flash[:error] = "请录入原运单号码."
       render :action => :before_new
     else
       the_bills = CarryingBill.search(params[:search]).all
       if the_bills.blank?
-        flash[:error] = "未找到原始运单信息,只有运单到货后才可退货." 
+        flash[:error] = "未找到原始运单信息,只有运单到货后才可退货."
         render :action => :before_new
       else
         original_bill = the_bills.first

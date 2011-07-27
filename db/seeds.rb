@@ -17,12 +17,12 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'computer_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc"))',
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
-  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
+  :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
@@ -35,11 +35,11 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'hand_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
-  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
+  :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :export => {:title => "导出"}
 }
 }
@@ -51,13 +51,13 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
 
-  :default_action => 'transit_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id =>user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
-  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
+  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :export => {:title => "导出"}
 
 }
@@ -70,12 +70,12 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
 
-  :default_action => 'hand_transit_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
-  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
+  :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :export => {:title => "导出"}
 }
 }
@@ -193,8 +193,8 @@ sf_hash = {
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
-  :update =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
-  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed']}"},
+  :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
@@ -225,11 +225,11 @@ subject = "CarryingBill"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'simple_search_carrying_bills_path("search[completed]" => false,"search[from_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date desc,carrying_bills.goods_no",:direction => "asc" )',
+  :default_action => 'simple_search_carrying_bills_path("search[completed]" => false,"search[from_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date desc,carrying_bills.goods_no",:direction => "asc",:from_org_select => "current_ability_orgs_for_select",:to_org_select => "exclude_current_ability_orgs_for_select",:show_bill_no_eq => 1 )',
   :subject => subject,
   :function => {
   #:read => {:title => "查询/查看",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
-  :update_all =>{:title =>"修改运单"},
+  :update_goods_fee =>{:title =>"修改货款"},
   :update_carrying_fee_20 =>{:title =>"修改运费(20%)"},
   :update_carrying_fee_50 =>{:title =>"修改运费(50%)"},
   :update_carrying_fee_100 =>{:title =>"修改运费(100%)"},
@@ -245,7 +245,7 @@ subject = "CarryingBill"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_no_delivery",:show_fields =>".stranded_days",:hide_fields => ".insured_fee","search[state_in]" => ["reached","distributed"],"search[from_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date asc,carrying_bills.goods_no",:direction => "asc" )',
+  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_no_delivery",:show_fields =>".stranded_days",:hide_fields => ".insured_fee","search[state_in]" => ["reached","distributed"],"search[from_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date asc,carrying_bills.goods_no",:direction => "asc",:from_org_select => "current_ability_orgs_for_select",:to_org_select => "exclude_current_ability_orgs_for_select" )',
   :subject => subject,
   :function => {
   :rpt_no_delivery =>{:title =>"未提货报表"}
@@ -258,7 +258,7 @@ subject = "CarryingBill"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_no_delivery",:show_fields =>".stranded_days",:hide_fields => ".insured_fee","search[state_in]" => ["reached","distributed"],"search[to_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date asc,carrying_bills.goods_no",:direction => "asc" )',
+  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_no_delivery",:show_fields =>".stranded_days",:hide_fields => ".insured_fee","search[state_in]" => ["reached","distributed"],"search[to_org_id_eq]" => current_user.default_org.id,:sort => "carrying_bills.bill_date asc,carrying_bills.goods_no",:direction => "asc",:from_org_select => "exclude_current_ability_orgs_for_select",:to_org_select => "current_ability_orgs_for_select"  )',
   :subject => subject,
   :function => {
   :rpt_no_delivery =>{:title =>"本地未提货统计"}
@@ -285,7 +285,7 @@ subject = "CarryingBill"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_no_pay","search[to_org_id_eq]" => current_user.default_org.id,"search[state_in]" => ["refunded_confirmed","payment_listed"],"search[bill_date_gte]" => Date.today.beginning_of_day,"search[bill_date_lte]" => Date.today.end_of_day,:sort => "carrying_bills.bill_date desc,carrying_bills.goods_no",:direction => "asc")',
+  :default_action => 'simple_search_carrying_bills_path(:rpt_type => "rpt_no_pay","search[to_org_id_eq]" => current_user.default_org.id,"search[state_in]" => ["refunded_confirmed","payment_listed"],"search[bill_date_gte]" => Date.today.beginning_of_day,"search[bill_date_lte]" => Date.today.end_of_day,:sort => "carrying_bills.bill_date desc,carrying_bills.goods_no",:direction => "asc",:from_org_select => "exclude_current_ability_orgs_for_select",:to_org_select => "current_ability_orgs_for_select" )',
   :subject => subject,
   :function => {
   :rpt_no_pay =>{:title =>"提货未提款统计"}
@@ -514,10 +514,10 @@ subject = "Journal"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'journals_path',
+  :default_action => 'journals_path(:org_id => current_user.current_ability_org_ids)',
   :subject => subject,
   :function => {
-  :read =>{:title => "查看",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
+  :read =>{:title => "查看"} ,
   :update =>{:title => "修改",:conditions =>"{:org_id => user.current_ability_org_ids }"} ,
   :create => {:title => "新建"},
   :export => {:title => "导出"},
@@ -817,9 +817,9 @@ sf_hash = {
 }
 }
 SystemFunction.create_by_hash(sf_hash)
-#################################多货少货登记################################################
+#################################多货上报################################################
 group_name = "理赔管理"
-subject_title = "多货少货登记"
+subject_title = "多货上报"
 subject = "GoodsError"
 sf_hash = {
   :group_name => group_name,

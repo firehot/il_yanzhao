@@ -66,7 +66,7 @@ zh-CN:
       role: "角色"  #g
       branch: "分理处/分公司"  #g
       goods_exception: "货物异常信息"  #g
-      goods_error: "少货/多货信息"  #g
+      goods_error: "多货信息"  #g
       role_org: "角色-机构"  #g
       area: "中转到货地"
       notify: "通知提醒"
@@ -280,6 +280,7 @@ zh-CN:
         children: "下级机构"  #g
         customer_level_configs: "VIP分级设置"  #g
         is_yard: "中转货场"
+        is_summary: "总部"
         order_by: "排序"
 
       distribution_list:

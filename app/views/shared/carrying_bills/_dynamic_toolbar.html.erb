@@ -42,8 +42,11 @@
       <%end%>
     <%end%>
     <%if params[:action] == "show"%>
+        <li>
+          <%= link_to image_tag("load.png",:alt => "刷新当前记录"),  "",:title => "刷新当前记录",:class => "tipsy btn_modify" %>
+        </li>
 
-      <%if can? :update,resource%>
+      <%if can?(:update_all,resource) or can?(:update_goods_fee,resource) or can?(:update_carrying_fee_20,resource) or can?(:update_carrying_fee_50,resource) or can?(:update_carrying_fee_100,resource)%>
         <li>
           <%= link_to image_tag("application--pencil.png",:alt => "修改当前记录"),  edit_resource_path(resource),:title => "修改当前记录",:class => "tipsy btn_modify" %>
         </li>
@@ -86,7 +89,6 @@
         <%= link_to_function image_tag("document-excel-table.png",:alt => "导出为EXCEL"), "",:title => "导出为EXCEL",:class => "tipsy",:id => "btn_export_sum_goods_fee_inout","data-table" => "#sum_goods_fee_inout"  %>
       </li>
     <%end%>
-
     <%= render "extra_toolbar" %>
   </ul>
 </div>

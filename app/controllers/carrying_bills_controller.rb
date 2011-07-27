@@ -5,7 +5,7 @@ class CarryingBillsController < BaseController
   #判断是否超过录单时间,超过录单时间后,不可再录入票据
   before_filter :check_expire,:only => :new
   before_filter :pre_process_search_params,:only => [:index,:rpt_turnover,:turnover_chart]
-  skip_authorize_resource :only => :update
+  skip_authorize_resource :only => [:edit,:update]
   belongs_to :load_list,:distribution_list,:deliver_info,:settlement,:refound,:cash_payment_list,:transfer_payment_list,:cash_pay_info,:transfer_pay_info,:post_info,:short_fee_info,:transit_info,:transit_deliver_info,:polymorphic => true,:optional => true
 
   #覆盖默认的index方法,主要是为了导出
@@ -40,7 +40,11 @@ class CarryingBillsController < BaseController
   def update
     bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
     bill.attributes=params[resource_class.model_name.underscore.to_sym]
-    authorize! :update,bill
+    authorize! :update_all,bill if can? :update_all,bill
+    authorize! :update_goods_fee,bill if can? :update_goods_fee,bill
+    authorize! :update_carrying_fee_20,bill if can? :update_carrying_fee_20, bill
+    authorize! :update_carrying_fee_50,bill if can? :update_carrying_fee_50, bill
+    authorize! :update_carrying_fee_100,bill if can? :update_carrying_fee_100, bill
     update!
   end
 

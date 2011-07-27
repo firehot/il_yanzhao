@@ -35,7 +35,19 @@ module CarryingBillsHelper
   def gen_fields_selector(fields_selector="",show=true)
     css_array=[]
     css_array << (show ? params[:show_fields] : params[:hide_fields]) << fields_selector
-    css_array.delete_if {|x| x.blank?}
+      css_array.delete_if {|x| x.blank?}
     css_array.join(",")
+  end
+  #设置运单修改权限
+  def get_bill_update_class(resource)
+    can_update =[]
+    if can?(:update_all,resource)
+      can_update << 'update_all'
+    else
+      can_update <<  'update_carrying_fee' if can?(:update_carrying_fee_20,resource) or can?(:update_carrying_fee_50,resource) or can?(:update_carrying_fee_100,resource)
+      can_update << 'update_goods_fee' if can?(:update_goods_fee,resource)
+    end
+    can_update=[] if resource.new_record?
+    can_update.join(' ')
   end
 end

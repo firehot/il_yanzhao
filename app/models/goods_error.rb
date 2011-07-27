@@ -25,8 +25,7 @@ class GoodsError < ActiveRecord::Base
   #付款方式描述
   def self.except_types
     {
-#      "少货" => EXCEPT_LACK,          #少货
-      "少货" => EXCEPT_SHORTAGE,      #短缺
+      #"少货" => EXCEPT_SHORTAGE,      #短缺
       "多货" => EXCEPT_OVERFLOW        #破损
     }
   end

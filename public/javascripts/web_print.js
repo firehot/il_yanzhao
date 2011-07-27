@@ -554,14 +554,23 @@ jQuery(function($) {
 
 			print_object.PREVIEW();
 			//print_object.PRINT();
-
 		}
 	});
 	//绑定打印事件
 	$('.print_carrying_bill').click(function() {
-		var bill = $(this).data('print');
-		var config = $.get_print_config(bill);
-		$.print_bill(config);
+		if ($(this).data('printed')) $.notifyBar({
+			html: "请点击[刷新]按钮后再重新打印运单!",
+			delay: 3000,
+			animationSpeed: "normal",
+			cls: 'error'
+		});
+
+		else {
+			var bill = $(this).data('print');
+			var config = $.get_print_config(bill);
+			$.print_bill(config);
+			$(this).data('printed', true);
+		}
 	});
 
 	//提货时,仅仅打印运单
@@ -579,36 +588,38 @@ jQuery(function($) {
 		}
 
 	});
-        //货损理赔信息打印
-        $('.btn_print_goods_exception').click(function(){
-          var table_doc = $('#goods_exception_show').clone();
-          table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
-          
-          var config= {
-            print_name : "货损理赔信息",
-            top : "10mm",
-            left : "10mm",
-            width : "200mm",
-            height : "140mm",
-            content : "<table>" + table_doc.html() + "</table>"
-          };
-          $.print_html(config);
-        });
-        //打印客户转账凭条
-        $('.btn_print_pay_info_certificate').click(function(){
-          var table_doc = $('.pay_info_certificate');
-          //table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
-          
-          var config= {
-            print_name : "客户转账凭条",
-            top : "0",
-            left : "0",
-            width : "210mm",
-            height : "110mm",
-            content : "<table>" + table_doc.html() + "</table>"
-          };
-          $.print_html(config);
-        });
+	//货损理赔信息打印
+	$('.btn_print_goods_exception').click(function() {
+		var table_doc = $('#goods_exception_show').clone();
+		table_doc.find('th,td').css({
+			border: 'thin solid #000',
+			borderCollapse: 'collapse'
+		});
+
+		var config = {
+			print_name: "货损理赔信息",
+			top: "10mm",
+			left: "10mm",
+			width: "200mm",
+			height: "140mm",
+			content: "<table>" + table_doc.html() + "</table>"
+		};
+		$.print_html(config);
+	});
+	//打印客户转账凭条
+	$('.btn_print_pay_info_certificate').click(function() {
+		var table_doc = $('.pay_info_certificate');
+		//table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
+		var config = {
+			print_name: "客户转账凭条",
+			top: "0",
+			left: "0",
+			width: "210mm",
+			height: "110mm",
+			content: "<table>" + table_doc.html() + "</table>"
+		};
+		$.print_html(config);
+	});
 
 	//提货打印,触发自动打印事件
 	$('.auto_print_bill').trigger('click');

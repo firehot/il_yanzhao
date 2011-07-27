@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712074115) do
+ActiveRecord::Schema.define(:version => 20110727021137) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -436,6 +436,7 @@ ActiveRecord::Schema.define(:version => 20110712074115) do
     t.string   "py",              :limit => 20
     t.boolean  "is_yard",                       :default => false
     t.integer  "order_by",                      :default => 0
+    t.boolean  "is_summary",                    :default => false
   end
 
   add_index "orgs", ["code"], :name => "index_orgs_on_code"

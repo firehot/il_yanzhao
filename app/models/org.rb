@@ -30,6 +30,10 @@ class Org < ActiveRecord::Base
     ret = Time.now.strftime('%H:%M') >= self.lock_input_time if self.lock_input_time.present?
     ret
   end
+  #是否属于总公司
+  def in_summary?
+    self.is_summary? || self.parent.try(:is_summary?)
+  end
 
   private
   def gen_py

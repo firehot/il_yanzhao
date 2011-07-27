@@ -795,11 +795,12 @@ jQuery(function($) {
 
 	});
 	//运单修改时,判断权限
-	$('.update_carrying_fee').livequery(function() {
+	$('form.update_carrying_fee #carrying_fee,form.update_goods_fee #goods_fee').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);
 		$('#carrying_bill_form select').attr('disabled', true);
-		$('#carrying_fee').attr('readonly', false);
+		$(this).attr('readonly', false);
 	});
+
 	$('.update_all').livequery(function() {
 		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
 	});

@@ -8,15 +8,11 @@ class Journal < ActiveRecord::Base
   def self.new_with_org(org,bill_date=Date.today)
     journal = Journal.new(:org => org,:bill_date => bill_date)
     #已结算未汇金额
-    journal.settled_no_rebate_fee = 
-      CarryingBill.search(:state_eq => 'settlemented',:to_org_id_or_transit_org_id_eq => org.id,:pay_type_eq =>'TH' ).relation.sum(:carrying_fee) 
-    + CarryingBill.search(:state_eq => 'settlemented',:to_org_id_or_transit_org_id_eq => org.id).relation.sum(:goods_fee)
-    + CarryingBill.search(:state_eq => 'settlemented',:to_org_id_or_transit_org_id_eq => org.id).relation.sum(:to_short_carrying_fee)
+    journal.settled_no_rebate_fee =
+      CarryingBill.search(:state_eq => 'settlemented',:to_org_id_or_transit_org_id_eq => org.id,:pay_type_eq =>'TH' ).relation.sum(:carrying_fee)+ CarryingBill.search(:state_eq => 'settlemented',:to_org_id_or_transit_org_id_eq => org.id).relation.sum(:goods_fee)
     #已提货未结算金额
-    journal.deliveried_no_settled_fee = 
-      CarryingBill.search(:state_eq => 'deliveried',:to_org_id_or_transit_org_id_eq => org.id,:pay_type_eq =>'TH' ).relation.sum(:carrying_fee) 
-    + CarryingBill.search(:state_eq => 'deliveried',:to_org_id_or_transit_org_id_eq => org.id).relation.sum(:goods_fee)
-    + CarryingBill.search(:state_eq => 'deliveried',:to_org_id_or_transit_org_id_eq => org.id).relation.sum(:to_short_carrying_fee)
+    journal.deliveried_no_settled_fee =
+      CarryingBill.search(:state_eq => 'deliveried',:to_org_id_or_transit_org_id_eq => org.id,:pay_type_eq =>'TH' ).relation.sum(:carrying_fee)+ CarryingBill.search(:state_eq => 'deliveried',:to_org_id_or_transit_org_id_eq => org.id).relation.sum(:goods_fee)
     #黑/红/黄/绿/蓝/白
     journal.black_bills = CarryingBill.search(:state_in =>['reached','distributed'] ,:to_org_id_or_transit_org_id_eq => org.id,:bill_date_lte => 21.days.ago.end_of_day).count
     journal.red_bills = CarryingBill.search(:state_in =>['reached','distributed'] ,:to_org_id_or_transit_org_id_eq => org.id,:bill_date_lte => 17.days.ago.end_of_day,:bill_date_gte => 20.days.ago.end_of_day).count
