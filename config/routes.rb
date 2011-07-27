@@ -181,22 +181,26 @@ IlYanzhao::Application.routes.draw do
   resources :hand_transit_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
+    put :invalidate,:on => :member
   end
 
   resources :transit_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
+    put :invalidate,:on => :member
   end
 
   resources :hand_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
+    put :invalidate,:on => :member
   end
 
   resources :return_bills do
     get :before_new,:on => :collection
     get :search,:on => :collection
     get :export_excel,:on => :collection
+    put :invalidate,:on => :member
   end
 
   resources :orgs do
@@ -215,11 +219,13 @@ IlYanzhao::Application.routes.draw do
     get :export_excel,:on => :collection
     get :sum_goods_fee_inout,:on => :collection
     put :reset,:on => :member
+    put :invalidate,:on => :member
   end
 
   resources :computer_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
+    put :invalidate,:on => :member
   end
 
   root :to => "dashboard#index"

@@ -154,6 +154,11 @@ class CarryingBill < ActiveRecord::Base
       transition :settlemented => :refunded_confirmed
     end
 
+    #运单作废操作
+    after_transition :on => :invalidate,:billed => :invalided,:do => :set_completed_invalid
+    event :invalidate do
+      transition :billed => :invalided
+    end
 
     #根据运单状态进行验证操作
     state :loaded,:shipped,:reached do
@@ -504,6 +509,10 @@ class CarryingBill < ActiveRecord::Base
     #提货付运费且货款为0,收款清单确认后,自动完成
     def set_completed_refunded_confirmed
       self.update_attributes(:completed => true) if self.pay_type.eql? PAY_TYPE_TH and self.goods_fee == 0
+    end
+    #运单作废后,设标志为完成
+    def set_completed_invalid
+      self.update_attributes(:completed => true)
     end
 
     #验证中转费用

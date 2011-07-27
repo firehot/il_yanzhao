@@ -56,6 +56,11 @@
           <%= link_to image_tag("minus-shield.png",:alt =>"重置运单"),  reset_carrying_bill_path(resource),:method => :put,:title => "重置运单",:class => "tipsy btn_reset",:confirm => "重置后,将丢失运单所有的操作信息,您确定吗？" %>
         </li>
       <%end%>
+      <%if can? :invalidate,resource%>
+        <li>
+          <%= link_to image_tag("invalid.gif",:alt =>"运单作废"), self.send("invalidate_#{resource_class.model_name.underscore}_path",resource),:method => :put,:title => "运单作废",:class => "tipsy btn_invalidate",:confirm => "作废后,该运单将不能再使用,您确定吗？" %>
+        </li>
+      <%end%>
 
       <%if can? :destroy,resource%>
         <li>

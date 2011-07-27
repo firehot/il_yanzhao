@@ -29,6 +29,7 @@ zh-CN:
            paid: "已提款"
            posted: "已结帐"
            returned: "已退货"
+           invalided: "已作废"
         short_fee_state:
           states:
             draft: "草稿"

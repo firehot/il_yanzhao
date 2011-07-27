@@ -24,6 +24,7 @@ sf_hash = {
   :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
+  :invalidate => {:title => "票据作废",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
 }
@@ -40,6 +41,7 @@ sf_hash = {
   :create => {:title => "新建"},
   :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :invalidate => {:title => "票据作废",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
 }
@@ -57,6 +59,7 @@ sf_hash = {
   :create => {:title => "新建"},
   :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id =>user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
+  :invalidate => {:title => "票据作废",:conditions =>"{:state => 'billed'}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :export => {:title => "导出"}
 
@@ -75,6 +78,7 @@ sf_hash = {
   :function => {
   :create => {:title => "新建"},
   :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
+  :invalidate => {:title => "票据作废",:conditions =>"{:state => 'billed'}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :export => {:title => "导出"}
 }
@@ -196,6 +200,7 @@ sf_hash = {
   :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :destroy => {:title => "删除",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
   :re_print => {:title => "票据打印",:conditions =>"{:state => 'billed'}"},
+  :invalidate => {:title => "票据作废",:conditions =>"{:state => 'billed'}"},
   :export => {:title => "导出"}
 }
 }
