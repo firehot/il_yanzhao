@@ -837,7 +837,7 @@ jQuery(function($) {
 			work_sheet.Columns('A:A').ColumnWidth = 5;
 
 		};
-		$.export_excel("<table>" + table_doc.html() + "</table>", set_style);
+		$.export_excel(table_doc.clone().wrap('<div></div>').parent().html(), set_style);
 	});
 
 	//form 自动获取焦点

@@ -4,7 +4,7 @@ class BaseController < InheritedResources::Base
   authorize_resource
 
   before_filter :pre_process_search_params,:only => [:index]
-  helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns
+  helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns,:last_modified
   respond_to :html,:xml,:js,:json,:csv
   protected
   def collection
@@ -50,18 +50,18 @@ class BaseController < InheritedResources::Base
   protected
   #根据传入参数判断哪个是最近日期,如果什么都不传,则返回当前时间
   def last_modified(objs = [])
-    default_array = [current_user,current_user.default_role,current_user.default_org]
-    if objs.blank?
-      default_array.collect {|obj| obj.send(:updated_at)}.max
-    else
+    default_array = [current_user.updated_at,Date.today.beginning_of_day,Org.first(:order => 'updated_at DESC').try(:updated_at),Role.first(:order => "updated_at DESC").try(:updated_at)]
+    if objs.present?
       #控制当前页面是否刷新缓存的因素有三个:当前用户/当前用户默认机构/当前用户默认角色,三个页面中任何一个发生改变,都要重新缓存
       tmp_obj = objs.is_a?(Array) ? objs : [objs]
-      (default_array + tmp_obj).collect {|obj| obj.send(:updated_at)}.max
+      default_array += tmp_obj
     end
+    default_array.compact!
+    default_array.max
   end
   #生成etag,用于缓存页面
   def etag(prefix = "")
-    ret = "#{current_user.id}_#{current_user.default_role}_#{current_user.default_org}"
+    ret = "#{current_user.id}_#{current_user.default_role.id}_#{current_user.default_org.id}"
     ret = "#{prefix}_#{ret}" if prefix.present?
     ret
   end

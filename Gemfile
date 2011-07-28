@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'mysql2'
+gem 'ghazel-mysql2'
+#gem 'mysql2'
 gem "will_paginate", "~> 3.0.pre2"
 gem "devise",'1.1.5'
 gem "cancan",'1.5.0'
@@ -19,7 +20,7 @@ gem 'show_for'
 gem 'fastercsv'
 #uuid generator
 gem 'uuid'
-gem 'factory_girl_rails', '1.0'
+#gem 'factory_girl_rails', '1.0'
 gem 'easy_http_cache'
 gem "meta_search"
 #js compressor
@@ -52,8 +53,9 @@ gem 'yui-compressor'
 group :development do
   gem 'jquery-rails'
   gem "bullet"
+  gem "mongrel"
   #在unix、linux运行环境下不需要
-  #gem "win32-open3"
+  gem "win32-open3"
 end
 group :development, :test do
   gem 'rspec-rails','~>2.4.1'
