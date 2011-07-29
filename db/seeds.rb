@@ -17,7 +17,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'can?(:create,ComputerBill) ? new_computer_bill_path : collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc"))',
+  :default_action => 'can?(:create,ComputerBill) ? new_computer_bill_path : collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :create => {:title => "新建"},
@@ -841,35 +841,6 @@ sf_hash = {
 }
 SystemFunction.create_by_hash(sf_hash)
 
-#修改运单录入的默认显示条件
-sf = SystemFunction.find_by_subject_title('运单录入')
-default_action = 'computer_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" =>Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")'
-sf.update_attributes(:default_action => default_action) if sf.present?
-sf = SystemFunction.find_by_subject_title('手工运单录入')
-default_action = 'hand_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" =>Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")'
-sf.update_attributes(:default_action => default_action) if sf.present?
-
-sf = SystemFunction.find_by_subject_title('中转运单录入')
-default_action = 'transit_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" =>Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")'
-sf.update_attributes(:default_action => default_action) if sf.present?
-
-
-sf = SystemFunction.find_by_subject_title('手工中转运单录入')
-default_action = 'hand_transit_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" =>Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")'
-sf.update_attributes(:default_action => default_action) if sf.present?
-
 #更新org功能的default_action
 sf = SystemFunction.find_by_subject_title("组织机构管理")
 sf.update_attributes(:default_action => "orgs_path('search[is_active_eq]' => 1 )") if sf.present?
-
-#######################################################################################################3
-#创建系统默认用户
-#role = Role.new_with_default(:name => '管理员角色')
-#role.role_system_function_operates.each { |r| r.is_select = true }
-#role.save!
-
-#管理员角色
-#admin = User.new_with_roles(:username => 'system',:real_name => "管理员",:password => 'system',:is_admin => true)
-#admin.user_orgs.each { |user_org| user_org.is_select = true }
-#admin.user_roles.each {|user_role| user_role.is_select = true}
-#admin.save!
