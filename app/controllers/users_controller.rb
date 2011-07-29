@@ -8,9 +8,6 @@ class UsersController < BaseController
   def new
     @user = User.new_with_roles
   end
-  def edit
-    user
-  end
   # GET users/edit_password
   # 修改当前登录用户的密码
   def edit_password
@@ -28,6 +25,7 @@ class UsersController < BaseController
   #GET users/:id/reset_usb_pin
   #重设usb pin
   def reset_usb_pin
+    @user = resource_class.find(params[:id])
     user.set_usb_pin
     flash[:success]="已重新设置了用户的usb pin,请点击保存按钮更新ukey!"
     render :edit

@@ -1,6 +1,5 @@
 #coding: utf-8
 class User < ActiveRecord::Base
-  attr_accessor :all_user_orgs
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable,#:registerable,
@@ -33,16 +32,14 @@ class User < ActiveRecord::Base
     Role.where(:is_active => true).each do |role|
       self.user_roles.build(:role => role) unless self.user_roles.detect { |the_user_role| the_user_role.role.id == role.id }
     end
-    self.user_roles
+    self.user_roles.to_a.select {|ur| ur.role.is_active?}
   end
   #显示所有部门,包括当前角色具备与不具备的部门
   def all_user_orgs!
-    if self.all_user_orgs.blank?
-      Org.where(:is_active => true).order("name ASC").each do |org|
-        self.user_orgs.build(:org => org) unless self.user_orgs.detect { |the_user_org| the_user_org.org.id == org.id }
-      end
+    Org.where(:is_active => true).order("name ASC").each do |org|
+      self.user_orgs.build(:org => org) unless self.user_orgs.detect { |the_user_org| the_user_org.org.id == org.id }
     end
-    self.all_user_orgs ||= self.user_orgs
+    self.user_orgs.to_a.select {|uo| uo.org.is_active?}
   end
 
   #得到当前用户可访问的部门

@@ -21,7 +21,7 @@ gem 'show_for'
 gem 'fastercsv'
 #uuid generator
 gem 'uuid'
-#gem 'factory_girl_rails', '1.0'
+gem 'factory_girl_rails', '1.0'
 gem 'easy_http_cache'
 gem "meta_search"
 #js compressor

@@ -53,6 +53,10 @@ GEM
     easy_http_cache (2.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    factory_girl (1.3.3)
+    factory_girl_rails (1.0)
+      factory_girl (~> 1.3)
+      rails (>= 3.0.0.beta4)
     fastercsv (1.5.4)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
@@ -148,6 +152,7 @@ DEPENDENCIES
   devise (= 1.1.5)
   dynamic_form
   easy_http_cache
+  factory_girl_rails (= 1.0)
   fastercsv
   formtastic (~> 1.2.3)
   i18n_generators

@@ -24,7 +24,7 @@ namespace :db do
   end
   desc "自lmis系统中导入org资料"
   task :imp_org => :environment do
-    FILE_NAME="/root/shared_dir/info_org.csv"
+    FILE_NAME=Rails.root.join('db/export/info_org.csv')
     Org.destroy_all
     rows = FasterCSV::read(FILE_NAME)
     rows.each do |row|
@@ -42,17 +42,12 @@ namespace :db do
 
   desc "自lmis系统中导入转账客户资料"
   task :imp_customer => :environment do
-    FILE_NAME="/root/shared_dir/crm_customer.csv"
+    FILE_NAME=Rails.root.join('db/export/crm_customer.csv')
+    Vip.skip_callback(:create,:before,:set_code)
     Vip.destroy_all
-    Bank.destroy_all
-    ConfigTransit.destroy_all
     #银行信息,只有建设银行和浦发银行
-    icbc = Bank.create!(:name => "建行",:code => 8)
-    pf = Bank.create!(:name => "浦发",:code => 2)
-    #转账配置
-    common_config = ConfigTransit.create!(:name => "普通客户",:rate => 0.002)
-    vip_config = ConfigTransit.create!(:name => "VIP客户",:rate => 0.001)
-
+    icbc = Bank.find_or_create_by_name_and_code("建行",8)
+    icbc = Bank.find_or_create_by_name_and_code("浦发",2)
 
     rows = FasterCSV::read(FILE_NAME)
     rows.each do |row|
@@ -64,8 +59,11 @@ namespace :db do
         org_code = customer_no[1,2]
         the_bank = Bank.find_by_code(bank_code)
         the_org = Branch.find_by_code(org_code)
-        vip = Vip.new(:org => the_org,:bank => the_bank,:config_transit =>vip_config,:name => row[8],:phone => row[11],:mobile => row[12],:code => row[26],:bank_card => row[14],:id_number => row[28]) if the_bank.present? and the_org.present? and !Vip.exists?(:code => customer_no) and id_number.present?
-        vip.save(false)
+        if the_bank.present? and the_org.present? and !Vip.exists?(:code => customer_no) and id_number.present?
+          vip = Vip.new(:org => the_org,:bank => the_bank,:name => row[8],:phone => row[11],:mobile => row[12],:bank_card => row[14],:id_number => row[28])
+          vip.code = row[26]
+          vip.save!
+        end
       end
     end
   end
@@ -114,13 +112,6 @@ namespace :db do
     user.user_roles.each {|user_role| user_role.is_select = true}
     user.save!
   end
-  desc "初始化系统"
-  task :init_system => :environment do
-    Rake::Task['db:reset'].invoke
-    Rake::Task['db:imp_org'].invoke
-    Rake::Task['db:imp_customer'].invoke
-    Rake::Task['db:create_user'].invoke
-  end
   desc "清空业务数据(保留机构/人员/权限)"
   task :clear_business_data => :environment do
     models = Dir['app/models/*.rb'].map {|f| File.basename(f, '.*').camelize.constantize } - [Ability,AbilityObj,Bank,Branch,ConfigCash,ConfigTransit,Customer,CustomerFeeInfo,CustomerFeeInfoLine,CustomerFeeInfoLineObserver,CustomerLevelConfig,Department,IlConfig,ImportedCustomer,Org,Role,RoleSystemFunctionOperate,SystemFunction,SystemFunctionOperate,User,UserOrg,UserRole,Vip,RefoundObserver,SendListModule]
@@ -142,10 +133,18 @@ namespace :db do
   end
   desc "导出机构/人员/权限/设置"
   task :export_seed_to_csv => :environment do
-    [Bank,Org,ConfigCash,ConfigTransit,CustomerLevelConfig,IlConfig,Role,RoleSystemFunctionOperate,User,UserOrg,UserRole,Vip].each {|model_class| model_class.export2csv }
+    [Bank,Org,ConfigCash,ConfigTransit,CustomerLevelConfig,IlConfig,Role,RoleSystemFunctionOperate,User,UserOrg,UserRole].each {|model_class| model_class.export2csv }
   end
   desc "导入机构/人员/权限/设置"
-  task :import_seed_to_csv => :environment do
-    [Bank,Org,ConfigCash,ConfigTransit,CustomerLevelConfig,IlConfig,Role,RoleSystemFunctionOperate,User,UserOrg,UserRole,Vip].each {|model_class| model_class.import_csv }
+  task :import_seed_csv => :environment do
+    [Bank,Org,ConfigCash,ConfigTransit,CustomerLevelConfig,IlConfig,Role,RoleSystemFunctionOperate,User,UserOrg,UserRole].each {|model_class| model_class.import_csv }
+    #删除机构中无效的数据和权限中无效的数据
+    UserOrg.search(:org_is_active_eq => false).each {|uo| uo.destroy}
+    Org.destroy_all(:is_active => false)
+  end
+  desc "初始化系统"
+  task :init_system => :environment do
+    Rake::Task['db:import_seed_csv'].invoke
+    #Rake::Task['db:imp_customer'].invoke
   end
 end
