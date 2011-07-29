@@ -64,7 +64,8 @@ namespace :db do
         org_code = customer_no[1,2]
         the_bank = Bank.find_by_code(bank_code)
         the_org = Branch.find_by_code(org_code)
-        Vip.create!(:org => the_org,:bank => the_bank,:config_transit =>vip_config,:name => row[8],:phone => row[11],:mobile => row[12],:code => row[26],:bank_card => row[14],:id_number => row[28]) if the_bank.present? and the_org.present? and !Vip.exists?(:code => customer_no) and id_number.present?
+        vip = Vip.new(:org => the_org,:bank => the_bank,:config_transit =>vip_config,:name => row[8],:phone => row[11],:mobile => row[12],:code => row[26],:bank_card => row[14],:id_number => row[28]) if the_bank.present? and the_org.present? and !Vip.exists?(:code => customer_no) and id_number.present?
+        vip.save(false)
       end
     end
   end
@@ -138,5 +139,13 @@ namespace :db do
     (1..200).each do
       ComputerBill.create!(:from_org => from_org,:to_org => to_org,:from_customer_name => "张三",:from_customer_phone => "1367904567",:to_customer_name => "李四",:to_customer_phone => "2343243",:carrying_fee => 44,:goods_fee => 1000,:pay_type =>"CA",:goods_num => 3,:goods_info => "示例",:user => User.first )
     end
+  end
+  desc "导出机构/人员/权限/设置"
+  task :export_seed_to_csv => :environment do
+    [Bank,Org,ConfigCash,ConfigTransit,CustomerLevelConfig,IlConfig,Role,RoleSystemFunctionOperate,User,UserOrg,UserRole,Vip].each {|model_class| model_class.export2csv }
+  end
+  desc "导入机构/人员/权限/设置"
+  task :import_seed_to_csv => :environment do
+    [Bank,Org,ConfigCash,ConfigTransit,CustomerLevelConfig,IlConfig,Role,RoleSystemFunctionOperate,User,UserOrg,UserRole,Vip].each {|model_class| model_class.import_csv }
   end
 end

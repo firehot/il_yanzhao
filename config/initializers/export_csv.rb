@@ -54,3 +54,44 @@ class Array
     ret
   end
 end
+#为active_record 添加导入导出方法
+module ActiveRecord
+  class Base
+    def self.export2csv(dir=Rails.root.join('db/export'))
+      require 'fastercsv'
+      records = self.find(:all)
+      csv_string = FasterCSV.generate() do |csv|
+        records.each do |r|
+          attr = r.attributes.delete_if { |key,value| self.primary_key == key }
+          csv << ([r.id]  + attr.keys.sort.collect {|key| r[key]})
+        end
+      end
+      file_name = File.join(dir,"#{self.table_name}.csv")
+      File.delete(file_name) if File.exist? file_name
+      File.open(file_name,"w") do |file|
+        file.syswrite csv_string
+      end
+    end
+    #导入数据到数据表中,包括id
+    def self.import_csv(dir=Rails.root.join('db/export'))
+      require 'fastercsv'
+      self.destroy_all
+      file_name = File.join(dir,"#{self.table_name}.csv")
+      rows = FasterCSV::read(file_name)
+      rows.each do |row|
+        m = self.new
+        #给各个字段赋值
+        col_index = 0
+
+        attr = m.attributes.delete_if { |key,value| self.primary_key == key }
+
+        (attr.keys.sort).each do |attr|
+          col_index = col_index + 1
+          m.send("#{attr}=",row[col_index])
+        end
+        m.id = row[0]
+        m.save
+      end
+    end
+  end
+end
