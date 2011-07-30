@@ -398,14 +398,14 @@ jQuery(function($) {
 					height: '7mm'
 				},
 				th_amount_chinese: {
-					text: $.num2chinese(the_bill.th_amount),
+					text: $.num2chinese(the_bill.carrying_fee_total + the_bill.goods_fee),
 					left: '110mm',
 					top: '45mm',
 					width: '62mm',
 					height: '6mm'
 				},
 				th_amount: {
-					text: the_bill.th_amount,
+					text: the_bill.carrying_fee_total + the_bill.goods_fee,
 					left: '177mm',
 					top: '45mm',
 					width: '15mm',
@@ -415,7 +415,7 @@ jQuery(function($) {
 					text: the_bill.insured_amount,
 					left: '130mm',
 					top: '51mm',
-					width: '12mm',
+					width: '15mm',
 					height: '7mm'
 				},
 
