@@ -172,7 +172,7 @@ jQuery(function($) {
 					width: "210mm",
 					height: '140mm',
 					left: '0',
-					top: '0',
+					top: '-2mm',
 					style: {
 						FontSize: 13,
 						LineSpacing: 13
@@ -182,28 +182,28 @@ jQuery(function($) {
 				from_org: {
 					text: the_bill.from_org.name,
 					left: '38mm',
-					top: '15mm',
+					top: '13mm',
 					width: '35mm',
 					height: '6mm'
 				},
 				to_org: {
 					text: (the_bill.to_org ? the_bill.to_org.name: "") + (the_bill.area ? the_bill.area.name: ""),
 					left: '100mm',
-					top: '15mm',
+					top: '13mm',
 					width: '30mm',
 					height: '6mm'
 				},
 				bill_no: {
 					text: the_bill.bill_no,
 					left: '160mm',
-					top: '15mm',
+					top: '13mm',
 					width: '30mm',
 					height: '6mm'
 				},
 				customer_code_1: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(0, 1) : "",
 					left: '31mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -214,7 +214,7 @@ jQuery(function($) {
 				customer_code_2: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(1, 1) : "",
 					left: '38mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -225,7 +225,7 @@ jQuery(function($) {
 				customer_code_3: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(2, 1) : "",
 					left: '45mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -236,7 +236,7 @@ jQuery(function($) {
 				customer_code_4: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(3, 1) : "",
 					left: '52mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -247,7 +247,7 @@ jQuery(function($) {
 				customer_code_5: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(4, 1) : "",
 					left: '60mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -258,7 +258,7 @@ jQuery(function($) {
 				customer_code_6: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(5, 1) : "",
 					left: '67mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -269,7 +269,7 @@ jQuery(function($) {
 				customer_code_7: {
 					text: the_bill.customer_code ? the_bill.customer_code.substr(6, 1) : "",
 					left: '74mm',
-					top: '23mm',
+					top: '22mm',
 					width: '6mm',
 					height: '6mm',
 					style: {
@@ -281,14 +281,14 @@ jQuery(function($) {
 				goods_no: {
 					text: the_bill.goods_no,
 					left: '110mm',
-					top: '23mm',
+					top: '22mm',
 					width: '40mm',
 					height: '6mm'
 				},
 				bill_date_year: {
 					text: the_bill.bill_date.substr(0, 4),
 					left: '157mm',
-					top: '23mm',
+					top: '22mm',
 					width: '13mm',
 					height: '6mm',
 					style: {
@@ -299,8 +299,8 @@ jQuery(function($) {
 				bill_date_mth: {
 					text: the_bill.bill_date.substr(5, 2),
 					left: '175mm',
-					top: '23mm',
-					width: '5mm',
+					top: '22mm',
+					width: '10mm',
 					height: '6mm',
 					style: {
 						FontSize: 15
@@ -310,8 +310,8 @@ jQuery(function($) {
 				bill_date_day: {
 					text: the_bill.bill_date.substr(8, 2),
 					left: '185mm',
-					top: '23mm',
-					width: '5mm',
+					top: '22mm',
+					width: '10mm',
 					height: '6mm',
 					style: {
 						FontSize: 15
@@ -492,18 +492,18 @@ jQuery(function($) {
 				},
 
 				from_org_phone: {
-					text: the_bill.from_org.phone,
+                                                  text: the_bill.from_org.name + ":"+the_bill.from_org.phone,
 					left: '90mm',
 					top: '98mm',
-					width: '30mm',
+					width: '50mm',
 					height: '6mm'
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org ? the_bill.to_org.phone : the_bill.transit_org.phone,
-					left: '130mm',
+                                                text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
+					left: '148mm',
 					top: '98mm',
-					width: '30mm',
+					width: '50mm',
 					height: '6mm'
 				}
 
