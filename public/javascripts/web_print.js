@@ -500,7 +500,7 @@ jQuery(function($) {
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org ? the_bill.to_org.phone : the_bill.transit_org.phone),
+					text: the_bill.to_org ? the_bill.to_org.phone : the_bill.transit_org.phone,
 					left: '130mm',
 					top: '98mm',
 					width: '30mm',
