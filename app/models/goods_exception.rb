@@ -48,10 +48,12 @@ class GoodsException < ActiveRecord::Base
   end
   #发货地赔付金额
   def from_fee
-    self.goods_exception_identify.try(:from_org_fee)
+    fee = self.goods_exception_identify.try(:from_org_fee)
+    fee.nil? ?  0 : fee
   end
   def to_fee
-    self.goods_exception_identify.try(:to_org_fee)
+    fee = self.goods_exception_identify.try(:to_org_fee)
+    fee.nil? ?  0 : fee
   end
   #到货地赔付金额
   private
