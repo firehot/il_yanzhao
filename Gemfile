@@ -27,6 +27,8 @@ gem "meta_search"
 #js compressor
 gem 'jammit'
 gem 'yui-compressor'
+gem "default_value_for", "~> 1.0.4"
+gem "jquery_notify_bar", "~> 0.0.4"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
