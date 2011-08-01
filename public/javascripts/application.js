@@ -533,7 +533,7 @@ jQuery(function($) {
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
 		var sum_info = $('#bills_table').data('sum');
-                var ids = $('#bills_table').data('ids');
+		var ids = $('#bills_table').data('ids');
 		$('#refound_sum_goods_fee').val(sum_info.sum_goods_fee);
 		$('#refound_sum_carrying_fee').val(sum_info.sum_carrying_fee_th);
 		$('#refound_sum_transit_carrying_fee').val(sum_info.sum_transit_carrying_fee);
@@ -750,28 +750,41 @@ jQuery(function($) {
 	});
 
 	//未提货报表,处理各种票据列表底色
-	$('.rpt_no_delivery tr.white-bill').css({
-		backgroundColor: 'white',
-		color: '#000'
+	$('.rpt_no_delivery tr.white-bill').livequery(function() {
+		$(this).css({
+			backgroundColor: 'white',
+			color: '#000'
+		});
 	});
-	$('.rpt_no_delivery tr.blue-bill').css({
-		backgroundColor: 'blue',
-		color: '#fff'
+	$('.rpt_no_delivery tr.blue-bill').livequery(function() {
+		$(this).css({
+			backgroundColor: 'blue',
+			color: '#fff'
+		});
 	});
-	$('.rpt_no_delivery tr.green-bill').css({
-		backgroundColor: 'green',
-		color: '#fff'
+	$('.rpt_no_delivery tr.green-bill').livequery(function() {
+		$(this).css({
+			backgroundColor: 'green',
+			color: '#fff'
+		});
 	});
-	$('.rpt_no_delivery tr.yellow-bill').css({
-		backgroundColor: 'yellow'
+	$('.rpt_no_delivery tr.yellow-bill').livequery(function() {
+		$(this).css({
+			backgroundColor: 'yellow'
+
+		});
 	});
-	$('.rpt_no_delivery tr.red-bill').css({
-		backgroundColor: 'red',
-		color: '#fff'
+	$('.rpt_no_delivery tr.red-bill').livequery(function() {
+		$(this).css({
+			backgroundColor: 'red',
+			color: '#fff'
+		});
 	});
-	$('.rpt_no_delivery tr.black-bill').css({
-		backgroundColor: 'black',
-		color: '#fff'
+	$('.rpt_no_delivery tr.black-bill').livequery(function() {
+		$(this).css({
+			backgroundColor: 'black',
+			color: '#fff'
+		});
 	});
 	$('.turnover_chart').visualize({
 		width: '850px'
@@ -802,7 +815,6 @@ jQuery(function($) {
 	$('form.update_carrying_fee #carrying_fee,form.update_goods_fee #goods_fee').livequery(function() {
 		$(this).attr('readonly', false);
 	});
-
 
 	$('.update_all').livequery(function() {
 		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);

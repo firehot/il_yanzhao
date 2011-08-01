@@ -4,7 +4,7 @@ class Org < ActiveRecord::Base
   default_scope order("order_by ASC")
   validates_presence_of :name
   acts_as_tree :order => :name
-  before_save :gen_py
+  before_create :gen_py
   #客户级别设置
   has_many :customer_level_configs
   has_many :user_orgs
