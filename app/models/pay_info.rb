@@ -15,7 +15,9 @@ class PayInfo < ActiveRecord::Base
     end
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   #合计货款
   def sum_goods_fee
     self.carrying_bills.sum(:goods_fee)

@@ -15,7 +15,9 @@ class DistributionList < ActiveRecord::Base
     end
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   #导出到csv
   def to_csv
     ret = ["分货日期:",self.bill_date,"机构:",self.org.name].export_line_csv(true)

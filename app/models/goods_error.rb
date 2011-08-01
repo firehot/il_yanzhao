@@ -18,7 +18,9 @@ class GoodsError < ActiveRecord::Base
   end
 
   #缺省值设定应定义到state_machine之后
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 
   EXCEPT_SHORTAGE = "SH"      #短缺
   EXCEPT_OVERFLOW = "OF"      #多货

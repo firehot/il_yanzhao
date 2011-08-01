@@ -14,7 +14,9 @@ class DeliverInfo < ActiveRecord::Base
       transition :billed =>:deliveried
     end
   end
-  default_value_for :deliver_date,Date.today
+  default_value_for :deliver_date do
+    Date.today
+  end
   #合计应收运费
   def sum_carrying_fee
     self.carrying_bills.to_a.sum(&:carrying_fee_th)

@@ -3,7 +3,9 @@ class GexceptionAuthorizeInfo < ActiveRecord::Base
   belongs_to :user
   belongs_to :goods_exception
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   validates_presence_of :goods_exception_id,:bill_date,:op_type
   validates_numericality_of :compensation_fee
 

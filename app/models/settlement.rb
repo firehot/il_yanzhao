@@ -29,7 +29,9 @@ class Settlement < ActiveRecord::Base
 
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   #结算员
   def user_name
     self.user.try(:username)

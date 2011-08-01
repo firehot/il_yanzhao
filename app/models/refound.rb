@@ -21,7 +21,9 @@ class Refound < ActiveRecord::Base
     end
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 
   def sum_fee
     self.sum_goods_fee + self.sum_carrying_fee - self.sum_transit_hand_fee - self.sum_transit_carrying_fee

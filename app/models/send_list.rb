@@ -9,5 +9,7 @@ class SendList < ActiveRecord::Base
 
   validates_presence_of :org_id,:bill_date
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 end

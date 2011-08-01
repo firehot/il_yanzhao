@@ -19,5 +19,7 @@ class TransitInfo < ActiveRecord::Base
       transition :billed =>:transited
     end
   end
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 end

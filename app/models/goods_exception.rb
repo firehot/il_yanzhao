@@ -26,7 +26,9 @@ class GoodsException < ActiveRecord::Base
   end
 
   #FIXME 缺省值设定应定义到state_machine之后
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 
   #EXCEPT_LACK= "LA"           #少货
   EXCEPT_SHORTAGE = "SH"      #短缺

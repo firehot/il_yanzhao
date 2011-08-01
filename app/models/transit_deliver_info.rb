@@ -18,5 +18,7 @@ class TransitDeliverInfo < ActiveRecord::Base
     end
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 end

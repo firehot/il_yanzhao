@@ -179,7 +179,9 @@ class CarryingBill < ActiveRecord::Base
       end
     end
     #字段默认值
-    default_value_for :bill_date,Date.today
+    default_value_for :bill_date do
+      Date.today
+    end
     default_value_for :goods_num,1
     default_value_for :insured_rate,0.003#IlConfig.insured_rate
     default_value_for :from_short_carrying_fee,0

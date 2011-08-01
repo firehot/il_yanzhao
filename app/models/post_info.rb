@@ -16,7 +16,9 @@ class PostInfo < ActiveRecord::Base
     end
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   #以下定义虚拟属性
   #从货款扣运费合计
   def sum_k_carrying_fee

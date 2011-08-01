@@ -7,6 +7,8 @@ class SendListBack < ActiveRecord::Base
   has_many :send_list_lines
   has_many :carrying_bills,:through => :send_list_lines
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   validates_presence_of :org_id,:sender_id
 end

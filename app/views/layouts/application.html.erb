@@ -74,4 +74,6 @@
 <!--[if lte IE 6]>
 <%= include_javascripts :il_ie6_javascripts %>
 <![endif]-->
-<%=notify_bar :flash => [:notice,:success,:error,:alert],:delay => 4500,:animation_speed => "slow" %>
+<%flash.each do |key, msg| %>
+  <%= jquery_notify_bar(key, msg, :cls => :success, :animation_speed => 'normal', :delay => 2000) %>
+<%end %>

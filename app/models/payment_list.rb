@@ -6,7 +6,9 @@ class PaymentList < ActiveRecord::Base
 
   belongs_to :user
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
   #导出到csv
   def to_csv
     ret_array = ["分理处/分公司:",self.org.name,"清单日期:",self.bill_date,"结算员:",self.user.try(:username)]

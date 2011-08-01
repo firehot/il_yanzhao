@@ -15,7 +15,9 @@ class Remittance < ActiveRecord::Base
     end
   end
 
-  default_value_for :bill_date,Date.today
+  default_value_for :bill_date do
+    Date.today
+  end
 
   #剩余未汇金额
   def rest_fee
