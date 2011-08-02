@@ -5,5 +5,10 @@ jQuery(function($) {
 			cursor: 'pointer'
 		});
 	});
+
+	/*使jquery notify bar 固定显示在顶部*/
+	$('.jquery-notify-bar').livequery(function() {
+		$(this).addClass('fixed-top');
+	});
 });
 

@@ -180,11 +180,23 @@ jQuery(function($) {
 	$('form.carrying_bill').live("change", calculate_carrying_bill);
 	$('form.carrying_bill').livequery(calculate_carrying_bill);
 
+	//运单修改时,判断权限
+	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
+		$('#carrying_bill_form :input').attr('readonly', true);
+		$('#carrying_bill_form select').attr('disabled', true);
+	});
+	$('form.update_carrying_fee #carrying_fee,form.update_goods_fee #goods_fee').livequery(function() {
+		$(this).attr('readonly', false);
+	});
+
+	$('form.update_all').livequery(function() {
+		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
+	});
+
 	//根据不同的运单录入界面,隐藏部分字段
 	$('form.computer_bill').livequery(function() {
 		$('#computer_bill_bill_no').attr('readonly', true);
 		$('#computer_bill_goods_no').attr('readonly', true);
-		$('#computer_bill_goods_no').val('');
 	});
 	$('form.hand_bill').livequery(function() {
 		$('#hand_bill_bill_no').attr('readonly', false);
@@ -196,7 +208,6 @@ jQuery(function($) {
 	$('form.transit_bill').livequery(function() {
 		$('#transit_bill_bill_no').attr('readonly', true);
 		$('#transit_bill_goods_no').attr('readonly', true);
-		$('#transit_bill_goods_no').val('');
 
 	});
 	$('form.hand_transit_bill').livequery(function() {
@@ -209,7 +220,6 @@ jQuery(function($) {
 	$('form.return_bill').livequery(function() {
 		$(this).find('input').attr('readonly', true);
 		$('#return_bill_note').attr('readonly', false);
-		$('#return_bill_goods_no').val('');
 
 	});
 	//设定只读字段的背景色
@@ -809,18 +819,6 @@ jQuery(function($) {
 	$('[data-hideFields]').livequery(function() {
 		$($(this).data('hideFields')).hide();
 
-	});
-	//运单修改时,判断权限
-	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
-		$('#carrying_bill_form :input').attr('readonly', true);
-		$('#carrying_bill_form select').attr('disabled', true);
-	});
-	$('form.update_carrying_fee #carrying_fee,form.update_goods_fee #goods_fee').livequery(function() {
-		$(this).attr('readonly', false);
-	});
-
-	$('.update_all').livequery(function() {
-		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
 	});
 
 	$('.edit_lock_time').livequery(function() {

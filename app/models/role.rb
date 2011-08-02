@@ -4,7 +4,7 @@ class Role < ActiveRecord::Base
   validates_presence_of :name
   has_many :user_roles
   has_many :users,:through => :user_roles,:uniq => true
-  has_many :role_system_function_operates
+  has_many :role_system_function_operates,:include => :system_function_operate
   #is_select标志为true的role_system_function_operates
   has_many :selected_rsfos,:class_name => "RoleSystemFunctionOperate",:conditions => {:is_select => true}
   has_many :selected_sfos,:class_name => "SystemFunctionOperate",:through => :selected_rsfos,:uniq => true,:source =>:system_function_operate,:include => :system_function
@@ -22,9 +22,6 @@ class Role < ActiveRecord::Base
       end
       self.all_role_sfos = self.role_system_function_operates
     end
-    #SystemFunctionOperate.where(:is_active => true).order("system_function_id").each do |sf_operate|
-    #   self.system_function_operates << sf_operate unless self.system_function_operates.include?(sf_operate)
-    # end
     self.all_role_sfos
   end
   #根据系统功能得到对应的role_system_function_operate

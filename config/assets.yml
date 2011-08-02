@@ -45,3 +45,4 @@ stylesheets:
 
   il_ie_stylesheets:
     - public/stylesheets/formtastic_ie6fixes.css
+    - public/stylesheets/ie6fixes.css

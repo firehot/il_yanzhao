@@ -55,33 +55,33 @@ class Ability
     can :edit_password,User
     #可更新自身密码
     can :update_password,User
-    set_bill_update_permission
+    set_bill_update_permission(ability_org_ids)
 
     #管理员可操作所有
     #can :manage,:all if user.is_admin?
   end
   #定义运单修改权限
-  def set_bill_update_permission
+  def set_bill_update_permission(ability_org_ids)
     #可修改20%运费
     if can? :update_carrying_fee_20,CarryingBill
       #重新设置运单不可修改
       cannot :update_carrying_fee_20,CarryingBill
       can :update_carrying_fee_20,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.2 and ["billed","loaded","reached","shipped"].include?(bill.state)
+        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.2 and ["billed","loaded","reached","shipped"].include?(bill.state) and ability_org_ids.include?(bill.from_org_id)
       end
     end
     #可修改50%运费
     if can? :update_carrying_fee_50,CarryingBill
       cannot :update_carrying_fee_50,CarryingBill
       can :update_carrying_fee_50,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.5 and ["billed","loaded","reached","shipped"].include?(bill.state)
+        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.5 and ["billed","loaded","reached","shipped"].include?(bill.state) and ability_org_ids.include?(bill.from_org_id)
       end
     end
     #可修改100%运费
     if can? :update_carrying_fee_100,CarryingBill
       cannot :update_carrying_fee_100,CarryingBill
       can :update_carrying_fee_100,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee) >= 0 and ["billed","loaded","reached","shipped"].include?(bill.state)
+        (bill.original_carrying_fee - bill.carrying_fee) >= 0 and ["billed","loaded","reached","shipped"].include?(bill.state) and ability_org_ids.include?(bill.from_org_id)
       end
     end
   end
