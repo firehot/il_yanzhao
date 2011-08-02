@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 #解决windows下mysql hanging问题
-gem 'ghazel-mysql2'
-#gem 'mysql2'
+#gem 'ghazel-mysql2'
+gem 'mysql2'
 gem "will_paginate", "~> 3.0.pre2"
 gem "devise",'1.1.5'
 gem "cancan",'1.5.0'
@@ -57,7 +57,7 @@ group :development do
   gem 'jquery-rails'
   gem "bullet"
   #在unix、linux运行环境下不需要
-  gem "win32-open3"
+  #gem "win32-open3"
 end
 group :development, :test do
   gem 'rspec-rails','~>2.4.1'
