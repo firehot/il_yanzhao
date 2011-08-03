@@ -48,19 +48,20 @@ class Ability
     #结算员交款清单-中转交款确认
     alias_action :read,:to => :direct_refunded_confirmed
     #批量提货
-    alias_action :read,:create => :batch_deliver #批量提货
-    alias_action :read,:create => :print_deliver #打印提货
+    alias_action :read,:create,:to => :batch_deliver #批量提货
+    alias_action :read,:create,:to => :print_deliver #打印提货
 
     #理赔
     alias_action :read,:update,:to => :show_authorize #授权核销
     alias_action :read,:update,:to => :show_claim
-    alias_action :read,:update,:to =>:show_identify
+    alias_action :read,:update,:to => :show_identify
 
     #运费及货款修改
-    alias_action :read,:update => :update_carrying_fee_20
-    alias_action :read,:update => :update_carrying_fee_50
-    alias_action :read,:update => :update_carrying_fee_100
-    alias_action :read,:update => :update_goods_fee
+    alias_action :read,:update,:to => :update_carrying_fee_20
+    alias_action :read,:update,:to => :update_carrying_fee_50
+    alias_action :read,:update,:to => :update_carrying_fee_100
+    alias_action :read,:update,:to => :update_goods_fee
+    alias_action :read,:update,:to => :update_all
 
 
     #设置默认权限,可以修改/新建/删除,就具备查看权限
@@ -69,13 +70,24 @@ class Ability
     alias_action :read ,:to => :destroy
     alias_action :read ,:to => :reset
     alias_action :read ,:to => :print
-    alias_action :read,:to => :invalidate #运单作废
-
-    #运单更新
-    alias_action :read,:update,:to => :update_all
+    alias_action :read ,:to => :invalidate #运单作废
   end
   #设置当前用户权限
   def set_user_powers(user)
+    #设置read条件
+    SystemFunctionOperate.all.each do |sfo|
+      f_obj = sfo.function_obj
+      the_model_class = f_obj[:subject].constantize
+      conditions = f_obj[:conditions]
+      if f_obj[:action].eql?(:read)
+        if conditions.present?
+          can :read_with_conditions,the_model_class ,eval(f_obj[:conditions])
+        else
+          can :read_with_conditions,the_model_class
+        end
+      end
+    end
+
     if user.is_admin?
       SystemFunctionOperate.all.each do |sfo|
         f_obj = sfo.function_obj
@@ -99,10 +111,12 @@ class Ability
     end
     #设定用户对运单的操作权限
     ability_org_ids = user.current_ability_org_ids
-    #定义运单的读权限
-    can :read,CarryingBill,['from_org_id in (?) or transit_org_id in (?) or to_org_id in (?)',ability_org_ids,ability_org_ids,ability_org_ids] do |bill|
+    #定义运单的读权限,设定alias_action时,conditions 会丢失
+    #read_with_conditoins 只在accessible_by中使用
+    can :read_with_conditions,CarryingBill,['from_org_id in (?) or transit_org_id in (?) or to_org_id in (?)',ability_org_ids,ability_org_ids,ability_org_ids] do |bill|
       ability_org_ids.include?(bill.from_org_id) or ability_org_ids.include?(bill.to_org_id) or ability_org_ids.include?(bill.transit_org_id)
     end
+    can :read,CarryingBill
     #录入票据时,默认可读取转账客户信息
     can :read,Vip
 

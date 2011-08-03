@@ -98,7 +98,7 @@ sf_hash = {
   :create => {:title => "新建"},
   :export => {:title => "导出"},
   :ship => {:title => "发车",:conditions =>"{:from_org_id => user.current_ability_org_ids,:state => 'loaded'}"},
-  :destroy => {:title => "删除",:conditions =>"{:from_org_id => user.current_ability_org_ids }"}
+  :destroy => {:title => "删除",:conditions =>"{:from_org_id => user.current_ability_org_ids}"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)

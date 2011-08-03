@@ -38,12 +38,28 @@ class CarryingBillsController < BaseController
   #重写修改方法
   def update
     bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
+    original_bill = bill.clone  #保存原始运单信息
     bill.attributes=params[resource_class.model_name.underscore.to_sym]
-    authorize! :update_all,bill if can? :update_all,bill
-    authorize! :update_goods_fee,bill if can? :update_goods_fee,bill
-    authorize! :update_carrying_fee_20,bill if can? :update_carrying_fee_20, bill
-    authorize! :update_carrying_fee_50,bill if can? :update_carrying_fee_50, bill
-    authorize! :update_carrying_fee_100,bill if can? :update_carrying_fee_100, bill
+    logger.debug "original_carrying_fee = #{bill.original_carrying_fee}"
+    logger.debug "carrying_fee = #{bill.carrying_fee}"
+    authorize! :update_goods_fee,bill,:message => "你无权修改货款!" if can? :update_goods_fee,original_bill
+    logger.debug "pass update_goods_fee authorize"
+    if can? :update_all,original_bill
+      authorize! :update_all,bill,:message => "你无权修改该票据!"
+      logger.debug "pass update_goods_fee authorize"
+
+    elsif can? :update_carrying_fee_100,original_bill
+      authorize! :update_carrying_fee_100,bill,:message => "你减免运费金额超过100%!"
+
+      logger.debug "pass update_carrying_fee_100 authorize"
+    elsif can? :update_carrying_fee_50,original_bill
+      authorize! :update_carrying_fee_50,bill,:message => "你运费金额超过50%!"
+
+      logger.debug "pass update_carrying_fee_50 authorize"
+    elsif can? :update_carrying_fee_20,original_bill
+      authorize! :update_carrying_fee_20, bill,:message => "你减免运费金额超过20%!"
+      logger.debug "pass update_carrying_fee_20 authorize"
+    end
     update!
   end
 
@@ -86,7 +102,7 @@ class CarryingBillsController < BaseController
   end
   protected
   def collection
-    @search = end_of_association_chain.accessible_by(current_ability).search(params[:search])
+    @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").with_association.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end

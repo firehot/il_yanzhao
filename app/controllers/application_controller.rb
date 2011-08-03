@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "您无权操作此功能!"
-    redirect_to "/403.html"
+    respond_to do |format|
+      format.html {redirect_to "/403.html"}
+      format.js {render :js => "$.notifyBar({html: '#{exception.message}',delay: 3000,animationSpeed: 'normal',cls: 'error'});"}
+    end
   end
 end

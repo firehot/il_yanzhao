@@ -8,7 +8,7 @@ class BaseController < InheritedResources::Base
   respond_to :html,:xml,:js,:json,:csv
   protected
   def collection
-    @search = end_of_association_chain.accessible_by(current_ability).search(params[:search])
+    @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
   private
