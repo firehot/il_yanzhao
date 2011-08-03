@@ -68,7 +68,7 @@
         </li>
 
       <%end%>
-      <%if can? :re_print,resource%>
+      <%if can? :print,resource%>
         <li>
           <%= link_to_function image_tag("printer.png",:alt => "打印运单"), "",:class =>"tipsy print_carrying_bill btn_print",:title => "打印运单","data-print" => "#{resource.to_print_json}" %>
         </li>
