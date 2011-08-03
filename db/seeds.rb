@@ -17,7 +17,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'can?(:create,ComputerBill) ? new_computer_bill_path : collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'can?(:create,ComputerBill) ? new_computer_bill_path : computer_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :function => {
   #查看相关运单,其他机构发往当前用户机构的运单
   :create => {:title => "新建"},
@@ -36,7 +36,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
   :subject => subject,
-  :default_action => 'can?(:create,HandBill)? new_hand_bill_path : collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'can?(:create,HandBill)? new_hand_bill_path : hand_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :function => {
   :create => {:title => "新建"},
   :update_all =>{:title =>"修改",:conditions =>"{:state => ['loaded','billed'],:from_org_id => user.current_ability_org_ids}"},
@@ -53,7 +53,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
 
-  :default_action => 'can?(:create,TransitBill)? new_transit_bill_path : collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'can?(:create,TransitBill)? new_transit_bill_path : transit_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
@@ -73,7 +73,7 @@ sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
 
-  :default_action => 'can?(:create,HandTransitBill)? new_hand_transit_bill_path : collection_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
+  :default_action => 'can?(:create,HandTransitBill)? new_hand_transit_bill_path : hand_transit_bills_path("search[from_org_id_in]" => current_user.current_ability_org_ids,"search[completed_eq]" => 0,"search[bill_date_eq]" => Date.today,:sort => "carrying_bills.bill_date desc,goods_no",:direction => "asc")',
   :subject => subject,
   :function => {
   :create => {:title => "新建"},
