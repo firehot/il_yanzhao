@@ -192,7 +192,7 @@ subject = "ReturnBill"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'before_new_return_bills_path',
+  :default_action => 'can?(:create,ReturnBill) ? before_new_return_bills_path : return_bills_path',
   :subject => subject,
   :function => {
   :read =>{:title => "查看",:conditions =>"{:from_org_id => user.current_ability_org_ids}"},
