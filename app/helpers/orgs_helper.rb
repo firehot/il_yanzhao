@@ -8,8 +8,11 @@ module OrgsHelper
     Branch.where(:is_active => true).all.map {|b| ["#{b.name}(#{b.py})",b.id]}
   end
   #中转中心
+  #中转设为两个中转机构
+  #中转部(分理处)
+  #中转部(分公司)
   def yards_for_select
-    Org.where(:is_active => true,:is_yard => true).all.map {|b| ["#{b.name}(#{b.py})",b.id]}
+    get_current_yards.map {|b| ["#{b.name}(#{b.py})",b.id]}
   end
   #根据当前登录用户的选择机构
   def current_org_for_select
@@ -43,7 +46,7 @@ module OrgsHelper
       exclude_ids << parent_id if parent_id.present?
       exclude_ids += Org.where(:parent_id => parent_id).collect(&:id) if parent_id.present?
       exclude_ids += Org.where(:parent_id => default_org_id).collect(&:id)
-      yards_ids = Org.where(:is_active => true,:is_yard => true).collect(&:id)
+      yards_ids = get_current_yards.collect(&:id)
       exclude_ids -= yards_ids if with_yard
       exclude_ids.uniq!
       ret_orgs = Branch.search(:is_active_eq => true,:id_ni => exclude_ids).all
@@ -55,12 +58,26 @@ module OrgsHelper
         ret_orgs += summary_children
       end
       if with_yard
-        yards = Org.where(:is_active => true,:is_yard => true)
-        ret_orgs += yards
+        ret_orgs += get_current_yards
       end
       ret_orgs.uniq!
       ret_orgs.compact!
     end
     ret_orgs.map {|b| ["#{b.name}(#{b.py})",b.id]}
+  end
+  private
+  #根据登录情况得到可以显示的中转货厂
+  def get_current_yards
+    yards = Org.where(:is_active => true,:is_yard => true)
+    default_org = current_user.default_org
+    if default_org.in_summary?
+      #当前是总部的某个分理处登录的
+      yards.delete_if {|yard| yard.parent_id == default_org.parent_id} if default_org.parent_id.present?
+      #当前是总部登录的
+      yards.delete_if {|yard| yard.parent_id == default_org.id} if default_org.parent_id.nil?
+    else
+      yards.delete_if {|yard| yard.parent_id.nil? }
+    end
+    yards
   end
 end
