@@ -1,6 +1,6 @@
 <tr>
   <td style='padding-left : <%="#{@cur_level*30}px"%>;'>
-    <% if can? :update,resource_class %>
+    <% if can? :update_all,resource_class %>
       <%=link_to org.name,edit_org_path(org,:format => :js),:class => 'fancybox'%>
     <%else%>
       <%=org.name%>
@@ -13,8 +13,8 @@
   <td><%=org.location %></td>
   <td class='text-center'>
     <%lock_input_time = org.lock_input_time.blank? ? "未设置" : org.lock_input_time %>
-    <%if can? :edit_lock_time,resource_class %>
-      <%=link_to lock_input_time,edit_lock_time_org_path(org,:format => :js),:class => 'fancybox'%>
+    <%if can? :only_edit_lock_time,resource_class %>
+      <%=link_to lock_input_time,edit_org_path(org,:format => :js),:class => 'fancybox'%>
     <%else%>
       <%=lock_input_time%>
     <%end%>

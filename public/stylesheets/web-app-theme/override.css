@@ -25,7 +25,13 @@
   display : block;
   padding-left : 26px;
 }
-.
+#menu_bar .navigation {background : #fff;}
+#menu_bar .menu-group h3 {
+  background : #7A97B7;
+  color : #FFF;
+  font-weight : bold;
+  cursor : pointer;
+}
 /*柱状图显示*/
 .visualize{
   margin : 10px 5px 5px 10px;

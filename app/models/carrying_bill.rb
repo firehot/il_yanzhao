@@ -174,7 +174,7 @@ class CarryingBill < ActiveRecord::Base
       event :write_off  do
         transition :draft => :offed
       end
-      state :off do
+      state :offed do
         validates_presence_of :short_fee_info_id
       end
     end

@@ -157,7 +157,7 @@ jQuery(function($) {
 		if ($(this).attr('href') == '') return false;
 
 	});
-
+	/*
 	//组织机构列表
 	$('#role_system_functions_list').accordion({
 		collapsible: true,
@@ -165,6 +165,7 @@ jQuery(function($) {
 		animated: false,
 		active: false
 	});
+        */
 	//根据客户编号查询查询客户信息
 	var search_customer_by_code = function() {
 		var code = $(this).val();
@@ -248,14 +249,13 @@ jQuery(function($) {
 	});
 
 	//初始化左侧菜单树
-	var cookieName = 'il_menubar';
-	var get_current_menu = function() {
+	var cookieName = 'il_cur_menu_group';
+	var get_current_menu_group = function() {
 		var cookie_menu = $.cookies.get(cookieName);
-		var cur_menu = 0;
-		if (cookie_menu) cur_menu = parseInt(cookie_menu.substr(12));
-		return cur_menu;
+		return cookie_menu;
 	};
 
+	/*
 	$('#menu_bar').accordion({
 		active: get_current_menu.apply(),
 		collapsible: true,
@@ -265,6 +265,21 @@ jQuery(function($) {
 			$.cookies.set(cookieName, "cur_il_menu_" + $(this).find('h3').index(ui.newHeader[0]));
 		}
 	});
+        */
+	/*当前menu_group设置*/
+	var cur_menu_group = get_current_menu_group();
+	if (cur_menu_group)
+          $('#' + cur_menu_group).next('.navigation:first').show();
+	/*menu_bar的点击事件*/
+	$('#menu_bar .group_name').click(function() {
+		var cur_el = $(this).next('.navigation:first')[0];
+		$('#menu_bar .navigation').each(function(index, el) {
+			if (el == cur_el) $(el).toggle();
+			else $(el).hide();
+		});
+		$.cookies.set(cookieName, $(this).attr('id'));
+	});
+
 	$('#menu_bar .navigation a').click(function() {
 		$.fancybox.showActivity();
 	});
@@ -821,13 +836,8 @@ jQuery(function($) {
 
 	});
 
-	$('.edit_lock_time').livequery(function() {
-		$(this).find(':input').attr('readonly', true);
-		$(this).find('select').attr('disabled', true);
-		$(this).find('[name*="lock_time"]').attr('readonly', false);
-	});
 	//修改org的录单限制时间
-	$('.only_edit_lock_time').livequery(function() {
+	$('form.only_edit_lock_time').livequery(function() {
 		$('#org_form :input[type="text"],#org_form :input[type="checkbox"],#org_form select').attr('readonly', true);
 		$('#org_form [name*="lock_input_time"]').attr('readonly', false);
 	});

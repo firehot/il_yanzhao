@@ -62,6 +62,8 @@ class Ability
     alias_action :read,:update,:to => :update_carrying_fee_100
     alias_action :read,:update,:to => :update_goods_fee
     alias_action :read,:update,:to => :update_all
+    #修改录单限制时间
+    alias_action :read,:update,:to => :only_edit_lock_time
 
 
     #设置默认权限,可以修改/新建/删除,就具备查看权限
@@ -118,7 +120,7 @@ class Ability
     end
     can :read,CarryingBill
     #默认可查询运费
-    can :sample_search,CarryingBill
+    can :simple_search,CarryingBill
     #录入票据时,默认可读取转账客户信息
     can :read,Vip
 
@@ -137,21 +139,21 @@ class Ability
       #重新设置运单不可修改
       cannot :update_carrying_fee_20,CarryingBill
       can :update_carrying_fee_20,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.2 and ability_org_ids.include?(bill.from_org_id)
+        (bill.original_carrying_fee > 0) ? ((bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.2 and ability_org_ids.include?(bill.from_org_id) and ['billed','loaded','shipped','reached','distributed'].include?(bill.state)) : true
       end
     end
     #可修改50%运费
     if can? :update_carrying_fee_50,CarryingBill
       cannot :update_carrying_fee_50,CarryingBill
       can :update_carrying_fee_50,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.5 and ability_org_ids.include?(bill.from_org_id)
+        (bill.original_carrying_fee > 0) ? ((bill.original_carrying_fee - bill.carrying_fee)/bill.original_carrying_fee <= 0.5 and ability_org_ids.include?(bill.from_org_id) and ['billed','loaded','shipped','reached','distributed'].include?(bill.state)) : true
       end
     end
     #可修改100%运费
     if can? :update_carrying_fee_100,CarryingBill
       cannot :update_carrying_fee_100,CarryingBill
       can :update_carrying_fee_100,CarryingBill do |bill|
-        (bill.original_carrying_fee - bill.carrying_fee) >= 0 and ability_org_ids.include?(bill.from_org_id)
+        ability_org_ids.include?(bill.from_org_id) and ['billed','loaded','shipped','reached','distributed'].include?(bill.state)
       end
     end
   end

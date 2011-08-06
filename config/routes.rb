@@ -203,9 +203,7 @@ IlYanzhao::Application.routes.draw do
     put :invalidate,:on => :member
   end
 
-  resources :orgs do
-    get :edit_lock_time,:on => :member
-  end
+  resources :orgs
 
   resources :branches
   resources :departments

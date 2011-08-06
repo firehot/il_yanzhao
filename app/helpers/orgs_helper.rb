@@ -80,4 +80,12 @@ module OrgsHelper
     end
     yards
   end
+  #得到修改权限
+  def get_org_edit_permission_class
+    ret_class =""
+    ret_class="only_edit_lock_time" if can? :only_edit_lock_time,Org
+    ret_class="" if can? :update_all,Org
+    ret_class
+
+  end
 end

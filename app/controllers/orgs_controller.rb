@@ -14,9 +14,4 @@ class OrgsController < BaseController
     get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
     render :partial => "form"
   end
-  #GET orgs/:id/edit_lock_time
-  def edit_lock_time
-    get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
-    render :partial => "form",:locals => {:only_edit_lock_time => 'only_edit_lock_time'}
-  end
 end

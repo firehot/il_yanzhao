@@ -10,6 +10,11 @@ module CarryingBillsHelper
   def states_for_select
     CarryingBill.state_machine.states.collect{|state| [state.human_name,state.value] }
   end
+  #短途运费状态
+  def short_fee_states_for_select
+    CarryingBill.state_machines[:short_fee_state].states.collect{|state| [state.human_name,state.value] }
+  end
+
   #得到查询对象的id数组
   def search_ids
     @search.select("carrying_bills.id,carrying_bills.from_org_id").map {|bill| bill.id }.to_json

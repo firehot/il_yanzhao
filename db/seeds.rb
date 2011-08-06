@@ -372,7 +372,8 @@ subject = "Settlement"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'can?(:create,Settlement) ? new_settlement_path : settlements_path',
+  #默认不显示已确认的数据
+  :default_action => 'can?(:create,Settlement) ? new_settlement_path : settlements_path("search[state_eq]" => "settlemented")',
   :subject => subject,
   :subject => subject,
   :function => {
@@ -542,9 +543,9 @@ sf_hash = {
   :function => {
   :read =>{:title => "查看"} ,
   :create => {:title => "新建"},
-  :update =>{:title =>"修改"},
+  :update_all =>{:title =>"修改"},
   :destroy => {:title => "删除"},
-  :edit_lock_time => {:title => "修改录单截至时间"}
+  :only_edit_lock_time => {:title => "修改录单截至时间"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)

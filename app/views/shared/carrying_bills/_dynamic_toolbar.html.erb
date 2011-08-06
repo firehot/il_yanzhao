@@ -42,9 +42,9 @@
       <%end%>
     <%end%>
     <%if params[:action] == "show"%>
-        <li>
-          <%= link_to image_tag("load.png",:alt => "刷新当前记录"),  resource,:title => "刷新当前记录",:class => "tipsy btn_modify" %>
-        </li>
+      <li>
+        <%= link_to image_tag("load.png",:alt => "刷新当前记录"),  resource,:title => "刷新当前记录",:class => "tipsy btn_modify" %>
+      </li>
 
       <%if can?(:update_all,resource) or can?(:update_goods_fee,resource) or can?(:update_carrying_fee_20,resource) or can?(:update_carrying_fee_50,resource) or can?(:update_carrying_fee_100,resource)%>
         <li>

@@ -15,13 +15,12 @@ class Settlement < ActiveRecord::Base
     end
 
     #直接返款确认,中转部门使用
-    event :direct_refunded_confirmed do
-      transition :settlemented =>:refunded_confirmed
-    end
-    after_transition :on => :direct_refunded_confirmed do |settlement,transition|
-      settlement.carrying_bills.each {|bill| bill.direct_refunded_confirmed}
-    end
-
+#    event :direct_refunded_confirmed do
+#      transition :settlemented =>:refunded_confirmed
+#    end
+#    after_transition :on => :direct_refunded_confirmed do |settlement,transition|
+#      settlement.carrying_bills.each {|bill| bill.direct_refunded_confirmed}
+#    end
     #财务收款确认
     event :confirm do
       transition :settlemented =>:confirmed

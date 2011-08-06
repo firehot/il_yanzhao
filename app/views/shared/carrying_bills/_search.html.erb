@@ -24,6 +24,9 @@
 
     <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types,:input_html =>{:class => "ufd-select"} %>
     <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select,:input_html =>{:class => "ufd-select"}  %>
+    <%= f.input :short_fee_state_eq,:label => "短途费状态",:as => :select,:collection => short_fee_states_for_select,:input_html =>{:class => "ufd-select"}  %>
+    <%= f.input :from_short_carrying_fee_gte,:label => "仅查询有发货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
+    <%= f.input :to_short_carrying_fee_gte,:label => "仅查询有到货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>
   <% end %>
   <%=f.buttons do %>
