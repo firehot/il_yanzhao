@@ -561,7 +561,8 @@ sf_hash = {
   :read =>{:title => "查看"} ,
   :create => {:title => "新建"},
   :update =>{:title =>"修改"},
-  :destroy => {:title => "删除"}
+  :destroy => {:title => "删除"},
+  :reset_usb_pin => {:title => "重设usb key"}
 }
 }
 SystemFunction.create_by_hash(sf_hash)
