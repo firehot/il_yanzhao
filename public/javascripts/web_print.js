@@ -398,7 +398,7 @@ jQuery(function($) {
 					height: '7mm'
 				},
 				th_amount_chinese: {
-					text: $.num2chinese(parseFloat(the_bill.carrying_fee_total) + parseFloat(the_bill.goods_fee)),
+					text: $.num2chinese((parseFloat(the_bill.carrying_fee_total) + parseFloat(the_bill.goods_fee)).toString()),
 					left: '110mm',
 					top: '45mm',
 					width: '62mm',
