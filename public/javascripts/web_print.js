@@ -408,14 +408,14 @@ jQuery(function($) {
 					text: parseFloat(the_bill.carrying_fee_total) + parseFloat(the_bill.goods_fee),
 					left: '177mm',
 					top: '45mm',
-					width: '15mm',
+					width: '20mm',
 					height: '6mm'
 				},
 				insured_amount: {
 					text: the_bill.insured_amount,
 					left: '130mm',
 					top: '51mm',
-					width: '15mm',
+					width: '20mm',
 					height: '7mm'
 				},
 
@@ -423,21 +423,21 @@ jQuery(function($) {
 					text: the_bill.insured_fee,
 					left: '177mm',
 					top: '51mm',
-					width: '15mm',
+					width: '20mm',
 					height: '6mm'
 				},
 				from_short_carrying_fee: {
 					text: the_bill.from_short_carrying_fee,
 					left: '39mm',
 					top: '58mm',
-					width: '9mm',
+					width: '15mm',
 					height: '6mm'
 				},
 				to_short_carrying_fee: {
 					text: the_bill.to_short_carrying_fee,
 					left: '70mm',
 					top: '58mm',
-					width: '13mm',
+					width: '15mm',
 					height: '6mm'
 				},
 
@@ -452,7 +452,7 @@ jQuery(function($) {
 					text: the_bill.carrying_fee_total,
 					left: '177mm',
 					top: '58mm',
-					width: '15mm',
+					width: '20mm',
 					height: '6mm'
 				},
 				note: {
@@ -479,7 +479,7 @@ jQuery(function($) {
 					text: the_bill.goods_fee,
 					left: '177mm',
 					top: '66mm',
-					width: '15mm',
+					width: '20mm',
 					height: '6mm'
 				},
 
