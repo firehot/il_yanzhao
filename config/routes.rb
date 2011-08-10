@@ -72,6 +72,7 @@ IlYanzhao::Application.routes.draw do
   #match "users/new_session_default",:to => "sessions#new_session_default",:as => :user_root
 
   resources :users do
+    get :search,:on => :collection
     get :edit_password,:on => :collection
     get :reset_usb_pin,:on => :member
     put :update_password,:on => :collection

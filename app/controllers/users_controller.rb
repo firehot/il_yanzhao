@@ -27,4 +27,10 @@ class UsersController < BaseController
     flash[:success]="已重新设置了用户的usb pin,请点击保存按钮更新ukey!"
     render :edit
   end
+  #GET search
+  #显示查询窗口
+  def search
+    render :partial => "search"
+  end
+
 end
