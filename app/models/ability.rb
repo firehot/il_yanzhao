@@ -36,6 +36,8 @@ class Ability
     alias_action :read,:to => :sum_goods_fee_inout
     #before_new是新建退货单的初始页面
     alias_action :before_new,:to => :create
+
+    alias_action :read,:to => :process_handle #发车
     alias_action :process_handle,:to => :ship  #发车
     alias_action :process_handle,:to => :reach #到货确认
     alias_action :process_handle,:to => :refound_confirm #收款清单确认

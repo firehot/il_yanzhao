@@ -519,7 +519,7 @@ subject = "Journal"
 sf_hash = {
   :group_name => group_name,
   :subject_title => subject_title,
-  :default_action => 'journals_path(:org_id => current_user.current_ability_org_ids)',
+  :default_action => 'journals_path("search[org_id_in]" => current_user.current_ability_org_ids)',
   :subject => subject,
   :function => {
   :read =>{:title => "查看"} ,
