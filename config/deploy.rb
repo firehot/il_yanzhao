@@ -29,17 +29,6 @@ default_run_options[:pty]=true
 # these http://github.com/rails/irs_process_scripts
 
 namespace :deploy do
-  #设置系统维护界面
-  task :disable_web, :roles => :web do
-    on_rollback { delete "#{shared_path}/system/maintenance.html" }
-
-    maintenance = render("./app/views/layouts/maintenance",
-                         :deadline => ENV['UNTIL'],
-                         :reason => ENV['REASON'])
-
-    put maintenance, "#{shared_path}/system/maintenance.html",
-      :mode => 0644
-  end
   desc "Generate assets with Jammit"
   task :generate_assets, :roles => :web do
     run "cd #{deploy_to}/current && bundle exec jammit"
@@ -50,4 +39,16 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  #自定义系统维护界面
+  namespace :web do
+    task :disable do
+      on_rollback { delete "#{shared_path}/system/maintenance.html" }
+      require 'rubygems'
+      require 'erb'
+      template = File.read("./app/views/layouts/maintenance.html.erb")
+      erb = ERB.new(template)
+      put erb.result, "#{shared_path}/system/maintenance.html",:mode => 0644
+    end
+  end
+
 end
