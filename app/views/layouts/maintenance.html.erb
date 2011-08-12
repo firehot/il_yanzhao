@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IL物流平台 &ndash; 维护中</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="chengdh" />
+    <meta name="robots" content="all" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <%= stylesheet_link_tag :maintenance %>
+  </head>
+  <body>
+    <p id="logo">
+     IL物流平台
+    </p>
+    <div id="content">
+      <h1>
+        系统正在<%= reason ? reason : "维护中"%>，请稍后访问...
+      </h1>
+      <p>
+        非常抱歉,系统<%= deadline ? #{deadline} : "很快"%>可以使用，请耐心等待.
+      </p>
+    </div> <!--to END #content -->
+    <div id="sky">
+      <div id="cloud">
+      </div> <!-- ENDND #cloud -->
+      <div id="cloud2">
+      </div> <!-- END #cloud2 -->
+      <dataiv id="cloud3">
+    </div> <!-- END #cloud3 -->
+  </div> <!-- END #sky -div->
+  <div id="sand">
+    <div id="waves">
+    </div> <!-- END #waves -->
+    <div id="waves2">
+    </div> <!-- END #waves2 -->
+    <div id="waves3"waves>
+    </div> <!-- END #waves3 -->
+  </div> <!-- END #waves -->
+  <div id="feet">
+  </div> <!-- END #feet -->
+</body>
+<%= javascript_include_tag "jquery.min","maintenance"%>
+</html>
