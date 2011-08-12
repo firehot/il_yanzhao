@@ -43,8 +43,8 @@ namespace :deploy do
   namespace :web do
     task :disable do
       on_rollback { delete "#{shared_path}/system/maintenance.html" }
-      viewer = ActionView::Base.new(Rails::Configuration.new.view_path, options)
-      maintenance = viewer.render("layouts/maintenance",:deadline => ENV['UNTIL'],:reason => ENV['REASON'])
+      viewer = ActionView::Base.new(Rails::Configuration.new.view_path,:deadline => ENV['UNTIL'],:reason => ENV['REASON'])
+      maintenance = viewer.render("layouts/maintenance")
       put maintenance, "#{shared_path}/system/maintenance.html",:mode => 0644
     end
   end
