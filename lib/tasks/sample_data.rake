@@ -157,6 +157,6 @@ namespace :db do
   task :init_system => :environment do
     Rake::Task['db:reload_seed'].invoke
     Rake::Task['db:import_seed_csv'].invoke
-    #Rake::Task['db:imp_customer'].invoke
+    Rake::Task['db:imp_customer'].invoke
   end
 end
