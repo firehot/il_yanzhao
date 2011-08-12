@@ -75,18 +75,6 @@ a .replacement
 
 /* CONTENT ----------------------------------------------------------------- */
 
-#logo
-{
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  z-index: 1000;
-  width: 170px;
-  height: 41px;
-  margin: 0 !important;
-  text-indent: -9999px;
-}
-
 #content
 {
   position: absolute;
