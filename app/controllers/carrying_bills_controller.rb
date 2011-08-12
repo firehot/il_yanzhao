@@ -16,7 +16,7 @@ class CarryingBillsController < BaseController
   #导出查询结果为excel
   #GET carrying_bills/export_excel
   def export_excel
-    @search = end_of_association_chain.accessible_by(current_ability).search(params[:search]).order(sort_column + ' ' + sort_direction)
+    @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search]).order(sort_column + ' ' + sort_direction)
   end
 
   #GET search

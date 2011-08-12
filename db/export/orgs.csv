@@ -1,5 +1,5 @@
-2,11,Tue Jul 05 08:43:37 UTC 2011,true,true,false,南四环新郑路燕赵物流园,"","",郑州总公司,1,,"",zzzgs,郑州总公司,Branch,Thu Aug 11 10:01:14 UTC 2011
-3,12,Tue Jul 05 08:43:37 UTC 2011,true,false,false,总部收货处（食品、化妆品）南三环,21:30,"",A,2,2,66753571,A,A,Branch,Wed Aug 10 10:09:45 UTC 2011
+2,11,Tue Jul 05 08:43:37 UTC 2011,true,true,false,南四环新郑路燕赵物流园,"","",郑州总公司,1,,"",zzzgs,郑,Branch,Fri Aug 12 00:23:37 UTC 2011
+3,12,Tue Jul 05 08:43:37 UTC 2011,true,false,false,总部收货处（食品、化妆品）南三环,21:30,"",A,2,2,66753571,A,A,Branch,Thu Aug 11 13:03:05 UTC 2011
 4,13,Tue Jul 05 08:43:37 UTC 2011,true,false,false,城南路（火车站）（玩具、电子配件）城南路115号,21:30,"",B,3,2,60395412,B,B,Branch,Wed Aug 10 09:34:59 UTC 2011
 5,14,Tue Jul 05 08:43:37 UTC 2011,true,false,false,万客来（食品、化妆品）,21:30,"",C,4,2,68795691,C,C,Branch,Tue Aug 02 11:41:17 UTC 2011
 12,15,Tue Jul 05 08:43:37 UTC 2011,true,false,false,接货车,21:30,"",D,5,2,53722147,D,D,Branch,Thu Aug 11 04:53:57 UTC 2011
@@ -27,7 +27,7 @@
 68,32,Tue Jul 05 08:43:38 UTC 2011,true,false,false,"",21:30,"",Z,27,2,69082817,Z,Z,Branch,Wed Aug 10 16:58:29 UTC 2011
 82,60,Tue Jul 05 08:43:39 UTC 2011,true,false,true,"",21:30,"",中转部,28,2,"",zzb,中,Branch,Wed Aug 10 07:49:56 UTC 2011
 142,77,Mon Jul 25 08:01:39 UTC 2011,true,false,false,"",21:30,"",理赔部,29,2,"",lpb,理,Branch,Wed Jul 27 01:18:20 UTC 2011
-47,01,Tue Jul 05 08:43:38 UTC 2011,true,false,false,"","","",邯郸,30,,0310-6282408,hd,邯,Branch,Thu Aug 11 09:08:51 UTC 2011
+47,01,Tue Jul 05 08:43:38 UTC 2011,true,false,false,"","","",邯郸,30,,0310-6282408,hd,邯,Branch,Thu Aug 11 10:15:01 UTC 2011
 21,02,Tue Jul 05 08:43:38 UTC 2011,true,false,false,"","","",邢台,31,,0319-5916046,xt,邢,Branch,Tue Aug 02 11:41:29 UTC 2011
 29,04,Tue Jul 05 08:43:38 UTC 2011,true,false,false,"","","",武安,32,,0310-5560226,wa,武,Branch,Tue Aug 02 11:41:29 UTC 2011
 23,05,Tue Jul 05 08:43:38 UTC 2011,true,false,false,"","","",峰峰,33,,0310-5123825,ff,峰,Branch,Wed Jul 27 01:24:45 UTC 2011
