@@ -103,7 +103,7 @@ p
   left: 0;
   top: 0;
   width: 100%;
-  height:left 131px;
+  height: 131px;
   overflow: hidden;
 }
 
@@ -149,7 +149,8 @@ p
   left: 0;
   bottom: 0;
   z-index: 0;
-  width: 100%;leftheight: 40%;
+  width: 100%;
+  height: 40%;
   overflow: hidden;
   background-color: #eed2aa;
 }
