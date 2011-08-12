@@ -152,6 +152,7 @@ namespace :db do
     c.execute("ALTER TABLE system_function_groups AUTO_INCREMENT = 1")
     c.execute("ALTER TABLE system_functions AUTO_INCREMENT = 1")
     c.execute("ALTER TABLE system_function_operates AUTO_INCREMENT = 1")
+    c.execute("ALTER TABLE areas AUTO_INCREMENT = 1")
     Rake::Task['db:seed'].invoke
   end
   desc "初始化系统"
