@@ -147,6 +147,7 @@ namespace :db do
     SystemFunctionGroup.destroy_all
     SystemFunction.destroy_all
     SystemFunctionOperate.destroy_all
+    Area.destroy_all
     c = ActiveRecord::Base.connection
     c.execute("ALTER TABLE system_function_groups AUTO_INCREMENT = 1")
     c.execute("ALTER TABLE system_functions AUTO_INCREMENT = 1")
