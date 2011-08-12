@@ -46,13 +46,11 @@ namespace :deploy do
       maintenance = render("layouts/maintenance",:deadline => ENV['UNTIL'],:reason => ENV['REASON'])
       put maintenance, "#{shared_path}/system/maintenance.html",:mode => 0644
     end
+    private
+    #渲染给定的模板
+    def render(layout, options = {})
+      viewer = ActionView::Base.new(Rails::Configuration.new.view_path, options)
+      viewer.render layout
+    end
   end
-
-  private
-  #渲染给定的模板
-  def render(layout, options = {})
-    viewer = ActionView::Base.new(Rails::Configuration.new.view_path, options)
-    viewer.render layout
-  end
-
 end
