@@ -76,9 +76,9 @@ body.login #login_content #login_dialog .bottom #remember_container {
   font-size: 12px;
   margin: 0 0 15px;
 }
-body.login #login_content #login_dialog .bottom #signin_button 
-{ 
-  color: #000000; 
+body.login #login_content #login_dialog .bottom #signin_button
+{
+  color: #000000;
   margin-top : 15px;
   padding : 10px;
   border-top : 2px solid #ECEDE5;
