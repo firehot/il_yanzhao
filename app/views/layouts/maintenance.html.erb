@@ -16,10 +16,10 @@
     </p>
     <div id="content">
       <h1>
-        系统正在维护中，请稍后访问...
+        系统正在<%= reason ? reason : "维护中"%>，请稍后访问...
       </h1>
       <p>
-        非常抱歉,系统很快可以使用，请耐心等待.
+        非常抱歉,系统<%= deadline ? "#{deadline}" : "很快"%>可以使用，请耐心等待.
       </p>
     </div> <!--to END #content -->
     <div id="sky">

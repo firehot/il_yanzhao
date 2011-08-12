@@ -43,12 +43,16 @@ namespace :deploy do
   namespace :web do
     task :disable do
       on_rollback { delete "#{shared_path}/system/maintenance.html" }
-      require 'rubygems'
-      require 'erb'
-      template = File.read("./app/views/layouts/maintenance.html.erb")
-      erb = ERB.new(template)
-      put erb.result, "#{shared_path}/system/maintenance.html",:mode => 0644
+      maintenance = render("layouts/maintenance",:deadline => ENV['UNTIL'],:reason => ENV['REASON'])
+      put maintenance, "#{shared_path}/system/maintenance.html",:mode => 0644
     end
+  end
+
+  private
+  #渲染给定的模板
+  def render(layout, options = {})
+    viewer = ActionView::Base.new(Rails::Configuration.new.view_path, options)
+    viewer.render layout
   end
 
 end
