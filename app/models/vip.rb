@@ -9,6 +9,7 @@ class Vip <  Customer
   validates :name,:id_number,:org_id,:bank_id,:presence => true
   validates :code,:uniqueness => true
   validates :bank_card,:length => {:maximum => 30}
+  default_scope :order => "code ASC",:include => [:bank,:org]
 
   before_create :set_code
 
@@ -29,6 +30,10 @@ class Vip <  Customer
   end
   #根据机构获取当前机构已有的VIP客户数量
   def get_sequence
-    se = "%04d" % (Vip.where(:org_id => self.org_id,:bank_id => self.bank_id).count + 1)
+    max_code = Vip.maximum(:code,:conditions => {:org_id => self.org_id,:bank_id => self.bank_id})
+    next_seq = 1
+    next_seq = max_code[/\d{4}$/].to_i + 1 if max_code.present?
+
+    se = "%04d" % next_seq
   end
 end
