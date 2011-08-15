@@ -125,6 +125,7 @@ class Ability
     can :simple_search,CarryingBill
     #录入票据时,默认可读取转账客户信息
     can :read,Vip
+    can :read_with_conditions,Vip
 
     #登录时,可操作current_role_change action
     can :current_role_change,Role
