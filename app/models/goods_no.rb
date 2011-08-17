@@ -5,6 +5,9 @@ class GoodsNo < ActiveRecord::Base
   belongs_to :to_org,:class_name => "Org"
   #生成新的货号
   def self.gen_goods_no(bill)
+    if bill.from_org_id.nil?
+      return nil
+    end
     from_org_id = bill.from_org_id
     to_org_id = bill.transit_org_id.present? ? bill.transit_org_id : bill.to_org_id
     goods_no = GoodsNo.find_or_create_by_from_org_id_and_to_org_id_and_gen_date(from_org_id,to_org_id,bill.bill_date)

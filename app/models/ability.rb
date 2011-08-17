@@ -121,6 +121,7 @@ class Ability
       ability_org_ids.include?(bill.from_org_id) or ability_org_ids.include?(bill.to_org_id) or ability_org_ids.include?(bill.transit_org_id)
     end
     can :read,CarryingBill
+    can :export_excel,CarryingBill
     #默认可查询运费
     can :simple_search,CarryingBill
     #录入票据时,默认可读取转账客户信息

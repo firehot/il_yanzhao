@@ -44,7 +44,7 @@ describe SendListPostsController do
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:send_list_post).attributes
-      @bill_ids = [Factory(:computer_bill).id,Factory(:hand_bill).id]
+      @bill_ids = [Factory(:hand_bill).id]
     end
     describe "success" do
       it "能够成功保存票据信息" do

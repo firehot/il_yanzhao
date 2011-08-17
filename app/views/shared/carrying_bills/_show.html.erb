@@ -1,6 +1,10 @@
 <table class='table carrying_bill_show' data-bill="<%=show.to_json%>" data-print="<%=show.to_print_json%>" id="carrying_bill_show">
   <tr>
-    <td colspan='8' class='col_74mm text-right bill-state'><%=show.human_state_name%></td>
+    <td>货款支付方式:</td>
+    <td style='font-size : 1.4em;font-weight : bold;color : blue;'><%= show.goods_fee_cash? ? "现金" : "转账"%></td>
+    <td colspan='4'>&nbsp;</td>
+    <td>状态:</td>
+    <td class='col_74mm bill-state' style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.human_state_name%></td>
   </tr>
   <tr>
     <td class='col_17mm'><span class='label'>发货站:</span></td>
@@ -23,26 +27,20 @@
     </tr>
 
     <tr>
-      <td colspan='8' style='padding : 0;'>
-        <table class='table' style='margin : 0;border : none;'>
-          <tr>
-            <td class='col_17mm'><span class='label'>发货人</span></td>
-            <td class='col_23mm'><%=show.from_customer_name%></td>
-            <td rowspan='2' class='col_6mm'><span class='label'>电话</span></td>
-            <td class='col_35mm'><%=show.from_customer_phone%></td>
-            <td rowspan='2' class='col_6mm'><span class='label'>手机</span></td>
-            <td class='col_38mm'><%=show.from_customer_mobile%></td>
-            <td class='col_25mm'><span class='label'>何地付运费</span></td>
-          </tr>
-          <tr>
-            <td class='col_17mm'><span class='label'>收货人</span></td>
-            <td class='col_23mm'><%=show.to_customer_name%></td>
-            <td class='col_35mm'><%=show.to_customer_phone%></td>
-            <td class='col_38mm'><%=show.to_customer_mobile%></td>
-            <td class='col_25mm'><%=pay_type_des(show.pay_type)%></td>
-          </tr>
-        </table>
-      </td>
+      <td class='col_17mm'><span class='label'>发货人</span></td>
+      <td class='col_23mm'><%=show.from_customer_name%></td>
+      <td rowspan='2' class='col_6mm text-center'><span class='label'>电话</span></td>
+      <td class='col_35mm'><%=show.from_customer_phone%></td>
+      <td rowspan='2' class='col_6mm text-center'><span class='label'>手机</span></td>
+      <td colspan='2' class='col_38mm'><%=show.from_customer_mobile%></td>
+      <td class='col_25mm'><span class='label'>何地付运费</span></td>
+    </tr>
+    <tr>
+      <td class='col_17mm'><span class='label'>收货人</span></td>
+      <td class='col_23mm'><%=show.to_customer_name%></td>
+      <td class='col_35mm'><%=show.to_customer_phone%></td>
+      <td colspan='2' class='col_38mm'><%=show.to_customer_mobile%></td>
+      <td class='col_25mm'><%=pay_type_des(show.pay_type)%></td>
     </tr>
     <tr>
       <td class='col_24mm'><span class='label'>货物名称</span></td>
@@ -68,29 +66,30 @@
     <tr>
       <td class='col_13mm'><span class='label'>提货应收金额</span></td>
       <td colspan='6' class='col_82mm'> <%= convertNumToChinese(show.th_amount) %></td>
-      <td class='col_43mm'><span class='label'>&yen;:</span></span><%=show.th_amount %></td>
+      <td class='col_43mm'><span class='label'>&yen;:</span><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.th_amount %></span></td>
   </tr>
   <tr>
     <td class='col_13mm'><span class='label'>保值</span></td>
     <td colspan='6' class='col_82mm'><span class='label'>保价金额:</span> <%=show.insured_amount%>&times;3‰=<%=show.insured_fee%></td>
-    <td class='col_43mm'><span class='label'>&yen;:</span><%=show.insured_fee %></td>
+    <td class='col_43mm'><span class='label'>&yen;:</span><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.insured_fee %></span></td>
+  </tr>
+  <tr>
+    <td class='col_13mm'><span class='label'>运费总计</span></td>
+    <td colspan='6' class='col_82mm'><%=convertNumToChinese(show.carrying_fee_total)%></td>
+    <td class='col_43mm'><span class='label'>&yen;:</span><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.carrying_fee_total%></span></td>
+  </tr>
+  <tr>
+    <td class='col_13mm'><span class='label'>代收货款总计</span></td>
+    <td colspan='6' class='col_82mm'><%=convertNumToChinese(show.goods_fee)%></td>
+    <td class='col_43mm'><span class='label'>&yen;:</span><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.goods_fee%></span></td>
   </tr>
   <tr>
     <td class='col_30mm'><span class='label'>发货地短途运费</span></td>
     <td colspan='4' class='col_45mm'><%=show.from_short_carrying_fee%></td>
     <td class='col_30mm'><span class='label'>到货地短途运费</span></td>
-    <td colspan='4' class='col_45mm'><%=show.to_short_carrying_fee%></td>
+    <td colspan='4' class='col_45mm'><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.to_short_carrying_fee%></span></td>
   </tr>
-  <tr>
-    <td class='col_13mm'><span class='label'>运费总计</span></td>
-    <td colspan='6' class='col_82mm'><%=convertNumToChinese(show.carrying_fee_total)%></td>
-    <td class='col_43mm'><span class='label'>&yen;:</span><%=show.carrying_fee_total%></td>
-  </tr>
-  <tr>
-    <td class='col_13mm'><span class='label'>代收货款总计</span></td>
-    <td colspan='6' class='col_82mm'><%=convertNumToChinese(show.goods_fee)%></td>
-    <td class='col_43mm'><span class='label'>&yen;:</span><%=show.goods_fee%></td>
-  </tr>
+
   <tr>
     <td  class='col_14mm'><span class='label'>委托人:</span></td>
     <td>&nbsp;</td>

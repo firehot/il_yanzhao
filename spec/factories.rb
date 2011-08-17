@@ -528,7 +528,6 @@ end
 #goods_exception_2 多货少货信息
 Factory.define :goods_error do |ge|
   ge.association :org,:factory => :zz
-  ge.association :carrying_bill,:factory => :computer_bill
   ge.association :op_org,:factory => :zz
   ge.except_type "SH"
   ge.except_num 1

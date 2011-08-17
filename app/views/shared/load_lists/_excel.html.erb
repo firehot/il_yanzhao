@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <%@load_list.carrying_bills.each_with_index do |bill,index| %>
+    <%@load_list.carrying_bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index| %>
       <tr>
         <td style='border : thin solid #000;'><%= index + 1 %></td>
         <td style='border : thin solid #000;'>&nbsp;<%= bill.bill_no %></td>

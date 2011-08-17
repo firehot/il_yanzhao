@@ -9,12 +9,13 @@ describe ShortFeeInfosController do
   login_admin
   render_views
 
-  before(:each) do
-    @short_fee_info = Factory(:short_fee_info)
-  end
 
 
   describe "GET index" do
+    before(:each) do
+      @short_fee_info = Factory(:short_fee_info)
+    end
+
     it "assigns all short_fee_infos as @short_fee_infos" do
       get :index
       response.should be_success
@@ -22,6 +23,9 @@ describe ShortFeeInfosController do
   end
 
   describe "GET show" do
+    before(:each) do
+      @short_fee_info = Factory(:short_fee_info)
+    end
 
     it "should be success" do
       get :show, :id => @short_fee_info
@@ -68,6 +72,10 @@ describe ShortFeeInfosController do
   end
 
   describe "DELETE destroy" do
+    before(:each) do
+      @short_fee_info = Factory(:short_fee_info)
+    end
+
     it "destroys the requested short_fee_info" do
       lambda do
         delete :destroy, :id => @short_fee_info

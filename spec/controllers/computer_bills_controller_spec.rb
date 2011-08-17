@@ -5,12 +5,13 @@ describe ComputerBillsController do
   login_admin
   render_views
 
-  before(:each) do
-    @computer_bill = Factory(:computer_bill)
-  end
 
 
   describe "GET index" do
+    before(:each) do
+      @computer_bill = Factory(:computer_bill)
+    end
+
     it "assigns all computer_bills as @computer_bills" do
       get :index
       response.should be_success
@@ -18,6 +19,10 @@ describe ComputerBillsController do
   end
 
   describe "GET show" do
+    before(:each) do
+      @computer_bill = Factory(:computer_bill)
+    end
+
 
     it "should be success" do
       get :show, :id => @computer_bill
@@ -38,6 +43,10 @@ describe ComputerBillsController do
   end
 
   describe "GET edit" do
+    before(:each) do
+      @computer_bill = Factory(:computer_bill)
+    end
+
     it "assigns the requested computer_bill as @computer_bill" do
       get :edit, :id => @computer_bill
       response.should render_template('edit')
@@ -72,7 +81,10 @@ describe ComputerBillsController do
   end
 
   describe "PUT update" do
+
     before :each do
+
+      @computer_bill = Factory(:computer_bill)
       @attr = {:goods_info => 'change_goods_info',:from_customer_name => 'changed customer name'}
     end
 
@@ -101,6 +113,10 @@ describe ComputerBillsController do
   end
 
   describe "DELETE destroy" do
+    before(:each) do
+      @computer_bill = Factory(:computer_bill)
+    end
+
     it "destroys the requested computer_bill" do
       lambda do
         delete :destroy, :id => @computer_bill
@@ -109,7 +125,7 @@ describe ComputerBillsController do
 
     it "redirects to the computer_bills list" do
       delete :destroy, :id => @computer_bill
-      response.should redirect_to(computer_bills_url)
+      response.should redirect_to(root_url)
     end
   end
   describe "GET search" do

@@ -5,7 +5,7 @@ describe ComputerBill do
   before(:each) do
     @computer_bill = Factory.build(:computer_bill)
   end
-  it "应能够成功创建一张机打票据" do 
+  it "应能够成功创建一张机打票据" do
     @computer_bill.save!
   end
   it "机打票保存后应自动产生票据编号和货号" do
@@ -24,7 +24,7 @@ describe ComputerBill do
     @computer_bill.to_org = nil
     @computer_bill.should_not be_valid
   end
-  it "票据初始状态应为'已开票'" do 
+  it "票据初始状态应为'已开票'" do
     @computer_bill.should be_billed
   end
   it "票据进行装车后,状态应变为'已装车'" do

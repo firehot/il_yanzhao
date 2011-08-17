@@ -25,6 +25,7 @@
 
     <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => params[:to_org_select].present? ? self.send(params[:to_org_select]) : branches_for_select,:input_html => {:class => "select_org",:title => "可录入拼音简写查询"} %>
 
+    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types,:input_html =>{:class => "ufd-select"} %>
   <% end %>
   <%=f.buttons do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>

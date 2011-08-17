@@ -327,5 +327,12 @@ span.notify-close{
   padding : 0 5px;
 
 }
-
-/*客户提款凭条*/
+/*运单录入及显示按钮*/
+table.carrying_bill_show td,table.carrying_bill_show th {
+  background : #fff;
+  border : 1px solid gray;
+}
+/*日营业额统计*/
+#rpt_turnover td{
+  background : #fff;
+}

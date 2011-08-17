@@ -11,6 +11,12 @@ jQuery(function($) {
 				$(inputs[idx]).change();
 				$('.btn_save:first').focus();
 			} else {
+				$(inputs).css({
+					backgroundColor : '#fff'
+				});
+				$(inputs[idx + 1]).css({
+					backgroundColor : '#68B4EF'
+				});
 				inputs[idx + 1].focus(); //  handles submit buttons
 				var tag_name = $(inputs[idx + 1]).attr('tagName').toLowerCase();
 				if (tag_name == 'input' || tag_name == 'textarea') inputs[idx + 1].select();

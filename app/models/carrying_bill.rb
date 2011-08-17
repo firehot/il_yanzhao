@@ -433,6 +433,14 @@ class CarryingBill < ActiveRecord::Base
     def to_print_json
       self.to_json(:except =>[:id,:created_at,:updated_at],:methods => [:area,:from_org,:transit_org,:to_org,:user,:customer_code,:th_amount,:carrying_fee_total,:carrying_fee_th,:pay_type_des])
     end
+    #根据货号计算排序号
+    def sort_seq
+      "#{self.bill_date.strftime('%y%m%d')}#{self.from_org.simp_name}#{self.transit_org.present? ? self.transit_org.simp_name : self.to_org.simp_name}#{"%04d" % self.goods_no[/\d{1,4}-/][/\d{1,5}/].to_i}"
+    end
+    #支付清单排序
+    def payment_list_sort_seq
+      "#{self.transit_org.present? ? self.transit_org.simp_name : self.to_org.simp_name}#{self.bill_date.strftime('%y%m%d')}#{self.from_org.simp_name}#{"%04d" % self.goods_no[/\d{1,4}-/][/\d{1,5}/].to_i}"
+    end
 
     protected
     #导出选项

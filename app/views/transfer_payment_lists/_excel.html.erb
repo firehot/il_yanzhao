@@ -32,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <%@transfer_payment_list.carrying_bills.each_with_index do |bill,index| %>
+    <%@transfer_payment_list.carrying_bills.sort_by {|bill| bill.payment_list_sort_seq}.each_with_index do |bill,index| %>
       <tr>
         <td style='border : thin solid #000;'><%= index + 1 %></td>
         <td style='border : thin solid #000;'>&nbsp;<%= bill.bill_no %></td>
