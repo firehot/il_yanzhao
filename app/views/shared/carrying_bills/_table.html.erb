@@ -71,7 +71,7 @@
     </tr>
   </thead>
   <tbody>
-    <% collection.each_with_index do |bill,index| %>
+    <% collection.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index| %>
       <tr class="<%= cycle("odd", "even") %> <%=stranded_class(bill.stranded_days)%>" id='<%=bill.id%>' data-dblclick='true'>
         <td class='cbx_select_bill' style='display : none;'>
           <%= link_to "查看",  polymorphic_url(bill,parent? ? {:format => :js} : {} ),:class => (parent? ? "show_link fancybox" : "show_link"),:style => 'display : none;'%>

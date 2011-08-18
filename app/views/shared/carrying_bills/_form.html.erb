@@ -14,15 +14,15 @@
       </tr>
       <tr>
         <td>发货站</td>
-        <td><%= f.select :from_org_id,current_ability_orgs_for_select,{},:class => 'select_org' %></td>
+        <td><%= f.select :from_org_id,current_ability_orgs_for_select,{},:class => f.object.new_record? ? 'select_org' : '',:id => :from_org_id %></td>
         <% if ["TransitBill","HandTransitBill"].include? f.object.type %>
           <td>中转站</td>
-          <td><%= f.select :transit_org_id,yards_for_select ,{},:class => 'select_org'%></td>
+          <td><%= f.select :transit_org_id,yards_for_select ,{},:class => f.object.new_record? ? 'select_org' : '',:id => :transit_org_id%></td>
           <td>到货地</td>
-          <td><%= f.select :area_id,areas_for_select %></td>
+          <td><%= f.select :area_id,areas_for_select,:id => :area_id %></td>
         <%else%>
           <td>到货站</td>
-          <td><%= f.select :to_org_id,exclude_current_ability_orgs_for_select ,{:include_blank => f.object.new_record?},:class => 'select_org'%></td>
+          <td><%= f.select :to_org_id,exclude_current_ability_orgs_for_select ,{:include_blank => f.object.new_record?},:class => f.object.new_record? ? 'select_org' : '',:id =>:to_org_id %></td>
           <td colspan='2'></td>
         <%end%>
       </tr>
@@ -50,7 +50,7 @@
       </tr>
       <tr>
         <td>运费支付方式</td>
-        <td><%= f.select :pay_type,CarryingBill.pay_types %></td>
+        <td><%= f.select :pay_type,CarryingBill.pay_types,:id => :pay_type %></td>
         <td>运费</td>
         <td><%= f.text_field :carrying_fee,:id => "carrying_fee",:size => 15  %></td>
         <td>代收货款</td>
@@ -95,7 +95,7 @@
       </tr>
       <tr>
         <td>备注</td>
-        <td colspan='5'><%= f.text_field :note,:size => 100 %></td>
+        <td colspan='5'><%= f.text_field :note,:size => 100,:id => :note %></td>
       </tr>
     </tbody>
   </table>

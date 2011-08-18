@@ -186,8 +186,21 @@ jQuery(function($) {
 		$('#carrying_bill_form :input').attr('readonly', true);
 		$('#carrying_bill_form select').attr('disabled', true);
 	});
-	$('form.update_carrying_fee #carrying_fee,form.update_goods_fee #goods_fee').livequery(function() {
-		$(this).attr('readonly', false);
+	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
+		$('#carrying_fee').attr('readonly', false);
+		$('#goods_fee').attr('readonly', false);
+		$('#from_org_id').attr('readonly', false);
+		$('#transit_org_id').attr('readonly', false);
+		$('#area_id').attr('readonly', false);
+		$('#to_org_id').attr('readonly', false);
+		$('#from_customer_name').attr('readonly', false);
+		$('#from_customer_phone').attr('readonly', false);
+		$('#from_customer_mobile').attr('readonly', false);
+		$('#to_customer_name').attr('readonly', false);
+		$('#to_customer_phone').attr('readonly', false);
+		$('#to_customer_mobile').attr('readonly', false);
+		$('#pay_type').attr('readonly', false);
+		$('#note').attr('readonly', false);
 	});
 
 	$('form.update_all').livequery(function() {

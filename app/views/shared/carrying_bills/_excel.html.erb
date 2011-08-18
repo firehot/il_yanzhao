@@ -3,12 +3,14 @@
   <thead>
     <tr class='text-center'>
       <th class="first">序号</th>
-      <th><%=sortable "bill_date","票据日期" %></th>
-      <th><%=sortable "bill_no","票号" %></th>
-      <th><%=sortable "goods_no","货号" %></th>
-      <th><%=sortable "from_org_id","发货地" %>--<%=sortable "to_org_id","到货地" %></th>
-      <th>发货人-收货人</th>
-      <th><%=sortable "pay_type","付款方式" %></th>
+      <th>票据日期</th>
+      <th>票号</th>
+      <th>货号</th>
+      <th>发货地</th>
+      <th>到货地</th>
+      <th>发货人</th>
+      <th>收货人</th>
+      <th>付款方式</th>
       <th class="carrying_fee">运费</th>
       <th class="carrying_fee_th hide">提付运费</th>
       <th class="goods_fee">代收货款</th>
@@ -44,11 +46,15 @@
           <%=bill.goods_no%>
         </td>
         <td>
-          <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.area}" : bill.to_org_name%>
+          <%=bill.from_org_name%>
+        </td>
+        <td>
+          <%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.area}" : bill.to_org_name%>
         </td>
         <td>
           <%=bill.from_customer_name%>
-          --
+        </td>
+        <td>
           <%=bill.to_customer_name%>
         </td>
         <td>
@@ -86,6 +92,8 @@
   </tbody>
   <tfoot>
     <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>

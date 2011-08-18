@@ -22,6 +22,8 @@ jQuery(function($) {
 				$(inputs[idx + 1]).css({
 					backgroundColor: '#68B4EF'
 				});
+
+				$(inputs[idx]).change(); //  handles submit buttons
 				inputs[idx + 1].focus(); //  handles submit buttons
 				var tag_name = $(inputs[idx + 1]).attr('tagName').toLowerCase();
 				if (tag_name == 'input' || tag_name == 'textarea') inputs[idx + 1].select();

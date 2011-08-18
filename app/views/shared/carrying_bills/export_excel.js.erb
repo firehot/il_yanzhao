@@ -8,6 +8,8 @@ table_doc.find('th,td').css({border : 'thin solid #000'});
 var set_style = function(work_sheet){
   work_sheet.Columns.ColumnWidth = 7;
   work_sheet.Columns('A:A').ColumnWidth = 5;
+  work_sheet.Columns(2).ColumnWidth = 10; //日期
+  work_sheet.Columns(4).ColumnWidth = 15; //货号
 
 };
 $.export_excel("<table>" + table_doc.html() + "</table>",set_style);

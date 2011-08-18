@@ -34,7 +34,7 @@
   </thead>
 
   <tbody>
-    <%grouped_carrying_bills = @refound.carrying_bills.group_by(&:from_org)%>
+    <%grouped_carrying_bills = @refound.carrying_bills.sort_by {|bill| bill.sort_seq }.group_by(&:from_org)%>
     <%grouped_carrying_bills.each do |from_org,bills| %>
       <tr>
         <td style='border : thin solid #000;' colspan='10'><%= from_org.name %></td>
