@@ -16,6 +16,7 @@ javascripts:
     - public/javascripts/jquery.printElement.min.js
     - public/javascripts/jquery.blockUI.js
     - public/javascripts/jquery.hotkeys.js
+    - public/javascripts/jquery.fixedtableheader-1-0-2.min.js
     - public/javascripts/enter2tab.js
     - public/javascripts/bill_selector.js
     - public/javascripts/application.js

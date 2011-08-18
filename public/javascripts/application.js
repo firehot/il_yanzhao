@@ -940,6 +940,8 @@ jQuery(function($) {
 			fontSize: '1.2em',
 			fontWeight: 'bold'
 		});
+	}).fixedtableheader({
+		hightlightrow: true
 	});
 
 });
