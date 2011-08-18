@@ -117,8 +117,7 @@ class Ability
     ability_org_ids = user.current_ability_org_ids
     #定义运单的读权限,设定alias_action时,conditions 会丢失
     #read_with_conditoins 只在accessible_by中使用
-    can :read_with_conditions,CarryingBill,['from_org_id in (?) or (transit_org_id in (?) and state not in ("billed","loaded","invalided
-")) or (to_org_id in (?) and state not in ("billed","loaded","invalided"))',ability_org_ids,ability_org_ids,ability_org_ids] do |bill|
+    can :read_with_conditions,CarryingBill,['carrying_bills.from_org_id in (?) or (carrying_bills.transit_org_id in (?) and carrying_bills.state not in ("billed","loaded","invalided")) or (carrying_bills.to_org_id in (?) and carrying_bills.state not in ("billed","loaded","invalided"))',ability_org_ids,ability_org_ids,ability_org_ids] do |bill|
       ability_org_ids.include?(bill.from_org_id) or ability_org_ids.include?(bill.to_org_id) or ability_org_ids.include?(bill.transit_org_id)
     end
     can :read,CarryingBill
