@@ -268,8 +268,7 @@ jQuery(function($) {
         */
 	/*当前menu_group设置*/
 	var cur_menu_group = get_current_menu_group();
-	if (cur_menu_group)
-          $('#' + cur_menu_group).next('.navigation:first').show();
+	if (cur_menu_group) $('#' + cur_menu_group).next('.navigation:first').show();
 	/*menu_bar的点击事件*/
 	$('#menu_bar .group_name').click(function() {
 		var cur_el = $(this).next('.navigation:first')[0];
@@ -814,9 +813,7 @@ jQuery(function($) {
 			color: '#fff'
 		});
 	});
-	$('.turnover_chart').visualize({
-		width: '850px'
-	});
+	$('.turnover_chart').visualize();
 
 	//自动获取明细信息
 	$('[data-detailUrl]').livequery(function() {
@@ -915,5 +912,22 @@ jQuery(function($) {
 		$.cookies.set('il_notify_' + notify.id, notify.notify_text);
 		$('#notify-bar').hide();
 	});
+	//日营业额统计图单击选中
+	$('#rpt_turnover').click(function(evt) { //单击某条记录选中
+		var target_el = $(evt.target).parent('tr');
+		$(this).find('td').css({
+			backgroundColor: '#FFF',
+			color: '#000',
+			fontSize: '1em',
+			fontWeight: 'normal'
+		});
+		$(target_el).find('td').css({
+			backgroundColor: '#7A97B7',
+			color: '#FFF',
+			fontSize: '1.2em',
+			fontWeight: 'bold'
+		});
+	});
+
 });
 

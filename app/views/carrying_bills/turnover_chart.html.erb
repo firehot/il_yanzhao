@@ -32,7 +32,7 @@ to_orgs = group_bills_by_to_org.keys
           <%end%>
         </div>
       </div>
-      <div style='overflow : scroll;'>
+      <div style='overflow-x : auto;'>
         <%group_bills_by_from_org.each do |from_org,bills|%>
           <table class="turnover_chart table" style='display : none;' >
             <caption><%=from_org.name%></caption>
