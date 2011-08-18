@@ -32,7 +32,23 @@ jQuery(function($) {
 		}
 
 	};
-	$('form input:visible,form select:visible,form textarea:visible').livequery("keypress", enter2tab);
-	$('.enter2tab input:visible,.enter2tab select:visible,.enter2tab textarea:visible').livequery("keypress", enter2tab);
+	var on_focus = function() {
+		var inputs = $(this).parents("form,.enter2tab").eq(0).find('input:visible,select:visible,textarea:visible');
+		var idx = inputs.index(this);
+		$(inputs).css({
+			backgroundColor: '#fff'
+		});
+		$(inputs).filter(function() {
+			return $(this).attr('readonly')
+		}).css({
+			backgroundColor: '#EDEDED'
+		});
+		$(this).css({
+			backgroundColor: '#68B4EF'
+		});
+
+	};
+	$('form input:visible,form select:visible,form textarea:visible').livequery("keypress", enter2tab).livequery('focus', on_focus);
+	$('.enter2tab input:visible,.enter2tab select:visible,.enter2tab textarea:visible').livequery("keypress", enter2tab).livequery('focus', on_focus);;
 });
 
