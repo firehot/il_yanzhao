@@ -62,7 +62,7 @@ to_orgs = group_bills_by_to_org.keys
                 <td><%=group_bills_by_from_org[org].sum(&:sum_carrying_fee)%></td>
               <%end%>
               <td><%=collection.to_a.sum(&:sum_carrying_fee)%></td>
-              <td><%=collection.to_a.sum(&:sum_carrying_fee)%></td>
+              <td><%=collection.to_a.sum(&:sum_goods_num)%></td>
             </tr>
           </tfoot>
         </table>
