@@ -34,12 +34,12 @@
   </thead>
 
   <tbody>
-    <%grouped_carrying_bills = @refound.carrying_bills.sort_by {|bill| bill.sort_seq }.group_by(&:from_org)%>
+    <%grouped_carrying_bills = @refound.carrying_bills.sort_by {|bill| bill.from_org.try(:simp_name )}.group_by(&:from_org)%>
     <%grouped_carrying_bills.each do |from_org,bills| %>
       <tr>
         <td style='border : thin solid #000;' colspan='10'><%= from_org.name %></td>
       </tr>
-      <% bills.each_with_index do |bill,index|%>
+      <% bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index|%>
         <tr>
           <td style='border : thin solid #000;'><%= index + 1 %></td>
           <td style='border : thin solid #000;'>&nbsp;<%= bill.bill_no %></td>
