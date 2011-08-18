@@ -40,8 +40,8 @@
         </tbody>
         <tfoot>
           <%
-            sum_in = @sum_goods_fee_in.to_a.sum(&:goods_fee_in)
-            sum_out = @sum_goods_fee_out.to_a.sum(&:goods_fee_out)
+            sum_in = @sum_goods_fee_in.to_a.sum(&:goods_fee)
+            sum_out = @sum_goods_fee_out.to_a.sum(&:goods_fee)
             sum_rest = sum_in - sum_out
           %>
           <tr>

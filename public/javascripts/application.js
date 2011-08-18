@@ -879,9 +879,8 @@ jQuery(function($) {
 		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill')) {
 
 			//机打运单,默认焦点定位到到货地
-			$('#ufd-computer_bill_to_org_id').focus();
-			$('#ufd-transit_bill_transit_org_id').focus();
-			$('#ufd-return_bill_to_org_id').focus();
+			$('#ufd-to_org_id').focus();
+			$('#ufd-transit_org_id').focus();
 		}
 		else $('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
 
