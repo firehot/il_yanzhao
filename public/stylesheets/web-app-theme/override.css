@@ -336,3 +336,5 @@ table.carrying_bill_show td,table.carrying_bill_show th {
 #rpt_turnover td{
   background : #fff;
 }
+/*录单界面*/
+table.bill_input td{border: 1px solid #CCCCCC;}

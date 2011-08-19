@@ -326,7 +326,11 @@ jQuery(function($) {
 		});
 
 	});
-	$.blockUI.defaults.message = '<h1><img src="/images/ajax-spinner.gif" width="20px" height="20px"/>处理中,请稍候...</h1>';
+	$.blockUI.defaults.message =  '<div style="background-color : #DD890A">处理中...</div>';
+	$.blockUI.defaults.css.top = '80px';
+	$.blockUI.defaults.css.border = 'none';
+        $.blockUI.defaults.overlayCSS.backgroundColor = '#FFF';
+        $.blockUI.defaults.overlayCSS.opacity = 0.1;
 	//运单列表表头点击事件
 	$('#table_wrap tr.table-header th a[href!="#"],#table_wrap .pagination a[href!="#"]').live('click', function() {
 		$.getScript(this.href);
