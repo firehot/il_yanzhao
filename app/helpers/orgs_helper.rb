@@ -35,7 +35,8 @@ module OrgsHelper
   #当前登录用户可用之外的orgs
   #当前用户默认登录机构为分理处时,只显示分公司和中转部
   #当前登录用户是分公司时,只显示分理处/上级机构/中转部
-  def exclude_current_ability_orgs_for_select(with_yard = false)
+  #show_summary 显示总公司
+  def exclude_current_ability_orgs_for_select(with_yard = false,show_summary = true)
     #除去当前默认org和当前org的上级机构
     default_org = current_user.default_org
     ret_orgs = []
@@ -52,7 +53,7 @@ module OrgsHelper
       ret_orgs = Branch.search(:is_active_eq => true,:id_ni => exclude_ids).all
     else
       summary_org = Org.find_by_is_summary(true)
-      ret_orgs.push(summary_org)
+      ret_orgs.push(summary_org) if show_summary
       if summary_org.present?
         summary_children = Org.where(:parent_id => summary_org.id,:is_active => true)
         ret_orgs += summary_children

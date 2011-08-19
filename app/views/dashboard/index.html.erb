@@ -34,17 +34,30 @@
             </li>
             <li>
               <p><%=image_tag "currency-yen.png"%></p>
-              <p>现付运费:&yen;
+              <p>现付:&yen;
                 <%=@today_billed.to_a.sum {|bill| (bill.pay_type == CarryingBill::PAY_TYPE_CASH) ?  bill.carrying_fee : 0 }%>
               </p>
             </li>
             <li>
               <p><%=image_tag "document-stamp.png"%></p>
               <p>
-                提付运费:&yen;
+                提付:&yen;
                 <%=@today_billed.to_a.sum {|bill| (bill.pay_type == CarryingBill::PAY_TYPE_TH) ?  bill.carrying_fee : 0 }%>
               </p>
             </li>
+            <li>
+              <p><%=image_tag "currency-yen.png"%></p>
+              <p>货款扣:&yen;
+                <%=@today_billed.to_a.sum {|bill| (bill.pay_type == CarryingBill::PAY_TYPE_K_GOODSFEE) ?  bill.carrying_fee : 0 }%>
+              </p>
+            </li>
+            <li>
+              <p><%=image_tag "currency-yen.png"%></p>
+              <p>回执付:&yen;
+                <%=@today_billed.to_a.sum {|bill| (bill.pay_type == CarryingBill::PAY_TYPE_RETURN) ?  bill.carrying_fee : 0 }%>
+              </p>
+            </li>
+
             <li>
               <p><%=image_tag "envelope.png"%></p>
               <p>
