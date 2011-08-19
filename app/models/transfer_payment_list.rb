@@ -20,7 +20,7 @@ class TransferPaymentList < PaymentList
   def ccb_to_txt
     ret = ''
     self.carrying_bills.each_with_index do |bill,index|
-      ret += [index + 1,1,bill.from_customer.bank_card,bill.from_customer.name,'建行',bill.act_pay_fee,'货款',0].join('|') + "|\r\n"
+      ret += [index + 1,1,bill.from_customer.bank_card,bill.from_customer.name,'|建行',bill.act_pay_fee,'货款',0].join('|') + "|\r\n"
     end
     ret
   end
