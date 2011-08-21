@@ -1,4 +1,4 @@
-<table class='table' data-detailUrl='<%=transfer_payment_list_carrying_bills_path(resource)%>' data-params='{"hide_fields": ".carrying_fee,.insured_fee","show_fields": ".k_carrying_fee,.k_hand_fee,.act_pay_fee"}'>
+<table class='table' data-detailUrl='<%=transfer_payment_list_carrying_bills_path(resource)%>' data-params='{"hide_fields": ".carrying_fee,.carrying_fee_total,.insured_fee","show_fields": ".k_carrying_fee,.k_hand_fee,.act_pay_fee"}'>
   <tr>
     <td>清单日期:</td>
     <td><%=resource.bill_date.strftime('%Y-%m-%d')%></td>
