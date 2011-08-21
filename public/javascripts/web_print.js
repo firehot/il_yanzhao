@@ -398,14 +398,14 @@ jQuery(function($) {
 					height: '7mm'
 				},
 				th_amount_chinese: {
-					text: $.num2chinese((parseFloat(the_bill.carrying_fee_th) + parseFloat(the_bill.goods_fee)).toString()),
+					text: $.num2chinese(the_bill.th_amount),
 					left: '110mm',
 					top: '45mm',
 					width: '62mm',
 					height: '6mm'
 				},
 				th_amount: {
-					text: parseFloat(the_bill.carrying_fee_th) + parseFloat(the_bill.goods_fee),
+					text: the_bill.th_amount,
 					left: '177mm',
 					top: '45mm',
 					width: '20mm',

@@ -281,6 +281,7 @@ class CarryingBill < ActiveRecord::Base
     #得到提货应收金额
     def th_amount
       amount = self.carrying_fee_th - self.transit_hand_fee - self.transit_carrying_fee + self.goods_fee
+      amount += self.insured_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
       amount
     end
     #运费总计
@@ -424,7 +425,7 @@ class CarryingBill < ActiveRecord::Base
       end
       sum_info.merge!(sum_info_tmp)
       #运费合计 运费+保价费
-      sum_info[:sum_total_carrying_fee] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee]
+      sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee]
       #实提货款合计
       sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_carrying_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee]
       sum_info[:sum_agent_carrying_fee] =0

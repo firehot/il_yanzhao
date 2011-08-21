@@ -40,6 +40,8 @@ jQuery(function($) {
 
 		}
 	});
+	//初始化区域选择
+	//$('.select_org,.ufd-select').ufd();
 	//导出excel按钮绑定
 	$('.btn_export_excel').click(function() {
 		var url = $(this).attr('href');
@@ -178,15 +180,11 @@ jQuery(function($) {
 
 	};
 	$('form.computer_bill #customer_code,form.transit_bill #customer_code').live('change', search_customer_by_code);
-	$('form.carrying_bill').live("change", calculate_carrying_bill);
-	$('form.carrying_bill').livequery(calculate_carrying_bill);
-
+	$('form.carrying_bill').live("change", calculate_carrying_bill).livequery(calculate_carrying_bill);
 	//运单修改时,判断权限
 	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);
 		$('#carrying_bill_form select').attr('disabled', true);
-	});
-	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
 		$('#carrying_fee').attr('readonly', false);
 		$('#goods_fee').attr('readonly', false);
 		$('#from_org_id').attr('readonly', false);
@@ -201,6 +199,7 @@ jQuery(function($) {
 		$('#to_customer_mobile').attr('readonly', false);
 		$('#pay_type').attr('readonly', false);
 		$('#note').attr('readonly', false);
+
 	});
 
 	$('form.update_all').livequery(function() {
@@ -237,9 +236,11 @@ jQuery(function($) {
 
 	});
 	//设定只读字段的背景色
+	/*
 	$('input[readonly]').css({
 		background: '#EDEDED'
 	});
+        */
 	//手工运单,自动解析日期和数量
 	//
 	$('#hand_bill_goods_no,#hand_transit_bill_goods_no').live('change', function() {
@@ -292,7 +293,7 @@ jQuery(function($) {
 		$.cookies.set(cookieName, $(this).attr('id'));
 	});
 
-	$('#menu_bar .navigation a').click(function() {
+	$('#menu_bar .navigation a').bind('click', function() {
 		$.fancybox.showActivity();
 	});
 
@@ -301,14 +302,6 @@ jQuery(function($) {
 			scrolling: 'no',
 			padding: 20
 		});
-	});
-	//初始化区域选择
-	$('.select_org,.ufd-select').livequery(function() {
-		$(this).ufd();
-	});
-	//提高select_org list-wrapper的z-index
-	$('.list-wrapper').livequery(function() {
-		$(this).css('z-index', 9001);
 	});
 
 	//初始化tip
@@ -326,11 +319,8 @@ jQuery(function($) {
 		});
 
 	});
-	$.blockUI.defaults.message =  '<div style="background-color : #DD890A">处理中...</div>';
-	$.blockUI.defaults.css.top = '80px';
-	$.blockUI.defaults.css.border = 'none';
-        $.blockUI.defaults.overlayCSS.backgroundColor = '#FFF';
-        $.blockUI.defaults.overlayCSS.opacity = 0.1;
+	$.blockUI.defaults.message = null;
+	$.blockUI.defaults.overlayCSS.opacity = 0.2;
 	//运单列表表头点击事件
 	$('#table_wrap tr.table-header th a[href!="#"],#table_wrap .pagination a[href!="#"]').live('click', function() {
 		$.getScript(this.href);
@@ -340,9 +330,16 @@ jQuery(function($) {
 		$(this).form_with_select_bills();
 	});
 
-	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+	$(document).ajaxStart(function() {
+		$.fancybox.showActivity();
+		$.blockUI();
+	}).ajaxStop(function() {
+		$.fancybox.hideActivity();
+		$.unblockUI();
+	});
 	//对需要长时间处理的操作,显示blockUI
-	$('.btn_process_handle').bind('click', $.blockUI);
+	$('.btn_process_handle').bind('click',function(){$.blockUI();$.fancybox.showActivity();
+} );
 
 	//首页运单查询
 	$('#home-search-box').watermark('录入运单号/货号查询').keypress(function(e) {
@@ -883,8 +880,8 @@ jQuery(function($) {
 		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill')) {
 
 			//机打运单,默认焦点定位到到货地
-			$('#ufd-to_org_id').focus();
-			$('#ufd-transit_org_id').focus();
+			$('#to_org_id').focus();
+			$('#transit_org_id').focus();
 		}
 		else $('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
 
@@ -943,8 +940,6 @@ jQuery(function($) {
 			fontSize: '1.2em',
 			fontWeight: 'bold'
 		});
-	}).fixedtableheader({
-		hightlightrow: true
 	});
 
 });

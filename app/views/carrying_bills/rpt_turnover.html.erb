@@ -12,23 +12,18 @@ to_orgs = group_bills_by_to_org.keys
       <div class='actions-bar wat-cf'>
         <div class='actions'>
           <%= form_for @search,:url => {:action => :rpt_turnover} do |f|%>
-            <table class='table'>
-              <tr>
-                <td><%= f.text_field :bill_date_gte,:class => "datepicker", :readonly => true,:size => 10 %></td>
-                <td>
-                  ~
-                  <%=hidden_field_tag "search[type_in][]",'ComputerBill'%>
-                  <%=hidden_field_tag "search[type_in][]",'HandBill'%>
-                  <%=hidden_field_tag "search[type_in][]",'ReturnBill'%>
-                </td>
-                <td><%= f.text_field :bill_date_lte,:class => "datepicker", :readonly => true,:size => 10 %></td>
-                <td><%= f.submit "统计",:class => "sexybutton sexysimple sexyblue" %></td>
-              </tr>
-            </table>
+            <%= f.text_field :bill_date_gte,:class => "datepicker", :readonly => true,:size => 10 %>
+            ~
+            <%= f.text_field :bill_date_lte,:class => "datepicker", :readonly => true,:size => 10 %>
+            <%=hidden_field_tag "search[type_in][]",'ComputerBill'%>
+            <%=hidden_field_tag "search[type_in][]",'HandBill'%>
+            <%=hidden_field_tag "search[type_in][]",'ReturnBill'%>
+            &nbsp;&nbsp;
+            <%= f.submit "统计",:class => "sexybutton sexysimple sexyblue" %>
           <%end%>
         </div>
       </div>
-      <div style='overflow-x :auto;width : 95%;'>
+      <div style='overflow-x : auto;'>
         <table class='table' id='rpt_turnover'>
           <thead>
             <tr>

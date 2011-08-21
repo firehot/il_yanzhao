@@ -1,25 +1,25 @@
 <tr id='<%="bill_#{bill.id}" %>' data-bill='<%=bill.to_json(:methods => [:carrying_fee_th,:k_carrying_fee,:agent_carrying_fee,:act_pay_fee,:th_amount,:send_state])%>' class='bill_cal_sum'>
-  <td>
+  <td class='bill_date' style='display : none;'>
     <%= link_to "查看",   polymorphic_url(bill,:format => :js),:class => "show_link fancybox",:style => 'display : none;'%>
     <%=bill.bill_date.strftime('%y-%m-%d')%>
   </td>
-  <td>
+  <td class='bill_no'>
     <%=bill.bill_no%>
   </td>
-  <td>
+  <td class='goods_no'>
     <%=bill.goods_no%>
   </td>
-  <td>
+  <td class='from_to'>
     <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.area}" : bill.to_org_name%>
   </td>
-  <td>
+  <td class='customer'>
     <%=bill.from_customer_name%>
     <%="(#{bill.from_customer_phone})"%>
-    --
+    ~
     <%=bill.to_customer_name%>
     <%="(#{bill.to_customer_phone})"%>
   </td>
-  <td>
+  <td class='pay_type'>
     <%=pay_type_des(bill.pay_type) %>
   </td>
   <td class="carrying_fee">
@@ -54,11 +54,11 @@
   <td class="from_short_carrying_fee" style='display : none;'><%= bill.from_short_carrying_fee %></td>
   <td class="to_short_carrying_fee" style='display : none;'><%= bill.to_short_carrying_fee %></td>
   <td class="note">
-    <div style='width : 50px;height : 30px;overflow : hidden;'>
+    <div style='width : 50px;height : 1em;overflow : hidden;'>
       <%= bill.note %>
     </div>
   </td>
-  <td class="state"><%= bill.human_state_name %></td>
+  <td class="state" style='display : none;'><%= bill.human_state_name %></td>
   <td class='send_state' style='display :none;'><%=bill.send_state%></td>
   <td>
     <%=link_to_function  image_tag("mouse--minus.png"),"$('#bill_#{bill.id}').remove();$('#bills_table_body').trigger('tr_changed')",:class => "tipsy",:title => '删除' %>

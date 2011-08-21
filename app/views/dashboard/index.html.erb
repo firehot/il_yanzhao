@@ -34,6 +34,31 @@
             </li>
             <li>
               <p><%=image_tag "currency-yen.png"%></p>
+              <p>运费:&yen;
+                <%=@today_billed.to_a.sum {|bill| bill.carrying_fee}%>
+              </p>
+            </li>
+            <li>
+              <p><%=image_tag "envelope.png"%></p>
+              <p>
+                代收货款:&yen;
+                <%=@today_billed.to_a.sum(&:goods_fee)%>
+              </p>
+            </li>
+            <li>
+              <p><%=image_tag "box.png"%></p>
+              <p>
+                货物件数:
+                <%=@today_billed.to_a.sum(&:goods_num).to_i%>件
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class='dashboard-group'>
+          <h3><%=image_tag "inbox.png"%>运费明细</h3>
+          <ul class='wat-cf'>
+            <li>
+              <p><%=image_tag "currency-yen.png"%></p>
               <p>现付:&yen;
                 <%=@today_billed.to_a.sum {|bill| (bill.pay_type == CarryingBill::PAY_TYPE_CASH) ?  bill.carrying_fee : 0 }%>
               </p>
@@ -57,23 +82,9 @@
                 <%=@today_billed.to_a.sum {|bill| (bill.pay_type == CarryingBill::PAY_TYPE_RETURN) ?  bill.carrying_fee : 0 }%>
               </p>
             </li>
-
-            <li>
-              <p><%=image_tag "envelope.png"%></p>
-              <p>
-                代收货款:&yen;
-                <%=@today_billed.to_a.sum(&:goods_fee)%>
-              </p>
-            </li>
-            <li>
-              <p><%=image_tag "box.png"%></p>
-              <p>
-                货物件数:
-                <%=@today_billed.to_a.sum(&:goods_num).to_i%>件
-              </p>
-            </li>
           </ul>
         </div>
+
 
         <div class='dashboard-group'>
           <h3><%=image_tag "inbox--arrow.png"%>今日提货</h3>
@@ -141,7 +152,8 @@
           <h3><%=image_tag "odata-balloon.png"%>最近票据</h3>
           <ul class='wat-cf'>
             <%@recent_bills.each do |bill|%>
-              <li><%=link_to "#{bill.goods_no}",polymorphic_path(bill,:format => :js),:class => 'fancybox'%></li>
+              <li>
+                <%=link_to "#{bill.goods_no}",polymorphic_path(bill,:format => :js),:class => 'fancybox'%></li>
             <%end%>
           </ul>
         </div>

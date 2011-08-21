@@ -2,7 +2,7 @@
 	ufd 0.6 : Unobtrusive Fast-filter Drop-down jQuery plugin.
 
 	Authors:
-		thetoolman@gmail.com 
+		thetoolman@gmail.com
 		Kadalashvili.Vladimir@gmail.com
 
 	Version:  0.6
@@ -12,8 +12,8 @@
 
 (function($) {
 
-var widgetName = "ui.ufd";	
-	
+var widgetName = "ui.ufd";
+
 $.widget(widgetName, {
 
 	// options: provided by framework
@@ -23,18 +23,18 @@ $.widget(widgetName, {
 		// in 1.8 this method is  "default functionality" which we dont have; here for 1.7 support
 		if(!this.created) this._create();
 	},
-	
+
 	_create: function() { //1.8 init
 		if(this.created) return;
 		this.created = true;
-		
+
 		if (this.element[0].tagName.toLowerCase() != "select") {
 			this.destroy();
 			return false;
 		}
 
 		// this._timingMeasure(true, "init");
-		
+
 		this.options = $.extend(true, {}, this.options); //deep copy: http://dev.jqueryui.com/ticket/4366
 
 		this.visibleCount = 0;
@@ -58,8 +58,8 @@ $.widget(widgetName, {
 
 		var css = this.options.css;
 		this.css = this.options.css;
-		if(this.options.useUiCss) $.extend(this.css, this.options.uiCss); 
-		if(!css.skin) css.skin = this.options.skin; // use option skin if not specified in CSS 
+		if(this.options.useUiCss) $.extend(this.css, this.options.uiCss);
+		if(!css.skin) css.skin = this.options.skin; // use option skin if not specified in CSS
 
 		this.wrapper = $([
 			'<span class="', css.wrapper, ' ', css.hidden, ' ', css.skin, '">',
@@ -85,11 +85,11 @@ $.widget(widgetName, {
 		this.button = this.wrapper.find("button");
 		this.listWrapper = this.dropdown.children(":first").css("z-index", this.options.zIndexPopup);
 		this.listScroll = this.listWrapper.children(":first");
-		
+
 		if($.fn.bgiframe) this.listWrapper.bgiframe(); //ie6 !
-		
+
 		// check browser supports min-width, revert to fixed if no support - Looking at you, iE6...
-		if(!this.options.listWidthFixed){ 
+		if(!this.options.listWidthFixed){
 			this.listWrapper.css({"width": 50, "min-width": 100});
 			this.options.listWidthFixed = (this.listWrapper.width() < 100);
 			this.listWrapper.css({"width": null, "min-width": null});
@@ -104,10 +104,10 @@ $.widget(widgetName, {
 
 	_initEvents: function() { //initialize all event listeners
 		var self = this;
-		var keyCodes = $.ui.keyCode; 
+		var keyCodes = $.ui.keyCode;
 		var key, isKeyDown, isKeyPress,isKeyUp;
 		var css = this.options.css;
-		
+
 		// this.log("initEvents");
 
 		this.input.bind("keydown keypress keyup", function(event) {
@@ -118,13 +118,13 @@ $.widget(widgetName, {
 			key = null;
 
 			if (undefined === event.which) {
-				key = event.keyCode; 
+				key = event.keyCode;
 			} else if (!isKeyPress && event.which != 0) {
 				key = event.keyCode;
-			} else { 
+			} else {
 				return; //special key
 			}
-			
+
 			switch (key) { //stop default behivour for these events
 				case keyCodes.HOME:
 				case keyCodes.END:
@@ -137,9 +137,9 @@ $.widget(widgetName, {
 					//self.stopEvent(event);
 				default:
 			}
-			
-			// only process: keyups excluding tab/return; and only tab/return keydown 
-			// Only some browsers fire keyUp on tab in, ignore if it happens 
+
+			// only process: keyups excluding tab/return; and only tab/return keydown
+			// Only some browsers fire keyUp on tab in, ignore if it happens
 			if(!isKeyUp == ((key != keyCodes.TAB) && (key != keyCodes.ENTER)) ) return;
 
 			// self.log("Key: " + key + " event: " + event.type);
@@ -149,7 +149,7 @@ $.widget(widgetName, {
 			switch (key) {
 			case keyCodes.SHIFT:
 			case keyCodes.CONTROL:
-				//don't refilter 
+				//don't refilter
 				break;
 
 			case keyCodes.DOWN:
@@ -198,12 +198,12 @@ $.widget(widgetName, {
 				return;
 			}
 			// self.log("input click: " + e.target);
-			if (!self.listVisible()) { 
-				self.filter(true); //show all 
+			if (!self.listVisible()) {
+				self.filter(true); //show all
 				self.inputFocus();
 				self.showList();
 			}
-		}); 
+		});
 		this.input.bind("focus", function(e) {
 			if(self.isDisabled){
 				self.stopEvent(e);
@@ -215,28 +215,28 @@ $.widget(widgetName, {
 			}
 		});
 
-		this.button.bind("mouseover", function(e) { self.button.addClass(css.buttonHover); }); 
-		this.button.bind("mouseout",  function(e) { self.button.removeClass(css.buttonHover); }); 
-		this.button.bind("mousedown", function(e) { self.button.addClass(css.buttonMouseDown); }); 
-		this.button.bind("mouseup",   function(e) { self.button.removeClass(css.buttonMouseDown); }); 
+		this.button.bind("mouseover", function(e) { self.button.addClass(css.buttonHover); });
+		this.button.bind("mouseout",  function(e) { self.button.removeClass(css.buttonHover); });
+		this.button.bind("mousedown", function(e) { self.button.addClass(css.buttonMouseDown); });
+		this.button.bind("mouseup",   function(e) { self.button.removeClass(css.buttonMouseDown); });
 		this.button.bind("click", function(e) {
 			if(self.isDisabled){
 				self.stopEvent(e);
 				return;
 			}
 			// self.log("button click: " + e.target);
-			if (self.listVisible()) { 
+			if (self.listVisible()) {
 				self.hideList();
 				self.inputFocus();
-				
+
 			} else {
-				self.filter(true); //show all 
+				self.filter(true); //show all
 				self.inputFocus();
 				self.showList();
-			}          
-		}); 
-		
-		/*	
+			}
+		});
+
+		/*
 		 * Swallow mouse scroll to prevent body scroll
 		 * thanks http://www.switchonthecode.com/tutorials/javascript-tutorial-the-scroll-wheel
 		*/
@@ -244,12 +244,12 @@ $.widget(widgetName, {
 			self.stopEvent(e);
 			e = e ? e : window.event;
 			var normal = e.detail ? e.detail * -1 : e.wheelDelta / 40;
-			
+
 			var curST = self.listScroll.scrollTop();
 			var newScroll = curST + ((normal > 0) ? -1 * self.itemHeight : 1 * self.itemHeight);
 			self.listScroll.scrollTop(newScroll);
 		});
-		
+
 		this.listScroll.bind("mouseover mouseout click", function(e) {
 			if ( "LI" == e.target.nodeName.toUpperCase() ) {
 				if(self.setActiveTimeout) { //cancel pending selectLI -> active
@@ -258,12 +258,12 @@ $.widget(widgetName, {
 				}
 				if ("mouseout" == e.type) {
 					$(e.target).removeClass(css.liActive);
-					self.setActiveTimeout = setTimeout(function() { 
-						$(self.selectedLi).addClass(css.liActive); 
+					self.setActiveTimeout = setTimeout(function() {
+						$(self.selectedLi).addClass(css.liActive);
 					}, self.options.delayYield);
 
-				} else if ("mouseover" == e.type) { 
-					if (self.selectedLi != e.target) { 
+				} else if ("mouseover" == e.type) {
+					if (self.selectedLi != e.target) {
 						$(self.selectedLi).removeClass(css.liActive);
 					}
 					$(e.target).addClass(css.liActive);
@@ -301,17 +301,17 @@ $.widget(widgetName, {
 			if (self.internalFocus) self.realLooseFocusEvent();
 		};
 		$(document).bind("click." + widgetName, this._myDocClickHandler);
-		
+
 		// polling for disabled, dimensioned
 		if(this.options.polling) {
 			var self = this; // shadow self var - less lookup chain == faster
 			this._myPollId = setInterval(function() {
 				// fast as possible
 				if(!self.dimensioned) self.setDimensions();
-				if(self.selectbox[0].disabled != self.isDisabled) { 
+				if(self.selectbox[0].disabled != self.isDisabled) {
 					(self.selectbox[0].disabled) ? self.disable() : self.enable();
 				}
-				
+
 			}, self.options.polling);
 		}
 
@@ -334,7 +334,7 @@ $.widget(widgetName, {
 	realLooseFocusEvent: function() {
 		// this.log("real loose focus (blur)");
 		this.internalFocus = false;
-		this.hideList();  
+		this.hideList();
 		this.wrapper.removeClass(this.options.css.skin + "-" + this.options.css.inputFocus);
 		this.input.removeClass(this.options.css.inputFocus);
 		this.button.removeClass(this.options.css.inputFocus);
@@ -350,7 +350,7 @@ $.widget(widgetName, {
 
 		} else if( document.createEventObject ) { // iE
 			this.selectbox.get(0).fireEvent("on" + eventName);
-		} 
+		}
 
 	},
 
@@ -361,14 +361,14 @@ $.widget(widgetName, {
 		this.input.focus();
 
 		if (this.getCurrentTextValue().length) {
-			this.selectAll();    	
-		}			
+			this.selectAll();
+		}
 	},
 
 	inputBlur: function() {
 		// this.log("inputBlur: loose input component focus");
 		this.input.blur();
-	},	 
+	},
 
 	showList: function() {
 		// this.log("showlist");
@@ -381,12 +381,12 @@ $.widget(widgetName, {
 		// this.log("hide list");
 		if(!this.listVisible()) return;
 		this.listWrapper.addClass(this.css.hidden);
-		this.listItems.removeClass(this.css.hidden);   
+		this.listItems.removeClass(this.css.hidden);
 	},
 
 	/*
 	 * adds / removes items to / from the dropdown list depending on combo's current value
-	 * 
+	 *
 	 * if doDelay, will delay execution to allow re-entry to cancel.
 	 */
 	filter: function(showAll, doDelay) {
@@ -398,7 +398,7 @@ $.widget(widgetName, {
 		if(this.filterOnTimeout) clearTimeout(this.filterOnTimeout);
 		this.updateOnTimeout = null;
 		this.filterOnTimeout = null;
-		
+
 		var searchText = self.getCurrentTextValue();
 
 		var search = function() {
@@ -410,7 +410,7 @@ $.widget(widgetName, {
 			// this._timingMeasure(false, "filter search");
 
 			//yield then screen update
-			self.updateOnTimeout = setTimeout(function(){screenUpdate();}, self.options.delayYield); 
+			self.updateOnTimeout = setTimeout(function(){screenUpdate();}, self.options.delayYield);
 
 		};
 
@@ -419,11 +419,11 @@ $.widget(widgetName, {
 
 			// this._timingMeasure(true, "screenUpdate");
 			var active = self.getActive(); //get item before class-overwrite
-			
+
 			if (self.options.addEmphasis) {
 				self.emphasis(self.trie.matches, true, searchText);
 			}
-			
+
 			self.visibleCount = self.overwriteClass(self.trie.matches, "" );
 			if(showAll || !self.trie.matches.length) {
 				self.visibleCount += self.overwriteClass(self.trie.misses, "" );
@@ -433,17 +433,17 @@ $.widget(widgetName, {
 			} else {
 				self.overwriteClass(self.trie.misses, self.css.hidden);
 			}
-			var oldActiveHidden =  active.hasClass(self.css.hidden) ; 
+			var oldActiveHidden =  active.hasClass(self.css.hidden) ;
 
-			// need to set overwritten active class  
+			// need to set overwritten active class
 			if(!oldActiveHidden && active.length && self.trie.matches.length){
-				self.setActive(active.get(0));  
+				self.setActive(active.get(0));
 
 			} else {
 				var firstmatch = self.listItems.filter(":visible:first");
 				self.setActive(firstmatch.get(0));
 
-			} 
+			}
 			// this._timingMeasure(false, "screenUpdate");
 
 
@@ -463,21 +463,21 @@ $.widget(widgetName, {
 	 */
 	_encodeDom: $('<div/>'),
 	_encodeString: function(toEnc) {
-		return $.trim(this._encodeDom.text(toEnc).html());	
-	},	
-	
+		return $.trim(this._encodeDom.text(toEnc).html());
+	},
+
 	emphasis: function(array, isAddEmphasis, searchText ) {
-		
+
 		var tritem, index, indexB, li, text, stPattern, escapedST;
 		var searchTextLength = searchText.length || 0;
 		var options = this.selectbox.get(0).options;
 		index = array.length;
-		
-		isAddEmphasis = (isAddEmphasis && searchTextLength > 0); // don't add emphasis to 0-length  
-		
+
+		isAddEmphasis = (isAddEmphasis && searchTextLength > 0); // don't add emphasis to 0-length
+
 		if(isAddEmphasis) {
-			// html encode search string to match innerHTML then escape regexp chars; thanks http://xkr.us/js/regexregex 
-			escapedST = this._encodeString(searchText).replace(/([\\\^\$*+[\]?{}.=!:(|)])/g,"\\$1"); 
+			// html encode search string to match innerHTML then escape regexp chars; thanks http://xkr.us/js/regexregex
+			escapedST = this._encodeString(searchText).replace(/([\\\^\$*+[\]?{}.=!:(|)])/g,"\\$1");
 			stPattern = new RegExp("(" + escapedST + ")", "gi"); // $1
 			this.hasEmphasis = true;
 		}
@@ -513,7 +513,7 @@ $.widget(widgetName, {
 		} else {
 			console.timeEnd(label);
 		}
-	},	
+	},
 	_timingMeasure : function(isStart, label) {
 		this._timingMeasure_firebug(isStart, label);
 	},
@@ -533,13 +533,13 @@ $.widget(widgetName, {
 			var li = theLiSet[liCount];
 			li.innerHTML = $.trim(options[li.getAttribute("name")].innerHTML);
 		}
-		
-		
-		// this._timingMeasure(false, "rem");		
-		
+
+
+		// this._timingMeasure(false, "rem");
+
 	},
 
-	// attempt update of master - returns true if update good or already set correct. 
+	// attempt update of master - returns true if update good or already set correct.
 	tryToSetMaster: function() {
 		// this.log("t.s.m");
 
@@ -552,21 +552,21 @@ $.widget(widgetName, {
 			// this.log("no active, master not set.");
 			if (this.options.submitFreeText) {
 				return false;
-				
-			} else { 
+
+			} else {
 				// this.log("Not freetext and no active set; revert.");
 				this.revertSelected();
 				return false;
 			}
 		} // else optionIndex is set to activeIndex
 
-		var sBox = this.selectbox.get(0);			
+		var sBox = this.selectbox.get(0);
 		var curIndex = sBox.selectedIndex;
 		var option = sBox.options[optionIndex];
 
 		if(!this.options.submitFreeText || this.input.val() == option.text){ //freetext only if exact match
 			this.input.val(option.text); // input may be only partially set
-			
+
 			if(optionIndex != curIndex){
 				this.isUpdatingMaster = true;
 				sBox.selectedIndex = optionIndex;
@@ -575,13 +575,13 @@ $.widget(widgetName, {
 
 			} // else already correctly set, no change
 			return true;
-			
+
 		} // else have a non-matched freetext
 		// this.log("unmatched freetext, master not set.");
-		
+
 		return false;
 	},
-	
+
 	_populateFromMaster: function() {
 		// this.log("populate from master select");
 		// this._timingMeasure(true, "prep");
@@ -630,18 +630,18 @@ $.widget(widgetName, {
 		while(loopCountdown--) {
 			thisOpt = options[index];
 			self.trie.add( $.trim(thisOpt.text), theLiSet[index++]); //option.text not innerHTML for trie as we dont want escaping
-		} 
+		}
 
 		// this._timingMeasure(false, "kids");
 		// this._timingMeasure(true, "tidy");
-		
+
 		this.visibleCount = theLiSet.length;
 		this.setInputFromMaster();
 		this.selectedLi = null;
-		
+
 		this.dimensioned = false;
 		this.setDimensions();
-		
+
 		if(isEnabled) this.enable();
 		// this._timingMeasure(false, "tidy");
 
@@ -652,7 +652,7 @@ $.widget(widgetName, {
 	 * cuts and pastes all listed attributes from the source to the destination
 	 */
 	_moveAttrs: function(src, dest, attrs) {
-		
+
         for (var i = 0; i < attrs.length; ++i) {
             var attr = attrs[i];
             var value = src.attr(attr);
@@ -661,14 +661,14 @@ $.widget(widgetName, {
                 src.removeAttr(attr);
             }
         }
-		
+
 	},
-	
+
 	/*
 	 * This method is called by the poller, so needs to return quickly when not dimensioning
 	 */
 	setDimensions: function() {
-		// if a new UFD (unwrapped) and selectbox is invisible, we cant dimension 
+		// if a new UFD (unwrapped) and selectbox is invisible, we cant dimension
 		if(!this.selectIsWrapped && !this.selectbox.filter(":visible").length) {
 			return;
 		}
@@ -686,7 +686,7 @@ $.widget(widgetName, {
 		//match original width
 		var newSelectWidth;
 		if(this.options.manualWidth) {
-			newSelectWidth = this.options.manualWidth; 
+			newSelectWidth = this.options.manualWidth;
 		} else {
 			newSelectWidth = this.selectbox.outerWidth();
 			if (newSelectWidth < this.options.minWidth) {
@@ -695,7 +695,7 @@ $.widget(widgetName, {
 				newSelectWidth = this.options.maxWidth;
 			}
 		}
-		
+
 		var props = this.options.mimicCSS;
 		for(propPtr in props){
 			var prop = props[propPtr];
@@ -710,7 +710,7 @@ $.widget(widgetName, {
 
 		this.wrapper.removeClass(this.css.hidden);
 		this.listWrapper.removeClass(this.css.hidden);
-		
+
 		var buttonWidth = this.button.outerWidth(true);
 		var wrapperBP = this.wrapper.outerWidth() - this.wrapper.width();
 		var inputBP = this.input.outerWidth(true) - this.input.width();
@@ -719,15 +719,15 @@ $.widget(widgetName, {
 
 		this.input.width(inputWidth);
 		this.wrapper.width(newSelectWidth);
-		
+
 		var cssWidth = this.options.listWidthFixed ? "width" : "min-width";
 		this.listWrapper.css(cssWidth, newSelectWidth + wrapperBP);
 		this.listScroll.css(cssWidth, newSelectWidth + wrapperBP - listScrollBP);
 
-/*		console.log(newSelectWidth + " : " + inputWidth + " : " + 
-				buttonWidth + " : " + listScrollBP + " : " + wrapperBP); */ 
+/*		console.log(newSelectWidth + " : " + inputWidth + " : " +
+				buttonWidth + " : " + listScrollBP + " : " + wrapperBP); */
 		this.listWrapper.addClass(this.css.hidden);
-		
+
 		this.dimensioned = true;
 
 	},
@@ -748,7 +748,7 @@ $.widget(widgetName, {
 		this.setInputFromMaster();
 		this.filter(true); //show all
 	},
-	
+
 	//corrects list wrapper's height depending on list items height
 	setListDisplay: function() {
 
@@ -758,33 +758,33 @@ $.widget(widgetName, {
 			// this.log("listItemHeight: " + this.itemHeight);
 		}
 		var height;
-		
+
 		if (this.visibleCount > this.options.listMaxVisible) {
 			height = this.options.listMaxVisible * this.itemHeight;
 			this.listScroll.css(this.overflowCSS, "scroll");
 		} else {
-			height = this.visibleCount * this.itemHeight; 
+			height = this.visibleCount * this.itemHeight;
 			this.listScroll.css(this.overflowCSS, "hidden");
 		}
-		
+
 		// this.log("height set to: " + height);
-		this.listScroll.height(height); 
+		this.listScroll.height(height);
 		var outerHeight = this.listScroll.outerHeight();
-		this.listWrapper.height(outerHeight); 
+		this.listWrapper.height(outerHeight);
 
 		//height set, now position
-		
+
 		var offset = this.wrapper.offset();
 		var wrapperOuterHeight = this.wrapper.outerHeight();
 		var bottomPos = offset.top + wrapperOuterHeight + outerHeight;
-		
+
 		var maxShown = $(window).height() + $(document).scrollTop();
 		var doDropUp = (bottomPos > maxShown);
 
-		
+
 		var left = offset.left;
 		var top;
-		
+
 		if (doDropUp) {
 			this.listWrapper.addClass(this.css.listWrapperUp);
 			top = (offset.top - outerHeight) ;
@@ -793,11 +793,11 @@ $.widget(widgetName, {
 			top = (offset.top + wrapperOuterHeight);
 		}
 		this.listWrapper.css("left", left);
-		this.listWrapper.css("top", top );			
+		this.listWrapper.css("top", top );
 		this.scrollTo();
 
 		// this._timingMeasure(false, "listDisplay");
-		
+
 		return height;
 	},
 
@@ -805,7 +805,7 @@ $.widget(widgetName, {
 	getActive: function() {
 		// this.log("get active");
 		if(this.selectedLi == null) return $([]);
-		return $(this.selectedLi); 
+		return $(this.selectedLi);
 	},
 
 	//highlights the item given
@@ -835,67 +835,67 @@ $.widget(widgetName, {
 		var count = isPageLength ? this.options.pageLength : 1;
 		var toSelect = this.searchRelativeVisible(false, count);
 		this.afterSelect( toSelect );
-	},	
-	
+	},
+
 	//highlights item of the dropdown list next to the currently active item
 	selectNext: function(isPageLength) {
 		// this.log("hilightnext");
 		var count = isPageLength? this.options.pageLength : 1;
 		var toSelect = this.searchRelativeVisible(true, count);
 		this.afterSelect( toSelect );
-	},		
+	},
 
 	afterSelect: function(active) {
-		if(active == null) return; 
+		if(active == null) return;
 		this.setActive(active);
 		this.input.val(active.text());
 		this.scrollTo();
 		this.tryToSetMaster();
 		this.inputFocus();
 		this.removeEmphasis();
-	},		
+	},
 
 	searchRelativeVisible: function(isSearchDown, count) {
 		// this.log("searchRelative: " + isSearchDown + " : " + count);
-		
+
 		var active = this.getActive();
 		if (!active.length) {
 			this.selectFirst();
 			return null;
 		}
-		
+
 		var searchResult;
-		
+
 		do { // count times
 			searchResult = active;
 			do { //find next/prev item
 				searchResult = isSearchDown ? searchResult.next() : searchResult.prev();
 			} while (searchResult.length && searchResult.hasClass(this.css.hidden));
-			
+
 			if (searchResult.length) active = searchResult;
 		} while(--count);
-		
+
 		return active;
 	},
-	
+
 	//scrolls list wrapper to active: true if scroll occured
 	scrollTo: function() {
 		// this.log("scrollTo");
 		if ("scroll" != this.listScroll.css(this.overflowCSS)) return false;
 		var active = this.getActive();
 		if(!active.length) return false;
-		
+
 		var activePos = Math.floor(active.position().top);
 		var activeHeight = active.outerHeight(true);
 		var listHeight = this.listWrapper.height();
 		var scrollTop = this.listScroll.scrollTop();
-		
-	    /*  this.log(" AP: " + activePos + " AH: " + activeHeight + 
+
+	    /*  this.log(" AP: " + activePos + " AH: " + activeHeight +
 	    		" LH: " + listHeight + " ST: " + scrollTop); */
-		    
+
 		var top;
-		var viewAheadGap = (this.options.viewAhead * activeHeight); 
-		
+		var viewAheadGap = (this.options.viewAhead * activeHeight);
+
 		if (activePos < viewAheadGap) { //  off top
 			top = scrollTop + activePos - viewAheadGap;
 		} else if( (activePos + activeHeight) >= (listHeight - viewAheadGap) ) { // off bottom
@@ -905,10 +905,10 @@ $.widget(widgetName, {
 		// this.log("top: " + top);
 		this.listScroll.scrollTop(top);
 		return true; // we did scroll.
-	},		
+	},
 
 	getCurrentTextValue: function() {
-		var input = $.trim(this.input.val()); 
+		var input = $.trim(this.input.val());
 		// this.log("Using input value: " + input);
 		return input;
 	},
@@ -980,7 +980,7 @@ $.widget(widgetName, {
 		}
 		return ddc;
 	},
-	
+
 	log: function(msg) {
 		if(!this.options.log) return;
 
@@ -994,7 +994,7 @@ $.widget(widgetName, {
 
 	_calculateZIndex: function(msg) {
 		var curZ, zIndex = this.options.zIndexPopup; // start here as a min
-		
+
 		this.selectbox.parents().each(function(){
 			curZ = parseInt($(this).css("zIndex"), 10);
 			if(curZ > zIndex) zIndex = curZ;
@@ -1005,7 +1005,7 @@ $.widget(widgetName, {
 	changeOptions: function() {
 		// this.log("changeOptions");
 		this._populateFromMaster();
-	},		
+	},
 
 	destroy: function() {
 		// this.log("called destroy");
@@ -1013,40 +1013,40 @@ $.widget(widgetName, {
 		if(this.selectIsWrapped) { //unwrap
 			this.wrapper.before(this.selectbox);
 		}
-		
+
         this._moveAttrs(this.input, this.selectbox, this.options.moveAttrs); // restore moved attributes
 		this.labels.attr("for", this.selectbox.attr("id")); //revert label 'for' attributes.
 		this.labels = null;
-		
+
 		this.selectbox.unbind("change." + widgetName);
 		$(document).unbind("click." + widgetName, this._myDocClickHandler);
 		if(this._myPollId) clearInterval(this._myPollId );
 		//all other handlers are in these removed nodes.
 		this.wrapper.remove();
 		this.listWrapper.remove();
-		
-		if($.ui.version < "1.8") { 
+
+		if($.ui.version < "1.8") {
 			// see ticket; http://dev.jqueryui.com/ticket/5005 - wasn't fixed 1.7.3
-			this.selectbox.unbind("setData." + widgetName); 
+			this.selectbox.unbind("setData." + widgetName);
 			this.selectbox.unbind("getData." + widgetName);
 			// will remove all events sorry, might have other side effects but needed
 			this.selectbox.unbind("remove");
-			
+
 			$.widget.prototype.destroy.apply(this, arguments); // default destroy
-			
+
 		} else { // 1.8+
 			$.Widget.prototype.destroy.apply(this, arguments); // default destroy
 		}
 		this.selectbox = null;
 		this._encodeDom = null;
-		
+
 	},
-	
-	
+
+
 	//internal state
 	dimensioned: false, // polling flag indicating that setDimensions needs to be called.
 	selectIsWrapped: false,
-	internalFocus: false, 
+	internalFocus: false,
 	lastKey: null,
 	selectedLi: null,
 	isUpdatingMaster: false,
@@ -1065,7 +1065,7 @@ $.widget(widgetName, {
  * Constructor
  */
 var InfixTrie = function(isInfix, isCaseSensitive){
-	
+
 	this.isInfix = !!isInfix;
 	this.isCaseSensitive = !!isCaseSensitive;
 	this.root = [null, {}, false]; //masterNode: object, char -> trieNode map, traverseToggle
@@ -1073,12 +1073,12 @@ var InfixTrie = function(isInfix, isCaseSensitive){
 };
 
 /**
- * Add (String, Object) to store 
+ * Add (String, Object) to store
  */
 InfixTrie.prototype.add = function( key, object ) {
 	key = this.cleanString(key);
 
-	var kLen = key.length; 
+	var kLen = key.length;
 	var curNode = this.root;
 	var chr, node;
 
@@ -1088,10 +1088,10 @@ InfixTrie.prototype.add = function( key, object ) {
 		if(chr in node) {
 			curNode = node[chr];
 		} else {
-			curNode = node[chr] = [null, {}, this.root[2]]; // match roots' toggle setting 
+			curNode = node[chr] = [null, {}, this.root[2]]; // match roots' toggle setting
 
 			if(this.isInfix) { // only add curNodes once, when created.
-				if(chr in this.infixRoots) { 
+				if(chr in this.infixRoots) {
 					this.infixRoots[chr].push(curNode);
 				} else {
 					this.infixRoots[chr] = [curNode];
@@ -1107,11 +1107,11 @@ InfixTrie.prototype.add = function( key, object ) {
 
 /**
  * Get object with two properties:
- * 	matches: array of all objects not matching entire key (String) 
+ * 	matches: array of all objects not matching entire key (String)
  * 	misses:  array of all objects exactly matching the key (String)
- * 
+ *
  */
-InfixTrie.prototype.find = function(key) { // string 
+InfixTrie.prototype.find = function(key) { // string
 	var trieNodeArray = this.findNodeArray(key);
 	var toggleTo = !this.root[2];
 	var matches = [];
@@ -1121,16 +1121,16 @@ InfixTrie.prototype.find = function(key) { // string
 	for(arrName in trieNodeArray){
 		trie = trieNodeArray[arrName];
 		if(!trieNodeArray.hasOwnProperty(arrName) || typeof trie === 'function') continue;
-		
+
 		this.markAndRetrieve(matches, trie, toggleTo);
 	}
 	this.markAndRetrieve(misses, this.root, toggleTo); //will ensure whole tree is toggled.
-	
+
 	return { matches : matches, misses : misses };
 }
 
 /**
- * Find array of trieNodes that match the infix key 
+ * Find array of trieNodes that match the infix key
  */
 InfixTrie.prototype.findNodeArray = function(key) {
 	var key = this.cleanString(key);
@@ -1140,21 +1140,21 @@ InfixTrie.prototype.findNodeArray = function(key) {
 
 	this.cache = this.cache || {};
 	var thisCache = this.cache;
-	
+
 	for (var i = 0; i < kLen; i++) {
 		chr = key.charAt(i);
 		if(thisCache.chr == chr) {
 			retArray = thisCache.hit;
-			
-		} else {		
+
+		} else {
 			retArray = this.mapNewArray(retArray, chr);
 			thisCache.chr = chr;
 			thisCache.hit = retArray;
 			thisCache.next = {};
 		}
-		thisCache = thisCache.next; 
+		thisCache = thisCache.next;
 	}
-	
+
 	return retArray;
 };
 
@@ -1162,16 +1162,16 @@ InfixTrie.prototype.findNodeArray = function(key) {
  * Take an array of nodes, and construct new array of children nodes along the given chr.
  */
 InfixTrie.prototype.mapNewArray = function(nodeArr, chr) {
-	
+
 	if(nodeArr.length && nodeArr[0] == this.root) {
 		if(this.isInfix) {
-			return (this.infixRoots[chr] || []); // return empty array if undefined  
+			return (this.infixRoots[chr] || []); // return empty array if undefined
 		} else {
 			var prefixRoot = this.root[1][chr];
 			return (prefixRoot) ? [prefixRoot] : [];
 		}
 	}
-	
+
 	var retArray = [];
 	var aLen = nodeArr.length;
 	var thisNodesArray;
@@ -1190,7 +1190,7 @@ InfixTrie.prototype.mapNewArray = function(nodeArr, chr) {
  * Also sets toggleSet and doesnt traverse already marked branches.
  * You must call this with root to ensure complete tree is toggled.
  */
-InfixTrie.prototype.markAndRetrieve = function(array, trie, toggleSet) {  
+InfixTrie.prototype.markAndRetrieve = function(array, trie, toggleSet) {
 	var stack = [ trie ];
 	while (stack.length > 0) {
 		var thisTrie = stack.pop();
@@ -1203,7 +1203,7 @@ InfixTrie.prototype.markAndRetrieve = function(array, trie, toggleSet) {
 			}
 		}
 	}
-}	
+}
 
 /**
  * Conform case as needed. Clean invalid characters ?
@@ -1223,7 +1223,7 @@ $.ui.ufd.getNewTrie = function(isCaseSensitive, isInfix){
 	return new InfixTrie(isCaseSensitive, isInfix);
 }
 
-/* end InfixTrie */	
+/* end InfixTrie */
 
 
 
@@ -1232,39 +1232,39 @@ $.extend($.ui.ufd, {
 	version: "0.6",
 	getter: "", //for methods that are getters, not chainables
 	classAttr: (($.support.style) ? "class" : "className"),  // IE6/7 class attribute
-	
+
 	defaults: { // 1.7 default options location, see below
-		skin: "plain", // skin name 
-		prefix: "ufd-", // prefix for pseudo-dropdown text input name attr.  
+		skin: "plain", // skin name
+		prefix: "ufd-", // prefix for pseudo-dropdown text input name attr.
 		dropDownID: "ufd-container", // ID for a root-child node for storing dropdown lists. avoids ie6 zindex issues by being at top of tree.
 		logSelector: "#log", // selector string to write log into, if present.
 		mimicCSS: ["float", "tabindex", "marginLeft","marginTop","marginRight","marginBottom"], //copy these properties to widget. Width auto-copied unless min/manual.
         moveAttrs: ["tabindex", "title"], // attributes to move from select to text input
-		
 
-		infix: true, //infix search, not prefix 
+
+		infix: true, //infix search, not prefix
 		addEmphasis: false, // add <EM> tags around matches.
-		caseSensitive: false, // case sensitive search 
-		submitFreeText: false, // re[name] original select, give text input the selects' original [name], and allow unmatched entries  
+		caseSensitive: false, // case sensitive search
+		submitFreeText: false, // re[name] original select, give text input the selects' original [name], and allow unmatched entries
 		homeEndForCursor: false, // should home/end affect dropdown or move cursor?
 		allowLR: false, // show horizontal scrollbar
 		calculateZIndex: false, // {max ancestor} + 1
-		useUiCss: false, // use jquery UI themeroller classes. 
+		useUiCss: false, // use jquery UI themeroller classes.
 		log: false, // log to firebug console (if available) and logSelector (if it exists)
 		unwrapForCSS: false, // unwrap select on reload to get % right on units etc. unwrap causes flicker on reload in iE6
-		listWidthFixed: true, // List width matches widget? If false, list can be wider to fit item width, but uses min-width so no iE6 support.  
+		listWidthFixed: true, // List width matches widget? If false, list can be wider to fit item width, but uses min-width so no iE6 support.
 
-		polling: 250, // poll msec to test disabled, dimensioned state of master. 0 to disable polling, but needed for (initially) hidden fields. 
+		polling: 250, // poll msec to test disabled, dimensioned state of master. 0 to disable polling, but needed for (initially) hidden fields.
 		listMaxVisible: 10, // number of visible items
 		minWidth: 50, // don't autosize smaller then this.
 		maxWidth: null, // null, or don't autosize larger then this.
 		manualWidth: null, //override selectbox width; set explicit width - stops flicker on reload in iE6 (unless unwrapForCSS) as no unwrap needed
 		viewAhead: 1, // items ahead to keep in view when cursor scrolling
 		pageLength: 10, // number of visible items jumped on pgup/pgdown.
-		delayFilter: ($.support.style) ? 1 : 150, // msec to wait before starting filter (or get cancelled); long for IE 
+		delayFilter: ($.support.style) ? 1 : 150, // msec to wait before starting filter (or get cancelled); long for IE
 		delayYield: 1, // msec to yield for 2nd 1/2 of filter re-entry cancel; 1 seems adequate to achieve yield
 		zIndexPopup: 101, // dropdown z-index
-	
+
 		// class sets
 		css: {
 			//skin: "plain", // if not set, will inherit options.skin
@@ -1280,18 +1280,18 @@ $.extend($.ui.ufd, {
 
 			li: "",
 			liActive: "active",
-			
+
 			hidden: "invisible",
-			
+
 			wrapper: "ufd",
 			listWrapper: "list-wrapper",
 			listWrapperUp: "list-wrapper-up",
 			listScroll: "list-scroll"
 		},
-		
+
 		//overlaid CSS set
 		uiCss: {
-			skin: "uiCss", 
+			skin: "uiCss",
 			input: "ui-widget-content",
 			inputDisabled: "disabled",
 
@@ -1303,16 +1303,16 @@ $.extend($.ui.ufd, {
 
 			li: "ui-menu-item",
 			liActive: "ui-state-hover",
-			
+
 			hidden: "invisible",
-			
+
 			wrapper: "ufd ui-widget ui-widget-content",
 			listWrapper: "list-wrapper ui-widget ui-widget",
-			listWrapperUp: "list-wrapper-up",			
+			listWrapperUp: "list-wrapper-up",
 			listScroll: "list-scroll ui-widget-content"
 		}
 	}
-});	
+});
 
 $.ui.ufd.prototype.options = $.ui.ufd.defaults; // 1.8 default options location
 

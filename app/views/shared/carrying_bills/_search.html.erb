@@ -18,13 +18,13 @@
     <%= f.input :bill_no_or_goods_no_or_from_customer_name_or_to_customer_name_or_from_customer_phone_or_to_customer_phone_like,:label =>"关键字",:hint => "票据号/货号/发货人/收货人/电话",:input_html => {:size => 30,:id => "keyword"} %>
     <%= f.input params[:bill_date_gte].present? ? params[:bill_date_gte] : :bill_date_gte,:label => "票据日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input params[:bill_date_lte].present? ? params[:bill_date_lte] : :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today.tomorrow} %>
-    <%= f.input :from_org_id_eq,:label => "发货地",:as => :select,:collection => branches_for_select,:input_html => {:class => "select_org",:title => "可录入拼音简写查询发货地(例如:安阳,可录入ay)"} %>
+    <%= f.input :from_org_id_eq,:label => "发货地",:as => :select,:collection => branches_for_select %>
 
-    <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => branches_for_select,:input_html => {:class => "select_org",:title => "可录入拼音简写查询到货地(例如:安阳,可录入ay)"} %>
+    <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => branches_for_select %>
 
-    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types,:input_html =>{:class => "ufd-select"} %>
-    <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select,:input_html =>{:class => "ufd-select"}  %>
-    <%= f.input :short_fee_state_eq,:label => "短途费状态",:as => :select,:collection => short_fee_states_for_select,:input_html =>{:class => "ufd-select"}  %>
+    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
+    <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select  %>
+    <%= f.input :short_fee_state_eq,:label => "短途费状态",:as => :select,:collection => short_fee_states_for_select  %>
     <%= f.input :from_short_carrying_fee_gte,:label => "仅查询有发货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input :to_short_carrying_fee_gte,:label => "仅查询有到货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>

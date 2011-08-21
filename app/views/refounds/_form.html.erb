@@ -7,7 +7,7 @@
       <td> <%=f.text_field :bill_date,:class => "datepicker",:size => 10%></td>
       <td>结算员:</td>
       <td><%=current_user%></td>
-      <td colspan='6'>&nbsp;</td>
+      <td colspan='2'>&nbsp;</td>
     </tr>
     <tr>
       <td>付款单位:</td>
@@ -21,23 +21,26 @@
       <td>
         <%= link_to_function image_tag("arrow-circle-double-135.png"), :id => 'btn_refound_refresh',:title => "刷新",:class => "tipsy"  %>
       </td>
-      <td colspan='5'>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>返程货款:</td>
       <td><%=f.text_field :sum_goods_fee ,:readonly => true,:size => 10 %></td>
       <td>提货付运费:</td>
       <td><%=f.text_field :sum_carrying_fee ,:readonly => true,:size => 10 %></td>
+      <td rowspan='2' class='text-center'>合计:</td>
+      <td rowspan='2' class='text-center'><span id='refound_sum_fee'><%=resource.sum_fee %></span></td>
+    </tr>
+    <tr>
       <td>中转运费:</td>
       <td><%=f.text_field :sum_transit_carrying_fee ,:readonly => true,:size => 10 %></td>
       <td>中转手续费:</td>
       <td><%=f.text_field :sum_transit_hand_fee ,:readonly => true,:size => 10 %></td>
-      <td>合计:</td>
-      <td><span id='refound_sum_fee'><%=resource.sum_fee %></span></td>
     </tr>
+
     <tr>
       <td>备注</td>
-      <td colspan='9'>
+      <td colspan='5'>
         <%=f.text_field :note,:size => 50 %>
       </td>
     </tr>

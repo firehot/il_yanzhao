@@ -60,6 +60,7 @@ jQuery(function($) {
 		default_options: {
 			count: "#bill_count",
 			sum_carrying_fee: "#sum_carrying_fee",
+			sum_carrying_fee_total: "#sum_carrying_fee_total",
 			sum_carrying_fee_th: "#sum_carrying_fee_th",
 			sum_k_carrying_fee: "#sum_k_carrying_fee",
 			sum_k_hand_fee: "#sum_k_hand_fee",
@@ -95,6 +96,7 @@ jQuery(function($) {
 				$.bill_selector.sum_info.sum_th_amount = 0;
 				$.bill_selector.sum_info.sum_from_short_carrying_fee = 0;
 				$.bill_selector.sum_info.sum_to_short_carrying_fee = 0;
+				$.bill_selector.sum_info.sum_carrying_fee_total = 0;
 			}
 			$.bill_selector.set_checkbox();
 			$.bill_selector.update_html();
@@ -131,6 +133,7 @@ jQuery(function($) {
 				$.bill_selector.sum_info.sum_transit_hand_fee = parseFloat($.bill_selector.sum_info.sum_transit_hand_fee) + parseFloat(the_bill.transit_hand_fee);
 				$.bill_selector.sum_info.sum_agent_carrying_fee = parseFloat($.bill_selector.sum_info.sum_agent_carrying_fee) + parseFloat(the_bill.agent_carrying_fee);
 				$.bill_selector.sum_info.sum_th_amount = parseFloat($.bill_selector.sum_info.th_amount) + parseFloat(the_bill.th_amount);
+				$.bill_selector.sum_info.sum_carrying_fee_total = parseFloat($.bill_selector.sum_info.sum_carrying_fee_total) + parseFloat(the_bill.carrying_fee_total);
 
 			}
 			else {
@@ -152,6 +155,7 @@ jQuery(function($) {
 				$.bill_selector.sum_info.sum_transit_hand_fee = parseFloat($.bill_selector.sum_info.sum_transit_hand_fee) - parseFloat(the_bill.transit_hand_fee);
 				$.bill_selector.sum_info.sum_agent_carrying_fee = parseFloat($.bill_selector.sum_info.sum_agent_carrying_fee) - parseFloat(the_bill.agent_carrying_fee);
 				$.bill_selector.sum_info.sum_th_amount = parseFloat($.bill_selector.sum_info.th_amount) - parseFloat(the_bill.th_amount);
+				$.bill_selector.sum_info.sum_carrying_fee_total = parseFloat($.bill_selector.sum_info.sum_carrying_fee_total) - parseFloat(the_bill.carrying_fee_total);
 
 			}
 			$.bill_selector.update_html();
@@ -174,6 +178,7 @@ jQuery(function($) {
 			$($.bill_selector.options.sum_transit_hand_fee).html($.bill_selector.sum_info.sum_transit_hand_fee);
 			$($.bill_selector.options.sum_agent_carrying_fee).html($.bill_selector.sum_info.sum_agent_carrying_fee);
 			$($.bill_selector.options.sum_th_amount).html($.bill_selector.sum_info.sum_th_amount);
+			$($.bill_selector.options.sum_carrying_fee_total).html($.bill_selector.sum_info.sum_carrying_fee_total);
 			//触发选择改变事件
 			$($.bill_selector).trigger('select:change');
 

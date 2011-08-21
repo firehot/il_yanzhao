@@ -64,7 +64,7 @@ module OrgsHelper
       ret_orgs.uniq!
       ret_orgs.compact!
     end
-    ret_orgs.map {|b| ["#{b.name}(#{b.py})",b.id]}
+    ret_orgs.map {|b| [("%-50s" % b.py) << "|" << b.name,b.id]}
   end
   private
   #根据登录情况得到可以显示的中转货厂

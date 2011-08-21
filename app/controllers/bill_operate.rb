@@ -10,6 +10,7 @@ module BillOperate
   #PUT/:load_list_id/process_handle
   def process_handle
     bill = resource_class.find(params[:id])
+    bill = resource_class.includes(:carrying_bills).find(params[:id]) if bill.respond_to? :carrying_bills
     get_resource_ivar || set_resource_ivar(bill)
     bill.process ? flash[:success] = "数据处理成功!" : flash[:error] = "数据处理失败!"
     render  :show

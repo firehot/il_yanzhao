@@ -2,7 +2,7 @@
 /* reset */
 #main{
   float : right;
-  width : 80%;
+  width : 82%;
 }
 #sidebar{
   float : left;
@@ -41,6 +41,10 @@
 .with-tb{border-top : 1px solid #DDDDDD;}
 
 /* table 样式覆盖*/
+.table {
+  width : 98%;
+  border : '1px solid red';
+}
 .table thead tr{
   background-color: #D9FFD9;
   border-top: 1px solid     black;
@@ -53,7 +57,6 @@
   white-space: nowrap;
 }
 .table tfoot th{
-  font-size: 110%;
   text-align: right;
   padding-right: 0.5em;
   letter-spacing: 1px;
@@ -61,8 +64,7 @@
 .table tfoot td{
   padding-left: 0.5em;
   color: red;
-  font-size: 110%;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .table tfoot td:hover {
@@ -74,8 +76,12 @@
 .table tr.odd{background-color: #FFFFFF;}
 .table tbody tr:hover{background-color: #FFCCCC;cursor : pointer;}
 
-.table td, .table th{border: 1px solid #000;}
-.table tbody td{padding: 0.5em;}
+.table td, .table th{border: 1px solid gray;}
+.table td, .table th{border-bottom: 1px solid black;}
+.table tbody td{
+  padding: 0.4em;
+  font-size : 0.9em;
+}
 .table td  a:link,.table th a:link {color: black;}
 .table td a:visited, .table th a:visited {
   color: black;
@@ -325,7 +331,6 @@ span.notify-close{
   text-decoration : none;
   cursor : pointer;
   padding : 0 5px;
-
 }
 /*运单录入及显示按钮*/
 table.carrying_bill_show td,table.carrying_bill_show th {
@@ -333,6 +338,7 @@ table.carrying_bill_show td,table.carrying_bill_show th {
   border : 1px solid gray;
 }
 /*日营业额统计*/
+#rpt_turnover { width : 95%;}
 #rpt_turnover td{
   background : #fff;
 }

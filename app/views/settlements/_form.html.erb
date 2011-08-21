@@ -13,10 +13,10 @@
       <td><%=Date.today().strftime('%Y-%m-%d')%></td>
     </tr>
     <tr>
-      <td>返程货款:<%=f.text_field :sum_goods_fee ,:readonly => true,:size => 10 %></td>
-      <td>提货付运费:<%=f.text_field :sum_carrying_fee ,:readonly => true,:size => 10 %></td>
-      <td>中转运费:<%=f.text_field :sum_transit_carrying_fee ,:readonly => true,:size => 10 %></td>
-      <td>中转手续费:<%=f.text_field :sum_transit_hand_fee ,:readonly => true,:size => 10 %></td>
+      <td>返程货款:<%=f.text_field :sum_goods_fee ,:readonly => true,:size => 6 %></td>
+      <td>提货付运费:<%=f.text_field :sum_carrying_fee ,:readonly => true,:size => 6 %></td>
+      <td>中转运费:<%=f.text_field :sum_transit_carrying_fee ,:readonly => true,:size => 6 %></td>
+      <td>中转手续费:<%=f.text_field :sum_transit_hand_fee ,:readonly => true,:size => 6 %></td>
       <td>合计:</td>
       <td><span id='settlement_sum_fee'><%=resource.sum_fee %></span></td>
     </tr>

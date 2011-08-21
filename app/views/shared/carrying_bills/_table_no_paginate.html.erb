@@ -2,12 +2,12 @@
 <table class="table" id="bills_table" >
   <thead>
     <tr>
-      <th>&nbsp;</td>
-      <th>&nbsp;</td>
-      <th>&nbsp;</td>
-      <th>&nbsp;</td>
-      <th>总计</td>
-      <th><span id="count"></span></th>
+      <th class='bill_date' style='display : none;'>&nbsp;</td>
+      <th class='bill_no'>&nbsp;</td>
+      <th class='goods_no'>&nbsp;</td>
+      <th class='from_to'>&nbsp;</td>
+      <th class='customer'>总计</td>
+      <th class='pay_type'><span id="count"></span></th>
       <th class="carrying_fee"><span id="sum_carrying_fee"></span></th>
       <th class="carrying_fee_th" style='display : none;'><span id="sum_carrying_fee_th"></span></th>
       <th class="goods_fee"><span id="sum_goods_fee"></span></th>
@@ -31,18 +31,18 @@
       <th class="from_short_carrying_fee" style='display : none;'><span id="sum_from_short_carrying_fee"></span></th>
       <th class="to_short_carrying_fee" style='display : none;'><span id="sum_to_short_carrying_fee"></span></th>
       <th class="note">&nbsp;</td>
-      <th class="state">&nbsp;</td>
+      <th class="state" style='display : none;'>&nbsp;</td>
       <th class="send_state" style='display : none;'>&nbsp;</th>
       <th>&nbsp;</th>
     </tr>
 
     <tr class='text-center'>
-      <th>票据日期</th>
-      <th>票号</th>
-      <th>货号</th>
-      <th>发货地/到货地</th>
-      <th>发货人-收货人</th>
-      <th>付款方式</th>
+      <th class='bill_date' style='display:none;'>票据日期</th>
+      <th class='bill_no'>票号</th>
+      <th class='goods_no'>货号</th>
+      <th class='from_to'>发货地/到货地</th>
+      <th class='customer'>发货人-收货人</th>
+      <th class='pay_type'>付款方式</th>
       <th class="carrying_fee">运费</th>
       <th class="carrying_fee_th" style='display : none;'>提付运费</th>
       <th class="goods_fee">代收货款</th>
@@ -64,7 +64,7 @@
       <th class="from_short_carrying_fee" style='display : none;'>发货地短途运费</th>
       <th class="to_short_carrying_fee" style='display : none;'>到货地短途运费</th>
       <th class="note">备注</th>
-      <th class="state">状态</th>
+      <th class="state" style='display : none;'>状态</th>
       <th class="send state" style='display : none;'>送货状态</th>
       <th>&nbsp;</th>
     </tr>

@@ -1,10 +1,10 @@
 jQuery(function($) {
 	var enter2tab = function(e) {
 		if (e.keyCode == 13) {
-
+			var target_el = e.target;
 			/* FOCUS ELEMENT */
-			var inputs = $(this).parents("form,.enter2tab").eq(0).find('input:visible,select:visible,textarea:visible');
-			var idx = inputs.index(this);
+			var inputs = $(this).find('input:visible,select:visible,textarea:visible');
+			var idx = inputs.index(target_el);
 
 			if (idx == inputs.length - 1) {
 				//自动跳到保存按钮上
@@ -20,22 +20,28 @@ jQuery(function($) {
 		}
 
 	};
-	var on_focus = function() {
-		$(this).css({
+	var on_focus = function(evt) {
+		var target_el = evt.target;
+		var tag_name = $(target_el).attr('tagName').toLowerCase();
+		if (tag_name == 'input' || tag_name == 'textarea' || tag_name == 'select') $(target_el).css({
 			backgroundColor: '#68B4EF'
 		});
 
 	};
-	var on_blur = function() {
-		$(this).css({
-			backgroundColor: '#FFF'
-		});
-		if ($(this).attr('readonly')) $(this).css({
-			backgroundColor: '#EDEDED'
-		});
+	var on_blur = function(evt) {
+		var target_el = evt.target;
+
+		var tag_name = $(target_el).attr('tagName').toLowerCase();
+		if (tag_name == 'input' || tag_name == 'textarea' || tag_name == 'select') {
+			$(target_el).css({
+				backgroundColor: '#FFF'
+			});
+			if ($(target_el).attr('readonly')) $(target_el).css({
+				backgroundColor: '#EDEDED'
+			});
+		}
 
 	};
-	$('form input:visible,form select:visible,form textarea:visible').livequery("keypress", enter2tab).livequery('focus', on_focus).livequery('blur', on_blur);
-	$('.enter2tab input:visible,.enter2tab select:visible,.enter2tab textarea:visible').livequery("keypress", enter2tab).livequery('focus', on_focus).livequery('blur', on_blur);
+	$('form,.enter2tab').live('keydown', enter2tab).live("blur", on_blur).live("focus", on_focus);
 });
 
