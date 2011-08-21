@@ -2,7 +2,7 @@
 /* reset */
 #main{
   float : right;
-  width : 82%;
+  width : 80%;
 }
 #sidebar{
   float : left;
@@ -338,7 +338,6 @@ table.carrying_bill_show td,table.carrying_bill_show th {
   border : 1px solid gray;
 }
 /*日营业额统计*/
-#rpt_turnover { width : 95%;}
 #rpt_turnover td{
   background : #fff;
 }

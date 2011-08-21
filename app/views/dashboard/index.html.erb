@@ -91,33 +91,22 @@
           <ul class='wat-cf'>
             <li>
               <p><%=image_tag "blue-documents-stack.png"%></p>
+
               <%=@today_deliveried.to_a.sum {|bill| ["ComputerBill","HandBill"].include?(bill.type)? bill.bill_count : 0}.to_i%>票
+              /提付运费:&yen;
+              <%=@today_deliveried.to_a.sum {|bill| bill.pay_type == CarryingBill::PAY_TYPE_TH ? bill.carrying_fee : 0}%>
             </li>
             <li>
               <p><%=image_tag "blue-documents-stack.png"%></p>
               中转提货:
               <%=@today_deliveried.to_a.sum {|bill| ["TransitBill","HandTransitBill"].include?(bill.type) ? bill.bill_count : 0 }.to_i%>票
-            </li>
-            <li>
-              <p><%=image_tag "document-stamp.png"%></p>
-              提付运费:&yen;
-              <%=@today_deliveried.to_a.sum {|bill| bill.pay_type == CarryingBill::PAY_TYPE_TH ? bill.carrying_fee : 0}%>
-            </li>
-            <li>
-              <p><%=image_tag "document-stamp.png"%></p>
-              中转提付运费:&yen;
+              /中转提付运费:&yen;
               <%=@today_deliveried.to_a.sum {|bill| (["TransitBill","HandTransitBill"].include?(bill.type) and bill.pay_type == CarryingBill::PAY_TYPE_TH) ? bill.carrying_fee : 0}%>
             </li>
             <li>
-
               <p><%=image_tag "envelope.png"%></p>
               代收货款:&yen;
               <%=@today_deliveried.to_a.sum(&:goods_fee)%>
-            </li>
-            <li>
-              <p><%=image_tag "box.png"%></p>
-              货物件数:
-              <%=@today_deliveried.to_a.sum(&:goods_num).to_i%>件
             </li>
           </ul>
         </div>

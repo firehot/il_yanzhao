@@ -37,12 +37,12 @@
     </tr>
     <tr class='text-center table-header'>
       <th class="cbx_select_bill text-center" style='display : none;'>&nbsp;</th>
-      <th class="first order_no text-center">序号</th>
-      <th class='bill_date text-center' style='display : none;'><%=sortable "bill_date","票据日期" %></th>
+      <th class="order_no text-center">序号</th>
+      <th class='bill_date text-center' style='display : none;'><%=sortable "bill_date","开票日期" %></th>
       <th class='bill_no text-center'><%=sortable "bill_no","票号" %></th>
       <th class='goods_no text-center'><%=sortable "goods_no","货号" %></th>
-      <th class='from_to text-center'><%=sortable "from_org_id","发货地" %>--<%=sortable "to_org_id","到货地" %></th>
-      <th class='customer text-center'>发货人-收货人</th>
+      <th class='from_to text-center'>起止点</th>
+      <th class='customer text-center'>发货人~收货人</th>
       <th class='pay_type text-center'><%=sortable "pay_type","付款方式" %></th>
       <th class="carrying_fee text-center">运费</th>
       <th class="carrying_fee_th text-center" style='display : none;'>提付运费</th>
@@ -95,7 +95,7 @@
         </td>
         <td class='customer'>
           <%=bill.from_customer_name%>
-          --
+          ~
           <%=bill.to_customer_name%>
         </td>
         <td class='pay_type'>

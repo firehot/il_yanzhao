@@ -23,16 +23,18 @@ jQuery(function($) {
 	var on_focus = function(evt) {
 		var target_el = evt.target;
 		var tag_name = $(target_el).attr('tagName').toLowerCase();
-		if (tag_name == 'input' || tag_name == 'textarea' || tag_name == 'select') $(target_el).css({
-			backgroundColor: '#68B4EF'
-		});
+		if ((tag_name == 'input' && $(target_el).attr('type').toLowerCase() == 'text') || tag_name == 'textarea' || tag_name == 'select') {
+			$(target_el).css({
+				backgroundColor: '#68B4EF'
+			});
 
+		}
 	};
 	var on_blur = function(evt) {
 		var target_el = evt.target;
 
 		var tag_name = $(target_el).attr('tagName').toLowerCase();
-		if (tag_name == 'input' || tag_name == 'textarea' || tag_name == 'select') {
+		if ((tag_name == 'input' && $(target_el).attr('type').toLowerCase() == 'text') || tag_name == 'textarea' || tag_name == 'select') {
 			$(target_el).css({
 				backgroundColor: '#FFF'
 			});

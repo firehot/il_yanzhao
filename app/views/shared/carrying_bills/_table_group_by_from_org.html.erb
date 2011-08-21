@@ -30,11 +30,11 @@
     <tr class='text-center'>
       <th class="cbx_select_bill" style='display : none;'>&nbsp;</th>
       <th class="first">序号</th>
-      <th><%=sortable "bill_date","票据日期" %></th>
+      <th><%=sortable "bill_date","开票日期" %></th>
       <th><%=sortable "bill_no","票号" %></th>
       <th><%=sortable "goods_no","货号" %></th>
-      <th><%=sortable "from_org_id","发货地" %>--<%=sortable "to_org_id","到货地" %></th>
-      <th>发货人-收货人</th>
+      <th>起止点</th>
+      <th>发货人~收货人</th>
       <th><%=sortable "pay_type","付款方式" %></th>
       <th class="carrying_fee">运费</th>
       <th class="carrying_fee_th" style='display : none;'>提付运费</th>
@@ -82,7 +82,7 @@
           </td>
           <td>
             <%=bill.from_customer_name%>
-            --
+            ~
             <%=bill.to_customer_name%>
           </td>
           <td>
