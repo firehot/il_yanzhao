@@ -41,7 +41,7 @@ jQuery(function($) {
 		}
 	});
 	//初始化区域选择
-	//$('.select_org,.ufd-select').ufd();
+	$('.select_org').select_combobox();
 	//导出excel按钮绑定
 	$('.btn_export_excel').click(function() {
 		var url = $(this).attr('href');
@@ -342,7 +342,8 @@ jQuery(function($) {
 } );
 
 	//首页运单查询
-	$('#home-search-box').watermark('录入运单号/货号查询').keypress(function(e) {
+        //去除所有绑定
+	$('#home-search-box').watermark('录入运单号/货号查询').keydown(function(e) {
 		if (e.keyCode == 13) {
 			$('#home-search-form').trigger('submit');
 		}
@@ -880,8 +881,8 @@ jQuery(function($) {
 		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill')) {
 
 			//机打运单,默认焦点定位到到货地
-			$('#to_org_id').focus();
-			$('#transit_org_id').focus();
+			$('#select_org_input_to_org_id').focus();
+			$('#area_id').focus();
 		}
 		else $('.inner form input:not([readonly])').not('input[type="hidden"]').first().focus();
 

@@ -14,16 +14,16 @@
       </tr>
       <tr>
         <td>发货站</td>
-        <td><%= f.select :from_org_id,current_ability_orgs_for_select,{},:id => :from_org_id %></td>
+        <td><%= f.select :from_org_id,current_ability_orgs_for_select,{},:readonly => true,:id => :from_org_id %></td>
         <% if ["TransitBill","HandTransitBill"].include? f.object.type %>
           <td>中转站</td>
           <td><%= f.select :transit_org_id,yards_for_select ,{},:id => :transit_org_id%></td>
           <td>到货地</td>
-          <td><%= f.select :area_id,areas_for_select,:id => :area_id %></td>
+          <td><%= f.select :area_id,areas_for_select,{},:id => :area_id %></td>
         <%else%>
           <td>到货站</td>
-          <td><%= f.select :to_org_id,exclude_current_ability_orgs_for_select(false,false) ,{:include_blank => true},:id =>:to_org_id %></td>
-          <td colspan='2'></td>
+          <td><%= f.select :to_org_id,exclude_current_ability_orgs_for_select(false,false) ,{:include_blank => true},:class =>:select_org,:id =>:to_org_id %></td>
+          <td colspan='2'><span style='font-weight : bold;'>&lt;&lt;输入名称/拼音后回车可查询</span></td>
         <%end%>
       </tr>
 

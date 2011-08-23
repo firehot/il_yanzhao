@@ -44,6 +44,6 @@ jQuery(function($) {
 		}
 
 	};
-	$('form,.enter2tab').live('keydown', enter2tab).live("blur", on_blur).live("focus", on_focus);
+	$('form[id!="home-search-form"],.enter2tab').live('keydown', enter2tab).live("blur", on_blur).live("focus", on_focus);
 });
 
