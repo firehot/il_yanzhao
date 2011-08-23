@@ -4,7 +4,7 @@
   <%= f.inputs do %>
     <%= f.input :bill_date_gte,:label => "分货日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
-    <%= f.input :org_id_eq,:label => "分理处",:as => :select,:collection => current_ability_orgs_for_select,:input_html => {:class => "select_org"} %>
+    <%= f.input :org_id_eq,:label => "分理处",:as => :select,:collection => current_ability_orgs_for_select %>
   <% end %>
   <%=f.buttons do %>
     <%=submit_tag "查询分货清单",:class => "sexybutton sexysimple sexyblue" %>

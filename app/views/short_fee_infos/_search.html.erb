@@ -4,8 +4,7 @@
   <%= f.inputs do %>
     <%= f.input :bill_date_gte,:label => "核销日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
-    <%= f.input :org_id_eq,:label => "分理处/分公司",:as => :select,:collection => current_ability_orgs_for_select,:input_html => {:class => "select_org",:title => "可录入拼音简写查询发货地(例如:安阳,可录入ay)"} %>
-
+    <%= f.input :org_id_eq,:label => "分理处/分公司",:as => :select,:collection => current_ability_orgs_for_select %>
   <% end %>
   <%=f.buttons do %>
     <%=submit_tag "查询短途运费核销信息",:class => "sexybutton sexysimple sexyblue" %>
