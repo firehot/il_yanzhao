@@ -8,6 +8,8 @@ class CustomerCodeValidator < ActiveModel::EachValidator
       else
         object.from_customer = from_customer
       end
+    else #如果customer_code为null
+      object.from_customer = nil
     end
   end
 end
@@ -83,7 +85,7 @@ class CarryingBill < ActiveRecord::Base
 
   validates :bill_no,:goods_no,:uniqueness => true
   #运单编号为7位数字
-  validates_format_of :bill_no,:with => /\d{7}/
+  validates_format_of :bill_no,:with => /^\d{7}$/
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
   validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:goods_num
   validates_numericality_of :goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000

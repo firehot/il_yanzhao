@@ -6,7 +6,7 @@
     <tbody>
       <tr>
         <td>单据编号</td>
-        <td><%= f.text_field :bill_no,:size => 20 %></td>
+        <td><%= f.text_field :bill_no,:size => 20,:maxlength => 7 %></td>
         <td>货号</td>
         <td><%= f.text_field :goods_no,:size => 20 %></td>
         <td>单据日期</td>

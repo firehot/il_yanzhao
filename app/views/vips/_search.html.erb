@@ -5,7 +5,7 @@
     <%= f.input :name_like,:label =>"姓名",:input_html => {:size => 30} %>
     <%= f.input :code_like,:label => "客户编号",:input_html =>{:size => 20} %>
     <%= f.input :id_number_like,:label => "身份证号",:input_html =>{:size => 20} %>
-    <%= f.input :org_id_in,:label => "所属机构",:as => :select,:collection => current_ability_orgs_for_select,:include_blank => false,:input_html => {:class => "select_org"} %>
+    <%= f.input :org_id_in,:label => "所属机构",:as => :select,:collection => current_ability_orgs_for_select,:include_blank => current_user.default_org.is_summary?,:input_html => {:class => "select_org"} %>
     <%= f.input :bank_id_eq,:label => "开户银行",:as => :select,:collection => Bank.where(:is_active => true) %>
   <% end %>
   <%=f.buttons do %>
