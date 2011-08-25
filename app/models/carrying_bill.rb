@@ -85,7 +85,7 @@ class CarryingBill < ActiveRecord::Base
 
   validates :bill_no,:goods_no,:uniqueness => true
   #运单编号为7位数字
-  validates_format_of :bill_no,:with => /^\d{7}$/
+  validates_format_of :bill_no,:with => /^(TH)*\d{7}$/
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
   validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:goods_num
   validates_numericality_of :goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000
@@ -503,7 +503,7 @@ class CarryingBill < ActiveRecord::Base
     end
     #重置票据
     def reset_bill
-      self.update_attributes(:load_list_id => nil,:distribution_list_id => nil,:deliver_info_id => nil,:settlement_id => nil,:refound_id => nil,:payment_list_id => nil,:pay_info_id => nil,:post_info_id => nil,:transit_info_id => nil)
+      self.update_attributes(:load_list_id => nil,:distribution_list_id => nil,:deliver_info_id => nil,:settlement_id => nil,:refound_id => nil,:payment_list_id => nil,:pay_info_id => nil,:post_info_id => nil,:transit_info_id => nil,:compelted => false)
     end
 
     #根据运单不同情况设置completed标志
