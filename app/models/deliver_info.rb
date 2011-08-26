@@ -31,7 +31,7 @@ class DeliverInfo < ActiveRecord::Base
   end
   #运单编号
   def bill_no
-    self.carrying_bills.collect {|bill| "#{bill.bill_no}"}.join(",")
+    "#{self.carrying_bills.try(:first).try(:bill_no)} 共#{self.carrying_bills.size}票"
   end
   #导出
   def self.to_csv(search_obj)
