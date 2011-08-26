@@ -10,7 +10,7 @@
     <td class='col_17mm'><span class='label'>发货站:</span></td>
     <td colspan='2' class='col_29mm'><%=show.from_org_name%></td>
     <% if ["TransitBill","HandTransitBill"].include? show.type %>
-      <td class='col_17mm'><span class='label'>到货地</td>
+      <td class='col_17mm'><span class='label'>到货地</span></td>
         <td colspan='2' class='col_29mm'><%= "#{show.transit_org.name}~#{show.area}" %></td>
       <%else%>
         <td class='col_17mm'><span class='label'>到达站:</span></td>
@@ -58,7 +58,7 @@
       <td class='col_14mm'><%=show.goods_num%></td>
       <td class='col_14mm'><%=show.goods_weight%></td>
       <td class='col_13mm'><%=show.goods_volume%></td>
-      <td class='col_13mm'></td>
+      <td class='col_13mm'>&nbsp;</td>
       <td class='col_13mm'><%=show.carrying_fee%></td>
       <td class='col_43mm'><%=show.note%></td>
     </tr>

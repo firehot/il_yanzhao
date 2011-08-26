@@ -6,6 +6,7 @@ class DeliverInfosController < BaseController
   #重写index方法
   def index
     super do |format|
+      format.html
       format.csv {send_data resource_class.to_csv(@search)}
     end
   end
