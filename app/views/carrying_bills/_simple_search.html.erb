@@ -25,7 +25,9 @@
 
     <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => params[:to_org_select].present? ? self.send(params[:to_org_select]) : branches_for_select %>
 
-    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types,:input_html =>{:class => "ufd-select"} %>
+    <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
+    <%= f.input :from_customer_id_is_not_null,:label => "只查询转账付款运单",:as => :boolean,:input_html => {:value => 1} %>
+    <%= f.input :from_customer_id_is_null,:label => "只查询现金付款运单",:as => :boolean,:input_html => {:value => 1} %>
   <% end %>
   <%=f.buttons do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>

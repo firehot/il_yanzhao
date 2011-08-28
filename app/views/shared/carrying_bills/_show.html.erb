@@ -91,12 +91,12 @@
   </tr>
   <tr>
     <td  class='col_14mm'><span class='label'>提货日期:</span></td>
-    <td colspan='2'>
+    <td colspan='2' style='font-size : 1.4em;font-weight : bold;color : blue;'>
       <%= show.deliver_info.try(:deliver_date)%>
       <%= show.transit_deliver_info.try(:bill_date)%>
     </td>
     <td class='col_18mm'><span class='label'>提款日期:</span></td>
-    <td colspan='2'>
+    <td colspan='2' style='font-size : 1.4em;font-weight : bold;color : blue;'>
       <%= show.pay_info.try(:bill_date)%>
     </td>
     <td colspan='2' class='col_74mm'>&nbsp;</td>

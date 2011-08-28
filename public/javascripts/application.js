@@ -338,11 +338,13 @@ jQuery(function($) {
 		$.unblockUI();
 	});
 	//对需要长时间处理的操作,显示blockUI
-	$('.btn_process_handle').bind('click',function(){$.blockUI();$.fancybox.showActivity();
-} );
+	$('.btn_process_handle').bind('click', function() {
+		$.blockUI();
+		$.fancybox.showActivity();
+	});
 
 	//首页运单查询
-        //去除所有绑定
+	//去除所有绑定
 	$('#home-search-box').watermark('录入运单号/货号查询').keydown(function(e) {
 		if (e.keyCode == 13) {
 			$('#home-search-form').trigger('submit');
@@ -382,8 +384,22 @@ jQuery(function($) {
 
 		})
 	});
-	//绑定提货/提款/中转/中转提货处理的ajax:before
-	$('#deliver_info_form,#cash_pay_info_form,#transfer_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form,#post_info_form').livequery(function() {
+	//绑定transfer_pay_info_form post_info_form的ajax:before处理
+	$('#transfer_pay_info_form,#post_info_form').livequery(function() {
+		$(this).bind('ajax:before', function() {
+			var bill_els = $('[data-bill]');
+			if (bill_els.length == 0) {
+				$.notifyBar({
+					html: "未查找到任何运单,请先查询要处理的运单",
+					delay: 3000,
+					animationSpeed: "normal",
+					cls: 'error'
+				});
+				return false;
+			}
+		});
+	});
+	$('#deliver_info_form,#cash_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
 			var bill_ids = [];
@@ -568,8 +584,8 @@ jQuery(function($) {
 			"search[completed_eq]": 0,
 			"search[goods_fee_or_carrying_fee_gt]": 0,
 			"search[settlement_id_in][]": selected_bill_ids,
-			"hide_fields": ".carrying_fee,.insured_fee",
-			'show_fields': ".carrying_fee_th,.th_amount,.transit_hand_fee,.transit_carrying_fee"
+			"hide_fields": ".carrying_fee,.insured_fee,.carrying_fee_total",
+			'show_fields': ".th_amount,:carrying_fee_th_total,.insured_fee_total,.carrying_fee_th"
 		};
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
@@ -659,6 +675,12 @@ jQuery(function($) {
 			"show_fields": ".k_carrying_fee,.k_hand_fee,.transit_hand_fee,.act_pay_fee"
 		};
 		$(this).data('params', params);
+	}).bind('ajax:complete', function() {
+		if ($('#bills_table').length == 0) return;
+		var ids = $('#bills_table').data('ids');
+		$('#transfer_pay_info_form').data('params', {
+			'bill_ids[]': ids
+		});
 	});
 
 	//客户提款结算清单
@@ -693,7 +715,7 @@ jQuery(function($) {
 		$('#sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		//计算实际提款及余额
 		$('#sum_pay_fee').val(sum_info.sum_act_pay_fee);
-		$('#pay_info_form').data('params', {
+		$('#post_info_form').data('params', {
 			'bill_ids[]': ids
 		});
 		cal_rest_fee();

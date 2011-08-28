@@ -70,7 +70,7 @@ namespace :db do
 
   desc "向数据库中添加示例数据"
   task :gen_test_data => :environment do
-    Rake::Task['db:reset'].invoke
+    #Rake::Task['db:reset'].invoke
     zz_branch = Branch.create!(:name => "郑州公司",
                                :simp_name => "郑",
                                :manager => "李保庆",
@@ -123,9 +123,6 @@ namespace :db do
     #生成1000000张历史票
     from_org = Org.find_by_name('A')
     to_org = Org.find_by_name('邯郸')
-    (1..200).each do
-      ComputerBill.create!(:from_org => from_org,:to_org => to_org,:from_customer_name => "张三",:from_customer_phone => "1367904567",:to_customer_name => "李四",:to_customer_phone => "2343243",:carrying_fee => 44,:goods_fee => 1000,:pay_type =>"CA",:goods_num => 3,:goods_info => "示例",:user => User.first,:completed => true )
-    end
     #生成200000张待处理票
     (1..200).each do
       ComputerBill.create!(:from_org => from_org,:to_org => to_org,:from_customer_name => "张三",:from_customer_phone => "1367904567",:to_customer_name => "李四",:to_customer_phone => "2343243",:carrying_fee => 44,:goods_fee => 1000,:pay_type =>"CA",:goods_num => 3,:goods_info => "示例",:user => User.first )

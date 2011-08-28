@@ -169,8 +169,34 @@ class CarryingBill < ActiveRecord::Base
     state :loaded,:shipped,:reached do
       validates_presence_of :load_list_id
     end
+    state :transited do
+      validates_presence_of :transit_info_id
+    end
+
     state :distributed do
       validates_presence_of :distribution_list_id
+    end
+    state :deliveried do
+      validates_presence_of :deliver_info_id, :unless => :transit_bill?
+    end
+    state :deliveried do
+      validates_presence_of :transit_deliver_info_id, :if => :transit_bill?
+    end
+
+    state :settlemented do
+      validates_presence_of :settlement_id
+    end
+    state :refunded,:refunded_confirmed do
+      validates_presence_of :refound_id
+    end
+    state :payment_listed do
+      validates_presence_of :payment_list_id
+    end
+    state :paid do
+      validates_presence_of :pay_info_id
+    end
+    state :posted do
+      validates_presence_of :post_info_id
     end
     end
 
@@ -262,6 +288,13 @@ class CarryingBill < ActiveRecord::Base
       ret = self.carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
       ret
     end
+    #提货保价费
+    def insured_fee_th
+      ret = 0
+      ret = self.insured_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
+      ret
+    end
+
     #扣运费,运费支付方式为从货款扣除时等于运费,否则为0
     def k_carrying_fee
       ret = 0
@@ -290,9 +323,22 @@ class CarryingBill < ActiveRecord::Base
     def carrying_fee_total
       carrying_fee + insured_fee
     end
+    #提付运费合计
+    #运费支付方式=提货付 提付运费合计 = 运费 + 保价费
+    #其他支付方式 提副运费合计 = 0
+    def carrying_fee_th_total
+      ret = 0
+      ret = carrying_fee + insured_fee if pay_type.eql?(CarryingBill::PAY_TYPE_TH)
+      ret
+    end
+
     #代收货款支付方式,无客户编号时,为现金支付
     def goods_fee_cash?
       self.from_customer.blank?
+    end
+    #是中转运单还是其他运单
+    def transit_bill?
+      ["TransitBill","HandTransitBill"].include? self.type
     end
     #滞留天数
     def stranded_days
@@ -363,37 +409,6 @@ class CarryingBill < ActiveRecord::Base
           sum_array << ""
         end
       end
-      #sum_array << "" if options[:methods].include?(:bill_date)
-      #sum_array << "" if options[:methods].include?(:bill_no)
-      #sum_array << "" if options[:methods].include?(:goods_no)
-      #sum_array << "" if options[:methods].include?(:from_customer_name)
-      #sum_array << "" if options[:methods].include?(:from_customer_phone)
-      #sum_array << "" if options[:methods].include?(:from_customer_mobile)
-      #sum_array << "" if options[:methods].include?(:to_customer_name)
-      #sum_array << "" if options[:methods].include?(:to_customer_phone)
-      #sum_array << "" if options[:methods].include?(:to_customer_mobile)
-      #sum_array << "" if options[:methods].include?(:from_org_name)
-      #sum_array << "" if options[:methods].include?(:transit_org_name)
-      #sum_array << "" if options[:methods].include?(:to_org_name)
-      #用于显示合计票数
-      #sum_array << "合计:#{sum_info[:count]}票"
-      #sum_array << sum_info[:sum_from_short_carrying_fee] if options[:methods].include?(:from_short_carrying_fee)
-      #sum_array << sum_info[:sum_to_short_carrying_fee] if options[:methods].include?(:to_short_carrying_fee)
-      #sum_array << sum_info[:sum_carrying_fee] if options[:methods].include?(:carrying_fee)
-      #sum_array << sum_info[:sum_carrying_fee_th] if options[:methods].include?(:carrying_fee_th)
-      #sum_array << sum_info[:sum_k_carrying_fee] if options[:methods].include?(:k_carrying_fee)
-      #sum_array << sum_info[:sum_k_hand_fee] if options[:methods].include?(:k_hand_fee)
-      #sum_array << sum_info[:sum_goods_fee] if options[:methods].include?(:goods_fee)
-      #sum_array << sum_info[:sum_insured_fee] if options[:methods].include?(:insured_fee)
-      #sum_array << sum_info[:sum_transit_carrying_fee] if options[:methods].include?(:transit_carrying_fee)
-      #sum_array << sum_info[:sum_transit_hand_fee] if options[:methods].include?(:transit_hand_fee)
-
-      #sum_array << sum_info[:sum_act_pay_fee] if options[:methods].include?(:act_pay_fee)
-      #sum_array << sum_info[:sum_agent_carrying_fee] if options[:methods].include?(:agent_carrying_fee)
-      #sum_array << sum_info[:sum_th_amount] if options[:methods].include?(:th_amount)
-      #sum_array << sum_info[:sum_goods_num] if options[:methods].include?(:goods_num)
-      #sum_array << "" if options[:methods].include?(:human_state_name)
-
       ret = ret + sum_array.export_line_csv
       ret
     end
@@ -409,16 +424,9 @@ class CarryingBill < ActiveRecord::Base
         #回执付运费合计
         :sum_carrying_fee_re => search.where(:pay_type => CarryingBill::PAY_TYPE_RETURN).sum(:carrying_fee),
         #自货款扣除运费合计
-        :sum_k_carrying_fee => search.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:carrying_fee)
-        #扣手续费合计
-        #:sum_k_hand_fee => search.relation.sum(:k_hand_fee),
-        #:sum_goods_fee => search.relation.sum(:goods_fee),
-        #:sum_insured_fee => search.relation.sum(:insured_fee),
-        #:sum_transit_carrying_fee => search.relation.sum(:transit_carrying_fee),
-        #:sum_transit_hand_fee => search.relation.sum(:transit_hand_fee),
-        #:sum_from_short_carrying_fee => search.relation.sum(:from_short_carrying_fee),
-        #:sum_to_short_carrying_fee => search.relation.sum(:to_short_carrying_fee),
-        #:sum_goods_num => search.relation.sum(:goods_num)
+        :sum_k_carrying_fee => search.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:carrying_fee),
+        #提付保价费合计
+        :sum_insured_fee_th => search.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:insured_fee)
       }
       sum_info_tmp = search.select('sum(1) as count,sum(carrying_fee) as sum_carrying_fee,sum(k_hand_fee) as sum_k_hand_fee,sum(goods_fee) as sum_goods_fee,sum(insured_fee) as sum_insured_fee,sum(transit_carrying_fee) as sum_transit_carrying_fee,sum(transit_hand_fee) as sum_transit_hand_fee,sum(from_short_carrying_fee) as sum_from_short_carrying_fee,sum(to_short_carrying_fee) as sum_to_short_carrying_fee,sum(goods_num) as sum_goods_num').first.attributes
       sum_info_tmp.each do |key,value|
@@ -428,12 +436,14 @@ class CarryingBill < ActiveRecord::Base
       sum_info.merge!(sum_info_tmp)
       #运费合计 运费+保价费
       sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee]
+      #提付运费合计
       #实提货款合计
       sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_carrying_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee]
       sum_info[:sum_agent_carrying_fee] =0
       #提付运费大于零时,才有代收运费,否则代收运费为0
       sum_info[:sum_agent_carrying_fee] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] if sum_info[:sum_carrying_fee_th] > 0
       sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
+      sum_info[:sum_carrying_fee_th_total] = sum_info[:sum_carrying_fee_th] + sum_info[:sum_insured_fee_th]
       sum_info
     end
     #转换为打印使用的json
