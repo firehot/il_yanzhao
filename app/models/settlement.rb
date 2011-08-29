@@ -40,14 +40,35 @@ class Settlement < ActiveRecord::Base
   def org_name
     self.org.name
   end
-  #合计
-  def sum_fee
-    self.sum_carrying_fee + self.sum_goods_fee - self.sum_transit_carrying_fee - self.sum_transit_hand_fee
+  #提付运费合计,含提付保价费
+  def sum_carrying_fee_th
+    self.carrying_bills.sum(:carrying_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
   end
+  def sum_insured_fee_th
+    self.carrying_bills.sum(:insured_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
+  end
+
+  def sum_carrying_fee_th_total
+    sum_carrying_fee_th + sum_insured_fee_th
+  end
+  def sum_transit_hand_fee
+    self.carrying_bills.sum(:transit_hand_fee)
+  end
+  def sum_transit_carrying_fee
+    self.carrying_bills.sum(:transit_carrying_fee)
+  end
+  def sum_goods_fee
+    self.carrying_bills.sum(:goods_fee)
+  end
+
+  def sum_fee
+    self.sum_goods_fee + self.sum_carrying_fee_th_total - self.sum_transit_hand_fee - self.sum_transit_carrying_fee
+  end
+
   #导出到csv
   def to_csv
     ret = ["结算员:",self.user_name,"结算单位:",self.org_name,"结算日期:",self.bill_date].export_line_csv(true)
-    ret = ret + ["提付运费:",self.sum_carrying_fee,"代收货款:",self.sum_goods_fee,"合计:",self.sum_fee].export_line_csv
+    ret = ret + ["合计运费:",self.sum_carrying_fee_th_total,"代收货款:",self.sum_goods_fee,"合计:",self.sum_fee].export_line_csv
     csv_carrying_bills = CarryingBill.to_csv(self.carrying_bills.search,Settlement.carrying_bill_export_options,false)
     ret + csv_carrying_bills
   end

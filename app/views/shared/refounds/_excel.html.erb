@@ -18,7 +18,7 @@
       <td style='border : thin solid #000;'>返程货款:</td>
       <td style='border : thin solid #000;'><%=@refound.sum_goods_fee %></td>
       <td style='border : thin solid #000;'>提付运费:</td>
-      <td style='border : thin solid #000;'><%= @refound.sum_carrying_fee %></td>
+      <td style='border : thin solid #000;'><%= @refound.sum_carrying_fee_total %></td>
       <td style='border : thin solid #000;'>中转运费:</td>
       <td style='border : thin solid #000;'><%= @refound.sum_transit_carrying_fee %></td>
       <td style='border : thin solid #000;'>中转手续费:</td>
@@ -75,11 +75,11 @@
   <tfoot>
     <tr>
       <td colspan='5' style='text-align : right;border : thin solid #000;'>合计</td>
-      <td style='border : thin solid #000;'><%=@refound.carrying_bills.to_a.sum(&:carrying_fee_th)%></td>
-      <td style='border : thin solid #000;'><%=@refound.carrying_bills.to_a.sum(&:insured_fee_th)%></td>
-      <td style='border : thin solid #000;'><%=@refound.carrying_bills.to_a.sum(&:carrying_fee_th_total)%></td>
-      <td style='border : thin solid #000;'><%=@refound.carrying_bills.sum(:goods_fee)%></td>
-      <td style='border : thin solid #000;'><%=@refound.carrying_bills.to_a.sum(:th_amount)%></td>
+      <td style='border : thin solid #000;'><%=@refound.sum_carrying_fee_th%></td>
+      <td style='border : thin solid #000;'><%=@refound.sum_insured_fee_th%></td>
+      <td style='border : thin solid #000;'><%=@refound.sum_carrying_fee_th_total%></td>
+      <td style='border : thin solid #000;'><%=@refound.sum_goods_fee%></td>
+      <td style='border : thin solid #000;'><%=@refound.sum_fee%></td>
       <td style='border : thin solid #000;'></td>
       <td style='border : thin solid #000;'></td>
     </tr>

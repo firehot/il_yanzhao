@@ -7,8 +7,8 @@
     <tr>
       <td colspan='2' style='border : thin solid #000;'>返程货款</td>
       <td style='border : thin solid #000;'><%=@settlement.sum_goods_fee %></td>
-      <td style='border : thin solid #000;'>提付运费</td>
-      <td style='border : thin solid #000;'><%=@settlement.sum_carrying_fee %></td>
+      <td style='border : thin solid #000;'>合计运费</td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_carrying_fee_th_total %></td>
       <td style='border : thin solid #000;'>中转运费</td>
       <td style='border : thin solid #000;'><%=@settlement.sum_transit_carrying_fee %></td>
       <td colspan='2' style='border : thin solid #000;'>中转手续费</td>
@@ -53,7 +53,7 @@
   <tfoot>
     <tr>
       <td colspan='5' style='text-align : right;border : thin solid #000;'>合计</td>
-      <td style='border : thin solid #000;'><%=@settlement.sum_carrying_fee%></td>
+      <td style='border : thin solid #000;'><%=@settlement.sum_carrying_fee_th_total%></td>
       <td style='border : thin solid #000;'><%=@settlement.sum_goods_fee%></td>
       <td style='border : thin solid #000;'><%=@settlement.sum_transit_carrying_fee%></td>
       <td style='border : thin solid #000;'><%=@settlement.sum_transit_hand_fee%></td>

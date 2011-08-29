@@ -1,4 +1,4 @@
-<table class='table' data-detailUrl='<%=short_fee_info_carrying_bills_path(resource,"hide_fields" => ".insured_fee","show_fields" => ".from_short_carrying_fee,.to_short_carrying_fee,.short_fee_state")%>'>
+<table class='table' data-detailUrl='<%=short_fee_info_carrying_bills_path(resource,"hide_fields" => ".insured_fee,.carrying_fee_total,.customer,.goods_fee","show_fields" => ".from_short_carrying_fee,.to_short_carrying_fee,.short_fee_state")%>'>
   <tr>
     <td>日期:</td>
     <td><%=resource.bill_date.strftime('%Y-%m-%d')%></td>
