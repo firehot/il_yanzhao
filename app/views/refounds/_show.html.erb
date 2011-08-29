@@ -1,4 +1,4 @@
-<table class='table' data-detailUrl='<%=refound_carrying_bills_path(resource,:show_group => params[:show_group]) %>' data-params='{"hide_fields": ".carrying_fee,.carrying_fee_total,.insured_fee","show_fields": ".insured_fee_th,.carrying_fee_th,.carrying_fee_th_total,.th_amount"}'>
+<table class='table' data-detailUrl='<%=refound_carrying_bills_path(resource,:show_group => params[:show_group]) %>' data-params='{"without_paginate" : 1,"hide_fields": ".carrying_fee,.carrying_fee_total,.insured_fee","show_fields": ".insured_fee_th,.carrying_fee_th,.carrying_fee_th_total,.th_amount"}'>
   <tr>
     <td>返款日期:</td>
     <td> <%=resource.bill_date.strftime('%Y-%m-%d') %></td>

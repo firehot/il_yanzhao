@@ -50,7 +50,7 @@
       </tr>
       <tr>
         <td>运费支付方式</td>
-        <td><%= f.select :pay_type,CarryingBill.pay_types,:id => :pay_type %></td>
+        <td><%= f.select :pay_type,CarryingBill.pay_types,{},:id => :pay_type %></td>
         <td>运费</td>
         <td><%= f.text_field :carrying_fee,:id => "carrying_fee",:size => 15  %></td>
         <td>代收货款</td>

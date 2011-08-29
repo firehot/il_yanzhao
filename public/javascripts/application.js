@@ -187,18 +187,21 @@ jQuery(function($) {
 		$('#carrying_bill_form select').attr('disabled', true);
 		$('#carrying_fee').attr('readonly', false);
 		$('#goods_fee').attr('readonly', false);
-		$('#from_org_id').attr('readonly', false);
-		$('#transit_org_id').attr('readonly', false);
-		$('#area_id').attr('readonly', false);
-		$('#to_org_id').attr('readonly', false);
-		$('#from_customer_name').attr('readonly', false);
+                $('#from_customer_name').attr('readonly', false);
 		$('#from_customer_phone').attr('readonly', false);
 		$('#from_customer_mobile').attr('readonly', false);
 		$('#to_customer_name').attr('readonly', false);
 		$('#to_customer_phone').attr('readonly', false);
 		$('#to_customer_mobile').attr('readonly', false);
-		$('#pay_type').attr('readonly', false);
 		$('#note').attr('readonly', false);
+		$('#select_org_input_to_org_id').attr('readonly', false);
+
+                $('#from_org_id').attr('disabled',false);
+		$('#transit_org_id').attr('disabled',false);
+		$('#area_id').attr('disabled',false);
+		$('#to_org_id').attr('disabled',false);
+		$('#pay_type').attr('disabled',false);
+
 
 	});
 
