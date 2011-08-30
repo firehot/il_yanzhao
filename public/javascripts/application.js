@@ -74,6 +74,8 @@ jQuery(function($) {
 	$('#bills_table,table.table[id$="index_table"]').live('dblclick', function(evt) {
 		var target_el = $(evt.target).parent('tr');
 		if (target_el.attr('data-dblclick')) {
+			$('tr[data-dblclick]').removeClass('cur_select');
+			$(target_el).addClass('cur_select');
 
 			var el_anchor = $(target_el).find('a.show_link');
 			if ($(el_anchor).hasClass('popup-box')) {
@@ -86,7 +88,9 @@ jQuery(function($) {
 			}
 		}
 
-	}).live('click', function(evt) { //单击某条记录选中
+	});
+	/*
+        .live('click', function(evt) { //单击某条记录选中
 		var target_el = $(evt.target).parent('tr');
 		if (target_el.attr('data-dblclick')) {
 
@@ -95,6 +99,7 @@ jQuery(function($) {
 		}
 
 	});
+        */
 
 	$('.btn_edit').click(function() {
 		var cur_select = $('tr[data-dblclick].cur_select .edit_link');
