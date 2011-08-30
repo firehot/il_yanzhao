@@ -12,7 +12,7 @@
     $('#bills_table_body').prepend('<%= escape_javascript(render("shared/carrying_bills/table_tr",:bill => collection.first)) %>').trigger('tr_changed');
   <%else%>
     //如果传入了show_group,则显示 table_group_by_from_org
-   var bill_list = '<%= escape_javascript(render(params[:show_group].blank? ? "shared/carrying_bills/table" : "shared/carrying_bills/table_group_by_from_org")) %>';
+   var bill_list = $('<%= escape_javascript(render(params[:show_group].blank? ? "shared/carrying_bills/table" : "shared/carrying_bills/table_group_by_from_org")) %>');
   $('#table_wrap').html(bill_list);
   <%end%>
 <%end%>
