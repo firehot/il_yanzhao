@@ -76,7 +76,10 @@ jQuery(function($) {
 		if (target_el.attr('data-dblclick')) {
 
 			var el_anchor = $(target_el).find('a.show_link');
-			if ($(el_anchor).hasClass('fancybox')) $.fireClick($(el_anchor)[0]);
+			if ($(el_anchor).hasClass('popup-box')) {
+				$(el_anchor).fancybox();
+				$.fireClick($(el_anchor)[0]);
+			}
 			else {
 				window.location = $(el_anchor).attr('href');
 				$.fancybox.showActivity();
@@ -187,7 +190,7 @@ jQuery(function($) {
 		$('#carrying_bill_form select').attr('disabled', true);
 		$('#carrying_fee').attr('readonly', false);
 		$('#goods_fee').attr('readonly', false);
-                $('#from_customer_name').attr('readonly', false);
+		$('#from_customer_name').attr('readonly', false);
 		$('#from_customer_phone').attr('readonly', false);
 		$('#from_customer_mobile').attr('readonly', false);
 		$('#to_customer_name').attr('readonly', false);
@@ -196,12 +199,11 @@ jQuery(function($) {
 		$('#note').attr('readonly', false);
 		$('#select_org_input_to_org_id').attr('readonly', false);
 
-                $('#from_org_id').attr('disabled',false);
-		$('#transit_org_id').attr('disabled',false);
-		$('#area_id').attr('disabled',false);
-		$('#to_org_id').attr('disabled',false);
-		$('#pay_type').attr('disabled',false);
-
+		$('#from_org_id').attr('disabled', false);
+		$('#transit_org_id').attr('disabled', false);
+		$('#area_id').attr('disabled', false);
+		$('#to_org_id').attr('disabled', false);
+		$('#pay_type').attr('disabled', false);
 
 	});
 
@@ -342,8 +344,8 @@ jQuery(function($) {
 	});
 	//对需要长时间处理的操作,显示blockUI
 	$('.btn_process_handle').bind('click', function() {
-		$.blockUI();
 		$.fancybox.showActivity();
+		$.blockUI();
 	});
 
 	//首页运单查询
