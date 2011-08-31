@@ -21,7 +21,7 @@
     <% group_collection.each do |from_org,bills| %>
       <tr><td colspan='12'><%= from_org.name %></td></tr>
       <%bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index|%>
-        <tr class="<%= cycle("odd", "even") %>">
+        <tr class="<%= cycle("odd", "even") %>" data-dblclick='true'>
           <td style='display : none;'>
             <%= link_to "查看",  polymorphic_url(bill,:format => :js),:class => "show_link popup-box",:style => 'display : none;'%>
           </td>
