@@ -1,0 +1,96 @@
+<!--按照发货地进行分组的运单列表-->
+<table class="table" id='bills_table'>
+  <thead>
+    <tr class='text-center'>
+      <th style='display : none;'>&nbsp;</th>
+      <th class="order_no">序号</th>
+      <th class='bill_no'>票号</th>
+      <th class='goods_no'>货号</th>
+      <th class='from_to'>起止点</th>
+      <th class='customer'>发货人~收货人</th>
+      <th class='bill_date' style='display : none;'>开票日期</th>
+      <th class='pay_type'>付款方式</th>
+      <th class="insured_fee_th">保价费</th>
+      <th class="carrying_fee_th">提付运费</th>
+      <th class="goods_fee">代收货款</th>
+      <th class='note'>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%group_collection = resource.carrying_bills.sort_by {|bill| bill.from_org.simp_name}.group_by(&:from_org)%>
+    <% group_collection.each do |from_org,bills| %>
+      <tr><td colspan='12'><%= from_org.name %></td></tr>
+      <%bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index|%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td style='display : none;'>
+            <%= link_to "查看",  polymorphic_url(bill,:format => :js),:class => "show_link popup-box",:style => 'display : none;'%>
+          </td>
+          <td class='order_no'><%=index%></td>
+          <td class='bill_no'>
+            <%=bill.bill_no%>
+          </td>
+          <td class='goods_no'>
+            <%=bill.goods_no%>
+          </td>
+          <td class='from_to'>
+            <%=bill.from_org_name%>~<%=["TransitBill","HandTransitBill"].include?(bill.type) ? "#{bill.transit_org.name}~#{bill.to_area}" : bill.to_org_name%>
+          </td>
+          <td class='customer'>
+            <%=bill.from_customer_name%>
+            ~
+            <%=bill.to_customer_name%>
+          </td>
+          <td class='bill_date' style='display : none;'>
+            <%=bill.bill_date.strftime('%y-%m-%d')%>
+          </td>
+
+          <td class='pay_type'>
+            <%=pay_type_des(bill.pay_type) %>
+          </td>
+          <td class="insured_fee_th"><%=bill.insured_fee_th%></td>
+          <td class="carrying_fee_th">
+            <%=bill.carrying_fee_th %>
+          </td>
+          <td class="goods_fee">
+            <%=bill.goods_fee %>
+          </td>
+          <td class="note">
+            <div style='width : 50px;height : 30px;overflow : hidden;'>
+              <%= bill.note %>
+            </div>
+          </td>
+        </tr>
+      <% end -%>
+      <tr>
+        <td style='display : none;'>&nbsp;</td>
+        <td class='order_no'>&nbsp;</td>
+        <td class='bill_no'>&nbsp;</td>
+        <td class='goods_no'>&nbsp;</td>
+        <td class='from_to'>&nbsp;</td>
+        <td class='customer'>小计</td>
+        <td class='bill_date' style='display : none;'>&nbsp;</td>
+        <td class='pay_type'><%=bills.size%>票</td>
+        <td class="insured_fee_th"><%=bills.sum(&:insured_fee_th)%></td>
+        <td class="carrying_fee_th"><%=bills.sum(&:carrying_fee_th)%></td>
+        <td class="goods_fee"><%=bills.sum(&:goods_fee)%></td>
+        <td class='note'>&nbsp;</td>
+      </tr>
+    <% end -%>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td style='display : none;'>&nbsp;</td>
+      <td class='order_no'>&nbsp;</td>
+      <td class='bill_no'>&nbsp;</td>
+      <td class='goods_no'>&nbsp;</td>
+      <td class='from_to'>&nbsp;</td>
+      <td class='customer'>总计</td>
+      <td class='bill_date' style='display : none;'>&nbsp;</td>
+      <td class='pay_type'><%=resource.carrying_bills.count %>票</td>
+      <td class="insured_fee_th"><%=resource.sum_insured_fee_th%></td>
+      <td class="carrying_fee_th"><%=resource.sum_carrying_fee_th%></td>
+      <td class="goods_fee"><%=resource.sum_goods_fee%></td>
+      <td class='note'>&nbsp;</td>
+    </tr>
+  </tfoot>
+</table>
