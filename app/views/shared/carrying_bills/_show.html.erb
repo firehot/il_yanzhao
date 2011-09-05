@@ -104,9 +104,7 @@
   <tr>
     <td class='col_14mm'><span class='label'>开票人:</span></td>
     <td class='col_14mm'><%= show.user %></td>
-    <td class='col_18mm'><span class='label'>代理收货人:</span></td>
-    <td>&nbsp;</td>
-    <td><span class='label'>证件号码:</span></td>
-    <td colspan='3'>&nbsp;</td>
+    <td colspan='5'>&nbsp;</td>
+    <td style='color : red;'><%=show.fee_changed? ? "*" : ""%>&nbsp;</td>
   </tr>
 </table>

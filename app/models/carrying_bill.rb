@@ -458,6 +458,10 @@ class CarryingBill < ActiveRecord::Base
     def payment_list_sort_seq
       "#{self.transit_org.present? ? self.transit_org.simp_name : self.to_org.simp_name}#{self.bill_date.strftime('%y%m%d')}#{self.from_org.simp_name}#{"%04d" % self.goods_no[/\d{1,4}-/][/\d{1,5}/].to_i}"
     end
+    #票据费用是否修改
+    def fee_changed?
+      !original_goods_fee.eql?(goods_fee) or !original_carrying_fee.eql?(carrying_fee ) or !original_insured_amount.eql?(insured_amount) or !original_insured_fee.eql?(insured_fee) or !original_from_short_carrying_fee.eql?(from_short_carrying_fee)  or !original_to_short_carrying_fee.eql?(to_short_carrying_fee)
+    end
 
     protected
     #导出选项

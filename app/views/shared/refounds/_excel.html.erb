@@ -44,9 +44,7 @@
       <th style='border : thin solid #000;'>收货人</th>
       <th style='border : thin solid #000;'>提付运费</th>
       <th style='border : thin solid #000;'>保价费</th>
-      <th style='border : thin solid #000;'>合计运费</th>
       <th style='border : thin solid #000;'>代收货款</th>
-      <th style='border : thin solid #000;'>提货应收</th>
       <th style='border : thin solid #000;'>返款备注</th>
       <th style='border : thin solid #000;'>运费支付方式</th>
       <th style='border : thin solid #000;'>备注</th>
@@ -63,9 +61,7 @@
         <td style='border : thin solid #000;'><%= bill.to_customer_name %></td>
         <td style='border : thin solid #000;'><%= bill.carrying_fee_th %></td>
         <td style='border : thin solid #000;'><%= bill.insured_fee_th %></td>
-        <td style='border : thin solid #000;'><%= bill.carrying_fee_th_total %></td>
         <td style='border : thin solid #000;'><%= bill.goods_fee %></td>
-        <td style='border : thin solid #000;'><%= bill.th_amount %></td>
         <td style='border : thin solid #000;'></td>
         <td style='border : thin solid #000;'><%= bill.pay_type_des %></td>
         <td style='border : thin solid #000;'><%= bill.note %></td>
@@ -77,9 +73,7 @@
       <td colspan='5' style='text-align : right;border : thin solid #000;'>合计</td>
       <td style='border : thin solid #000;'><%=@refound.sum_carrying_fee_th%></td>
       <td style='border : thin solid #000;'><%=@refound.sum_insured_fee_th%></td>
-      <td style='border : thin solid #000;'><%=@refound.sum_carrying_fee_th_total%></td>
       <td style='border : thin solid #000;'><%=@refound.sum_goods_fee%></td>
-      <td style='border : thin solid #000;'><%=@refound.sum_fee%></td>
       <td style='border : thin solid #000;'></td>
       <td style='border : thin solid #000;'></td>
     </tr>

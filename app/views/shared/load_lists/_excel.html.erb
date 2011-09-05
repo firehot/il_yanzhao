@@ -9,8 +9,6 @@
       <td style='border : thin solid #000;'>货号</td>
       <td style='border : thin solid #000;'>发货人</td>
       <td style='border : thin solid #000;'>收货人</td>
-      <td style='border : thin solid #000;'>运费</td>
-      <td style='border : thin solid #000;'>保价费</td>
       <td style='border : thin solid #000;'>运费合计</td>
       <td style='border : thin solid #000;'>代收货款</td>
       <td style='border : thin solid #000;'>返款备注</td>
@@ -26,8 +24,6 @@
         <td style='border : thin solid #000;'><%= bill.goods_no %></td>
         <td style='border : thin solid #000;'><%= bill.from_customer_name %></td>
         <td style='border : thin solid #000;'><%= bill.to_customer_name %></td>
-        <td style='border : thin solid #000;'><%= bill.carrying_fee %></td>
-        <td style='border : thin solid #000;'><%= bill.insured_fee %></td>
         <td style='border : thin solid #000;'><%= bill.carrying_fee_total %></td>
         <td style='border : thin solid #000;'><%= bill.goods_fee%></td>
         <td style='border : thin solid #000;'></td>
@@ -39,8 +35,6 @@
   <tfoot>
     <tr>
       <td colspan='5' style='text-align : right;border : thin solid #000;'>合计</td>
-      <td style='border : thin solid #000;'><%=@load_list.carrying_bills.sum(:carrying_fee)%></td>
-      <td style='border : thin solid #000;'><%=@load_list.carrying_bills.sum(:insured_fee)%></td>
       <td style='border : thin solid #000;'><%=@load_list.carrying_bills.to_a.sum(&:carrying_fee_total)%></td>
       <td style='border : thin solid #000;'><%=@load_list.carrying_bills.sum(:goods_fee)%></td>
       <td style='border : thin solid #000;'></td>
