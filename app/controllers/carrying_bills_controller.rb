@@ -28,6 +28,10 @@ class CarryingBillsController < BaseController
   def simple_search
     @search = resource_class.search(params[:search])
   end
+  #简单查询,按照录入时间
+  def simple_search_with_created_at
+    @search = resource_class.search(params[:search])
+  end
   def show
     bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id],:include => [:from_org,:to_org,:transit_org,:from_customer,:user]))
     respond_with(bill) do |format|

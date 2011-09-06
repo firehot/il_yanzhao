@@ -967,6 +967,12 @@ jQuery(function($) {
 			fontWeight: 'bold'
 		});
 	});
+	//运费货款统计,现金/转账条件查询
+	$('#simple_search_from_customer_id_not_null,#simple_search_from_customer_id_null').click(function() {
+		if ($(this).attr('checked')) $('#simple_search_goods_fee_gt').val('0');
+		else $('#simple_search_goods_fee_gt').val('');
+
+	});
 
 });
 
