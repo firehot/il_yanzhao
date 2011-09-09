@@ -336,6 +336,7 @@ jQuery(function($) {
 		if (bill_info) {
 			if (bill_info.from_org_id == org_id && bill_info.from_short_fee_state == 'offed') $(this).remove();
 			if (bill_info.to_org_id == org_id && bill_info.to_short_fee_state == 'offed') $(this).remove();
+                        $('#bills_table_body').trigger('tr_changed');
 
 		}
 	});
