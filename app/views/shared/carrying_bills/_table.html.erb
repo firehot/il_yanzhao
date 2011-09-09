@@ -39,7 +39,8 @@
       <th class="from_short_carrying_fee" style='display : none;'><span id="sum_from_short_carrying_fee"></span></th>
       <th class="to_short_carrying_fee" style='display : none;'><span id="sum_to_short_carrying_fee"></span></th>
       <th class='state' style='display : none;'>&nbsp;</th>
-      <th class='short_fee_state' style='display : none;'>&nbsp;</th>
+      <th class='from_short_fee_state' style='display : none;'>&nbsp;</th>
+      <th class='to_short_fee_state' style='display : none;'>&nbsp;</th>
       <th class='send_state' style='display :none;'>&nbsp;</th>
       <th class='stranded_days' style='display :none;'>&nbsp;</th>
       <th class='note'>&nbsp;</th>
@@ -76,7 +77,8 @@
       <th class="from_short_carrying_fee text-center" style='display : none;'>发货地短途运费</th>
       <th class="to_short_carrying_fee text-center" style='display : none;'>到货地短途运费</th>
       <th class='state text-center' style='display : none;'>状态</th>
-      <th class='short_fee_state text-center' style='display :none;'>短途运费状态</th>
+      <th class='from_short_fee_state text-center' style='display :none;'>短途费状态</th>
+      <th class='to_short_fee_state text-center' style='display :none;'>短途费状态</th>
       <th class='send_state text-center' style='display :none;'>送货状态</th>
       <th class='stranded_days text-center' style='display :none;'>滞留天数</th>
       <th class='note text-center'>备注</th>
@@ -141,7 +143,8 @@
         <td class="from_short_carrying_fee" style='display : none;'><%= bill.from_short_carrying_fee %></td>
         <td class="to_short_carrying_fee" style='display : none;'><%= bill.to_short_carrying_fee %></td>
         <td class="state" style='display : none;'><%= bill.human_state_name %></td>
-        <td class="short_fee_state" style='display : none;'><%= bill.human_short_fee_state_name %></td>
+        <td class="from_short_fee_state" style='display : none;'><%= bill.human_from_short_fee_state_name %></td>
+        <td class="to_short_fee_state" style='display : none;'><%= bill.human_to_short_fee_state_name %></td>
         <td class='send_state' style='display :none;'><%=bill.send_state%></td>
         <td class='stranded_days' style='display :none;'><%=bill.stranded_days%>天</td>
         <td class="note" style='overflow :hidden;'>
@@ -181,7 +184,8 @@
       <td class="from_short_carrying_fee" style='display : none;'><%= sum_info[:sum_from_short_carrying_fee] %></td>
       <td class="to_short_carrying_fee" style='display : none;'><%= sum_info[:sum_to_short_carrying_fee] %></td>
       <td class='state' style='display : none;'>&nbsp;</td>
-      <td class='short_fee_state' style='display :none;'>&nbsp;</td>
+      <td class='from_short_fee_state' style='display :none;'>&nbsp;</td>
+      <td class='to_short_fee_state' style='display :none;'>&nbsp;</td>
       <td class='send_state' style='display :none;'>&nbsp;</td>
       <td class='stranded_days' style='display :none;'>&nbsp;</td>
       <td class='note'>&nbsp;</td>

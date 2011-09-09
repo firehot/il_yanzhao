@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906034201) do
+ActiveRecord::Schema.define(:version => 20110908030913) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -36,15 +36,15 @@ ActiveRecord::Schema.define(:version => 20110906034201) do
   end
 
   create_table "carrying_bills", :force => true do |t|
-    t.date     "bill_date",                                                                                        :null => false
-    t.string   "bill_no",                          :limit => 30,                                                   :null => false
-    t.string   "goods_no",                         :limit => 30,                                                   :null => false
+    t.date     "bill_date",                                                                                          :null => false
+    t.string   "bill_no",                          :limit => 30,                                                     :null => false
+    t.string   "goods_no",                         :limit => 30,                                                     :null => false
     t.integer  "from_customer_id"
-    t.string   "from_customer_name",               :limit => 60,                                                   :null => false
+    t.string   "from_customer_name",               :limit => 60,                                                     :null => false
     t.string   "from_customer_phone",              :limit => 60
     t.string   "from_customer_mobile",             :limit => 60
     t.integer  "to_customer_id"
-    t.string   "to_customer_name",                 :limit => 60,                                                   :null => false
+    t.string   "to_customer_name",                 :limit => 60,                                                     :null => false
     t.string   "to_customer_phone"
     t.string   "to_customer_mobile",               :limit => 60
     t.integer  "from_org_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20110906034201) do
     t.decimal  "goods_fee",                                      :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "from_short_carrying_fee",                        :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "to_short_carrying_fee",                          :precision => 10, :scale => 2, :default => 0.0
-    t.string   "pay_type",                         :limit => 20,                                                   :null => false
+    t.string   "pay_type",                         :limit => 20,                                                     :null => false
     t.integer  "goods_num",                                                                     :default => 1
     t.decimal  "goods_weight",                                   :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "goods_volume",                                   :precision => 10, :scale => 2, :default => 0.0
@@ -83,8 +83,6 @@ ActiveRecord::Schema.define(:version => 20110906034201) do
     t.decimal  "transit_carrying_fee",                           :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "transit_hand_fee",                               :precision => 15, :scale => 2, :default => 0.0
     t.integer  "transit_deliver_info_id"
-    t.string   "short_fee_state",                  :limit => 20
-    t.integer  "short_fee_info_id"
     t.decimal  "original_carrying_fee",                          :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "original_goods_fee",                             :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "original_insured_amount",                        :precision => 15, :scale => 2, :default => 0.0
@@ -95,6 +93,8 @@ ActiveRecord::Schema.define(:version => 20110906034201) do
     t.string   "transit_bill_no",                  :limit => 20
     t.string   "transit_to_phone",                 :limit => 20
     t.integer  "area_id"
+    t.string   "to_short_fee_state",               :limit => 20,                                :default => "draft"
+    t.string   "from_short_fee_state",             :limit => 20,                                :default => "draft"
   end
 
   add_index "carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(:version => 20110906034201) do
   add_index "carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
   add_index "carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
   add_index "carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "carrying_bills", ["short_fee_info_id"], :name => "index_carrying_bills_on_short_fee_info_id"
   add_index "carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
   add_index "carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
   add_index "carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
@@ -668,6 +667,13 @@ ActiveRecord::Schema.define(:version => 20110906034201) do
   add_index "settlements", ["org_id"], :name => "index_settlements_on_org_id"
   add_index "settlements", ["state"], :name => "index_settlements_on_state"
   add_index "settlements", ["user_id"], :name => "index_settlements_on_user_id"
+
+  create_table "short_fee_info_lines", :force => true do |t|
+    t.integer  "short_fee_info_id"
+    t.integer  "carrying_bill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "short_fee_infos", :force => true do |t|
     t.date     "bill_date",                :null => false

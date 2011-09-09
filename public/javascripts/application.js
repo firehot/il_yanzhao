@@ -126,49 +126,6 @@ jQuery(function($) {
 		if ($(this).attr('href') == '') return false;
 
 	});
-	//组织机构修改删除按钮处理
-	$('.btn_edit_org').click(function() {
-		var cur_active = $('#orgs_list li.ui-state-active');
-		if (cur_active.length == 0) {
-			$.notifyBar({
-				html: "请先选择要编辑的组织机构!",
-				delay: 3000,
-				animationSpeed: "normal",
-				cls: 'error'
-			});
-			return false;
-		}
-
-		if (cur_active.length > 0) $(this).attr('href', $(cur_active).data('editPath'));
-		if ($(this).attr('href') == '') return false;
-
-	});
-
-	$('.btn_delete_org').click(function() {
-		var cur_active = $('#orgs_list li.ui-state-active');
-		if (cur_active.length == 0) {
-			$.notifyBar({
-				html: "请先选择要删除的组织机构!",
-				delay: 3000,
-				animationSpeed: "normal",
-				cls: 'error'
-			});
-			return false;
-		}
-		if ($(cur_active).data('deletePath') == 'undefined') return false;
-		if (cur_active.length > 0) $(this).attr('href', $(cur_active).data('deletePath'));
-		if ($(this).attr('href') == '') return false;
-
-	});
-	/*
-	//组织机构列表
-	$('#role_system_functions_list').accordion({
-		collapsible: true,
-		autoHeight: false,
-		animated: false,
-		active: false
-	});
-        */
 	//根据客户编号查询查询客户信息
 	var search_customer_by_code = function() {
 		var code = $(this).val();
@@ -238,14 +195,7 @@ jQuery(function($) {
 		$('#return_bill_note').attr('readonly', false);
 
 	});
-	//设定只读字段的背景色
-	/*
-	$('input[readonly]').css({
-		background: '#EDEDED'
-	});
-        */
 	//手工运单,自动解析日期和数量
-	//
 	$('#hand_bill_goods_no,#hand_transit_bill_goods_no').live('change', function() {
 		var the_goods_no = $(this).val();
 		var bill_date = '20' + /^\d{6}/.exec(the_goods_no);
@@ -272,17 +222,6 @@ jQuery(function($) {
 		return cookie_menu;
 	};
 
-	/*
-	$('#menu_bar').accordion({
-		active: get_current_menu.apply(),
-		collapsible: true,
-		autoHeight: false,
-		animated: false,
-		change: function(e, ui) {
-			$.cookies.set(cookieName, "cur_il_menu_" + $(this).find('h3').index(ui.newHeader[0]));
-		}
-	});
-        */
 	/*当前menu_group设置*/
 	var cur_menu_group = get_current_menu_group();
 	if (cur_menu_group) $('#' + cur_menu_group).next('.navigation:first').show();
@@ -387,7 +326,19 @@ jQuery(function($) {
 
 		})
 	});
+	//短途运费核销,根据当前核销机构信息判断是否显示运单信息
+	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
+	//from_org_id_or_to_org_id == bill.to_org_id and bill.to_short_fee_state == 'offed' 该运单不显示
 	//绑定transfer_pay_info_form post_info_form的ajax:before处理
+	$('.short_fee_info_lines tr[data-bill]').livequery(function() {
+		var org_id = $('#from_org_id_or_to_org_id').val();
+		var bill_info = $(this).data('bill');
+		if (bill_info) {
+			if (bill_info.from_org_id == org_id && bill_info.from_short_fee_state == 'offed') $(this).remove();
+			if (bill_info.to_org_id == org_id && bill_info.to_short_fee_state == 'offed') $(this).remove();
+
+		}
+	});
 	$('#transfer_pay_info_form,#post_info_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
@@ -853,7 +804,6 @@ jQuery(function($) {
 			color: '#fff'
 		});
 	});
-	$('.turnover_chart').visualize();
 
 	//自动获取明细信息
 	$('[data-detailUrl]').livequery(function() {
@@ -973,6 +923,5 @@ jQuery(function($) {
 		else $('#simple_search_goods_fee_gt').val('');
 
 	});
-
 });
 

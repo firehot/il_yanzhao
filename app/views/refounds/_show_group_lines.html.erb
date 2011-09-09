@@ -25,7 +25,7 @@
           <td style='display : none;'>
             <%= link_to "查看",  polymorphic_url(bill,:format => :js),:class => "show_link popup-box",:style => 'display : none;'%>
           </td>
-          <td class='order_no'><%=index%></td>
+          <td class='order_no'><%=index + 1 %></td>
           <td class='bill_no'>
             <%=bill.bill_no%>
           </td>

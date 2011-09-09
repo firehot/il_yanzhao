@@ -1,4 +1,4 @@
-<%= semantic_form_for CarryingBill.search,:remote => params[:not_remote].blank?,:html => {:id => "search_bill_form",:method => :get,:style => "width : 300px;" } do |f|%>
+<%= semantic_form_for CarryingBill.search,:remote => params[:not_remote].blank?,:html => {:id => "search_bill_form",:method => :get,:style => "width : 400px;" } do |f|%>
   <%= hidden_field_tag :direction,params[:direction] %>
   <%= hidden_field_tag :sort,params[:sort] %>
   <%= hidden_field_tag :show_fields,params[:show_fields] %>
@@ -20,11 +20,12 @@
     <%= f.input params[:bill_date_lte].present? ? params[:bill_date_lte] : :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today.tomorrow} %>
     <%= f.input :from_org_id_eq,:label => "发货地",:as => :select,:collection => branches_for_select %>
 
-    <%= f.input :to_org_id_eq,:label =>"到货地/中转地",:as => :select,:collection => branches_for_select %>
+    <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => branches_for_select %>
 
     <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
     <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select  %>
-    <%= f.input :short_fee_state_eq,:label => "短途费状态",:as => :select,:collection => short_fee_states_for_select  %>
+    <%= f.input :from_short_fee_state_eq,:label => "发货短途费状态",:as => :select,:collection => short_fee_states_for_select  %>
+    <%= f.input :to_short_fee_state_eq,:label => "到货短途费状态",:as => :select,:collection => short_fee_states_for_select  %>
     <%= f.input :from_short_carrying_fee_gte,:label => "仅查询有发货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input :to_short_carrying_fee_gte,:label => "仅查询有到货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>

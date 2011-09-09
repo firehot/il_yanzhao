@@ -9,8 +9,6 @@ describe ShortFeeInfosController do
   login_admin
   render_views
 
-
-
   describe "GET index" do
     before(:each) do
       @short_fee_info = Factory(:short_fee_info)
@@ -48,23 +46,24 @@ describe ShortFeeInfosController do
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:short_fee_info).attributes
+      @bill_ids = [Factory(:computer_bill).id]
     end
     describe "success" do
       it "能够成功保存票据信息" do
         lambda do
-          post :create, :short_fee_info => @attr
+          post :create, :short_fee_info => @attr,:bill_ids => @bill_ids
         end.should change(ShortFeeInfo,:count).by(1)
       end
 
       it "redirects to the created short_fee_info" do
-        post :create, :short_fee_info => @attr
+        post :create, :short_fee_info => @attr,:bill_ids => @bill_ids
         response.should redirect_to(short_fee_info_path(assigns(:short_fee_info)))
       end
     end
 
     describe "with invalid params" do
       it "re-renders the 'new' template" do
-        post :create, :short_fee_info => {}
+        post :create, :short_fee_info => {},:bill_ids => @bill_ids
         response.should render_template("new")
       end
     end

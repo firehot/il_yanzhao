@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe ShortFeeInfo do
-  before :each do 
+  before :each do
     @short_fee_info ||= Factory.build(:short_fee_info)
   end
   it "应能够正确保存short fee info" do

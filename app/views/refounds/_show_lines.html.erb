@@ -23,7 +23,7 @@
           <%= link_to "查看",  polymorphic_url(bill,:format => :js),:class => "show_link popup-box",:style => 'display : none;'%>
         </td>
         <td class='order_no'>
-          <%= index%>
+          <%= index + 1 %>
         </td>
         <td class='bill_date' style='display : none;'>
           <%=bill.bill_date.strftime('%y-%m-%d')%>

@@ -37,13 +37,13 @@ class CustomerLevelConfig < ActiveRecord::Base
       gold_range = self.find_by_org_id_and_name(org_id,VIP_GOLD)
       sliver_range = self.find_by_org_id_and_name(org_id,VIP_SLIVER)
       normal_range = self.find_by_org_id_and_name(org_id,VIP_NORMAL)
-      if (diamond_range.fee_from..diamond_range.fee_to).include?(fee)
+      if (diamond_range.from_fee..diamond_range.to_fee).include?(fee)
         VIP_DIAMOND
-      elsif (gold_range.fee_from..gold_range.fee_to).include?(fee)
+      elsif (gold_range.from_fee..gold_range.to_fee).include?(fee)
         VIP_GOLD
-      elsif (sliver_range.fee_from..sliver_range.fee_to).include?(fee)
+      elsif (sliver_range.from_fee..sliver_range.to_fee).include?(fee)
         VIP_SLIVER
-      elsif (normal_range.fee_from..normal_range.fee_to).include?(fee)
+      elsif (normal_range.from_fee..normal_range.to_fee).include?(fee)
         VIP_NORMAL
       end
     else

@@ -57,6 +57,8 @@ class Ability
     alias_action :read,:update,:to => :show_authorize #授权核销
     alias_action :read,:update,:to => :show_claim
     alias_action :read,:update,:to => :show_identify
+    #理赔信息,核销前可修改
+    alias_action :read,:update,:to => :update_with_submited
 
     #运费及货款修改
     alias_action :read,:update,:to => :update_carrying_fee_20

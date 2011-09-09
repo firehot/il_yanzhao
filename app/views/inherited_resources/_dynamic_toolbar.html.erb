@@ -1,7 +1,7 @@
 <!--动态toolbar-->
 <div class="secondary-navigation">
   <ul class="wat-cf">
-    <%if params[:action] == "show" or params[:action] == "edit"%>
+    <%if params[:action] == "show"%>
       <%= render :partial => 'toolbar_btn_back' %>
     <%end%>
     <%if can? :read,resource_class%>

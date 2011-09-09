@@ -493,9 +493,6 @@ end
 #短途运费管理
 Factory.define :short_fee_info do |model|
   model.association :org,:factory => :zz
-  model.after_build do |m|
-    m.carrying_bills << Factory(:computer_bill)
-  end
 end
 #il_config
 Factory.define :il_config do |config|

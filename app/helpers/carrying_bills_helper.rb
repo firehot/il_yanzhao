@@ -12,7 +12,7 @@ module CarryingBillsHelper
   end
   #短途运费状态
   def short_fee_states_for_select
-    CarryingBill.state_machines[:short_fee_state].states.collect{|state| [state.human_name,state.value] }
+    CarryingBill.state_machines[:from_short_fee_state].states.collect{|state| [state.human_name,state.value] }
   end
 
   #得到查询对象的id数组

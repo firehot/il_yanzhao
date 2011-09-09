@@ -73,8 +73,6 @@ class CarryingBill < ActiveRecord::Base
   #对于原始单据来讲,有一个对应的退货单据
   has_one :return_bill,:foreign_key => "original_bill_id",:class_name => "ReturnBill"
 
-  #短途运费核销信息
-  belongs_to :short_fee_info
 
   #该运单对应的送货信息
   #当前活动的只能有一条
@@ -201,12 +199,17 @@ class CarryingBill < ActiveRecord::Base
     end
 
     #短途运费状态声明
-    state_machine :short_fee_state,:initial => :draft do
-      event :write_off  do
+    state_machine :from_short_fee_state,:initial => :draft,:namespace => :from_short_fee do
+      #发货地短途运费核销
+      event :from_write_off  do
         transition :draft => :offed
       end
-      state :offed do
-        validates_presence_of :short_fee_info_id
+    end
+    #短途运费状态声明
+    state_machine :to_short_fee_state,:initial => :draft,:namespace => :to_short_fee do
+      #发货地短途运费核销
+      event :to_write_off  do
+        transition :draft => :offed
       end
     end
 

@@ -4,7 +4,9 @@ class ShortFeeInfosController < BaseController
   def create
     bill = resource_class.new(params[resource_class.model_name.underscore])
     get_resource_ivar || set_resource_ivar(bill)
-    bill.carrying_bill_ids  = params[:bill_ids]  unless params[:bill_ids].blank?
+    params[:bill_ids].each do |id|
+      bill.short_fee_info_lines.build(:carrying_bill_id => id)
+    end
     bill.write_off
     create!
   end
@@ -13,12 +15,15 @@ class ShortFeeInfosController < BaseController
   def search
     render :partial => "search"
   end
+  #GET short_fee_info/1/export_excel
+  def export_excel
+    @short_fee_info = resource_class.find(params[:id],:include => [:org,:user,:short_fee_info_lines])
+  end
+
   #需要重写collection方法
   protected
   def collection
     @search = end_of_association_chain.where(["short_fee_infos.org_id = ? or short_fee_infos.op_org_id =?",current_user.default_org.id,current_user.default_org.id]).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
-
-
 end

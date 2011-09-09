@@ -49,7 +49,7 @@ IlYanzhao::Application.routes.draw do
 
   resources :short_fee_infos do
     get :search,:on => :collection
-    resources :carrying_bills
+    get :export_excel,:on => :member
   end
 
   resources :il_configs
