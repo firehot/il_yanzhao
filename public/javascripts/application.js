@@ -334,8 +334,8 @@ jQuery(function($) {
 		var org_id = $('#from_org_id_or_to_org_id').val();
 		var bill_info = $(this).data('bill');
 		if (bill_info) {
-			if (bill_info.from_org_id == org_id && (bill.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
-			if (bill_info.to_org_id == org_id && (bill.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
+			if (bill_info.from_org_id == org_id && (bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
+			if (bill_info.to_org_id == org_id && (bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
                         $('#bills_table_body').trigger('tr_changed');
 
 		}
