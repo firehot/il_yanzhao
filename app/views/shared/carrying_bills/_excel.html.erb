@@ -26,7 +26,8 @@
       <th class="to_short_carrying_fee hide">到货地短途运费</th>
       <th class='note'>备注</th>
       <th class='state'>状态</th>
-      <th class='short_fee_state hide'>短途运费状态</th>
+      <th class='from_short_fee_state hide'>短途运费状态</th>
+      <th class='to_short_fee_state hide'>短途运费状态</th>
       <th class='stranded_days hide'>滞留天数</th>
     </tr>
   </thead>
@@ -85,7 +86,8 @@
           </div>
         </td>
         <td class="state"><%= bill.human_state_name %></td>
-        <td class="short_fee_state hide"><%= bill.human_short_fee_state_name %></td>
+        <td class="from_short_fee_state hide"><%= bill.human_from_short_fee_state_name %></td>
+        <td class="to_short_fee_state hide"><%= bill.human_to_short_fee_state_name %></td>
         <td class='stranded_days hide'><%=bill.stranded_days%>天</td>
       </tr>
     <% end -%>
@@ -116,7 +118,8 @@
       <td class="to_short_carrying_fee hide"><%= sum_info[:sum_to_short_carrying_fee] %></td>
       <td class='note'>&nbsp;</td>
       <td class='state'>&nbsp;</td>
-      <td class='short_fee_state hide'>&nbsp;</td>
+      <td class='from_short_fee_state hide'>&nbsp;</td>
+      <td class='to_short_fee_state hide'>&nbsp;</td>
       <td class='stranded_days hide'>&nbsp;</td>
     </tr>
   </tfoot>
