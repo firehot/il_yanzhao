@@ -1,6 +1,6 @@
 <div class="block">
   <%= render "dynamic_toolbar" %>
-  <div class="content">            
+  <div class="content">
     <h2 class="title">新建 <%= resource_name %></h2>
     <div class="inner">
       <div class='actions-bar'>
@@ -17,7 +17,7 @@
             <li>已提货或已中转的票据不能再进行退货</li>
             <li>未装车的票据可直接删除</li>
           </ul>
-          <%=hidden_field_tag "search[to_org_id_or_transit_org_id_in][]",current_user.current_ability_org_ids%>
+          <%=hidden_field_tag "search[to_org_id_or_transit_org_id_eq]",current_user.default_org_id %>
           <%=hidden_field_tag "search[type_in][]",'ComputerBill' %>
           <%=hidden_field_tag "search[type_in][]",'HandBill'%>
           <%=hidden_field_tag "search[type_in][]",'TransitBill'%>

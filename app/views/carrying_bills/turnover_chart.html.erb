@@ -33,7 +33,7 @@ to_orgs = group_bills_by_to_org.keys
           <table class="turnover_chart table">
             <thead>
               <tr>
-                <td colspan='100'><%=from_org.name%></td>
+                <td colspan='100'><%=from_org.name%>(共收到<%=bills.sum(&:sum_goods_num).to_i%>件)</td>
               </tr>
               <tr>
                 <td></td>

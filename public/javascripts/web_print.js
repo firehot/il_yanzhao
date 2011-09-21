@@ -577,7 +577,7 @@ jQuery(function($) {
 	});
 	//货损理赔信息打印
 	$('.btn_print_goods_exception').click(function() {
-		var table_doc = $('#goods_exception_show').clone();
+		var table_doc = $('#goods_exception_print');
 		table_doc.find('th,td').css({
 			border: 'thin solid #000',
 			borderCollapse: 'collapse'
