@@ -139,32 +139,6 @@ jQuery(function($) {
 	};
 	$('form.computer_bill #customer_code,form.transit_bill #customer_code').live('change', search_customer_by_code);
 	$('form.carrying_bill').live("change", calculate_carrying_bill).livequery(calculate_carrying_bill);
-	//运单修改时,判断权限
-	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
-		$('#carrying_bill_form :input').attr('readonly', true);
-		$('#carrying_bill_form select').attr('disabled', true);
-		$('#carrying_fee').attr('readonly', false);
-		$('#goods_fee').attr('readonly', false);
-		$('#from_customer_name').attr('readonly', false);
-		$('#from_customer_phone').attr('readonly', false);
-		$('#from_customer_mobile').attr('readonly', false);
-		$('#to_customer_name').attr('readonly', false);
-		$('#to_customer_phone').attr('readonly', false);
-		$('#to_customer_mobile').attr('readonly', false);
-		$('#note').attr('readonly', false);
-		$('#select_org_input_to_org_id').attr('readonly', false);
-
-		$('#from_org_id').attr('disabled', false);
-		$('#transit_org_id').attr('disabled', false);
-		$('#area_id').attr('disabled', false);
-		$('#to_org_id').attr('disabled', false);
-		$('#pay_type').attr('disabled', false);
-
-	});
-
-	$('form.update_all').livequery(function() {
-		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
-	});
 
 	//根据不同的运单录入界面,隐藏部分字段
 	$('form.computer_bill').livequery(function() {
@@ -195,6 +169,33 @@ jQuery(function($) {
 		$('#return_bill_note').attr('readonly', false);
 
 	});
+	//运单修改时,判断权限
+	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
+		$('#carrying_bill_form :input').attr('readonly', true);
+		$('#carrying_bill_form select').attr('disabled', true);
+		$('#carrying_fee').attr('readonly', false);
+		$('#goods_fee').attr('readonly', false);
+		$('#from_customer_name').attr('readonly', false);
+		$('#from_customer_phone').attr('readonly', false);
+		$('#from_customer_mobile').attr('readonly', false);
+		$('#to_customer_name').attr('readonly', false);
+		$('#to_customer_phone').attr('readonly', false);
+		$('#to_customer_mobile').attr('readonly', false);
+		$('#note').attr('readonly', false);
+		$('#select_org_input_to_org_id').attr('readonly', false);
+
+		$('#from_org_id').attr('disabled', false);
+		$('#transit_org_id').attr('disabled', false);
+		$('#area_id').attr('disabled', false);
+		$('#to_org_id').attr('disabled', false);
+		$('#pay_type').attr('disabled', false);
+
+	});
+
+	$('form.update_all').livequery(function() {
+		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
+	});
+
 	//手工运单,自动解析日期和数量
 	$('#hand_bill_goods_no,#hand_transit_bill_goods_no').live('change', function() {
 		var the_goods_no = $(this).val();
