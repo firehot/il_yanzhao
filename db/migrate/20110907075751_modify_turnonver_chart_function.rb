@@ -9,8 +9,11 @@ class ModifyTurnonverChartFunction < ActiveRecord::Migration
       :subject => "GoodsException",
       :action => :update_with_submited,
       :conditions => "{:state => 'submited' }"}
+
+    if sf
       ops = sf.system_function_operates.find_or_create_by_name("修改")
       ops.update_attributes(:function_obj => func_obj)
+    end
   end
 
   def self.down

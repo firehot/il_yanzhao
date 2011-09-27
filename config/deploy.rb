@@ -18,12 +18,20 @@ set :branch,:master
 #role :app, "your app-server here"                          # This may be the same as your `Web` server
 #role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
-server "116.255.186.172",:app,:web,:db,:primary => true
+server "192.168.0.99",:app,:web,:db,:primary => true
 
 set :user,"root"
 set :use_sudo,false
 default_run_options[:pty]=true
 
+#set rvm support
+set :default_environment, {
+  'PATH' => "/usr/local/rvm/gems/ree-1.8.7-2011.03/bin:/usr/local/rvm/bin:$PATH",
+  'RUBY_VERSION' => 'ree 1.8.7',
+  'GEM_HOME'     => '/usr/local/rvm/gems/ree-1.8.7-2011.01@rails3_gemset',
+  'GEM_PATH'     => '/usr/local/rvm/gems/ree-1.8.7-2011.03:/usr/local/rvm/gems/ree-1.8.7-2011.01@rails3_gemset',
+  'BUNDLE_PATH'     => '/usr/local/rvm/gems/ree-1.8.7-2011.03'
+}
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -50,5 +58,4 @@ namespace :deploy do
       put erb.result, "#{shared_path}/system/maintenance.html",:mode => 0644
     end
   end
-
 end
