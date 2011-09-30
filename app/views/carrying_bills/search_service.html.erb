@@ -1,7 +1,7 @@
-<table style='border-collapse : collapse;border : none;'>
+<table style='border-collapse : collapse;border : none;font-size : 12px;'>
   <%if @carrying_bills.blank?%>
     <tr style='border-bottom : 1px solid gray;'>
-      <td colspan='2'>您所查询的运单不存在!</td>
+      <td colspan='3'>您所查询的运单不存在!</td>
     </tr>
   <%end%>
   <%@carrying_bills.each do |bill|%>
@@ -16,6 +16,6 @@
     </tr>
   <%end%>
   <tr>
-    <td colspan='2' style='text-align : right;'><%= button_to "返回",search_service_page_carrying_bills_path,:method => :get%></td>
+    <td colspan='3' style='text-align : right;'><%= button_to "返回",search_service_page_carrying_bills_path,:method => :get%></td>
   </tr>
 </table>
