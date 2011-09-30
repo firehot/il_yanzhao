@@ -1,7 +1,12 @@
 #coding: utf-8
 #运单controller基础类
 class CarryingBillsController < BaseController
-  http_cache :new,:last_modified => Proc.new {|c| c.send(:last_modified)},:etag => Proc.new {|c| c.send(:etag,"carrying_bill_new")}
+
+  #查询服务,去除layout
+  layout 'application',:except => [:search_service_page,:search_service]
+  skip_before_filter :authenticate_user!,:only => [:search_service_page,:search_service]
+  skip_authorize_resource :only => [:search_service_page,:search_service]
+  #http_cache :new,:last_modified => Proc.new {|c| c.send(:last_modified)},:etag => Proc.new {|c| c.send(:etag,"carrying_bill_new")}
   #判断是否超过录单时间,超过录单时间后,不可再录入票据
   before_filter :check_expire,:only => :new
   before_filter :pre_process_search_params,:only => [:index,:rpt_turnover,:turnover_chart]
@@ -103,6 +108,17 @@ class CarryingBillsController < BaseController
   def sum_goods_fee_inout
     @sum_goods_fee_in = resource_class.sum_goods_fee_in(current_user.current_ability_org_ids,params[:date_from] || Date.today.beginning_of_month,params[:date_to] || Date.today.end_of_month)
     @sum_goods_fee_out = resource_class.sum_goods_fee_out(current_user.current_ability_org_ids,params[:date_from] || Date.today.beginning_of_month,params[:date_to] || Date.today.end_of_month)
+  end
+  #外部查询服务界面
+  def search_serviece_page
+  end
+  def search_service
+    if params[:bill_nos].blank?
+      render :action => :search_service_page
+    else
+      bill_nos = params[:bill_nos].split(',')
+      @carrying_bills = CarryingBill.where(:bill_no => bill_nos)
+    end
   end
   private
   def check_expire

@@ -218,6 +218,8 @@ IlYanzhao::Application.routes.draw do
     get :simple_search_with_created_at,:on => :collection
     get :export_excel,:on => :collection
     get :sum_goods_fee_inout,:on => :collection
+    get :search_service_page,:on => :collection
+    get :search_service,:on => :collection
     put :reset,:on => :member
     put :invalidate,:on => :member
   end

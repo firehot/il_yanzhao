@@ -99,7 +99,8 @@
     <td colspan='2' style='font-size : 1.4em;font-weight : bold;color : blue;'>
       <%= show.pay_info.try(:bill_date)%>
     </td>
-    <td colspan='2' class='col_74mm'>&nbsp;</td>
+    <td>录入时间:</td>
+    <td><%= show.created_at.strftime('%Y-%m-%d %H:%M:%S')%></td>
   </tr>
   <tr>
     <td class='col_14mm'><span class='label'>开票人:</span></td>
