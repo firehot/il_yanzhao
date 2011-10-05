@@ -10,8 +10,8 @@
     <%= hidden_field_tag "search[state_ni][]","shipped" %>
     <%= hidden_field_tag "search[state_ni][]","invalided"%>
     <%= hidden_field_tag "search[state_ni][]","returned" %>
-    <%= f.input :created_at_gte,:label => "录入日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
-    <%= f.input :created_at_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
+    <%= f.input :load_list_bill_date_gte,:label => "录入日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
+    <%= f.input :load_list_bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input :from_org_id_eq,:label => "发货地",:as => :select,:collection => params[:from_org_select].present? ? self.send(params[:from_org_select]) : branches_for_select%>
 
     <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => params[:to_org_select].present? ? self.send(params[:to_org_select]) : branches_for_select %>
