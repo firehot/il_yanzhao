@@ -35,7 +35,7 @@ jQuery(function($) {
 				animationSpeed: "normal",
 				cls: ret_boolean ? 'success': 'error'
 			});
-                        //alert('write ukey :' + pin_str);
+			//alert('write ukey :' + pin_str);
 			return ret_boolean;
 
 		},
@@ -58,7 +58,7 @@ jQuery(function($) {
 				message = "ukey 读取成功!"
 				ret_pin = ret;
 			}
-                        //alert('read ukey :' + ret);
+			//alert('read ukey :' + ret);
 			$.notifyBar({
 				html: message,
 				delay: 3000,
@@ -107,19 +107,30 @@ jQuery(function($) {
 		var usb_pin = $('#usb_pin').val();
 		//只支持ie
 		if (use_usb.val() == 'true' && $.browser.msie) {
-			if ($.ukey_read() == usb_pin) {
-				login_form.submit();
+			try {
+				if ($.ukey_read() == usb_pin) {
+					login_form.submit();
+				}
+				else {
+					$.notifyBar({
+						html: "UKEY 密码不正确,请确认插入了正确的UKEY!",
+						delay: 3000,
+						animationSpeed: "normal",
+						cls: 'error'
+					});
+
+				}
+				return false;
 			}
-			else {
+			catch(ex) {
 				$.notifyBar({
-					html: "UKEY 密码不正确,请确认插入了正确的UKEY!",
+					html: "请先安装ukey驱动!",
 					delay: 3000,
 					animationSpeed: "normal",
-					cls:  'error'
+					cls: 'error'
 				});
 
 			}
-			return false;
 		}
 		else login_form.submit();
 		return false;
@@ -131,12 +142,24 @@ jQuery(function($) {
 		var usb_pin = $('#user_usb_pin');
 		//只支持ie
 		if (use_usb.attr('checked') && $.browser.msie) {
-			if ($.ukey_write(usb_pin.val())) {
-				return true;
+			try {
+				if ($.ukey_write(usb_pin.val())) {
+					return true;
+				}
+				else return false;
 			}
-			else return false;
+			catch(ex) {
+				$.notifyBar({
+					html: "请先安装ukey驱动!",
+					delay: 3000,
+					animationSpeed: "normal",
+					cls: 'error'
+				});
+
+			}
 		}
 		else return true;
 
 	});
 });
+

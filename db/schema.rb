@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921062049) do
+ActiveRecord::Schema.define(:version => 20111016064629) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -393,16 +393,17 @@ ActiveRecord::Schema.define(:version => 20110921062049) do
 
   create_table "load_lists", :force => true do |t|
     t.date     "bill_date"
-    t.string   "bill_no",     :limit => 20
-    t.integer  "from_org_id",               :null => false
-    t.integer  "to_org_id",                 :null => false
-    t.string   "state",       :limit => 20
+    t.string   "bill_no",      :limit => 20
+    t.integer  "from_org_id",                :null => false
+    t.integer  "to_org_id",                  :null => false
+    t.string   "state",        :limit => 20
     t.text     "note"
-    t.string   "driver",      :limit => 20
-    t.string   "vehicle_no",  :limit => 20
+    t.string   "driver",       :limit => 20
+    t.string   "vehicle_no",   :limit => 20
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.date     "reached_date"
   end
 
   add_index "load_lists", ["bill_date"], :name => "index_load_lists_on_bill_date"
@@ -821,5 +822,12 @@ ActiveRecord::Schema.define(:version => 20110921062049) do
   add_index "users", ["is_active"], :name => "index_users_on_is_active"
   add_index "users", ["is_admin"], :name => "index_users_on_is_admin"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "view_bills", :id => false, :force => true do |t|
+    t.string  "bill_no",          :limit => 30,                                                 :null => false
+    t.decimal "goods_fee",                      :precision => 10, :scale => 2, :default => 0.0
+    t.string  "state",            :limit => 20
+    t.integer "from_customer_id"
+  end
 
 end

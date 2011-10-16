@@ -144,6 +144,14 @@ jQuery(function($) {
 	$('form.computer_bill').livequery(function() {
 		$('#computer_bill_bill_no').attr('readonly', true);
 		$('#computer_bill_goods_no').attr('readonly', true);
+		if ($(this).hasClass('edit_bill_date')) {
+			$('#bill_date').addClass('datepicker');
+		}
+		else {
+
+			$('#bill_date').removeClass('datepicker');
+		}
+
 	});
 	$('form.hand_bill').livequery(function() {
 		$('#hand_bill_bill_no').attr('readonly', false);
@@ -155,6 +163,13 @@ jQuery(function($) {
 	$('form.transit_bill').livequery(function() {
 		$('#transit_bill_bill_no').attr('readonly', true);
 		$('#transit_bill_goods_no').attr('readonly', true);
+		if ($(this).hasClass('edit_bill_date')) {
+			$('#bill_date').addClass('datepicker');
+		}
+		else {
+
+			$('#bill_date').removeClass('datepicker');
+		}
 
 	});
 	$('form.hand_transit_bill').livequery(function() {
@@ -167,6 +182,13 @@ jQuery(function($) {
 	$('form.return_bill').livequery(function() {
 		$(this).find('input').attr('readonly', true);
 		$('#return_bill_note').attr('readonly', false);
+		if ($(this).hasClass('edit_bill_date')) {
+			$('#bill_date').addClass('datepicker');
+		}
+		else {
+
+			$('#bill_date').removeClass('datepicker');
+		}
 
 	});
 	//运单修改时,判断权限
@@ -199,13 +221,27 @@ jQuery(function($) {
 	//手工运单,自动解析日期和数量
 	$('#hand_bill_goods_no,#hand_transit_bill_goods_no').live('change', function() {
 		var the_goods_no = $(this).val();
-		var bill_date = '20' + /^\d{6}/.exec(the_goods_no);
+		var tmp_bill_date = '20' + /^\d{6}/.exec(the_goods_no);
+		var changed_bill_date = tmp_bill_date.substr(0, 4) + "-" + tmp_bill_date.substr(4, 2) + "-" + tmp_bill_date.substr(6, 2);
+		var bill_date = $('#bill_date').val();
 		var goods_num = /\d+$/.exec(the_goods_no);
-		$('#bill_date').val(bill_date);
-		$('#goods_num').val(goods_num);
+		if ($(this).parents('form.carrying_bill').hasClass('edit_bill_date')) {
+			$('#bill_date').val(changed_bill_date);
+			$('#goods_num').val(goods_num);
+
+		} else if (changed_bill_date != bill_date) //只能输入当日票据
+		{
+			$.notifyBar({
+				html: "运单日期不正确,您无权录入其他日期的票据!",
+				delay: 3000,
+				animationSpeed: "normal",
+				cls: 'error'
+			});
+			$(this).val(bill_date.substr(2,2) + bill_date.substr(5,2)+ bill_date.substr(8,2));
+
+		}
 
 	});
-
 	//绑定所有日期选择框
 	$.datepicker.setDefaults({
 		dateFormat: 'yy-mm-dd'
@@ -337,7 +373,7 @@ jQuery(function($) {
 		if (bill_info) {
 			if (bill_info.from_org_id == org_id && (bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
 			if (bill_info.to_org_id == org_id && (bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
-                        $('#bills_table_body').trigger('tr_changed');
+			$('#bills_table_body').trigger('tr_changed');
 
 		}
 	});

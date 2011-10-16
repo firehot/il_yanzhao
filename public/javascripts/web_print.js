@@ -539,8 +539,8 @@ jQuery(function($) {
 			//添加content
 			print_object.ADD_PRINT_HTM(config.top, config.left, config.width, config.height, config.content);
 
-			print_object.PREVIEW();
-			//print_object.PRINT();
+			//print_object.PREVIEW();
+			print_object.PRINT();
 		}
 	});
 	//绑定打印事件
@@ -577,7 +577,8 @@ jQuery(function($) {
 	});
 	//货损理赔信息打印
 	$('.btn_print_goods_exception').click(function() {
-		var table_doc = $('#goods_exception_print');
+		var table_doc = $('#goods_exception_print').clone();
+                table_doc.css({tableLayout : 'fixed',width : '180mm',borderCollapse : 'collapse'});
 		table_doc.find('th,td').css({
 			border: 'thin solid #000',
 			borderCollapse: 'collapse'
@@ -592,6 +593,7 @@ jQuery(function($) {
 			content: table_doc.wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
+                return false;
 	});
 	//打印客户转账凭条
 	$('.btn_print_pay_info_certificate').click(function() {
@@ -606,6 +608,7 @@ jQuery(function($) {
 			content: table_doc.clone().wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
+                return false;
 	});
 
 	//提货打印,触发自动打印事件

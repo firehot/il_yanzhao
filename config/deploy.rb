@@ -41,7 +41,13 @@ namespace :deploy do
   task :generate_assets, :roles => :web do
     run "cd #{deploy_to}/current && bundle exec jammit"
   end
-  after "deploy:symlink", "deploy:generate_assets"
+  desc "create cache dir"
+  task :create_cache_dir,:roles => :web do
+    run "cd #{deploy_to}/current && chmod 777 tmp"
+    run "cd #{deploy_to}/current/tmp && mkdir cache && chmod 777 cache"
+  end
+  after "deploy:symlink","deploy:generate_assets","deploy:create_cache_dir"
+
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do

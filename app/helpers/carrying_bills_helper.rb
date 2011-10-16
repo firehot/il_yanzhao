@@ -53,6 +53,10 @@ module CarryingBillsHelper
       can_update << 'update_goods_fee' if can?(:update_goods_fee,resource)
     end
     can_update=[] if resource.new_record?
+    #得到是否可修改运单日期
+    #可修改运单日期:返回edit_bill_date
+    can_update << 'edit_bill_date' if can?(:edit_bill_date,resource)
+
     can_update.join(' ')
   end
 end

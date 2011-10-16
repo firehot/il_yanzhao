@@ -13,6 +13,10 @@ class LoadList < ActiveRecord::Base
     after_transition do |load_list,transition|
       load_list.carrying_bills.each {|bill| bill.standard_process}
     end
+    #到货确认后,设置确认时间
+    after_transition :shipped => :reached do |load_list,transition|
+      load_list.reached_date = Date.today
+    end
     event :process do
       transition :billed =>:loaded,:loaded => :shipped,:shipped => :reached
     end
