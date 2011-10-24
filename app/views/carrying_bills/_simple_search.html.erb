@@ -29,7 +29,7 @@
     <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
     <%= f.input :from_customer_id_is_not_null,:label => "只查询转账付款运单",:as => :boolean,:input_html => {:value => 1,:id => "simple_search_from_customer_id_not_null"} %>
     <%= f.input :from_customer_id_is_null,:label => "只查询现金付款运单",:as => :boolean,:input_html => {:value => 1,:id => "simple_search_from_customer_id_null"} %>
-    <%= f.hidden_field :goods_fee_gt,:id => "simple_search_goods_fee_gt",:value => params[:search][:goods_fee_gt]%>
+    <%= f.hidden_field :goods_fee_gt,:id => "simple_search_goods_fee_gt",:value => params[:search].try("[:goods_fee_gt]")%>
     <%= f.hidden_field :state_ne,:value => "invalided"%>
   <% end %>
   <%=f.buttons do %>
