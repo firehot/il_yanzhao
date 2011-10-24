@@ -229,15 +229,22 @@ jQuery(function($) {
 			$('#bill_date').val(changed_bill_date);
 			$('#goods_num').val(goods_num);
 
-		} else if (changed_bill_date != bill_date) //只能输入当日票据
+		}
+		else if (changed_bill_date == bill_date) {
+
+			$('#goods_num').val(goods_num);
+		}
+		else
 		{
+
 			$.notifyBar({
 				html: "运单日期不正确,您无权录入其他日期的票据!",
 				delay: 3000,
 				animationSpeed: "normal",
 				cls: 'error'
 			});
-			$(this).val(bill_date.substr(2,2) + bill_date.substr(5,2)+ bill_date.substr(8,2));
+			$(this).val(bill_date.substr(2, 2) + bill_date.substr(5, 2) + bill_date.substr(8, 2));
+			$('#goods_num').val(1);
 
 		}
 
