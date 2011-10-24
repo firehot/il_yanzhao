@@ -109,7 +109,7 @@
     <tr>
       <td>赔偿金额</td>
       <td colspan='3'>人民币(大写)</td>
-      <td colspan='2'>&yen;:<%=convertNumToChinese(resource.claim.try(:act_compensation_fee ))%></td>
+      <td colspan='2'>&yen;:<%=convertNumToChinese(resource.claim.try(:act_compensation_fee ).to_i)%></td>
     </tr>
     <tr>
       <td>发货地赔付</td>
