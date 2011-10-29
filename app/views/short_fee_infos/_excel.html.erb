@@ -4,6 +4,14 @@
       <td colspan='11' style='text-align : center;font-size : 14px;'>短途运费核销信息<%="(#{@short_fee_info.org}-#{@short_fee_info.bill_date})"%></td>
     </tr>
     <tr>
+      <th style='border : thin solid #000;'>日期:</th>
+      <th style='border : thin solid #000;' colspan='3'><%=@short_fee_info.bill_date.strftime('%Y-%m-%d')%></th>
+      <th style='border : thin solid #000;'>机构:</td>
+      <th style='border : thin solid #000;' colspan='2'><%=@short_fee_info.org%></th>
+      <th style='border : thin solid #000;'>操作员:</th>
+      <th style='border : thin solid #000;' colspan='3'><%=@short_fee_info.user%></th>
+    </tr>
+    <tr>
       <th style='border : thin solid #000;'>序号</th>
       <th style='border : thin solid #000;'>运单号</th>
       <th style='border : thin solid #000;'>货号</th>
@@ -21,7 +29,7 @@
     <%resource.short_fee_info_lines.each_with_index do |line,index|%>
       <tr>
         <td style='border : thin solid #000;'><%=index + 1%></td>
-        <td style='border : thin solid #000;'><%=line.carrying_bill.bill_no%></td>
+        <td style='border : thin solid #000;'>&nbsp;<%=line.carrying_bill.bill_no%></td>
         <td style='border : thin solid #000;'><%=line.carrying_bill.goods_no%></td>
         <td style='border : thin solid #000;'><%=line.carrying_bill.from_org%></td>
         <td style='border : thin solid #000;'><%=line.carrying_bill.to_org%></td>

@@ -33,7 +33,7 @@ class CarryingBill < ActiveRecord::Base
   scope :ready_pay,lambda {|from_org_ids| search(:from_customer_id_is_null => 1).where(:from_org_id => from_org_ids,:state => :payment_listed).select('sum(goods_fee) as goods_fee,sum(1) as bill_count')}
 
   #货款收入情况
-  scope :sum_goods_fee_in,lambda {|from_org_ids,date_from,date_to| select('from_org_id,sum(goods_fee) as sum_goods_fee_in').where(:from_org_id => from_org_ids,:state => ["refunded_confirmed","payment_listed","paid"],:updated_at => date_from..date_to).group('from_org_id')}
+  scope :sum_goods_fee_in,lambda {|from_org_ids,date_from,date_to| select('from_org_id,sum(goods_fee) as sum_goods_fee_in').where(:from_org_id => from_org_ids,:state => ["refunded_confirmed","payment_listed","paid","posted"],:updated_at => date_from..date_to).group('from_org_id')}
   #货款支出情况
   scope :sum_goods_fee_out,lambda {|from_org_ids,date_from,date_to| select('from_org_id,sum(goods_fee) as sum_goods_fee_out').where(:from_org_id => from_org_ids,:state => ["paid",'posted'] ,:updated_at => date_from..date_to).group('from_org_id')}
 

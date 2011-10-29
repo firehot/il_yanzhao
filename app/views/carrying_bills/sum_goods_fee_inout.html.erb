@@ -28,7 +28,7 @@
         </thead>
         <tbody>
           <%@sum_goods_fee_in.each_with_index do |bill,index|%>
-            <% bill_out = @sum_goods_fee_out.find {|the_bill_out| the_bill_out.from_org_id = bill.from_org_id }%>
+            <% bill_out = @sum_goods_fee_out.find {|the_bill_out| the_bill_out.from_org_id.eql?(bill.from_org_id) }%>
             <tr>
               <td><%=index + 1%></td>
               <td><%=bill.from_org.name %></td>

@@ -21,4 +21,16 @@
   <%=f.buttons do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
+  <%if params[:search].present?%>
+    <%params[:search].each do |search_key,search_val|%>
+      <%if search_val.is_a? Array%>
+        <%search_val.each do |a|%>
+          <%= f.hidden_field "#{search_key}][",:value => a %>
+        <%end%>
+      <%else%>
+        <%= f.hidden_field search_key,:value => search_val %>
+      <%end%>
+    <%end%>
+  <%end%>
+
 <% end%>
