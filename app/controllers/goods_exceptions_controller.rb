@@ -1,6 +1,6 @@
 #coding: utf-8
 class GoodsExceptionsController < BaseController
-  table :bill_date,:org,:carrying_bill,:except_des,:except_num,:from_fee,:to_fee,:human_state_name,:note
+  table :bill_date,:org,:carrying_bill,:except_des,:except_num,:from_fee,:to_fee,:human_state_name,:posted_date,:note
   def create
     bill = resource_class.new(params[resource_class.model_name.underscore])
     get_resource_ivar || set_resource_ivar(bill)
@@ -39,10 +39,18 @@ class GoodsExceptionsController < BaseController
   def search
     render :partial => "search"
   end
+  #付款核销
+  #PUT /goods_exceptions/:id/do_post
+  def do_post
+    @goods_exception = resource_class.find(params[:id])
+    @goods_exception.do_post
+    flash[:notice] = "核销付款成功."
+    render :show
+  end
   #需要重写collection方法
   protected
   def collection
-    @search = end_of_association_chain.where(["goods_exceptions.org_id in (?) or goods_exceptions.op_org_id in (?)",current_user.current_ability_org_ids,current_user.current_ability_org_ids]).search(params[:search])
+    @search = end_of_association_chain.joins(:carrying_bill).where(["goods_exceptions.org_id in (?) or goods_exceptions.op_org_id in (?) or carrying_bills.from_org_id in (?) or carrying_bills.to_org_id in (?) or carrying_bills.transit_org_id in (?)",current_user.current_ability_org_ids,current_user.current_ability_org_ids,current_user.current_ability_org_ids,current_user.current_ability_org_ids,current_user.current_ability_org_ids]).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end

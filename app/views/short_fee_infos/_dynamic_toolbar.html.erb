@@ -23,6 +23,12 @@
     <%end%>
 
     <%if params[:action] == "show"%>
+      <%if can? :write_off,resource %>
+      <li>
+        <%= link_to image_tag("glyph_check.png",:size => "16x16",:alt => "核销"), write_off_short_fee_info_path(resource),:title => "核销",:class => "tipsy"  %>
+      </li>
+    <%end%>
+
       <li>
         <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), export_excel_short_fee_info_path(resource),:title => "导出为EXCEL",:class => "btn_export_excel tipsy"  %>
       </li>

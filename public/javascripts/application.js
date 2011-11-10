@@ -234,8 +234,7 @@ jQuery(function($) {
 
 			$('#goods_num').val(goods_num);
 		}
-		else
-		{
+		else {
 
 			$.notifyBar({
 				html: "运单日期不正确,您无权录入其他日期的票据!",
@@ -584,7 +583,7 @@ jQuery(function($) {
 			"search[goods_fee_or_carrying_fee_gt]": 0,
 			"search[settlement_id_in][]": selected_bill_ids,
 			"hide_fields": ".carrying_fee,.insured_fee,.carrying_fee_total",
-			'show_fields': ".th_amount,:carrying_fee_th_total,.insured_fee_total,.carrying_fee_th"
+			'show_fields': ".th_amount,.carrying_fee_th_total,.insured_fee_total,.carrying_fee_th"
 		};
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
@@ -707,20 +706,27 @@ jQuery(function($) {
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
 		var sum_info = $('#bills_table').data('sum');
-		var ids = $('#bills_table').data('ids');
 		$('#sum_goods_fee').val(sum_info.sum_goods_fee);
 		$('#sum_k_carrying_fee').val(sum_info.sum_k_carrying_fee);
 		$('#sum_k_hand_fee').val(sum_info.sum_k_hand_fee);
 		$('#sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		//计算实际提款及余额
 		$('#sum_pay_fee').val(sum_info.sum_act_pay_fee);
-		$('#post_info_form').data('params', {
-			'bill_ids[]': ids
-		});
 		cal_rest_fee();
 	});
 	//绑定实领金额变化事件
 	$('#post_info_amount_fee').change(cal_rest_fee);
+	//绑定$.bill_selector的select:change事件,用于触发当选定单据发生变化时,重新计算金额
+	var re_cal_rest_fee = function() {
+		$('#sum_goods_fee').val($.bill_selector.sum_info.sum_goods_fee);
+		$('#sum_k_carrying_fee').val($.bill_selector.sum_info.sum_k_carrying_fee);
+		$('#sum_k_hand_fee').val($.bill_selector.sum_info.sum_k_hand_fee);
+		$('#sum_transit_hand_fee').val($.bill_selector.sum_info.sum_transit_hand_fee);
+		//计算实际提款及余额
+		$('#sum_pay_fee').val($.bill_selector.sum_info.sum_act_pay_fee);
+		cal_rest_fee();
+	};
+	$($.bill_selector).bind('select:change', re_cal_rest_fee);
 
 	//中转运单中转操作,处理中转公司下拉列表变化事件
 	$('#select_transit_company').change(function() {

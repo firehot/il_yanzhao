@@ -11,6 +11,8 @@ class ShortFeeInfo < ActiveRecord::Base
   #定义状态机
   state_machine :initial => :draft do
     after_transition do |info,transition|
+      #更新核销时间
+      info.update_attributes(:write_off_date => Date.today)
       info.carrying_bills.each do |bill|
         bill.write_off_from_short_fee! if info.org_id.eql?(bill.from_org_id)
         bill.write_off_to_short_fee! if info.org_id.eql?(bill.to_org_id)

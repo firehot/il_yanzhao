@@ -76,7 +76,8 @@
       <td colspan='6' style='text-align : center;'><%=IlConfig.client_name%></td>
     </tr>
     <tr>
-      <td colspan='6' style='text-align : center;'>货物赔偿处理清单</td>
+      <td><%= resource.posted? ? "已核销" : ""%></td>
+      <td colspan='5' style='text-align : center;'>货物赔偿处理清单</td>
     </tr>
     <tr>
       <td>上报机构</td>
@@ -108,13 +109,13 @@
     </tr>
     <tr>
       <td>赔偿金额</td>
-      <td colspan='3'>人民币(大写)</td>
-      <td colspan='2'>&yen;:<%=convertNumToChinese(resource.claim.try(:act_compensate_fee ).to_i)%></td>
+      <td colspan='3'>人民币(大写):<%=convertNumToChinese(resource.claim.try(:act_compensate_fee ).to_i)%></td>
+      <td colspan='2'>&yen;:<%=resource.claim.try(:act_compensate_fee).to_i%></td>
     </tr>
     <tr>
-      <td>发货地赔付</td>
+      <td><%=resource.carrying_bill.from_org%></td>
       <td><%=resource.goods_exception_identify.try(:from_org_fee )%></td>
-      <td>到货地赔付</td>
+      <td><%=resource.carrying_bill.to_org%><%=resource.carrying_bill.try(:transit_org)%></td>
       <td><%=resource.goods_exception_identify.try(:to_org_fee )%></td>
       <td>鉴定人</td>
       <td><%=resource.goods_exception_identify.try(:user )%></td>

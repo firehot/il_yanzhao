@@ -1,12 +1,14 @@
 <!--客户提款凭条-->
 <table class='pay_info_certificate' style='border-collapse : collapse;' >
   <thead>
-    <tr style='height : 9mm;'>
-      <td colspan='7' style='width : 175mm;text-align : right;'><%=resource.bill_date%></td>
+    <tr style='height : 12mm;'>
+      <td colspan='5' style='width : 100mm;text-align : right;'><%=resource.bill_date.year%></td>
+      <td style='width : 30mm;text-align : right;'><%=resource.bill_date.year%></td>
+      <td style='text-align : right;'><%=resource.bill_date.year%></td>
     </tr>
   </thead>
   <tbody>
-    <tr style='height : 9mm;'>
+    <tr style='height : 12mm;'>
       <td style='width : 25mm;'>&nbsp;</td>
       <td style='width : 25mm;'>&nbsp;</td>
       <td style='width : 25mm;'><%=resource.account_name %></td>
@@ -20,7 +22,7 @@
         <% bills = resource.carrying_bills %>
         <table style='border-collapse : collapse;padding : 0;margin : 0;'>
           <%(0..10).step(5) do |step|%>
-            <tr style='height : 9mm;'>
+            <tr style='height : 12mm;'>
               <%(step + 0 .. 4 + step).each do |index|%>
                 <td style='width : 25mm;'>&nbsp;<%= bills[index].try(:bill_no) %></td>
               <%end%>
@@ -29,11 +31,11 @@
         </table>
       </td>
     </tr>
-    <tr style='height : 9mm;'>
+    <tr style='height : 12mm;'>
       <td style="width : 25mm;">&nbsp;</td>
       <td colspan='2' style="width : 50mm;"><%=resource.carrying_bills.size %></td>
       <td style="width : 25mm;">&nbsp;</td>
-      <td colspan='2' style="width : 50mm;"><%=resource.sum_act_pay_fee %></td>
+      <td colspan='2' style="width : 50mm;text-align : center;"><%=resource.sum_act_pay_fee %></td>
     </tr>
   </tbody>
 </table>

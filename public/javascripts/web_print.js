@@ -492,7 +492,7 @@ jQuery(function($) {
 				},
 
 				from_org_phone: {
-                                                  text: the_bill.from_org.name + ":"+the_bill.from_org.phone,
+					text: the_bill.from_org.name + ":" + the_bill.from_org.phone,
 					left: '90mm',
 					top: '98mm',
 					width: '50mm',
@@ -500,7 +500,7 @@ jQuery(function($) {
 				},
 
 				to_org_phone: {
-                                                text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
+					text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
 					left: '148mm',
 					top: '98mm',
 					width: '50mm',
@@ -578,7 +578,15 @@ jQuery(function($) {
 	//货损理赔信息打印
 	$('.btn_print_goods_exception').click(function() {
 		var table_doc = $('#goods_exception_print').clone();
-                table_doc.css({tableLayout : 'fixed',width : '180mm',borderCollapse : 'collapse'});
+		table_doc.css({
+			tableLayout: 'fixed',
+			width: '180mm',
+			borderCollapse: 'collapse'
+		});
+		table_doc.find('tr').css({
+			height: '10mm'
+		});
+
 		table_doc.find('th,td').css({
 			border: 'thin solid #000',
 			borderCollapse: 'collapse'
@@ -593,7 +601,7 @@ jQuery(function($) {
 			content: table_doc.wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
-                return false;
+		return false;
 	});
 	//打印客户转账凭条
 	$('.btn_print_pay_info_certificate').click(function() {
@@ -608,7 +616,7 @@ jQuery(function($) {
 			content: table_doc.clone().wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
-                return false;
+		return false;
 	});
 
 	//提货打印,触发自动打印事件

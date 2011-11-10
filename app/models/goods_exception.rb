@@ -23,6 +23,13 @@ class GoodsException < ActiveRecord::Base
       #已上报 -- 已授权核销 --- 已赔偿 -- 责任已鉴定
       transition :submited =>:authorized,:authorized => :compensated,:compensated => :identified
     end
+    #2011-11-06 已赔偿/责任已鉴定后 都可以核销
+    after_transition :on => :do_post do |ge,ts|
+      ge.update_attributes(:posted_date => Date.today)
+    end
+    event :do_post do
+      transition [:compensated,:identified] => :posted
+    end
   end
 
   #FIXME 缺省值设定应定义到state_machine之后
@@ -36,15 +43,15 @@ class GoodsException < ActiveRecord::Base
   #付款方式描述
   def self.exception_types
     {
-#      "少货" => EXCEPT_LACK,          #少货
+      #      "少货" => EXCEPT_LACK,          #少货
       "丢缺" => EXCEPT_SHORTAGE,      #短缺
       "破损" => EXCEPT_DAMAGED        #破损
     }
   end
   def except_des
-      except_des = ""
-      GoodsException.exception_types.each {|des,code| except_des = des if code == self.exception_type }
-      except_des
+    except_des = ""
+    GoodsException.exception_types.each {|des,code| except_des = des if code == self.exception_type }
+    except_des
   end
   #发货地赔付金额
   def from_fee

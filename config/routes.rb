@@ -44,12 +44,15 @@ IlYanzhao::Application.routes.draw do
     get :show_authorize,:on => :member
     get :show_claim,:on => :member
     get :show_identify,:on => :member
+    get :do_post,:on => :member
     get :search,:on => :collection
   end
 
   resources :short_fee_infos do
     get :search,:on => :collection
     get :export_excel,:on => :member
+    #短途运费核销
+    put :write_off,:on => :member
   end
 
   resources :il_configs

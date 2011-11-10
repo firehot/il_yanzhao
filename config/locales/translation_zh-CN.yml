@@ -366,6 +366,7 @@ zh-CN:
         op_org_id: "处理部门"
         op_org: "处理部门"
         user: "操作员"  #g
+        write_off_date: "核销日期"
         carrying_bills: "清单明细"  #g
 
       system_function:
@@ -592,6 +593,7 @@ zh-CN:
         op_org: "处理部门"
         from_fee: "发货地赔付"
         to_fee: "到货地赔付"
+        posted_date: "核销日期"
         gexception_authorize_info: "货物异常核销信息"  #g
         goods_exception_identify: "责任鉴定信息"  #g
         claim:

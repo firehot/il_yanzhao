@@ -49,7 +49,13 @@
       <%end%>
       <%if can? :print,resource%>
         <li>
-          <%= link_to_function image_tag("printer.png",:alt => "打印"),  "",:title => "打印",:class => "tipsy",:class => "btn_print_goods_exception" %>
+          <%= link_to_function image_tag("printer.png",:alt => "打印"),  "",:title => "打印",:class => "tipsy btn_print_goods_exception" %>
+        </li>
+      <%end%>
+      <!--付款核销-->
+      <%if can? :do_post,resource%>
+        <li>
+          <%= link_to image_tag("glyph_check.png",:size => "16x16",:alt => "核销确认"),  do_post_goods_exception_path(resource),:title => "付款核销",:class => "tipsy" %>
         </li>
       <%end%>
     <%end%>

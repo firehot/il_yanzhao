@@ -1,13 +1,12 @@
 #coding: utf-8
 class ShortFeeInfosController < BaseController
-  table :bill_date,:org,:note
+  table :bill_date,:org,:human_state_name,:write_off_date,:note
   def create
     bill = resource_class.new(params[resource_class.model_name.underscore])
     get_resource_ivar || set_resource_ivar(bill)
     params[:bill_ids].each do |id|
       bill.short_fee_info_lines.build(:carrying_bill_id => id)
     end
-    bill.write_off
     create!
   end
   #GET search
@@ -18,6 +17,15 @@ class ShortFeeInfosController < BaseController
   #GET short_fee_info/1/export_excel
   def export_excel
     @short_fee_info = resource_class.find(params[:id],:include => [:org,:user,:short_fee_info_lines])
+  end
+
+  #核销短途运费信息
+  #PUT short_fee_infos/:id/write_off
+  def write_off
+    @short_fee_info = resource_class.find(params[:id])
+    @short_fee_info.write_off
+    flash[:notice] = "核销短途运费信息成功."
+    render :show
   end
 
   #需要重写collection方法
