@@ -241,12 +241,20 @@ jQuery(function($) {
 				});
 			}
 			if (default_values["to_org_id_eq"] != "") {
-				$('#search_to_org_id_eq').val(default_values["to_org_id_eq"]).trigger('change');
-				$('#search_to_org_id_eq').attr('disabled', true);
+				$('#search_to_org_id_or_transit_org_id_eq').val(default_values["to_org_id_eq"]).trigger('change');
+				$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
 				jQuery.extend(default_values, {
 					"search[to_org_id_or_transit_org_id_eq]": default_values["to_org_id_eq"]
 				});
 			}
+			if (default_values["to_org_id_or_transit_org_id_eq"] != "") {
+				$('#search_to_org_id_or_transit_org_id_eq').val(default_values["to_org_id_or_transit_org_id_eq"]).trigger('change');
+				$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
+				jQuery.extend(default_values, {
+					"search[to_org_id_or_transit_org_id_eq]": default_values["to_org_id_or_transit_org_id_eq"]
+				});
+			}
+
 			if (default_values["search[state_eq]"] != "") {
 				$('#search_state_eq').val(default_values["search[state_eq]"]).trigger('change');
 				$('#search_state_eq').attr('disabled', true);
@@ -274,7 +282,7 @@ jQuery(function($) {
 			return {
 				"from_org_id_eq": ($('#from_org_id').length == 0) ? "": $('#from_org_id').val(),
 				"to_org_id_eq": ($('#to_org_id').length == 0) ? "": $('#to_org_id').val(),
-				"transit_org_id_eq": ($('#transit_org_id').length == 0) ? "": $('#transit_org_id').val(),
+				"to_org_id_or_transit_org_id_eq": ($('#to_org_id_or_transit_org_id').length == 0) ? "": $('#to_org_id_or_transit_org_id').val(),
 				"search[bill_date_eq]": ($('#bill_date_eq').length == 0) ? "": $('#bill_date_eq').val(),
 				"search[state_eq]": ($('#state_eq').length == 0) ? "": $('#state_eq').val(),
 				"search[type_in][]": ($('#type_in').length == 0) ? ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill'] : $('#type_in').data('type') //要查询的运单类型
