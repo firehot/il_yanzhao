@@ -584,7 +584,7 @@ jQuery(function($) {
 			borderCollapse: 'collapse'
 		});
 		table_doc.find('tr').css({
-			height: '10mm'
+			height: '8mm'
 		});
 
 		table_doc.find('th,td').css({
@@ -594,10 +594,10 @@ jQuery(function($) {
 
 		var config = {
 			print_name: "货损理赔信息",
-			top: "10mm",
-			left: "10mm",
+			top: "0",
+			left: "0",
 			width: "200mm",
-			height: "140mm",
+			height: "103mm",
 			content: table_doc.wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
@@ -612,7 +612,7 @@ jQuery(function($) {
 			top: "0",
 			left: "0",
 			width: "210mm",
-			height: "110mm",
+			height: "92mm",
 			content: table_doc.clone().wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
