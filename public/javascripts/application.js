@@ -126,6 +126,7 @@ jQuery(function($) {
 		if ($(this).attr('href') == '') return false;
 
 	});
+        /*
 	//处理查询票据表单
 	$('#search_bill_form').livequery(function() {
 		//判断是否传递了发货地与到货地
@@ -184,6 +185,7 @@ jQuery(function($) {
 		$('#search_bill_form').data('params', attach_params);
 
 	});
+        */
 	//根据客户编号查询查询客户信息
 	var search_customer_by_code = function() {
 		var code = $(this).val();
@@ -427,16 +429,6 @@ jQuery(function($) {
 
 		})
 	});
-	//货物装车清单,自动全选
-	$('#btn_generate_load_list').bind('ajax:complete', function() {
-		if ($('#bills_table').length == 0) return;
-		var sum_info = $('#bills_table').data('sum');
-		var ids = $('#bills_table').data('ids');
-
-		$('#load_list_form').data('params', {
-			'bill_ids[]': ids
-		});
-	});
 
 	//短途运费核销,根据当前核销机构信息判断是否显示运单信息
 	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
@@ -655,7 +647,7 @@ jQuery(function($) {
 		});
 	});
 	//保存装车单/结算清单/返款清单时/转账清单,判断是否查询了相关的运单
-	$('#load_list_form,#transfer_pay_info_form,#settlement_form,#refound_form').livequery(function() {
+	$('#transfer_pay_info_form,#settlement_form,#refound_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var selected_bill_ids = $(this).data('params');
 			if (typeof(selected_bill_ids) == 'undefined' || selected_bill_ids.length == 0) {
