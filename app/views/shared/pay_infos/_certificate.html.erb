@@ -8,9 +8,9 @@
       <td style='width : 26mm;'>&nbsp;</td>
       <td style='width : 26mm;'>&nbsp;</td>
       <td colspan='2' style='text-align : right;'>
-        <%=resource.bill_date.year%>&nbsp;&nbsp;&nbsp;&nbsp;
-        <%=resource.bill_date.month%>&nbsp;&nbsp;&nbsp;&nbsp;
-        <%=resource.bill_date.day%>&nbsp;&nbsp;&nbsp;
+        <%=resource.bill_date.year%>&nbsp;&nbsp;&nbsp;
+        <%=resource.bill_date.month%>&nbsp;&nbsp;&nbsp;
+        <%=resource.bill_date.day%>
       </td>
     </tr>
   </thead>
@@ -39,8 +39,10 @@
       </td>
     </tr>
     <tr style='height : 11mm;'>
-      <td colspan='2' style="width : 26mm;">&nbsp;</td>
-      <td colspan='2' style="width : 50mm;text-align : center;"><%=resource.carrying_bills.size %></td>
+      <td  style="width : 26mm;">&nbsp;</td>
+      <td  style="width : 26mm;">&nbsp;</td>
+      <td  style="width : 26mm;text-align : center;"><%=resource.carrying_bills.size %></td>
+      <td style="width : 26mm;">&nbsp;</td>
       <td style="width : 26mm;">&nbsp;</td>
       <td colspan='2' style="width : 50mm;"><%=resource.sum_act_pay_fee %>&nbsp;&nbsp;&nbsp;</td>
     </tr>

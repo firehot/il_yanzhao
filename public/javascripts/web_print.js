@@ -493,7 +493,7 @@ jQuery(function($) {
 
 				from_org_phone: {
 					text: the_bill.from_org.name + ":" + the_bill.from_org.phone,
-					left: '90mm',
+					left: '102mm',
 					top: '98mm',
 					width: '50mm',
 					height: '6mm'
@@ -609,7 +609,7 @@ jQuery(function($) {
 		//table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
 		var config = {
 			print_name: "客户转账凭条",
-			top: "0",
+			top: "2mm",
 			left: "0",
 			width: "188mm",
 			height: "92mm",
