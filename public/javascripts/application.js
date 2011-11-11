@@ -126,6 +126,53 @@ jQuery(function($) {
 		if ($(this).attr('href') == '') return false;
 
 	});
+	//处理查询票据表单
+	$('#search_bill_form').livequery(function() {
+		//判断是否传递了发货地与到货地
+		var attach_params = {};
+		if ($('#from_org_id').val() != "") {
+			$('#search_from_org_id_eq').val($('#from_org_id').val()).trigger('change');
+			$('#search_from_org_id_eq').attr('disabled', true);
+			jQuery.extend(attach_params, {
+				"search[from_org_id_eq]": $('#from_org_id').val()
+			});
+		}
+
+		if ($('#to_org_id').val() != "") {
+			$('#search_to_org_id_eq').val($('#to_org_id').val()).trigger('change');
+			$('#search_to_org_id_eq').attr('disabled', true);
+			jQuery.extend(attach_params, {
+				"search[to_org_id_eq]": $('#to_org_id').val()
+			});
+		}
+
+		if ($('#transit_org_id').val() != "") {
+
+			$('#search_transit_org_id_eq').val($('#transit_org_id').val()).trigger('change');
+			$('#search_transit_org_id_eq').attr('disabled', true);
+			jQuery.extend(attach_params, {
+				"search[transit_org_id_eq]": $('#transit_org_id').val()
+			});
+
+		}
+
+		if ($('#state_eq').val() != "") {
+			$('#search_state_eq').val($('#state_eq').val()).trigger('change');
+			$('#search_state_eq').attr('disabled', true);
+			jQuery.extend(attach_params, {
+				"search[state_eq]": $('#state_eq').val()
+			});
+		}
+		if ($('#type_in').length > 0) {
+			var types = $('#type_in').data('type');
+			jQuery.extend(attach_params, {
+				"search[type_in][]": types
+			});
+
+		}
+		$('#search_bill_form').data('params', attach_params);
+
+	});
 	//根据客户编号查询查询客户信息
 	var search_customer_by_code = function() {
 		var code = $(this).val();
@@ -369,10 +416,20 @@ jQuery(function($) {
 
 		})
 	});
+	//货物装车清单,自动全选
+	$('#btn_generate_load_list').bind('ajax:complete', function() {
+		if ($('#bills_table').length == 0) return;
+		var sum_info = $('#bills_table').data('sum');
+		var ids = $('#bills_table').data('ids');
+
+		$('#load_list_form').data('params', {
+			'bill_ids[]': ids
+		});
+	});
+
 	//短途运费核销,根据当前核销机构信息判断是否显示运单信息
 	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
 	//from_org_id_or_to_org_id == bill.to_org_id and bill.to_short_fee_state == 'offed' 该运单不显示
-	//绑定transfer_pay_info_form post_info_form的ajax:before处理
 	$('.short_fee_info_lines tr[data-bill]').livequery(function() {
 		var org_id = $('#from_org_id_or_to_org_id').val();
 		var bill_info = $(this).data('bill');
@@ -382,20 +439,6 @@ jQuery(function($) {
 			$('#bills_table_body').trigger('tr_changed');
 
 		}
-	});
-	$('#transfer_pay_info_form,#post_info_form').livequery(function() {
-		$(this).bind('ajax:before', function() {
-			var bill_els = $('[data-bill]');
-			if (bill_els.length == 0) {
-				$.notifyBar({
-					html: "未查找到任何运单,请先查询要处理的运单",
-					delay: 3000,
-					animationSpeed: "normal",
-					cls: 'error'
-				});
-				return false;
-			}
-		});
 	});
 	$('#deliver_info_form,#cash_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
@@ -600,8 +643,8 @@ jQuery(function($) {
 			'bill_ids[]': ids
 		});
 	});
-	//保存结算清单和返款清单时,判断是否查询了相关的运单
-	$('#settlement_form,#refound_form').livequery(function() {
+	//保存装车单/结算清单/返款清单时/转账清单,判断是否查询了相关的运单
+	$('#load_list_form,#transfer_pay_info_form,#settlement_form,#refound_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var selected_bill_ids = $(this).data('params');
 			if (typeof(selected_bill_ids) == 'undefined' || selected_bill_ids.length == 0) {
