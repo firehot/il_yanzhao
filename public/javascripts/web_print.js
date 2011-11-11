@@ -611,7 +611,7 @@ jQuery(function($) {
 			print_name: "客户转账凭条",
 			top: "3mm",
 			left: "0",
-			width: "210mm",
+			width: "188mm",
 			height: "92mm",
 			content: table_doc.clone().wrap('<div></div>').parent().html()
 		};
