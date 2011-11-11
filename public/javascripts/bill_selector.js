@@ -24,10 +24,10 @@ jQuery(function($) {
 				$($.bill_selector).bind('set_all', $.bill_selector.set_all);
 				//绑定全选和不选按钮
 				$($.bill_selector.options.btn_select_all).live("click", function() {
-				  $($.bill_selector).trigger('set_all', [true]);
+					$($.bill_selector).trigger('set_all', [true]);
 				});
 				$($.bill_selector.options.btn_unselect_all).live("click", function() {
-				  $($.bill_selector).trigger('set_all', [false]);
+					$($.bill_selector).trigger('set_all', [false]);
 				});
 
 				$.bill_selector.initialized = true;
@@ -35,7 +35,9 @@ jQuery(function($) {
 			$.bill_selector.set_checkbox();
 			$.bill_selector.update_html();
 			//显示票据选择控件
-			$('.select_bill_bar,.cbx_select_bill').show();
+			$('.select_bill_bar,.cbx_select_bill').livequery(function() {
+				$(this).show();
+			});
 			//给显示票据详细信息的链接添加fancybox属性
 			$('.show_link').addClass('fancybox');
 			$('.show_link').each(function() {
@@ -253,7 +255,7 @@ jQuery(function($) {
 				});
 			}
 
-                        //传递了要查询的单据状态
+			//传递了要查询的单据状态
 			$('#search_bill_form').data('params', default_values)
 		};
 		$('#search_bill_form').livequery(function() {
@@ -280,3 +282,4 @@ jQuery(function($) {
 		}
 	}
 });
+
