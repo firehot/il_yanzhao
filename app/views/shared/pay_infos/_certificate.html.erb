@@ -2,15 +2,15 @@
 <table class='pay_info_certificate' style='border-collapse : collapse;' >
   <thead>
     <tr>
-      <td colspan='6' style='text-align : right;'>
+      <td colspan='7' style='text-align : right;'>
         <%=resource.bill_date.year%>&nbsp;&nbsp;&nbsp;&nbsp;
         <%=resource.bill_date.month%>&nbsp;&nbsp;&nbsp;&nbsp;
-        <%=resource.bill_date.day%>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%=resource.bill_date.day%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </td>
     </tr>
   </thead>
   <tbody>
-    <tr style='height : 8mm;'>
+    <tr style='height : 9mm;'>
       <td style='width : 25mm;'>&nbsp;</td>
       <td style='width : 25mm;'>&nbsp;</td>
       <td style='width : 25mm;'><%=resource.account_name %></td>
@@ -33,11 +33,11 @@
         </table>
       </td>
     </tr>
-    <tr style='height : 10mm;'>
-      <td style="width : 25mm;">&nbsp;</td>
+    <tr style='height : 11mm;'>
+      <td colspan='2' style="width : 25mm;">&nbsp;</td>
       <td colspan='2' style="width : 50mm;text-align : center;"><%=resource.carrying_bills.size %></td>
       <td style="width : 25mm;">&nbsp;</td>
-      <td colspan='2' style="width : 50mm;text-align : center;"><%=resource.sum_act_pay_fee %></td>
+      <td colspan='2' style="width : 50mm;"><%=resource.sum_act_pay_fee %>&nbsp;&nbsp;&nbsp;</td>
     </tr>
   </tbody>
 </table>

@@ -25,7 +25,7 @@
     <%= f.input :load_list_reached_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input :from_org_id_eq,:label => "发货地",:as => :select,:collection => params[:from_org_select].present? ? self.send(params[:from_org_select]) : branches_for_select%>
 
-    <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => params[:to_org_select].present? ? self.send(params[:to_org_select]) : branches_for_select %>
+    <%= f.input :to_org_id_or_transit_org_id_eq,:label =>"到货地",:as => :select,:collection => params[:to_org_select].present? ? self.send(params[:to_org_select]) : branches_for_select %>
 
     <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
   <% end %>

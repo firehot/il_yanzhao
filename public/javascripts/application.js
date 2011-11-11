@@ -144,7 +144,7 @@ jQuery(function($) {
 			$('#search_to_org_id_or_transit_org_id_eq').val($('#to_org_id').val()).trigger('change');
 
 			if ($('#set_disable').val() != '') {
-				$('#search_to_org_id_eq').attr('disabled', true);
+				$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
 				jQuery.extend(attach_params, {
 					"search[to_org_id_eq]": $('#to_org_id').val()
 				});
@@ -156,9 +156,9 @@ jQuery(function($) {
 			$('#search_to_org_id_or_transit_org_id_eq').val($('#transit_org_id').val()).trigger('change');
 
 			if ($('#set_disable').val() != '') {
-				$('#search_transit_org_id_eq').attr('disabled', true);
+				$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
 				jQuery.extend(attach_params, {
-					"search[transit_org_id_eq]": $('#transit_org_id').val()
+					"search[to_org_id_or_transit_org_id_eq]": $('#transit_org_id').val()
 				});
 			}
 
