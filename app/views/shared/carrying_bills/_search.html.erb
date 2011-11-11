@@ -3,6 +3,7 @@
   <%= hidden_field_tag :sort,params[:sort] %>
   <%= hidden_field_tag :show_fields,params[:show_fields] %>
   <%= hidden_field_tag :hide_fields,params[:hide_fields] %>
+  <%= hidden_field_tag :set_disable,params[:set_disable] %>
   <%if params[:search].present?%>
     <%params[:search].each do |search_key,search_val|%>
       <%if search_val.is_a? Array%>

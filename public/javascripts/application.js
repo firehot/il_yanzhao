@@ -132,36 +132,47 @@ jQuery(function($) {
 		var attach_params = {};
 		if ($('#from_org_id').val() != "") {
 			$('#search_from_org_id_eq').val($('#from_org_id').val()).trigger('change');
-			//$('#search_from_org_id_eq').attr('disabled', true);
-			jQuery.extend(attach_params, {
-				"search[from_org_id_eq]": $('#from_org_id').val()
-			});
+			if ($('#set_disable').val() != '') {
+				$('#search_from_org_id_eq').attr('disabled', true);
+				jQuery.extend(attach_params, {
+					"search[from_org_id_eq]": $('#from_org_id').val()
+				});
+			}
 		}
 
 		if ($('#to_org_id').val() != "") {
 			$('#search_to_org_id_or_transit_org_id_eq').val($('#to_org_id').val()).trigger('change');
-			//$('#search_to_org_id_eq').attr('disabled', true);
-			jQuery.extend(attach_params, {
-				"search[to_org_id_eq]": $('#to_org_id').val()
-			});
+
+			if ($('#set_disable').val() != '') {
+				$('#search_to_org_id_eq').attr('disabled', true);
+				jQuery.extend(attach_params, {
+					"search[to_org_id_eq]": $('#to_org_id').val()
+				});
+			}
 		}
 
 		if ($('#transit_org_id').val() != "") {
 
 			$('#search_to_org_id_or_transit_org_id_eq').val($('#transit_org_id').val()).trigger('change');
-			//$('#search_transit_org_id_eq').attr('disabled', true);
-			jQuery.extend(attach_params, {
-				"search[transit_org_id_eq]": $('#transit_org_id').val()
-			});
+
+			if ($('#set_disable').val() != '') {
+				$('#search_transit_org_id_eq').attr('disabled', true);
+				jQuery.extend(attach_params, {
+					"search[transit_org_id_eq]": $('#transit_org_id').val()
+				});
+			}
 
 		}
 
 		if ($('#state_eq').val() != "") {
 			$('#search_state_eq').val($('#state_eq').val()).trigger('change');
-			//$('#search_state_eq').attr('disabled', true);
-			jQuery.extend(attach_params, {
-				"search[state_eq]": $('#state_eq').val()
-			});
+
+			if ($('#set_disable').val() != '') {
+				$('#search_state_eq').attr('disabled', true);
+				jQuery.extend(attach_params, {
+					"search[state_eq]": $('#state_eq').val()
+				});
+			}
 		}
 		if ($('#type_in').length > 0) {
 			var types = $('#type_in').data('type');
@@ -170,7 +181,7 @@ jQuery(function($) {
 			});
 
 		}
-		//$('#search_bill_form').data('params', attach_params);
+		$('#search_bill_form').data('params', attach_params);
 
 	});
 	//根据客户编号查询查询客户信息
