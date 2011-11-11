@@ -609,7 +609,7 @@ jQuery(function($) {
 		//table_doc.find('th,td').css({border : 'thin solid #000',borderCollapse : 'collapse'});
 		var config = {
 			print_name: "客户转账凭条",
-			top: "0",
+			top: "3mm",
 			left: "0",
 			width: "210mm",
 			height: "92mm",
