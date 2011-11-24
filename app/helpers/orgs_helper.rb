@@ -35,8 +35,9 @@ module OrgsHelper
   #当前登录用户可用之外的orgs
   #当前用户默认登录机构为分理处时,只显示分公司和中转部
   #当前登录用户是分公司时,只显示分理处/上级机构/中转部
-  #show_summary 显示总公司
-  def exclude_current_ability_orgs_for_select(with_yard = false,show_summary = true)
+  #show_summary 显示总公司,默认显示
+  #show_bottom_blank 在列表最后显示空选项,默认不显示
+  def exclude_current_ability_orgs_for_select(with_yard = false,show_summary = true,show_bottom_blank = false)
     #除去当前默认org和当前org的上级机构
     default_org = current_user.default_org
     ret_orgs = []
@@ -64,7 +65,9 @@ module OrgsHelper
       ret_orgs.uniq!
       ret_orgs.compact!
     end
-    ret_orgs.map {|b| ["#{b.name}[#{b.py}]",b.id]}
+    ret_array = ret_orgs.map {|b| ["#{b.name}[#{b.py}]",b.id]}
+    ret_array << ["(空)",""] if show_bottom_blank
+    ret_array
   end
   private
   #根据登录情况得到可以显示的中转货厂
