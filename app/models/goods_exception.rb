@@ -16,7 +16,7 @@ class GoodsException < ActiveRecord::Base
 
   #异常数量不能大于货物数量
   validates_presence_of :org_id,:carrying_bill,:op_org_id
-  validate :check_except_num
+  validate :check_except_num,:check_already_submit
   #定义状态机
   state_machine :initial => :submited do
     event :process do
@@ -66,5 +66,9 @@ class GoodsException < ActiveRecord::Base
   private
   def check_except_num
     errors.add(:except_num,"不能大于货物数量") if self.carrying_bill and self.except_num > self.carrying_bill.goods_num
+  end
+  #判断是否已上报,已上报的运单不允许再上报
+  def check_already_submit
+    errors.add(:carrying_bill,"已上报") if GoodsException.exists?(:carrying_bill_id => self.carrying_bill_id)
   end
 end

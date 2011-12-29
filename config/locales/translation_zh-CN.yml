@@ -587,6 +587,7 @@ zh-CN:
         except_des: "异常类别"
         note: "备注"  #g
         carrying_bill_id: "运单"  #g
+        carrying_bill: "运单"  #g
         user: "操作员"  #g
         org_id: "上报机构"  #g
         op_org_id: "处理部门"
