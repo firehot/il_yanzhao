@@ -1,0 +1,2 @@
+module GoodsFeeSettlementListsHelper
+end

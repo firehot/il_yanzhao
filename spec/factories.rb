@@ -581,3 +581,14 @@ end
 Factory.define :notify do |n|
   n.notify_text "提醒信息"
 end
+#goods_fee_settlement_list
+#分理处提款结算清单
+Factory.define :goods_fee_settlement_list do |gfs|
+  gfs.association :org,:factory => :zz
+  gfs.association :post_info,:factory => :post_info_with_bills
+  gfs.amount_fee 2000
+  gfs.amount_goods_fee 19999
+  gfs.amount_hand_fee 200
+  gfs.amount_k_carrying_fee 487
+  gfs.amount_bills 19
+end

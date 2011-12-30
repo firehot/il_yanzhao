@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111128085627) do
+ActiveRecord::Schema.define(:version => 20111229030517) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -336,6 +336,22 @@ ActiveRecord::Schema.define(:version => 20111128085627) do
   add_index "goods_exceptions", ["org_id"], :name => "index_goods_exceptions_on_org_id"
   add_index "goods_exceptions", ["state"], :name => "index_goods_exceptions_on_state"
   add_index "goods_exceptions", ["user_id"], :name => "index_goods_exceptions_on_user_id"
+
+  create_table "goods_fee_settlement_lists", :force => true do |t|
+    t.date     "bill_date",                                                              :null => false
+    t.integer  "org_id",                                                                 :null => false
+    t.integer  "user_id"
+    t.string   "note"
+    t.integer  "post_info_id",                                                           :null => false
+    t.decimal  "amount_fee",            :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_goods_fee",      :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_hand_fee",       :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_k_carrying_fee", :precision => 15, :scale => 2, :default => 0.0
+    t.integer  "amount_bills",                                         :default => 0
+    t.string   "state",                                                :default => "DR", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "goods_nos", :force => true do |t|
     t.integer  "from_org_id",                :null => false
