@@ -8,7 +8,7 @@ class CreateNotifies < ActiveRecord::Migration
     end
     #添加system_function
     group_name ="系统管理"
-    ##################################银行设置###############################################
+    ##################################通知消息设置###############################################
     subject_title = "通知消息设置"
     subject = "Notify"
     sf_hash = {

@@ -506,6 +506,14 @@ jQuery(function($) {
 					width: '50mm',
 					height: '6mm'
 				}
+				print_counter: {
+					text: the_bill.print_counter + "次打印",
+					left: '148mm',
+					top: '108mm',
+					width: '50mm',
+					height: '6mm'
+				}
+
 
 			};
 			return config;
@@ -557,6 +565,16 @@ jQuery(function($) {
 			var config = $.get_print_config(bill);
 			$.print_bill(config);
 			$(this).data('printed', true);
+			//打印计数
+			var print_counter_url = "";
+			if (bill.type == 'ComputerBill') print_counter_url = "/computer_bills/" + bill.id + "/print_counter";
+			if (bill.type == 'TransitBill') print_counter_url = "/transit_bills/" + bill.id + "/print_counter";
+			if (bill.type == 'ReturnBill') print_counter_url = "/return_bills/" + bill.id + "/print_counter";
+
+			$.ajax({
+				url: print_counter_url,
+				type: 'PUT'
+			});
 		}
 	});
 

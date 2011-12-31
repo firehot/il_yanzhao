@@ -1,10 +1,13 @@
-<%if params[:action] == "show"%>
-  <li>
-    <!--
-    <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), resource_path(:format => :csv),:title => "导出为EXCEL",:class => "tipsy"  %>
-    -->
+<%if params[:action] == "show" or params[:action] == "post" %>
+  <%if can? :post,resource%>
     <li>
-      <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), export_excel_post_info_path(resource),:title => "导出为EXCEL",:class => "btn_export_excel tipsy"  %>
+      <%= link_to image_tag("auction-hammer--arrow.png",:alt => "确认清单"),post_goods_fee_settlement_list_path(resource),:method => :put,:title => "确认清单",:class => "tipsy"  %>
     </li>
-  </li>
+  <%end%>
+
+  <%if can? :print,resource%>
+    <li>
+      <%= link_to_function image_tag("printer.png",:alt => "打印清单"),"",:title => "打印清单",:class => "btn_print_goods_fee_settlement_list tipsy"  %>
+    </li>
+  <%end%>
 <%end%>

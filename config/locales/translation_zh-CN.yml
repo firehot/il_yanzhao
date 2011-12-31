@@ -70,6 +70,7 @@ zh-CN:
       role_org: "角色-机构"  #g
       area: "中转到货地"
       notify: "通知提醒"
+      goods_fee_settlement_list: "分理处货款收支清单"
 
 
     attributes:
@@ -622,3 +623,9 @@ zh-CN:
         is_select: "选中"  #g
         role: "角色"  #g
         org: "机构"  #g
+
+      goods_fee_settlement_list:
+        sum_income_fee: "收入金额合计"
+        sum_spending_fee: "支出金额合计"
+        sum_rest_fee: "余额合计"
+

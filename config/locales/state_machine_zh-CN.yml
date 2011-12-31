@@ -133,3 +133,9 @@ zh-CN:
             billed: "草稿"
             deliveried: "已提货"
 
+      goods_fee_settlement_list:
+        state:
+          states:
+            draft: "草稿"
+            posted: "已确认"
+

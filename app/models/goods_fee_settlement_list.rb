@@ -11,36 +11,36 @@ class GoodsFeeSettlementList < ActiveRecord::Base
   end
 
   #定义状态机
-  state_machine :initial => :billed do
-    event :process do
-      transition :billed =>:posted
+  state_machine :initial => :draft do
+    event :post do
+      transition :draft =>:posted
     end
   end
   #以下定义虚拟属性
   #统计货款
   def amount_goods_fee_auto
-    self.post_info.sum_goods_fee
+    self.post_info.try(:sum_goods_fee).to_f
   end
   #统计扣运费
   def amount_k_carrying_fee_auto
-    self.post_info.sum_k_carrying_fee
+    self.post_info.try(:sum_k_carrying_fee).to_f
   end
   #统计手续费
   def amount_hand_fee_auto
-    self.post_info.sum_hand_fee
+    self.post_info.try(:sum_k_hand_fee).to_f
   end
   #统计票据数
   def amount_bills_auto
-    self.post_info.carrying_bills.try(:size)
+    self.post_info.try(:carrying_bills).try(:size).to_i
   end
   #票据数合计
   def sum_bills
-    self.amount_bills_auto + self.amount_bills
+    self.amount_bills_auto + self.amount_bills.to_i
   end
   #收入总计
   #收入=手续费+货款扣运费+实领金额
   def sum_income_fee
-    self.amount_hand_fee + self.amount_hand_fee_auto + self.amount_k_carrying_fee_auto + self.amount_k_carrying_fee +  self.amount_fee
+    self.amount_hand_fee + self.amount_hand_fee_auto  + self.amount_k_carrying_fee_auto + self.amount_k_carrying_fee +  self.amount_fee
   end
   #支出合计
   def sum_spending_fee
@@ -49,6 +49,6 @@ class GoodsFeeSettlementList < ActiveRecord::Base
   #余额
   #余额 = 收入 - 支出
   def sum_rest_fee
-    self.amount_income_fee - self.amount_spending_fee
+    self.sum_income_fee - self.sum_spending_fee
   end
 end

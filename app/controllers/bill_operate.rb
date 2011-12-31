@@ -15,4 +15,15 @@ module BillOperate
     bill.process ? flash[:success] = "数据处理成功!" : flash[:error] = "数据处理失败!"
     render  :show
   end
+  #票据打印
+  module BillPrint
+    #PUT computer_bills/:id/print_counter
+    #打印计数,每打印一次,计数+1
+    def print_counter
+      bill = resource_class.find(params[:id])
+      get_resource_ivar || set_resource_ivar(bill)
+      resource_class.increment_counter(:print_counter,bill.id)
+      render :js =>"$('#bill_print_counter').html('#{bill.print_counter}次打印')"
+    end
+  end
 end

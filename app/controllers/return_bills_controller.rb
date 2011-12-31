@@ -1,5 +1,6 @@
 #coding: utf-8
 class ReturnBillsController <  CarryingBillsController
+  include BillOperate::BillPrint
   before_filter :pre_process_search_params,:only => [:new]
   def before_new
   end

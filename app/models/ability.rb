@@ -75,7 +75,8 @@ class Ability
     alias_action :read ,:to => :update
     alias_action :read ,:to => :destroy
     alias_action :read ,:to => :reset
-    alias_action :read ,:to => :print
+    #可打印运单,就具备运单打印计数功能
+    alias_action :read ,:print_counter,:to => :print
     alias_action :read ,:to => :invalidate #运单作废
   end
   #设置当前用户权限

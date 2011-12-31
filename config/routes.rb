@@ -1,6 +1,9 @@
 IlYanzhao::Application.routes.draw do
 
-  resources :goods_fee_settlement_lists
+  resources :goods_fee_settlement_lists do
+    get :search,:on => :collection
+    put :post,:on => :member
+  end
 
   resources :notifies
 
@@ -194,6 +197,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :print_counter,:on => :member
   end
 
   resources :hand_bills do
@@ -207,6 +211,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :print_counter,:on => :member
   end
 
   resources :orgs
@@ -233,6 +238,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :print_counter,:on => :member
   end
 
   root :to => "dashboard#index"

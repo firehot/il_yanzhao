@@ -5,6 +5,7 @@ class PostInfo < ActiveRecord::Base
   has_many :carrying_bills,:order => "goods_no ASC"
 
   validates_presence_of :org_id
+  after_create :create_goods_fee_settlement_list
 
   #定义状态机
   state_machine :initial => :billed do
@@ -54,6 +55,7 @@ class PostInfo < ActiveRecord::Base
     csv_carrying_bills = CarryingBill.to_csv(self.carrying_bills.search,PostInfo.carrying_bill_export_options,false)
     ret + csv_carrying_bills
   end
+
   private
   def self.carrying_bill_export_options
     {
@@ -64,5 +66,9 @@ class PostInfo < ActiveRecord::Base
         :k_carrying_fee,:k_hand_fee,:goods_fee,:act_pay_fee,
         :note,:human_state_name
     ]}
+  end
+  #生成分理处货款结算清单
+  def create_goods_fee_settlement_list
+    GoodsFeeSettlementList.create(:bill_date => self.bill_date,:org => self.org,:post_info => self,:user => self.user)
   end
 end

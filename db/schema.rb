@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229030517) do
+ActiveRecord::Schema.define(:version => 20111231020648) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",       :limit => 20,                   :null => false
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20111229030517) do
     t.integer  "area_id"
     t.string   "to_short_fee_state",               :limit => 20,                                :default => "draft"
     t.string   "from_short_fee_state",             :limit => 20,                                :default => "draft"
+    t.integer  "print_counter",                                                                 :default => 0,       :null => false
   end
 
   add_index "carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"

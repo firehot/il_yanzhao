@@ -9,7 +9,7 @@ describe GoodsFeeSettlementList do
   end
   it "分理处货款结算清单保存后,状态应变为'已过帐'" do
     @goods_fee_settlement_list.save!
-    @goods_fee_settlement_list.process
+    @goods_fee_settlement_list.post
     @goods_fee_settlement_list.reload
     @goods_fee_settlement_list.should be_posted
   end

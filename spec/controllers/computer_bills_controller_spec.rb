@@ -5,8 +5,6 @@ describe ComputerBillsController do
   login_admin
   render_views
 
-
-
   describe "GET index" do
     before(:each) do
       @computer_bill = Factory(:computer_bill)
@@ -136,6 +134,18 @@ describe ComputerBillsController do
     it "should render '/shared/carrying_bills/search'" do
       get :search
       response.should render_template('shared/carrying_bills/_search')
+    end
+  end
+  #打印计数
+  describe "PUT print_counter" do
+    before :each do
+      @computer_bill = Factory(:computer_bill)
+    end
+    it "after print shoud increment the print counter column" do
+      lambda do
+        put :print_counter,:id => @computer_bill
+        @computer_bill.reload
+      end.should change(@computer_bill,:print_counter).by(1)
     end
   end
 end
