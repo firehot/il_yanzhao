@@ -59,4 +59,8 @@ module CarryingBillsHelper
 
     can_update.join(' ')
   end
+  #打印次数
+  def print_counter_for_select
+    [["打印多次",2]]
+  end
 end

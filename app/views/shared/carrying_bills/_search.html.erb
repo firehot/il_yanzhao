@@ -27,6 +27,7 @@
     <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select  %>
     <%= f.input :from_short_fee_state_eq,:label => "发货短途费状态",:as => :select,:collection => short_fee_states_for_select  %>
     <%= f.input :to_short_fee_state_eq,:label => "到货短途费状态",:as => :select,:collection => short_fee_states_for_select  %>
+    <%= f.input :print_counter_gte,:label => "票据打印次数",:as => :select,:collection => print_counter_for_select  %>
     <%= f.input :from_short_carrying_fee_gte,:label => "仅查询有发货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input :to_short_carrying_fee_gte,:label => "仅查询有到货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>

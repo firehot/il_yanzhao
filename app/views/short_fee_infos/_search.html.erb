@@ -7,7 +7,8 @@
     <%= f.input :write_off_date_gte,:label => "核销日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true} %>
     <%= f.input :write_off_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true} %>
 
-    <%= f.input :org_id_eq,:label => "分理处/分公司",:as => :select,:collection => current_ability_orgs_for_select %>
+    <%= f.input :org_id_eq,:label => "分理处/分公司",:as => :select,:collection => orgs_for_select %>
+    <%= f.input :state_eq,:label => "状态",:as => :select,:collection => short_fee_info_states_for_select %>
   <% end %>
   <%=f.buttons do %>
     <%=submit_tag "查询短途运费核销信息",:class => "sexybutton sexysimple sexyblue" %>
