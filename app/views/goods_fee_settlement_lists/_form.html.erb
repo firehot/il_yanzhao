@@ -27,18 +27,18 @@
       <tr>
         <td class='text-center' rowspan='3'>电脑录入</td>
         <td class='text-center'>手续费</td>
-        <td><%= resource.amount_hand_fee_auto %></td>
+        <td><span id='amount_hand_fee_auto'><%= resource.amount_hand_fee_auto %></span></td>
         <td class='text-center' rowspan='3'>电脑录入</td>
         <td class='text-center' rowspan='6'>原代收货款</td>
-        <td rowspan='3'><%= resource.amount_goods_fee_auto %></td>
+        <td rowspan='3'><span id='amount_goods_fee_auto'><%= resource.amount_goods_fee_auto %></span></td>
       </tr>
       <tr>
         <td class='text-center'>货款扣运费</td>
-        <td><%= resource.amount_k_carrying_fee_auto %></td>
+        <td><span id='amount_k_carrying_fee_auto'><%= resource.amount_k_carrying_fee_auto %></span></td>
       </tr>
       <tr>
         <td class='text-center'>票据数</td>
-        <td><%= resource.amount_bills_auto %></td>
+        <td><span id='amount_bills_auto'><%= resource.amount_bills_auto %></span></td>
       </tr>
       <tr>
         <td class='text-center' rowspan='3'>手工录入</td>
@@ -67,7 +67,7 @@
           <span id='sum_income_fee_chinese'><%= convertNumToChinese(resource.sum_income_fee)%></span>
         </td>
         <td colspan='2'>
-          &yen;<span id='sum_income_fee'><%= resource.sum_income_fee%></span>
+          &yen;&nbsp;&nbsp;<span id='sum_income_fee'><%= resource.sum_income_fee%></span>
         </td>
       </tr>
 
@@ -77,7 +77,7 @@
           <span id='sum_spending_fee_chinese'><%=convertNumToChinese resource.sum_spending_fee %></span>
         </td>
         <td colspan='2'>
-          &yen;<span id='sum_spending_fee'><%= resource.sum_spending_fee %></span>
+          &yen;&nbsp;&nbsp;<span id='sum_spending_fee'><%= resource.sum_spending_fee %></span>
         </td>
       </tr>
       <tr>
@@ -86,7 +86,7 @@
           <span id='sum_rest_fee_chinese'><%=convertNumToChinese resource.sum_rest_fee %></span>
         </td>
         <td colspan='2'>
-          &yen;<span id='sum_rest_fee'><%= resource.sum_rest_fee %></span>
+          &yen;&nbsp;&nbsp;<span id='sum_rest_fee'><%= resource.sum_rest_fee %></span>
         </td>
       </tr>
     </tbody>

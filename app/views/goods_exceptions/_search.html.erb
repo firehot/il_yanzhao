@@ -3,8 +3,8 @@
   <%= hidden_field_tag :sort,params[:sort] %>
   <%= f.inputs do %>
     <%= f.input :carrying_bill_bill_no_eq,:label =>"运单号",:input_html => {:size => 30} %>
-    <%= f.input :bill_date_gte,:label => "上报日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
-    <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
+    <%= f.input :bill_date_gte,:label => "上报日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true} %>
+    <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true} %>
     <%= f.input :posted_date_gte,:label => "核销日期",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true} %>
     <%= f.input :posted_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true} %>
 

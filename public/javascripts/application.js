@@ -3,6 +3,162 @@
 jQuery(function($) {
 	//扩展jQuery function
 	$.extend({
+		/*
+          功能：将货币数字（阿拉伯数字）(小写)转化成中文(大写）
+          参数：Num为字符型,小数点之后保留两位,例：Arabia_to_Chinese("1234.06")
+          说明：
+          1.目前本转换仅支持到 拾亿（元） 位，金额单位为元，不能为万元，最小单位为分
+          2.不支持负数
+         */
+		num2chinese: function(Num) {
+			for (i = Num.length - 1; i >= 0; i--) {
+				Num = Num.replace(",", "") //替换tomoney()中的“,”
+				Num = Num.replace(" ", "") //替换tomoney()中的空格
+			}
+
+			Num = Num.replace("￥", "") //替换掉可能出现的￥字符
+			if (isNaN(Num)) {
+				//验证输入的字符是否为数字
+				alert("请检查小写金额是否正确");
+				return;
+			}
+			//---字符处理完毕，开始转换，转换采用前后两部分分别转换---//
+			part = String(Num).split(".");
+			newchar = "";
+			//小数点前进行转化
+			for (i = part[0].length - 1; i >= 0; i--) {
+				if (part[0].length > 10) {
+					alert("位数过大，无法计算");
+					return "";
+				} //若数量超过拾亿单位，提示
+				tmpnewchar = ""
+				perchar = part[0].charAt(i);
+				switch (perchar) {
+				case "0":
+					tmpnewchar = "零" + tmpnewchar;
+					break;
+				case "1":
+					tmpnewchar = "壹" + tmpnewchar;
+					break;
+				case "2":
+					tmpnewchar = "贰" + tmpnewchar;
+					break;
+				case "3":
+					tmpnewchar = "叁" + tmpnewchar;
+					break;
+				case "4":
+					tmpnewchar = "肆" + tmpnewchar;
+					break;
+				case "5":
+					tmpnewchar = "伍" + tmpnewchar;
+					break;
+				case "6":
+					tmpnewchar = "陆" + tmpnewchar;
+					break;
+				case "7":
+					tmpnewchar = "柒" + tmpnewchar;
+					break;
+				case "8":
+					tmpnewchar = "捌" + tmpnewchar;
+					break;
+				case "9":
+					tmpnewchar = "玖" + tmpnewchar;
+					break;
+				}
+				switch (part[0].length - i - 1) {
+				case 0:
+					tmpnewchar = tmpnewchar + "元";
+					break;
+				case 1:
+					if (perchar != 0) tmpnewchar = tmpnewchar + "拾";
+					break;
+				case 2:
+					if (perchar != 0) tmpnewchar = tmpnewchar + "佰";
+					break;
+				case 3:
+					if (perchar != 0) tmpnewchar = tmpnewchar + "仟";
+					break;
+				case 4:
+					tmpnewchar = tmpnewchar + "万";
+					break;
+				case 5:
+					if (perchar != 0) tmpnewchar = tmpnewchar + "拾";
+					break;
+				case 6:
+					if (perchar != 0) tmpnewchar = tmpnewchar + "佰";
+					break;
+				case 7:
+					if (perchar != 0) tmpnewchar = tmpnewchar + "仟";
+					break;
+				case 8:
+					tmpnewchar = tmpnewchar + "亿";
+					break;
+				case 9:
+					tmpnewchar = tmpnewchar + "拾";
+					break;
+				}
+				newchar = tmpnewchar + newchar;
+			}
+			//小数点之后进行转化
+			if (Num.indexOf(".") != - 1) {
+				if (part[1].length > 2) {
+					alert("小数点之后只能保留两位,系统将自动截段");
+					part[1] = part[1].substr(0, 2)
+				}
+				for (i = 0; i < part[1].length; i++) {
+					tmpnewchar = ""
+					perchar = part[1].charAt(i)
+					switch (perchar) {
+					case "0":
+						tmpnewchar = "零" + tmpnewchar;
+						break;
+					case "1":
+						tmpnewchar = "壹" + tmpnewchar;
+						break;
+					case "2":
+						tmpnewchar = "贰" + tmpnewchar;
+						break;
+					case "3":
+						tmpnewchar = "叁" + tmpnewchar;
+						break;
+					case "4":
+						tmpnewchar = "肆" + tmpnewchar;
+						break;
+					case "5":
+						tmpnewchar = "伍" + tmpnewchar;
+						break;
+					case "6":
+						tmpnewchar = "陆" + tmpnewchar;
+						break;
+					case "7":
+						tmpnewchar = "柒" + tmpnewchar;
+						break;
+					case "8":
+						tmpnewchar = "捌" + tmpnewchar;
+						break;
+					case "9":
+						tmpnewchar = "玖" + tmpnewchar;
+						break;
+					}
+					if (i == 0) tmpnewchar = tmpnewchar + "角";
+					if (i == 1) tmpnewchar = tmpnewchar + "分";
+					newchar = newchar + tmpnewchar;
+				}
+			}
+			//替换所有无用汉字
+			while (newchar.search("零零") != - 1)
+			newchar = newchar.replace("零零", "零");
+			newchar = newchar.replace("零亿", "亿");
+			newchar = newchar.replace("亿万", "亿");
+			newchar = newchar.replace("零万", "万");
+			newchar = newchar.replace("零元", "元");
+			newchar = newchar.replace("零角", "");
+			newchar = newchar.replace("零分", "");
+
+			if (newchar.charAt(newchar.length - 1) == "元" || newchar.charAt(newchar.length - 1) == "角") newchar = newchar + "整"
+			return newchar;
+		},
+
 		//导出数据到excel, ie only
 		export_excel: function(table_content, func_set_style) {
 			try {
@@ -126,7 +282,7 @@ jQuery(function($) {
 		if ($(this).attr('href') == '') return false;
 
 	});
-        /*
+	/*
 	//处理查询票据表单
 	$('#search_bill_form').livequery(function() {
 		//判断是否传递了发货地与到货地
@@ -1019,6 +1175,30 @@ jQuery(function($) {
 		if ($(this).attr('checked')) $('#simple_search_goods_fee_gt').val('0');
 		else $('#simple_search_goods_fee_gt').val('');
 
+	});
+	//分理处货款收支清单,录入变化时自动计算
+	$('#goods_fee_settlement_list_amount_hand_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_bills,#goods_fee_settlement_list_amount_goods_fee,#goods_fee_settlement_list_amount_fee').live('change', function() {
+		var amount_hand_fee_auto = amount_goods_fee_auto = amount_k_carrying_fee_auto = amount_bills_auto = amount_hand_fee = amount_goods_fee = amount_k_carrying_fee = amount_bills = amount_fee = sum_bills = sum_income_fee = sum_spending_fee = sum_rest_fee = 0;
+		amount_hand_fee_auto = parseFloat($('#amount_hand_fee_auto').text());
+		amount_goods_fee_auto = parseFloat($('#amount_goods_fee_auto').text());
+		amount_k_carrying_fee_auto = parseFloat($('#amount_k_carrying_fee_auto').text());
+		amount_bills_auto = parseFloat($('#amount_bills_auto').text());
+		amount_hand_fee = parseFloat($('#goods_fee_settlement_list_amount_hand_fee').val());
+		amount_goods_fee = parseFloat($('#goods_fee_settlement_list_amount_goods_fee').val());
+		amount_k_carrying_fee = parseFloat($('#goods_fee_settlement_list_amount_k_carrying_fee').val());
+		amount_bills = parseFloat($('#goods_fee_settlement_list_amount_bills').val());
+		amount_fee = parseFloat($('#goods_fee_settlement_list_amount_fee').val());
+		sum_bills = amount_bills + amount_bills_auto;
+		sum_income_fee = amount_hand_fee + amount_hand_fee_auto + amount_k_carrying_fee + amount_k_carrying_fee_auto + amount_fee;
+		sum_spending_fee = amount_goods_fee + amount_goods_fee_auto;
+		sum_rest_fee = sum_income_fee - sum_spending_fee;
+		$('#sum_bills').html(sum_bills);
+		$('#sum_income_fee').html(sum_income_fee);
+		$('#sum_income_fee_chinese').html($.num2chinese(sum_income_fee.toString()));
+		$('#sum_spending_fee').html(sum_spending_fee);
+		$('#sum_spending_fee_chinese').html($.num2chinese(sum_spending_fee.toString()));
+		$('#sum_rest_fee').html(sum_rest_fee);
+		$('#sum_rest_fee_chinese').html($.num2chinese(sum_rest_fee.toString()));
 	});
 });
 
