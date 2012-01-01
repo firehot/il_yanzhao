@@ -1,0 +1,11 @@
+<%= semantic_form_for resource_class.search,:html => {:method => :get,:style => "width : 350px;" } do |f|%>
+  <%= f.inputs do %>
+    <%= f.input :customer_fee_info_lines_name_like,:label =>"客户名称",:as => :string,:input_html =>{:size => 20} %>
+    <%= f.input :customer_fee_info_lines_phone_eq,:label =>"电话",:as => :string,:input_html =>{:size => 20} %>
+    <%= f.input :org_id_eq,:label =>"分理处/分公司",:as => :select,:collection => current_ability_orgs_for_select,:include_blank => false %>
+    <%= f.input :mth_eq,:label => "月份",:as => :select,:collection => months_for_select,:include_blank => false,:input_html => {:value => 1.months.ago.strftime('%Y%m')} %>
+  <% end %>
+  <%=f.buttons do %>
+    <%=submit_tag "查询贵宾客户资料",:class => "sexybutton sexysimple sexyblue" %>
+  <% end %>
+<% end%>

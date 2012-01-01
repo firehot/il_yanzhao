@@ -9,12 +9,11 @@
   </div>
 </div>
 <ul class='tabs' id='imported_customers_tab'>
-  <li><%= link_to image_tag('diamond.png') + "钻石客户", collection_path("search[level_eq]" => CustomerLevelConfig::VIP_DIAMOND),:remote => true,:class => :here %></li>
-  <li><%= link_to image_tag('medal.png')+"金卡客户", collection_path("search[level_eq]"=> CustomerLevelConfig::VIP_GOLD),:remote => true %></li>
-  <li><%= link_to image_tag('medal-silver.png') + "银卡客户", collection_path("search[level_eq]"=> CustomerLevelConfig::VIP_SLIVER),:remote => true %></li>
-  <li><%= link_to image_tag('mask.png') + "普通客户", collection_path("search[level_eq]"=> CustomerLevelConfig::VIP_NORMAL),:remote => true %></li>
+  <li><%= link_to image_tag('diamond.png') + "钻石客户", collection_path("search[level_eq]" => CustomerLevelConfig::VIP_DIAMOND,:sort => :cur_fee,:direction => "DESC"),:remote => true,:class => :here %></li>
+  <li><%= link_to image_tag('medal.png')+"金卡客户", collection_path("search[level_eq]"=> CustomerLevelConfig::VIP_GOLD,:sort => :cur_fee,:direction => "DESC"),:remote => true %></li>
+  <li><%= link_to image_tag('medal-silver.png') + "银卡客户", collection_path("search[level_eq]"=> CustomerLevelConfig::VIP_SLIVER,:sort => :cur_fee,:direction => "DESC"),:remote => true %></li>
+  <li><%= link_to image_tag('mask.png') + "普通客户", collection_path("search[level_eq]"=> CustomerLevelConfig::VIP_NORMAL,:sort => :cur_fee,:direction => "DESC"),:remote => true %></li>
 </ul>
 <div id="customers_wrap">
   <%= render 'customers' %>
 </div>
-

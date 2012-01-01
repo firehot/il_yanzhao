@@ -137,6 +137,8 @@ class Ability
     can :edit_password,User
     #可更新自身密码
     can :update_password,User
+    #可查看imported_customer，就可查看customer_fee_info
+    can :read,CustomerFeeInfo if can? :read,ImportedCustomer
   end
   #定义运单修改权限
   def set_bill_update_permission(user)

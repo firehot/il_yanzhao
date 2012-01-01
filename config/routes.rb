@@ -17,6 +17,10 @@ IlYanzhao::Application.routes.draw do
 
   resources :imported_customers
 
+  resources :customer_fee_infos do
+    get :search,:on => :collection
+  end
+
   resources :customer_level_configs
 
   resources :journals do

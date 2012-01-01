@@ -3,7 +3,7 @@
 class CustomerFeeInfo < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
-  has_many :customer_fee_info_lines,:dependent => :delete_all
+  has_many :customer_fee_info_lines,:dependent => :delete_all,:order => "fee DESC"
   validates_presence_of :org_id,:mth
 
   #从运单中生成数据
