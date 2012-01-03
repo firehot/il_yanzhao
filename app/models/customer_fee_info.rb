@@ -27,4 +27,16 @@ class CustomerFeeInfo < ActiveRecord::Base
     end
     ImportedCustomer.update_state!(org_id)
   end
+  #导出到csv
+  def to_csv
+    ret = ["#{self.org}#{self.mth}客户信息列表"].export_line_csv(true)
+    ret += self.customer_fee_info_lines.export_csv(CustomerFeeInfo.export_options,false)
+    ret
+  end
+  private
+  def self.export_options
+    {
+      :only => [:name,:phone,:fee]
+    }
+  end
 end
