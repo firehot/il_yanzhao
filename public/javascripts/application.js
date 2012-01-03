@@ -587,12 +587,15 @@ jQuery(function($) {
 	});
 
 	//短途运费核销,根据当前核销机构信息判断是否显示运单信息
+        //from_org_id_or_to_org_id != bill.from_org_id && org_id != bill.to_org_id 该运单不显示
 	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
 	//from_org_id_or_to_org_id == bill.to_org_id and bill.to_short_fee_state == 'offed' 该运单不显示
 	$('.short_fee_info_lines tr[data-bill]').livequery(function() {
 		var org_id = $('#from_org_id_or_to_org_id').val();
 		var bill_info = $(this).data('bill');
 		if (bill_info) {
+
+			if (bill_info.from_org_id != org_id && bill_info.to_org_id != org_id) $(this).remove();
 			if (bill_info.from_org_id == org_id && (bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
 			if (bill_info.to_org_id == org_id && (bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
 			$('#bills_table_body').trigger('tr_changed');

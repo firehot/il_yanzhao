@@ -1,11 +1,11 @@
 #coding: utf-8
 module OrgsHelper
-  def orgs_for_select
-    Org.where(:is_active => true).all.map {|b| ["#{b.name}[#{b.py}]",b.id]}
+  def orgs_for_select(is_summary = true)
+    Org.where(:is_active => true,:is_summary => is_summary).all.map {|b| ["#{b.name}[#{b.py}]",b.id]}
   end
 
-  def branches_for_select
-    Branch.where(:is_active => true).all.map {|b| ["#{b.name}[#{b.py}]",b.id]}
+  def branches_for_select(is_summary = true)
+    Branch.where(:is_active => true,:is_summary => is_summary).all.map {|b| ["#{b.name}[#{b.py}]",b.id]}
   end
   #中转中心
   #中转设为两个中转机构

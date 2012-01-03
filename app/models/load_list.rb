@@ -35,6 +35,14 @@ class LoadList < ActiveRecord::Base
     ""
     self.to_org.name unless self.to_org.nil?
   end
+  #生成act_load_list_line
+  def build_act_load_list
+    act_load_list = ActLoadList.new(:from_org => self.from_org,:to_org => self.to_org,:load_list => self)
+    self.carrying_bills.each do |bill|
+      act_load_list.act_load_list_lines.build(:carrying_bill => bill,:load_num => bill.goods_num)
+    end
+    act_load_list
+  end
   #导出到csv
   def to_csv
     ret = ["清单日期:",self.bill_date,"清单编号:",self.bill_no,"发货站:",self.from_org_name,"到达站:",self.to_org_name,"状态:" , self.human_state_name].export_line_csv(true)

@@ -1,5 +1,7 @@
 IlYanzhao::Application.routes.draw do
 
+  resources :act_load_lists
+
   resources :goods_fee_settlement_lists do
     get :search,:on => :collection
     put :post,:on => :member
