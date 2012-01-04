@@ -1,0 +1,64 @@
+<% sum_info = CarryingBill.search_sum(@act_load_list.carrying_bills.search)%>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>单据号:</th>
+      <th><%= @act_load_list.bill_no %></th>
+      <th>发货地:</th>
+      <th><%= @act_load_list.from_org%></th>
+      <th>到货地:</th>
+      <th><%= @act_load_list.to_org%></th>
+      <th>清单日期:</th>
+      <th><%= @act_load_list.bill_date %></th>
+    </tr>
+    <tr>
+      <th>备注:</th>
+      <th colspan='7'><%= @act_load_list.note %></th>
+    </tr>
+  </thead>
+</table>
+<table class='table'>
+  <thead>
+    <tr>
+      <th class='text-center'>序号</th>
+      <th class='text-center'>票号</th>
+      <th class='text-center'>货号</th>
+      <th class='text-center'>起止点</th>
+      <th class='text-center'>付款方式</th>
+      <th class='text-center'>运费</th>
+      <th class='text-center'>代收货款</th>
+      <th class='text-center'>保价费</th>
+      <th class='text-center'>运费合计</th>
+      <th class='text-center'>装车数量</th>
+      <th class='text-center'>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @act_load_list.act_load_list_lines.each_with_index do |line,index| %>
+      <tr>
+        <td><%= index + 1%></td>
+        <td><%= line.carrying_bill.bill_no%></td>
+        <td><%= line.carrying_bill.goods_no%></td>
+        <td><%= line.carrying_bill.from_org%>~<%= line.carrying_bill.to_org%></td>
+        <td><%= pay_type_des line.carrying_bill.pay_type%></td>
+        <td><%= line.carrying_bill.carrying_fee%></td>
+        <td><%= line.carrying_bill.goods_fee%></td>
+        <td><%= line.carrying_bill.insured_fee%></td>
+        <td><%= line.carrying_bill.carrying_fee_th_total%></td>
+        <td><%= line.load_num %></td>
+        <td><%= line.carrying_bill.note%></td>
+      </tr>
+    <%end%>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class='text-right' colspan='5'>合计:</td>
+      <td><%= sum_info[:sum_carrying_fee]%></td>
+      <td><%= sum_info[:sum_goods_fee]%></td>
+      <td><%= sum_info[:sum_insured_fee]%></td>
+      <td><%= sum_info[:sum_carrying_fee_th_total]%></td>
+      <td><%= @act_load_list.act_load_list_lines.sum(:load_num)%></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tfoot>
+</table>

@@ -7,8 +7,11 @@ class ActLoadListLine < ActiveRecord::Base
   belongs_to :act_load_list
   validates_presence_of :carrying_bill
   validates_numericality_of :load_num
+  #装车数量要小于等于运单剩余未装车数量
+  validates_numericality_of :load_num,:less_than_or_equal_to => Proc.new {|line| line.carrying_bill.rest_goods_num },:message => "不能大于剩余数量"
+
   default_value_for :_select,true
   default_value_for :load_num do |line|
-    line.carrying_bill.try(:goods_num)
+    line.carrying_bill.try(:rest_goods_num)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120104024555) do
+ActiveRecord::Schema.define(:version => 20120104091302) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120104024555) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bill_no",      :limit => 20
   end
 
   create_table "areas", :force => true do |t|

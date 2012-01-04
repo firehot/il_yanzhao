@@ -8,7 +8,6 @@
     <%= f.input :from_org_id_eq,:label => "发货地",:as => :select,:collection => current_ability_orgs_for_select%>
 
     <%= f.input :to_org_id_eq,:label =>"到货地",:as => :select,:collection => exclude_current_ability_orgs_for_select %>
-
     <%= f.input :state_eq,:label => "状态",:as => :select,:collection => load_list_states_for_select %>
   <% end %>
   <%=f.buttons do %>

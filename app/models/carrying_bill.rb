@@ -77,6 +77,8 @@ class CarryingBill < ActiveRecord::Base
   #该运单对应的送货信息
   #当前活动的只能有一条
   has_one :send_list_line
+  #有多条装车记录
+  has_many :act_load_list_lines
 
   #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
   validate :check_k_carrying_fee
@@ -346,6 +348,12 @@ class CarryingBill < ActiveRecord::Base
     #滞留天数
     def stranded_days
       ((Date.today.end_of_day - self.bill_date.beginning_of_day) /1.day).to_i
+    end
+    #剩余未装车数量
+    def rest_goods_num
+      ret = goods_num
+      ret = goods_num - self.act_load_list_lines.sum(:load_num) unless self.act_load_list_lines.blank?
+      ret
     end
 
     #定义customer_code虚拟属性

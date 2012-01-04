@@ -37,9 +37,9 @@ class LoadList < ActiveRecord::Base
   end
   #生成act_load_list_line
   def build_act_load_list
-    act_load_list = ActLoadList.new(:from_org => self.from_org,:to_org => self.to_org,:load_list => self)
+    act_load_list = ActLoadList.new(:bill_no => self.bill_no,:from_org => self.from_org,:to_org => self.to_org,:load_list => self)
     self.carrying_bills.each do |bill|
-      act_load_list.act_load_list_lines.build(:carrying_bill => bill,:load_num => bill.goods_num)
+      act_load_list.act_load_list_lines.build(:carrying_bill => bill)
     end
     act_load_list
   end

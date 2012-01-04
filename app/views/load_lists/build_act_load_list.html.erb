@@ -4,73 +4,7 @@
     <h2 class="title">每日实际装车清单</h2>
     <div class="inner">
       <div id='act_load_list_form_wrap'>
-        <%= form_for @act_load_list, :remote => true,:html => {:id => "act_load_list_form"} do |f|%>
-          <%=f.error_messages %>
-          <%= f.hidden_field :user_id,:value => current_user.id if f.object.new_record?%>
-          <%= f.hidden_field :load_list_id %>
-          <%= f.hidden_field :from_org_id%>
-          <%= f.hidden_field :to_org_id%>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>发货地:</th>
-                <th><%= @act_load_list.from_org%></th>
-                <th>到货地:</th>
-                <th><%= @act_load_list.to_org%></th>
-                <th>清单日期:</th>
-                <th><%= f.text_field :bill_date,:size => 10,:readonly => true%></th>
-
-              </tr>
-              <tr>
-                <th>备注:</th>
-                <th colspan='5'><%= f.text_field :note,:size => 60%></th>
-              </tr>
-            </thead>
-          </table>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='text-center'>
-                  <%=link_to_function "全选","",:id => "btn_act_load_list_line_select_all"%>
-                  |
-                  <%=link_to_function "不选","",:id => "btn_act_load_list_line_unselect_all"%>
-                </th>
-                <th class='text-center'>票号</th>
-                <th class='text-center'>货号</th>
-                <th class='text-center'>起止点</th>
-                <th class='text-center'>付款方式</th>
-                <th class='text-center'>运费</th>
-                <th class='text-center'>代收货款</th>
-                <th class='text-center'>保价费</th>
-                <th class='text-center'>运费合计</th>
-                <th class='text-center'>备注</th>
-                <th class='text-center'>装车数量</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= f.fields_for :act_load_list_lines do |line| %>
-                <tr>
-                  <td class='text-center'>
-                    <%= line.check_box :_select,:class => "act_load_list_line_selector"%>
-                    <%= line.hidden_field :carrying_bill_id %>
-                  </td>
-                  <td><%= line.object.carrying_bill.bill_no%></td>
-                  <td><%= line.object.carrying_bill.goods_no%></td>
-                  <td><%= line.object.carrying_bill.from_org%>~<%= line.object.carrying_bill.to_org%></td>
-                  <td><%= pay_type_des line.object.carrying_bill.pay_type%></td>
-                  <td><%= line.object.carrying_bill.carrying_fee%></td>
-                  <td><%= line.object.carrying_bill.goods_fee%></td>
-                  <td><%= line.object.carrying_bill.insured_fee%></td>
-                  <td><%= line.object.carrying_bill.carrying_fee_th_total%></td>
-                  <td><%= line.object.carrying_bill.note%></td>
-                  <td>
-                    <%= line.text_field :load_num,:size => 5%>
-                  </td>
-                </tr>
-              <%end%>
-            </tbody>
-          </table>
-        <% end%>
+        <%= render "act_load_lists/form" %>
       </div>
     </div>
   </div>

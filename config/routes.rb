@@ -1,6 +1,8 @@
 IlYanzhao::Application.routes.draw do
-
-  resources :act_load_lists
+  resources :act_load_lists,:except => [:new] do
+    get :search,:on => :collection
+    get :export_excel,:on => :member
+  end
 
   resources :goods_fee_settlement_lists do
     get :search,:on => :collection

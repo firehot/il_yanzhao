@@ -71,6 +71,8 @@ zh-CN:
       area: "中转到货地"
       notify: "通知提醒"
       goods_fee_settlement_list: "分理处货款收支清单"
+      act_load_list: "装车清单"
+      act_load_list_line: "装车清单明细"
 
 
     attributes:
@@ -628,4 +630,15 @@ zh-CN:
         sum_income_fee: "收入金额合计"
         sum_spending_fee: "支出金额合计"
         sum_rest_fee: "余额合计"
+
+      act_load_list:
+        bill_date: "日期"
+        bill_no: "单据号"
+        from_org: "发货地"
+        from_org: "到货地"
+        act_load_list_lines:
+          load_num: "装车数量"
+
+      act_load_list_line:
+        load_num: "装车数量"
 
