@@ -16,4 +16,9 @@ class LoadListsController < BaseController
   def export_excel
     @load_list = resource_class.find(params[:id],:include => [:from_org,:to_org,:user,:carrying_bills])
   end
+  #GET load_list/:id/build_act_load_list
+  def build_act_load_list
+    @load_list = resource_class.find(params[:id],:include => [:from_org,:to_org,:user,:carrying_bills])
+    @act_load_list = @load_list.build_act_load_list
+  end
 end

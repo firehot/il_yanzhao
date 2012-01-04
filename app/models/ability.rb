@@ -139,6 +139,8 @@ class Ability
     can :update_password,User
     #可查看imported_customer，就可查看customer_fee_info
     can :read,CustomerFeeInfo if can? :read,ImportedCustomer
+    #可创建实际装车清单
+    can :manage,ActLoadList if can? :build_act_load_list,LoadList
   end
   #定义运单修改权限
   def set_bill_update_permission(user)

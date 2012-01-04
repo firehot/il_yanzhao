@@ -1203,5 +1203,8 @@ jQuery(function($) {
 		$('#sum_rest_fee').html(sum_rest_fee);
 		$('#sum_rest_fee_chinese').html($.num2chinese(sum_rest_fee.toString()));
 	});
+        //实际装车清单,全选/不选
+        $('#btn_act_load_list_line_select_all').live('click',function(){$('.act_load_list_line_selector').attr('checked',true)});
+        $('#btn_act_load_list_line_unselect_all').live('click',function(){$('.act_load_list_line_selector').attr('checked',false)});
 });
 

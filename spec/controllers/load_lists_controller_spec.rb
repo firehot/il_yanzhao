@@ -94,4 +94,12 @@ describe LoadListsController do
       response.should be_success
     end
   end
+  #创建实际装车清单
+  describe "GET build act_load_list" do
+    it "should be success" do
+      @load_list ||= Factory(:load_list_with_bills)
+      get :build_act_load_list,:id => @load_list
+      response.should be_success
+    end
+  end
 end

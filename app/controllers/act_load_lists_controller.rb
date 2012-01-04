@@ -1,2 +1,2 @@
-class ActLoadListsController < InheritedResources::Base
+class ActLoadListsController < BaseController
 end
