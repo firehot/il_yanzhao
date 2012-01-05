@@ -459,7 +459,7 @@ class CarryingBill < ActiveRecord::Base
     end
     #转换为打印使用的json
     def to_print_json
-      self.to_json(:except =>[:created_at,:updated_at],:methods => [:area,:from_org,:transit_org,:to_org,:user,:customer_code,:th_amount,:carrying_fee_total,:carrying_fee_th,:pay_type_des])
+      self.to_json(:except =>[:created_at,:updated_at],:methods => [:area,:from_org,:transit_org,:to_org,:user,:customer_code,:th_amount,:carrying_fee_total,:carrying_fee_th,:pay_type_des,:type])
     end
     #根据货号计算排序号
     def sort_seq

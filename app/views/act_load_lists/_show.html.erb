@@ -3,21 +3,19 @@
   <thead>
     <tr>
       <th>单据号:</th>
-      <th><%= @act_load_list.bill_no %></th>
-      <th>发货地:</th>
+      <th colspan='2'><%= @act_load_list.bill_no %></th>
+      <th colspan='2'>发货地:</th>
       <th><%= @act_load_list.from_org%></th>
       <th>到货地:</th>
       <th><%= @act_load_list.to_org%></th>
-      <th>清单日期:</th>
+      <th colspan='2'>清单日期:</th>
       <th><%= @act_load_list.bill_date %></th>
     </tr>
     <tr>
       <th>备注:</th>
-      <th colspan='7'><%= @act_load_list.note %></th>
+      <th colspan='10'><%= @act_load_list.note %></th>
     </tr>
   </thead>
-</table>
-<table class='table'>
   <thead>
     <tr>
       <th class='text-center'>序号</th>

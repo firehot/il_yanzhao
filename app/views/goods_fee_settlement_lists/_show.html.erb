@@ -1,66 +1,66 @@
 <table class='table' id='goods_fee_settlement_list_show'>
   <thead>
     <tr>
-      <td class='text-center' colspan='6'><%="#{IlConfig.client_name}分理处货款收支清单"%></td>
+      <td style='text-align : center' colspan='6'><%="#{IlConfig.client_name}分理处货款收支清单"%></td>
     </tr>
     <tr>
-      <td class='text-center' colspan='2'><%= resource.org %></td>
-      <td class='text-center' colspan='2'>&nbsp;</td>
-      <td class='text-center' colspan='2'><%= resource.bill_date %></td>
+      <td  style='text-align : center' colspan='2'><%= resource.org %></td>
+      <td  style='text-align : center' colspan='2'>&nbsp;</td>
+      <td  style='text-align : center' colspan='2'><%= resource.bill_date %></td>
     </tr>
     <tr>
-      <td class='text-center' colspan='3'>收入</td>
-      <td class='text-center' colspan='3'>支出</td>
+      <td  style='text-align : center' colspan='3'>收入</td>
+      <td  style='text-align : center' colspan='3'>支出</td>
     </tr>
     <tr>
-      <td class='text-center'>&nbsp;</td>
-      <td class='text-center'>项目</td>
-      <td class='text-center'>金额</td>
-      <td class='text-center'>&nbsp;</td>
-      <td class='text-center'>项目</td>
-      <td class='text-center'>金额</td>
+      <td  style='text-align : center'>&nbsp;</td>
+      <td  style='text-align : center'>项目</td>
+      <td  style='text-align : center'>金额</td>
+      <td  style='text-align : center'>&nbsp;</td>
+      <td  style='text-align : center'>项目</td>
+      <td  style='text-align : center'>金额</td>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class='text-center' rowspan='3'>电脑录入</td>
-      <td class='text-center'>手续费</td>
+      <td  style='text-align : center' rowspan='3'>电脑录入</td>
+      <td  style='text-align : center'>手续费</td>
       <td><%= resource.amount_hand_fee_auto %></td>
-      <td class='text-center' rowspan='3'>电脑录入</td>
-      <td class='text-center' rowspan='6'>原代收货款</td>
+      <td  style='text-align : center' rowspan='3'>电脑录入</td>
+      <td  style='text-align : center' rowspan='6'>原代收货款</td>
       <td rowspan='3'><%= resource.amount_goods_fee_auto %></td>
     </tr>
     <tr>
-      <td class='text-center'>货款扣运费</td>
+      <td  style='text-align : center''>货款扣运费</td>
       <td><%= resource.amount_k_carrying_fee_auto %></td>
     </tr>
     <tr>
-      <td class='text-center'>票据数</td>
+      <td  style='text-align : center'>票据数</td>
       <td><%= resource.amount_bills_auto %></td>
     </tr>
     <tr>
-      <td class='text-center' rowspan='3'>手工录入</td>
-      <td class='text-center'>手续费</td>
+      <td  style='text-align : center'' rowspan='3'>手工录入</td>
+      <td  style='text-align : center'>手续费</td>
       <td><%= resource.amount_hand_fee%></td>
-      <td class='text-center' rowspan='3'>手工录入</td>
+      <td  style='text-align : center' rowspan='3'>手工录入</td>
       <td rowspan='3'><%= resource.amount_goods_fee %></td>
     </tr>
     <tr>
-      <td class='text-center'>货款扣运费</td>
+      <td  style='text-align : center'>货款扣运费</td>
       <td><%= resource.amount_k_carrying_fee %></td>
     </tr>
     <tr>
-      <td class='text-center'>票据数</td>
+      <td  style='text-align : center'>票据数</td>
       <td><%= resource.amount_bills %></td>
     </tr>
     <tr>
-      <td class='text-center'>实领金额</td>
+      <td  style='text-align : center'>实领金额</td>
       <td colspan='2'><%= resource.amount_fee %></td>
-      <td class='text-center'>票据数合计</td>
+      <td  style='text-align : center'>票据数合计</td>
       <td colspan='2'><span id='sum_bills'><%=resource.sum_bills%></span></td>
     </tr>
     <tr>
-      <td class='text-center'>收入金额合计</td>
+      <td  style='text-align : center'>收入金额合计</td>
       <td colspan='3'>
         <span id='sum_income_fee_chinese'><%= convertNumToChinese resource.sum_income_fee%></span>
       </td>
@@ -70,7 +70,7 @@
     </tr>
 
     <tr>
-      <td class='text-center'>支出金额合计</td>
+      <td  style='text-align : center'>支出金额合计</td>
       <td colspan='3'>
         <span id='sum_spending_fee_chinese'><%= convertNumToChinese resource.sum_spending_fee %></span>
       </td>
@@ -79,7 +79,7 @@
       </td>
     </tr>
     <tr>
-      <td class='text-center'>余款金额合计</td>
+      <td  style='text-align : center'>余款金额合计</td>
       <td colspan='3'>
         <span id='sum_rest_fee_chinese'><%= convertNumToChinese resource.sum_rest_fee %></span>
       </td>
@@ -90,18 +90,18 @@
   </tbody>
   <tfoot>
     <tr>
-      <td class='text-center'>交单人:</td>
-      <td class='text-center' colspan='2'><%= resource.user%></td>
-      <td class='text-center'>票据审核人:</td>
-      <td class='text-center' colspan='2'></td>
+      <td>交单人:</td>
+      <td colspan='2'><%= resource.user%></td>
+      <td>票据审核人:</td>
+      <td colspan='2'></td>
     </tr>
     <tr>
-      <td class='text-center'>财务分票人:</td>
-      <td class='text-center'></td>
-      <td class='text-center'>财务审核人:</td>
-      <td class='text-center'></td>
-      <td class='text-center'>总公司会计:</td>
-      <td class='text-center'></td>
+      <td>财务分票人:</td>
+      <td></td>
+      <td>财务审核人:</td>
+      <td></td>
+      <td>总公司会计:</td>
+      <td></td>
     </tr>
   </tfoot>
 </table>

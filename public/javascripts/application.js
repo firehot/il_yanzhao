@@ -587,7 +587,7 @@ jQuery(function($) {
 	});
 
 	//短途运费核销,根据当前核销机构信息判断是否显示运单信息
-        //from_org_id_or_to_org_id != bill.from_org_id && org_id != bill.to_org_id 该运单不显示
+	//from_org_id_or_to_org_id != bill.from_org_id && org_id != bill.to_org_id 该运单不显示
 	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
 	//from_org_id_or_to_org_id == bill.to_org_id and bill.to_short_fee_state == 'offed' 该运单不显示
 	$('.short_fee_info_lines tr[data-bill]').livequery(function() {
@@ -1180,8 +1180,21 @@ jQuery(function($) {
 
 	});
 	//分理处货款收支清单,录入变化时自动计算
-	$('#goods_fee_settlement_list_amount_hand_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_bills,#goods_fee_settlement_list_amount_goods_fee,#goods_fee_settlement_list_amount_fee').live('change', function() {
-		var amount_hand_fee_auto = amount_goods_fee_auto = amount_k_carrying_fee_auto = amount_bills_auto = amount_hand_fee = amount_goods_fee = amount_k_carrying_fee = amount_bills = amount_fee = sum_bills = sum_income_fee = sum_spending_fee = sum_rest_fee = 0;
+	$('#goods_fee_settlement_list_amount_hand_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_bills,#goods_fee_settlement_list_amount_goods_fee,#goods_fee_settlement_list_amount_fee').change(function() {
+
+		var amount_hand_fee_auto = 0;
+                var amount_goods_fee_auto = 0;
+                var amount_k_carrying_fee_auto = 0;
+                var amount_bills_auto = 0;
+                var amount_hand_fee = 0;
+                var amount_goods_fee = 0;
+                var amount_k_carrying_fee = 0;
+                var amount_bills = 0;
+                var amount_fee = 0;
+                var sum_bills = 0;
+                var sum_income_fee = 0;
+                var sum_spending_fee = 0;
+                var sum_rest_fee = 0;
 		amount_hand_fee_auto = parseFloat($('#amount_hand_fee_auto').text());
 		amount_goods_fee_auto = parseFloat($('#amount_goods_fee_auto').text());
 		amount_k_carrying_fee_auto = parseFloat($('#amount_k_carrying_fee_auto').text());
@@ -1191,6 +1204,7 @@ jQuery(function($) {
 		amount_k_carrying_fee = parseFloat($('#goods_fee_settlement_list_amount_k_carrying_fee').val());
 		amount_bills = parseFloat($('#goods_fee_settlement_list_amount_bills').val());
 		amount_fee = parseFloat($('#goods_fee_settlement_list_amount_fee').val());
+
 		sum_bills = amount_bills + amount_bills_auto;
 		sum_income_fee = amount_hand_fee + amount_hand_fee_auto + amount_k_carrying_fee + amount_k_carrying_fee_auto + amount_fee;
 		sum_spending_fee = amount_goods_fee + amount_goods_fee_auto;
@@ -1203,8 +1217,12 @@ jQuery(function($) {
 		$('#sum_rest_fee').html(sum_rest_fee);
 		$('#sum_rest_fee_chinese').html($.num2chinese(sum_rest_fee.toString()));
 	});
-        //实际装车清单,全选/不选
-        $('#btn_act_load_list_line_select_all').live('click',function(){$('.act_load_list_line_selector').attr('checked',true)});
-        $('#btn_act_load_list_line_unselect_all').live('click',function(){$('.act_load_list_line_selector').attr('checked',false)});
+        // 实际装车清单,全选 / 不选
+	$('#btn_act_load_list_line_select_all').live('click', function() {
+		$('.act_load_list_line_selector').attr('checked', true)
+	});
+	$('#btn_act_load_list_line_unselect_all').live('click', function() {
+		$('.act_load_list_line_selector').attr('checked', false)
+	});
 });
 

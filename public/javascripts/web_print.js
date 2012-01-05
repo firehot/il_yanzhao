@@ -350,9 +350,9 @@ jQuery(function($) {
 					top: '98mm',
 					width: '50mm',
 					height: '6mm'
-				}
+				},
 				print_counter: {
-					text: the_bill.print_counter + "次打印",
+					text: (the_bill.print_counter > 0) ? the_bill.print_counter + "次打印": "",
 					left: '148mm',
 					top: '108mm',
 					width: '50mm',
@@ -417,7 +417,10 @@ jQuery(function($) {
 
 			$.ajax({
 				url: print_counter_url,
-				type: 'PUT'
+				type: 'PUT',
+				success: function() {
+					$('#bill_print_counter').html((bill.print_counter + 1) + "次打印");
+				}
 			});
 		}
 	});
@@ -481,12 +484,12 @@ jQuery(function($) {
 		return false;
 	});
 	//分理处货款收支清单打印
-        $('btn_print_goods_fee_settlement_list').click(function(){
-          var table_doc = $('.goods_fee_settlement_list_show').clone();
+	$('.btn_print_goods_fee_settlement_list').click(function() {
+		var table_doc = $('#goods_fee_settlement_list_show').clone();
 		table_doc.css({
 			tableLayout: 'fixed',
 			width: '200mm',
-                        height: '140mm',
+			height: '140mm',
 			borderCollapse: 'collapse'
 		});
 		table_doc.find('tr').css({
@@ -498,7 +501,9 @@ jQuery(function($) {
 			borderCollapse: 'collapse'
 		});
 
-                table_doc.find('tfoot td').css({border : 'none'});
+		table_doc.find('tfoot td').css({
+			border: 'none'
+		});
 		var config = {
 			print_name: "分理处货款收支清单",
 			top: "2mm",
@@ -509,7 +514,7 @@ jQuery(function($) {
 		};
 		$.print_html(config);
 		return false;
-        });
+	});
 	//提货打印,触发自动打印事件
 	$('.auto_print_bill').trigger('click');
 });

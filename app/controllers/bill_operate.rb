@@ -23,7 +23,7 @@ module BillOperate
       bill = resource_class.find(params[:id])
       get_resource_ivar || set_resource_ivar(bill)
       resource_class.increment_counter(:print_counter,bill.id)
-      render :js =>"$('#bill_print_counter').html('#{bill.print_counter}次打印')"
+      render :nothing => true
     end
   end
 end
