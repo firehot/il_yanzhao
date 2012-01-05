@@ -481,6 +481,35 @@ jQuery(function($) {
 		return false;
 	});
 	//分理处货款收支清单打印
+        $('btn_print_goods_fee_settlement_list').click(function(){
+          var table_doc = $('.goods_fee_settlement_list_show').clone();
+		table_doc.css({
+			tableLayout: 'fixed',
+			width: '200mm',
+                        height: '140mm',
+			borderCollapse: 'collapse'
+		});
+		table_doc.find('tr').css({
+			height: '8mm'
+		});
+
+		table_doc.find('th,td').css({
+			border: 'thin solid #000',
+			borderCollapse: 'collapse'
+		});
+
+                table_doc.find('tfoot td').css({border : 'none'});
+		var config = {
+			print_name: "分理处货款收支清单",
+			top: "2mm",
+			left: "0",
+			width: "210mm",
+			height: "150mm",
+			content: table_doc.wrap('<div></div>').parent().html()
+		};
+		$.print_html(config);
+		return false;
+        });
 	//提货打印,触发自动打印事件
 	$('.auto_print_bill').trigger('click');
 });
