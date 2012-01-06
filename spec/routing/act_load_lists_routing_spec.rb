@@ -7,10 +7,6 @@ describe ActLoadListsController do
       { :get => "/act_load_lists" }.should route_to(:controller => "act_load_lists", :action => "index")
     end
 
-    it "recognizes and generates #new" do
-      { :get => "/act_load_lists/new" }.should route_to(:controller => "act_load_lists", :action => "new")
-    end
-
     it "recognizes and generates #show" do
       { :get => "/act_load_lists/1" }.should route_to(:controller => "act_load_lists", :action => "show", :id => "1")
     end
