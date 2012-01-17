@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120104091302) do
+ActiveRecord::Schema.define(:version => 20120117052952) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20120104091302) do
     t.integer  "print_counter",                                                                 :default => 0,       :null => false
   end
 
+  add_index "carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
   add_index "carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
   add_index "carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
   add_index "carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20120104091302) do
   add_index "carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
   add_index "carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
   add_index "carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
+  add_index "carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
   add_index "carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
   add_index "carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
   add_index "carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
@@ -133,12 +135,15 @@ ActiveRecord::Schema.define(:version => 20120104091302) do
   add_index "carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
   add_index "carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
   add_index "carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
+  add_index "carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
   add_index "carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
   add_index "carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
   add_index "carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
   add_index "carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
   add_index "carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
   add_index "carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
+  add_index "carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
+  add_index "carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
   add_index "carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
   add_index "carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
   add_index "carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
