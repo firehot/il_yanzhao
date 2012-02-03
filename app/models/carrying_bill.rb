@@ -391,6 +391,8 @@ class CarryingBill < ActiveRecord::Base
         "to_customer_id"=> nil,
         "pay_type"=> PAY_TYPE_TH,
         "goods_fee"=> 0,
+        "from_short_carrying_fee" => self.to_short_carrying_fee*2,
+        "to_short_carrying_fee" => self.from_short_carrying_fee*2,
         "carrying_fee"=> (pay_type == PAY_TYPE_CASH ? self.carrying_fee : 2*self.carrying_fee),
         "note"=> "原运单票据号:#{self.bill_no},货号:#{self.goods_no},运费:#{self.carrying_fee},代收货款;#{self.goods_fee}"
       }

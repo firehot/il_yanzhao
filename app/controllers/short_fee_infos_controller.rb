@@ -1,6 +1,6 @@
 #coding: utf-8
 class ShortFeeInfosController < BaseController
-  table :bill_date,:org,:human_state_name,:write_off_date,:note
+  table :bill_date,:org,:human_state_name,:sum_write_off_fee,:write_off_date,:note
   def create
     bill = resource_class.new(params[resource_class.model_name.underscore])
     get_resource_ivar || set_resource_ivar(bill)

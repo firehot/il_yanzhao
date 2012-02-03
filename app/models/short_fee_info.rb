@@ -27,4 +27,10 @@ class ShortFeeInfo < ActiveRecord::Base
   default_value_for :bill_date do
     Date.today
   end
+  #报销金额合
+  def sum_write_off_fee
+    sum_from = self.carrying_bills.sum(:from_short_carrying_fee,:conditions => {:from_org_id => self.org_id})
+    sum_to = self.carrying_bills.sum(:to_short_carrying_fee,:conditions => {:to_org_id => self.org_id})
+    sum_from + sum_to
+  end
 end

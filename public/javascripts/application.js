@@ -211,6 +211,16 @@ jQuery(function($) {
 		var insured_rate = parseFloat($('#insured_rate').val());
 		var insured_fee = Math.ceil(insured_amount * insured_rate / 1000);
 		$('#insured_fee').val(insured_fee);
+                //2012-02-03 如果保价费金额 > 0 则运费支付方式直接设为现金付,且不可更改
+                if(insured_fee > 0)
+                {
+                  $('#pay_type').val('CA');
+                  $('#pay_type option').attr('disabled',true);
+                  $('#pay_type option[value="CA"]').attr('disabled',false);
+
+                }
+                else
+                  $('#pay_type option').attr('disabled',false);
 		//计算运费合计
 		var carrying_fee = parseFloat($('#carrying_fee').val());
 		var from_short_carrying_fee = parseFloat($('#from_short_carrying_fee').val());

@@ -369,6 +369,7 @@ zh-CN:
         op_org_id: "处理部门"
         op_org: "处理部门"
         user: "操作员"  #g
+        sum_write_off_fee: "报销金额"
         write_off_date: "核销日期"
         carrying_bills: "清单明细"  #g
 
