@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117052952) do
+ActiveRecord::Schema.define(:version => 20120203024551) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20120117052952) do
     t.integer  "transit_org_id"
     t.integer  "to_org_id"
     t.decimal  "insured_amount",                                 :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "insured_rate",                                   :precision => 10, :scale => 2, :default => 0.0
+    t.decimal  "insured_rate",                                   :precision => 10, :scale => 5, :default => 0.0
     t.decimal  "insured_fee",                                    :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "carrying_fee",                                   :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "goods_fee",                                      :precision => 10, :scale => 2, :default => 0.0
