@@ -929,7 +929,7 @@ jQuery(function($) {
 		$('#sum_transit_hand_fee').val(sum_info.sum_transit_hand_fee);
 		//计算实际提款及余额
 		$('#sum_pay_fee').val(sum_info.sum_act_pay_fee);
-		cal_rest_fee();
+		//cal_rest_fee();
 	});
 	//绑定实领金额变化事件
 	//$('#post_info_amount_fee').change(cal_rest_fee);
@@ -941,7 +941,7 @@ jQuery(function($) {
 		$('#sum_transit_hand_fee').val($.bill_selector.sum_info.sum_transit_hand_fee);
 		//计算实际提款及余额
 		$('#sum_pay_fee').val($.bill_selector.sum_info.sum_act_pay_fee);
-		cal_rest_fee();
+		//cal_rest_fee();
 	};
 	$($.bill_selector).bind('select:change', re_cal_rest_fee);
 
