@@ -12,10 +12,12 @@
       <td>结算日期:</td>
       <td> <%=Date.today().strftime('%Y-%m-%d')%></td>
     </tr>
+    <!--
     <tr class='even'>
       <td colspan="5" class='text-right'>实领金额:</td>
       <td><%=f.text_field :amount_fee ,:size => 10 %></td>
     </tr>
+    -->
     <tr class='odd'>
       <td colspan='5' class='text-right'>货款:</td>
       <td><%=text_field_tag :sum_goods_fee,0,:readonly => true,:size => 10 %></td>
@@ -32,10 +34,12 @@
       <td colspan='5' class='text-right'>实际提款:</td>
       <td><%=text_field_tag :sum_pay_fee,0,:readonly => true,:size => 10 %></td>
     </tr>
+    <!--
     <tr class='even'>
       <td colspan="5" class='text-right'>余额:</td>
       <td><%=text_field_tag :sum_rest_fee,"",:readonly => true,:size => 10 %></td>
     </tr>
+    -->
     <tr class='odd'>
       <td>备注</td>
       <td colspan='5'>

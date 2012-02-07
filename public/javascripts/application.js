@@ -896,6 +896,7 @@ jQuery(function($) {
 		});
 	});
 
+        /*
 	//客户提款结算清单
 	//实领金额变化时,更新余额
 	var cal_rest_fee = function() {
@@ -905,6 +906,7 @@ jQuery(function($) {
 		$('#sum_rest_fee').val(rest_fee);
 
 	};
+        */
 
 	$('#btn_generate_post_info').bind('ajax:before', function() {
 		var params = {
@@ -930,7 +932,7 @@ jQuery(function($) {
 		cal_rest_fee();
 	});
 	//绑定实领金额变化事件
-	$('#post_info_amount_fee').change(cal_rest_fee);
+	//$('#post_info_amount_fee').change(cal_rest_fee);
 	//绑定$.bill_selector的select:change事件,用于触发当选定单据发生变化时,重新计算金额
 	var re_cal_rest_fee = function() {
 		$('#sum_goods_fee').val($.bill_selector.sum_info.sum_goods_fee);
