@@ -46,7 +46,7 @@
         <%= link_to image_tag("load.png",:alt => "刷新当前记录"),  resource,:title => "刷新当前记录",:class => "tipsy btn_modify" %>
       </li>
 
-      <%if (can?(:update_all,resource) or can?(:update_goods_fee,resource) or can?(:update_carrying_fee_20,resource) or can?(:update_carrying_fee_50,resource) or can?(:update_carrying_fee_100,resource)) and (resource.billed? or resource.loaded? or resource.shipped? or resource.reached?)%>
+      <%if (can?(:update_all,resource) or can?(:update_goods_fee,resource) or can?(:update_carrying_fee_20,resource) or can?(:update_carrying_fee_50,resource) or can?(:update_carrying_fee_100,resource)) and (resource.billed? or resource.loaded? or resource.shipped? or resource.reached? or resource.distributed?)%>
         <li>
           <%= link_to image_tag("application--pencil.png",:alt => "修改当前记录"),  edit_resource_path(resource),:title => "修改当前记录",:class => "tipsy btn_modify" %>
         </li>
