@@ -488,12 +488,11 @@ jQuery(function($) {
 		var table_doc = $('#goods_fee_settlement_list_show').clone();
 		table_doc.css({
 			tableLayout: 'fixed',
-			width: '200mm',
-			height: '140mm',
+			width: '180mm',
 			borderCollapse: 'collapse'
 		});
 		table_doc.find('tr').css({
-			height: '8mm'
+			height: '6mm'
 		});
 
 		table_doc.find('th,td').css({
@@ -509,7 +508,7 @@ jQuery(function($) {
 			top: "2mm",
 			left: "0",
 			width: "210mm",
-			height: "150mm",
+			height: "120mm",
 			content: table_doc.wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
@@ -518,4 +517,3 @@ jQuery(function($) {
 	//提货打印,触发自动打印事件
 	$('.auto_print_bill').trigger('click');
 });
-
