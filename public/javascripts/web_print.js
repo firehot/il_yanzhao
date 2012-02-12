@@ -337,7 +337,7 @@ jQuery(function($) {
 				},
 
 				from_org_phone: {
-					text: the_bill.from_org.name + ":" + the_bill.from_org.phone,
+                                                  text: the_bill.from_org.name + "(" + the_bill.from_org.location +"):"  the_bill.from_org.phone,
 					left: '102mm',
 					top: '98mm',
 					width: '50mm',
@@ -345,7 +345,7 @@ jQuery(function($) {
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
+					text: the_bill.to_org ? (the_bill.to_org.name + "(" + the_bill.to_org.location + ")" + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
 					left: '148mm',
 					top: '98mm',
 					width: '50mm',

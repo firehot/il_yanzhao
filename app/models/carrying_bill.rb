@@ -90,7 +90,10 @@ class CarryingBill < ActiveRecord::Base
   validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:goods_num
   validates_numericality_of :goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000
   validates :customer_code,:customer_code => true
+  #初始创建运单时,运费必须大于0
   validates :carrying_fee,:numericality => {:greater_than => 0},:on => :create
+  #修改运单时,运费大于或等于0
+  validates :carrying_fee,:numericality => {:greater_than_or_equal_to => 0},:on => :update
 
   #定义state_machine
   #已开票
