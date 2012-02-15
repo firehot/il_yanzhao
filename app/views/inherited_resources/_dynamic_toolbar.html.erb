@@ -17,7 +17,7 @@
     <%if params[:action] == "new"%>
       <%= render :partial => 'toolbar_btn_save' %>
     <%end%>
-    <%if params[:action] == "edit"%>
+    <%if params[:action] == "edit" %>
       <%= render :partial => 'toolbar_btn_save' %>
       <%if can? :destroy,resource_class%>
         <%= render :partial => 'toolbar_btn_destroy' %>
