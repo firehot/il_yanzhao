@@ -339,7 +339,7 @@ jQuery(function($) {
 				from_org_phone: {
                                                   text: the_bill.from_org.name + "(" + the_bill.from_org.location +"):"  the_bill.from_org.phone,
 					left: '102mm',
-					top: '98mm',
+					top: '95mm',
 					width: '50mm',
 					height: '6mm'
 				},
@@ -347,14 +347,14 @@ jQuery(function($) {
 				to_org_phone: {
 					text: the_bill.to_org ? (the_bill.to_org.name + "(" + the_bill.to_org.location + ")" + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
 					left: '148mm',
-					top: '98mm',
+					top: '100mm',
 					width: '50mm',
 					height: '6mm'
 				},
 				print_counter: {
 					text: (the_bill.print_counter > 0) ? the_bill.print_counter + "次打印": "",
-					left: '148mm',
-					top: '108mm',
+					left: '155mm',
+					top: '126mm',
 					width: '50mm',
 					height: '6mm'
 				}

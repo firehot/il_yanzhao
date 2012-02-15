@@ -6,6 +6,7 @@ class GoodsFeeSettlementList < ActiveRecord::Base
   belongs_to :post_info
   validates_presence_of :org_id,:post_info_id
   validates_numericality_of :amount_goods_fee,:amount_hand_fee,:amount_k_carrying_fee,:amount_bills
+  validates :amount_fee,:numericality => {:greater_than => 0},:on => :update
   default_value_for :bill_date do
     Date.today
   end

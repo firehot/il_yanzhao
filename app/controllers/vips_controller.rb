@@ -1,6 +1,6 @@
 #coding: utf-8
 class VipsController < BaseController
-  table :org_id,:code,:name,:phone,:mobile,:bank_id,:bank_card,:address,:company
+  table :org_id,:code,:name,:phone,:mobile,:bank_id,:bank_card,:address,:company,:created_at
   #GET search
   #显示查询窗口
   def search

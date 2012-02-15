@@ -24,6 +24,15 @@ class TransferPaymentList < PaymentList
     end
     ret
   end
+  #导出为兴业转账格式文本
+  def cib_to_txt
+    ret = ''
+    self.carrying_bills.each_with_index do |bill,index|
+      ret += [index + 1,0,bill.from_customer.bank_card,bill.from_customer.name,'|',"#{bill.act_pay_fee}|",0].join('|') + "|\r\n"
+    end
+    ret
+  end
+
   def self.carrying_bill_export_options
     {
         :only => [],

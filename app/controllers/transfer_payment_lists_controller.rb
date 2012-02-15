@@ -10,7 +10,11 @@ class TransferPaymentListsController < BaseController
   def show
     super do |format|
       format.csv {send_data resource.to_csv,:filename => 'pufa.csv'}
-      format.text {send_data resource.ccb_to_txt,:filename => 'icbc.txt'}
+      format.text do
+        bank = params[:bank].blank? ? "ccb" : params[:bank]
+        send_data resource.ccb_to_txt,:filename => 'ccb.txt' if bank.eql?("ccb")
+        send_data resource.cib_to_txt,:filename => 'cib.txt' if bank.eql?("cib")
+      end
     end
   end
   #导出到EXCEL
