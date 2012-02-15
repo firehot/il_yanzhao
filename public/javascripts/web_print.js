@@ -337,18 +337,18 @@ jQuery(function($) {
 				},
 
 				from_org_phone: {
-                                                  text: the_bill.from_org.name + "(" + the_bill.from_org.location +"):"  the_bill.from_org.phone,
+                                                  text: the_bill.from_org.name + "(" + the_bill.from_org.location +"):" +  the_bill.from_org.phone,
 					left: '102mm',
 					top: '95mm',
-					width: '50mm',
+					width: '90mm',
 					height: '6mm'
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org ? (the_bill.to_org.name + "(" + the_bill.to_org.location + ")" + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
-					left: '148mm',
+					text: the_bill.to_org ? (the_bill.to_org.name +  ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
+					left: '102mm',
 					top: '100mm',
-					width: '50mm',
+					width: '90mm',
 					height: '6mm'
 				},
 				print_counter: {
