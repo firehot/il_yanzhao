@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ShortFeeInfo < ActiveRecord::Base
   belongs_to :org
@@ -34,3 +35,4 @@ class ShortFeeInfo < ActiveRecord::Base
     sum_from + sum_to
   end
 end
+

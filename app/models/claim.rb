@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class Claim < ActiveRecord::Base
   belongs_to :user
@@ -14,3 +15,4 @@ class Claim < ActiveRecord::Base
     errors.add(:act_compensate_fee, "不能大于拟赔金额") if act_compensate_fee > self.goods_exception.gexception_authorize_info.compensation_fee
   end
 end
+

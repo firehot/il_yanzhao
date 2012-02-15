@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddCarryingFeeSum < ActiveRecord::Migration
   def self.up
@@ -21,3 +22,4 @@ class AddCarryingFeeSum < ActiveRecord::Migration
   def self.down
   end
 end
+

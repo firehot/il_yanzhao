@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #短途运费管理
 class CreateShortFeeInfos < ActiveRecord::Migration
@@ -22,3 +23,4 @@ class CreateShortFeeInfos < ActiveRecord::Migration
     remove_column :carrying_bills,:short_fee_info_id
   end
 end
+

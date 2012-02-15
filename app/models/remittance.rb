@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #汇款记录
 class Remittance < ActiveRecord::Base
@@ -24,3 +25,4 @@ class Remittance < ActiveRecord::Base
     self.should_fee - self.act_fee
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module SendListModule
   #导出
@@ -14,3 +15,4 @@ module SendListModule
     ret + csv_carrying_bills + sum_foot
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddPrintCounterToCarryingBill < ActiveRecord::Migration
   def self.up
@@ -9,3 +10,4 @@ class AddPrintCounterToCarryingBill < ActiveRecord::Migration
     remove_column :carrying_bills, :print_counter
   end
 end
+

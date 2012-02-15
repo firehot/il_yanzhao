@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddActLoadListFunction < ActiveRecord::Migration
   def self.up
@@ -24,3 +25,4 @@ class AddActLoadListFunction < ActiveRecord::Migration
   def self.down
   end
 end
+

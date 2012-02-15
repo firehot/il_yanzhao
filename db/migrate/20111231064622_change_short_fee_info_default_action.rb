@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeShortFeeInfoDefaultAction < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class ChangeShortFeeInfoDefaultAction < ActiveRecord::Migration
   def self.down
   end
 end
+

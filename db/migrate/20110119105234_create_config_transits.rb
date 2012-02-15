@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #银行转账比例设置
 class CreateConfigTransits < ActiveRecord::Migration
@@ -16,3 +17,4 @@ class CreateConfigTransits < ActiveRecord::Migration
     drop_table :config_transits
   end
 end
+

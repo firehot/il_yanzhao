@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class LoadListsController < BaseController
   include BillOperate
@@ -22,3 +23,4 @@ class LoadListsController < BaseController
     @act_load_list = @load_list.build_act_load_list
   end
 end
+

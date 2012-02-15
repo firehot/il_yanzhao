@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateDistributionLists < ActiveRecord::Migration
   def self.up
@@ -16,3 +17,4 @@ class CreateDistributionLists < ActiveRecord::Migration
     drop_table :distribution_lists
   end
 end
+

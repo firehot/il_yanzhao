@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class SendList < ActiveRecord::Base
   include SendListModule
@@ -13,3 +14,4 @@ class SendList < ActiveRecord::Base
     Date.today
   end
 end
+

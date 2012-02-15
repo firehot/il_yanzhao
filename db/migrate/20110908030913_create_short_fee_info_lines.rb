@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateShortFeeInfoLines < ActiveRecord::Migration
   def self.up
@@ -13,3 +14,4 @@ class CreateShortFeeInfoLines < ActiveRecord::Migration
     drop_table :short_fee_info_lines
   end
 end
+

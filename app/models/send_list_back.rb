@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class SendListBack < ActiveRecord::Base
   include SendListModule
@@ -12,3 +13,4 @@ class SendListBack < ActiveRecord::Base
   end
   validates_presence_of :org_id,:sender_id
 end
+

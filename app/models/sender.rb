@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class Sender < ActiveRecord::Base
   belongs_to :org
@@ -6,3 +7,4 @@ class Sender < ActiveRecord::Base
     self.name
   end
 end
+

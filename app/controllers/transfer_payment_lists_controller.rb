@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class TransferPaymentListsController < BaseController
   table :bill_date,:bank,:user,:note,:human_state_name
@@ -23,3 +24,4 @@ class TransferPaymentListsController < BaseController
     @transfer_payment_list = resource_class.find(params[:id],:include => [:bank,:user,:carrying_bills])
   end
 end
+

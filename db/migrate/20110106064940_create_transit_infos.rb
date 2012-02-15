@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #中转票据信息
 class CreateTransitInfos < ActiveRecord::Migration
@@ -28,3 +29,4 @@ class CreateTransitInfos < ActiveRecord::Migration
 
   end
 end
+

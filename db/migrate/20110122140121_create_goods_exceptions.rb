@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #货物一场情况上报
 class CreateGoodsExceptions < ActiveRecord::Migration
@@ -20,3 +21,4 @@ class CreateGoodsExceptions < ActiveRecord::Migration
     drop_table :goods_exceptions
   end
 end
+

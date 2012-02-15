@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #汇款记录
 class CreateRemittances < ActiveRecord::Migration
@@ -21,3 +22,4 @@ class CreateRemittances < ActiveRecord::Migration
     drop_table :remittances
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #退货单
 class ReturnBill < CarryingBill
@@ -10,3 +11,4 @@ class ReturnBill < CarryingBill
     bill
   end
 end
+

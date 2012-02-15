@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddPostedDateToGoodsException < ActiveRecord::Migration
   def self.up
@@ -28,3 +29,4 @@ class AddPostedDateToGoodsException < ActiveRecord::Migration
 
   end
 end
+

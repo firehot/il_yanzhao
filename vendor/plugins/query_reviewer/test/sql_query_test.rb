@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.join(File.dirname(__FILE__), 'test_helper')
 
 class SqlQueryTest < Test::Unit::TestCase
@@ -6,3 +7,4 @@ class SqlQueryTest < Test::Unit::TestCase
     assert true
   end
 end
+

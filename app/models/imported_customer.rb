@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #自运单导入的客户资料,用于客户分级
 class ImportedCustomer < Customer
@@ -74,3 +75,4 @@ class ImportedCustomer < Customer
     CustomerLevelConfig.states[self.state]
   end
 end
+

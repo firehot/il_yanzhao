@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class IlConfig < ActiveRecord::Base
   validates_presence_of :key
@@ -31,3 +32,4 @@ class IlConfig < ActiveRecord::Base
     @system_title.value
   end
 end
+

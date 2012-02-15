@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "rubygems"
 require "active_support"
 require 'test/unit'
@@ -16,3 +17,4 @@ end
 class Test::Unit::TestCase
   include QueryReviewer
 end
+

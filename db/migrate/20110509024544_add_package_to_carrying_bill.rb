@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddPackageToCarryingBill < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class AddPackageToCarryingBill < ActiveRecord::Migration
     remove_column :carrying_bills, :package
   end
 end
+

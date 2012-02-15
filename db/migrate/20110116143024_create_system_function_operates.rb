@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #系统功能操作表
 class CreateSystemFunctionOperates < ActiveRecord::Migration
@@ -22,3 +23,4 @@ class CreateSystemFunctionOperates < ActiveRecord::Migration
     add_column :system_functions,:function_obj,:text
   end
 end
+

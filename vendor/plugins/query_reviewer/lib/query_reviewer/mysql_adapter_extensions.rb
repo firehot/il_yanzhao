@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   module MysqlAdapterExtensions
     def self.included(base)
@@ -88,3 +89,4 @@ module QueryReviewer
     end
   end
 end
+

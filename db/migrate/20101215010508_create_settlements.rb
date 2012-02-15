@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #返程运单日结
 class CreateSettlements < ActiveRecord::Migration
@@ -22,3 +23,4 @@ class CreateSettlements < ActiveRecord::Migration
     remove_column :carrying_bills,:settlement_id
   end
 end
+

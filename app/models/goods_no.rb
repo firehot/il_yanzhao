@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #货号生成器
 class GoodsNo < ActiveRecord::Base
@@ -25,3 +26,4 @@ class GoodsNo < ActiveRecord::Base
     "#{bill.bill_date.strftime('%y%m%d')}#{bill.from_org.simp_name}#{bill.transit_org.present? ? bill.transit_org.simp_name : bill.to_org.simp_name}#{goods_no.reload.bill_count}-#{bill.goods_num}"
   end
 end
+

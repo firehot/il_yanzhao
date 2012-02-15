@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddOpOrgIdToShortFeeInfo < ActiveRecord::Migration
   def self.up
@@ -16,3 +17,4 @@ class AddOpOrgIdToShortFeeInfo < ActiveRecord::Migration
     remove_column :goods_errors,:op_org_id
   end
 end
+

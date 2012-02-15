@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #为Array类添加导出csv方法
 require "nkf"
@@ -103,3 +104,4 @@ module ActiveRecord
     end
   end
 end
+

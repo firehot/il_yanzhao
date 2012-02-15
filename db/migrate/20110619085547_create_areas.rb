@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateAreas < ActiveRecord::Migration
   def self.up
@@ -19,3 +20,4 @@ class CreateAreas < ActiveRecord::Migration
     add_column :carrying_bills,:to_area,:string,:limit => 20
   end
 end
+

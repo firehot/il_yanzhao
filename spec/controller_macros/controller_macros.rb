@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module ControllerMacros
   def login_admin
@@ -14,3 +15,4 @@ module ControllerMacros
     end
   end
 end
+

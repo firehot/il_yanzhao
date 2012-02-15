@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateBillNos < ActiveRecord::Migration
   def self.up
@@ -11,3 +12,4 @@ class CreateBillNos < ActiveRecord::Migration
     drop_table :bill_nos
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ShortFeeInfosController < BaseController
   table :bill_date,:org,:human_state_name,:sum_write_off_fee,:write_off_date,:note
@@ -35,3 +36,4 @@ class ShortFeeInfosController < BaseController
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #给运单添加装车清单id
 class AddLoadListIdToCarryingBill < ActiveRecord::Migration
@@ -9,3 +10,4 @@ class AddLoadListIdToCarryingBill < ActiveRecord::Migration
     remove_column :carrying_bills, :load_list_id
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddOriginalCarryingFeeToCarryingBill < ActiveRecord::Migration
   def self.up
@@ -24,3 +25,4 @@ class AddOriginalCarryingFeeToCarryingBill < ActiveRecord::Migration
     remove_column :carrying_bills, :original_carrying_fee
   end
 end
+

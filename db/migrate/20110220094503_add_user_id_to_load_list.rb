@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddUserIdToLoadList < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class AddUserIdToLoadList < ActiveRecord::Migration
     remove_column :load_lists, :user_id
   end
 end
+

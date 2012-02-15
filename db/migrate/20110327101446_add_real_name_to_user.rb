@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddRealNameToUser < ActiveRecord::Migration
   def self.up
@@ -9,3 +10,4 @@ class AddRealNameToUser < ActiveRecord::Migration
     remove_column :users, :real_name
   end
 end
+

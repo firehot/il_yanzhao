@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -92,3 +93,4 @@ describe RemittancesController do
     end
   end
 end
+

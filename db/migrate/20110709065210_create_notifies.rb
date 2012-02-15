@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateNotifies < ActiveRecord::Migration
   def self.up
@@ -32,3 +33,4 @@ class CreateNotifies < ActiveRecord::Migration
     drop_table :notifies
   end
 end
+

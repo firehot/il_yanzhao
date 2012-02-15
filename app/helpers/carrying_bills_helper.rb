@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module CarryingBillsHelper
   #运费支付方式显示
@@ -64,3 +65,4 @@ module CarryingBillsHelper
     [["打印多次",2]]
   end
 end
+

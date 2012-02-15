@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #基于cancan的功能定义
 class AbilityObj
@@ -10,3 +11,4 @@ class AbilityObj
     @block=block
   end
 end
+

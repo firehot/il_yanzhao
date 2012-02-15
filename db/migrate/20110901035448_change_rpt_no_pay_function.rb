@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeRptNoPayFunction < ActiveRecord::Migration
   def self.up
@@ -11,3 +12,4 @@ class ChangeRptNoPayFunction < ActiveRecord::Migration
   def self.down
   end
 end
+

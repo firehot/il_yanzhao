@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateSendListPosts < ActiveRecord::Migration
   def self.up
@@ -19,3 +20,4 @@ class CreateSendListPosts < ActiveRecord::Migration
     remove_column :send_list_lines,:send_list_post_id
   end
 end
+

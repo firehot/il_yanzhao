@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class Ability
   include CanCan::Ability
@@ -169,3 +170,4 @@ class Ability
     end
   end
 end
+

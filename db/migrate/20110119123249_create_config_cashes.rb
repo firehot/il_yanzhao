@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #代收货款,现金费用设置
 class CreateConfigCashes < ActiveRecord::Migration
@@ -16,3 +17,4 @@ class CreateConfigCashes < ActiveRecord::Migration
     drop_table :config_cashes
   end
 end
+

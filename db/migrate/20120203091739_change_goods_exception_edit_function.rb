@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeGoodsExceptionEditFunction < ActiveRecord::Migration
   def self.up
@@ -18,3 +19,4 @@ class ChangeGoodsExceptionEditFunction < ActiveRecord::Migration
   def self.down
   end
 end
+

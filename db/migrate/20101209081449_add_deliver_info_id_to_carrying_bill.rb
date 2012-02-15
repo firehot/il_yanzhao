@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #运单对应的提货信息id
 class AddDeliverInfoIdToCarryingBill < ActiveRecord::Migration
@@ -9,3 +10,4 @@ class AddDeliverInfoIdToCarryingBill < ActiveRecord::Migration
     remove_column :carrying_bills, :deliver_info_id
   end
 end
+

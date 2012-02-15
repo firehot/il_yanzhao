@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   # a collection of SQL SELECT queries  
   class SqlQueryCollection
@@ -101,3 +102,4 @@ module QueryReviewer
     end
   end
 end
+

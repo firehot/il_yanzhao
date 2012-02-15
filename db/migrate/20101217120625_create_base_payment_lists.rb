@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateBasePaymentLists < ActiveRecord::Migration
   def self.up
@@ -19,3 +20,4 @@ class CreateBasePaymentLists < ActiveRecord::Migration
     remove_column :carrying_bills,:payment_list_id
   end
 end
+

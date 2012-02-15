@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   module Views
     module QueryReviewBoxHelper
@@ -145,3 +146,4 @@ module QueryReviewer
     end
   end
 end
+

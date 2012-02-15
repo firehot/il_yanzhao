@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeNameFromConfigTransit < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class ChangeNameFromConfigTransit < ActiveRecord::Migration
     change_column :config_transits,:name,:string,:null => false,:limit => 20
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 IlYanzhao::Application.configure do
@@ -35,3 +36,4 @@ IlYanzhao::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+

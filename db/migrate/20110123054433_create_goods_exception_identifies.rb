@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateGoodsExceptionIdentifies < ActiveRecord::Migration
   def self.up
@@ -17,3 +18,4 @@ class CreateGoodsExceptionIdentifies < ActiveRecord::Migration
     drop_table :goods_exception_identifies
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class PostInfo < ActiveRecord::Base
   belongs_to :org
@@ -72,3 +73,4 @@ class PostInfo < ActiveRecord::Base
     GoodsFeeSettlementList.create(:bill_date => self.bill_date,:org => self.org,:post_info => self,:user => self.user)
   end
 end
+

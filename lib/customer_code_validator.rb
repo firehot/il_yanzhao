@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CustomerCodeValidator < ActiveModel::EachValidator
   def validate_each(object,attribute,value)
@@ -6,3 +7,4 @@ class CustomerCodeValidator < ActiveModel::EachValidator
     end
   end
 end
+

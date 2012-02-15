@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddSumTransitCarryingFeeToRefound < ActiveRecord::Migration
   def self.up
@@ -13,3 +14,4 @@ class AddSumTransitCarryingFeeToRefound < ActiveRecord::Migration
     remove_column :refounds, :sum_transit_hand_fee
   end
 end
+

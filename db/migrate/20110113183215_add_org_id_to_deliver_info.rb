@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddOrgIdToDeliverInfo < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class AddOrgIdToDeliverInfo < ActiveRecord::Migration
     remove_column :deliver_infos, :org_id
   end
 end
+

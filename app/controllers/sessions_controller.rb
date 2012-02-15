@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 #coding: utf-8
@@ -20,3 +21,4 @@ class SessionsController < Devise::SessionsController
     redirect_to after_sign_in_path_for(resource) || stored_location_for(scope)
   end
 end
+

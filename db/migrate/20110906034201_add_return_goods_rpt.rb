@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddReturnGoodsRpt < ActiveRecord::Migration
   def self.up
@@ -20,3 +21,4 @@ class AddReturnGoodsRpt < ActiveRecord::Migration
   def self.down
   end
 end
+

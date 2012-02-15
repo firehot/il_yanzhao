@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -24,3 +25,4 @@ describe CashPaymentList do
     @computer_bill.should be_payment_listed
   end
 end
+

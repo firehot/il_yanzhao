@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #转账客户
 class Vip <  Customer
@@ -37,3 +38,4 @@ class Vip <  Customer
     se = "%04d" % next_seq
   end
 end
+

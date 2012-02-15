@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe ActLoadList do
@@ -7,3 +8,4 @@ describe ActLoadList do
     act_load_list.save!
   end
 end
+

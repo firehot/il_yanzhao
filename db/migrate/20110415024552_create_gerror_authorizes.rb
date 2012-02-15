@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #多货少货核销信息
 class CreateGerrorAuthorizes < ActiveRecord::Migration
@@ -16,3 +17,4 @@ class CreateGerrorAuthorizes < ActiveRecord::Migration
     drop_table :gerror_authorizes
   end
 end
+

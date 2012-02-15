@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #实际装车清单
 class ActLoadList < ActiveRecord::Base
@@ -13,3 +14,4 @@ class ActLoadList < ActiveRecord::Base
   end
   validates_presence_of :from_org,:to_org,:load_list
 end
+

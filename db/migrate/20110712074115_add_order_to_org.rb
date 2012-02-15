@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddOrderToOrg < ActiveRecord::Migration
   def self.up
@@ -10,3 +11,4 @@ class AddOrderToOrg < ActiveRecord::Migration
     remove_column :orgs, :order_by
   end
 end
+

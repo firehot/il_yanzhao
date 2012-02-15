@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class TransitDeliverInfosController < BaseController
   table :bill_date,:org,:human_state_name,:user,:note
@@ -16,3 +17,4 @@ class TransitDeliverInfosController < BaseController
     render :partial => "search"
   end
 end
+

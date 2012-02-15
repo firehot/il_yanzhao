@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -19,3 +20,4 @@ describe CashPayInfo do
     @computer_bill.should be_paid
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Use this setup block to configure all options available in ShowFor.
 ShowFor.setup do |config|
   # The tag which wraps show_for calls.
@@ -35,3 +36,4 @@ ShowFor.setup do |config|
   # specify label_proc - it will be automatically called, passing in the label text.
   # config.label_proc = lambda { |l| l + ":" }
 end
+

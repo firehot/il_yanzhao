@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateSendLists < ActiveRecord::Migration
   def self.up
@@ -15,3 +16,4 @@ class CreateSendLists < ActiveRecord::Migration
     drop_table :send_lists
   end
 end
+

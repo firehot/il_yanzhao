@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module ApplicationHelper
   #排序辅助方法
@@ -99,3 +100,4 @@ module ApplicationHelper
 
 
 end
+

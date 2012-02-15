@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   module MysqlAnalyzer
     def do_mysql_analysis!
@@ -60,3 +61,4 @@ module QueryReviewer
     end
   end
 end
+

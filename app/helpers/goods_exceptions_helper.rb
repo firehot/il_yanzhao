@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module GoodsExceptionsHelper
   #货物异常类别方式显示
@@ -16,3 +17,4 @@ module GoodsExceptionsHelper
     GoodsException.state_machine.states.collect{|state| [state.human_name,state.value] }
   end
 end
+

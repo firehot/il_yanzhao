@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -63,3 +64,4 @@ describe SettlementsController do
 
   end
 end
+

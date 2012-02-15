@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   module ArrayExtensions  #taken from query_analyser plugin
     protected
@@ -27,3 +28,4 @@ module QueryReviewer
     end
   end  
 end
+

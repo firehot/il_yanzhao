@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddDefaultActionToSystemFunction < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class AddDefaultActionToSystemFunction < ActiveRecord::Migration
     remove_column :system_functions, :default_action
   end
 end
+

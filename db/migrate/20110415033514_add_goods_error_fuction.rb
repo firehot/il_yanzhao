@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddGoodsErrorFuction < ActiveRecord::Migration
   def self.up
@@ -5,3 +6,4 @@ class AddGoodsErrorFuction < ActiveRecord::Migration
   def self.down
   end
 end
+

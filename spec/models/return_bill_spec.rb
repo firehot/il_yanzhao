@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -16,3 +17,4 @@ describe ReturnBill do
     @return_bill.goods_no.should be_present
   end
 end
+

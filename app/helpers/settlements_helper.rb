@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module SettlementsHelper
   #票据状态
@@ -5,3 +6,4 @@ module SettlementsHelper
     Settlement.state_machine.states.collect{|state| [state.human_name,state.value] }
   end
 end
+

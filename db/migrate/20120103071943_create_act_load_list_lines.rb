@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding:utf-8
 class CreateActLoadListLines < ActiveRecord::Migration
   def self.up
@@ -14,3 +15,4 @@ class CreateActLoadListLines < ActiveRecord::Migration
     drop_table :act_load_list_lines
   end
 end
+

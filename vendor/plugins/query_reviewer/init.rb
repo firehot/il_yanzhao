@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Include hook code here
 
 require 'query_reviewer'
@@ -14,3 +15,4 @@ if QueryReviewer.enabled?
     ActionController::Base.append_view_path(File.dirname(__FILE__) + "/lib/query_reviewer/views")
   end
 end
+

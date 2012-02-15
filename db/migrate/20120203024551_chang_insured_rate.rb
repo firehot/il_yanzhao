@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangInsuredRate < ActiveRecord::Migration
   def self.up
@@ -7,3 +8,4 @@ class ChangInsuredRate < ActiveRecord::Migration
   def self.down
   end
 end
+

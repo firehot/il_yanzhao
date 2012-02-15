@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # QueryReviewer
 require "ostruct"
 require 'erb'
@@ -56,3 +57,4 @@ if QueryReviewer.enabled?
   require "query_reviewer/controller_extensions"
   require "query_reviewer/sql_query_collection"
 end
+

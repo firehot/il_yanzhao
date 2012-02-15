@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   class QueryWarning
     attr_reader :query, :severity, :problem, :desc, :table, :id
@@ -15,3 +16,4 @@ module QueryReviewer
     end
   end
 end
+

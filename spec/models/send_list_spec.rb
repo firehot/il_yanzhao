@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -8,3 +9,4 @@ describe SendList do
     send_list.save!
   end
 end
+

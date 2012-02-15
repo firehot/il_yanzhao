@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #实际装车清单
 class CreateActLoadLists < ActiveRecord::Migration
@@ -19,3 +20,4 @@ class CreateActLoadLists < ActiveRecord::Migration
     drop_table :act_load_lists
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 module SendersHelper
@@ -6,3 +7,4 @@ module SendersHelper
     Sender.where(:is_active => true,:org_id => current_user.default_org.id).all
   end
 end
+

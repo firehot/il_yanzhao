@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CustomerLevelConfig < ActiveRecord::Base
   belongs_to :org
@@ -59,3 +60,4 @@ class CustomerLevelConfig < ActiveRecord::Base
     end
   end
 end
+

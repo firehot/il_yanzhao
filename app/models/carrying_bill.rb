@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CustomerCodeValidator < ActiveModel::EachValidator
   def validate_each(object,attribute,value)
@@ -572,3 +573,4 @@ class CarryingBill < ActiveRecord::Base
       errors.add(:k_carrying_fee,"货款金额必须大于运费金额.") if pay_type.eql?(PAY_TYPE_K_GOODSFEE) and goods_fee <= carrying_fee
     end
     end
+

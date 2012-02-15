@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ConfigCash < ActiveRecord::Base
   belongs_to :org
@@ -27,3 +28,4 @@ class ConfigCash < ActiveRecord::Base
     ret.ceil
   end
 end
+

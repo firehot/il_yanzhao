@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class DeliverInfo < ActiveRecord::Base
   belongs_to :user
@@ -45,3 +46,4 @@ class DeliverInfo < ActiveRecord::Base
     }
   end
 end
+

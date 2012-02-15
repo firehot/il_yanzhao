@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateRoleSystemFunctionJoinTable < ActiveRecord::Migration
   def self.up
@@ -12,3 +13,4 @@ class CreateRoleSystemFunctionJoinTable < ActiveRecord::Migration
     drop_table :role_system_functions
   end
 end
+

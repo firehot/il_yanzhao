@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #贵宾客户级别设置
 class CreateCustomerLevelConfigs < ActiveRecord::Migration
@@ -17,3 +18,4 @@ class CreateCustomerLevelConfigs < ActiveRecord::Migration
     drop_table :customer_level_configs
   end
 end
+

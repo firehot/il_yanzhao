@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe NotifiesController do
@@ -33,3 +34,4 @@ describe NotifiesController do
 
   end
 end
+

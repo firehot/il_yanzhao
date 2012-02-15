@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -16,3 +17,4 @@ describe TransitDeliverInfo do
     @transit_deliver_info.should be_deliveried
   end
 end
+

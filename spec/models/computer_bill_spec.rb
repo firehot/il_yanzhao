@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -68,3 +69,4 @@ describe ComputerBill do
     @computer_bill.should_not be_loaded
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class GoodsException < ActiveRecord::Base
   belongs_to :carrying_bill
@@ -72,3 +73,4 @@ class GoodsException < ActiveRecord::Base
     errors.add(:carrying_bill,"已上报") if GoodsException.exists?(:carrying_bill_id => self.carrying_bill_id)
   end
 end
+

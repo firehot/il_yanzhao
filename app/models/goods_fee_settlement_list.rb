@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #客户提款结算清单
 class GoodsFeeSettlementList < ActiveRecord::Base
@@ -53,3 +54,4 @@ class GoodsFeeSettlementList < ActiveRecord::Base
     self.sum_income_fee - self.sum_spending_fee
   end
 end
+

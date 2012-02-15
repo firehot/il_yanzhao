@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -15,3 +16,4 @@ describe IlConfig do
     il_config.should_not be_valid
   end
 end
+

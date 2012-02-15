@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #运单controller基础类
 class CarryingBillsController < BaseController
@@ -133,3 +134,4 @@ class CarryingBillsController < BaseController
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").with_association.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
+

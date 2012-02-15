@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #实际装车清单明细
 class ActLoadListLine < ActiveRecord::Base
@@ -15,3 +16,4 @@ class ActLoadListLine < ActiveRecord::Base
     line.carrying_bill.try(:rest_goods_num)
   end
 end
+

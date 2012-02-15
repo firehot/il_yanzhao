@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 class CreateOrgs < ActiveRecord::Migration
@@ -22,3 +23,4 @@ class CreateOrgs < ActiveRecord::Migration
     drop_table :orgs
   end
 end
+

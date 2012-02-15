@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #中转提货信息
 class CreateTransitDeliverInfos < ActiveRecord::Migration
@@ -20,3 +21,4 @@ class CreateTransitDeliverInfos < ActiveRecord::Migration
     remove_column :carrying_bills,:transit_deliver_info_id
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddIdNumberToSender < ActiveRecord::Migration
   def self.up
@@ -9,3 +10,4 @@ class AddIdNumberToSender < ActiveRecord::Migration
     remove_column :senders, :id_number
   end
 end
+

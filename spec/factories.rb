@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #定义一个根机构
 Factory.define :department do |dep|
@@ -592,3 +593,4 @@ Factory.define :goods_fee_settlement_list do |gfs|
   gfs.amount_k_carrying_fee 487
   gfs.amount_bills 19
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #系统启动时,缓存相关数据
 class AppCache
   #生成货号
@@ -54,3 +55,4 @@ class AppCache
     cur_bill_count
   end
 end
+

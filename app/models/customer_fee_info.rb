@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #客户费用合计
 class CustomerFeeInfo < ActiveRecord::Base
@@ -40,3 +41,4 @@ class CustomerFeeInfo < ActiveRecord::Base
     }
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #系统设置表
 class CreateIlConfigs < ActiveRecord::Migration
@@ -14,3 +15,4 @@ class CreateIlConfigs < ActiveRecord::Migration
     drop_table :il_configs
   end
 end
+

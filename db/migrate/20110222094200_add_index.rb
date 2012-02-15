@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddIndex < ActiveRecord::Migration
   def self.up
@@ -614,3 +615,4 @@ class AddIndex < ActiveRecord::Migration
 
   end
 end
+

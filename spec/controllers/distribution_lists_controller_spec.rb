@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -33,3 +34,4 @@ describe DistributionListsController do
 
   end
 end
+

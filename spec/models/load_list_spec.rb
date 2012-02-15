@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -39,3 +40,4 @@ describe LoadList do
     @load_list.carrying_bills.first.should be_reached
   end
 end
+

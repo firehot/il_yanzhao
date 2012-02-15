@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CustomerFeeInfosController < BaseController
   table :org,:mth,:user,:created_at
@@ -13,3 +14,4 @@ class CustomerFeeInfosController < BaseController
     end
   end
 end
+

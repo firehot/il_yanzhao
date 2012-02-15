@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #提货信息
 class CreateDeliverInfos < ActiveRecord::Migration
@@ -18,3 +19,4 @@ class CreateDeliverInfos < ActiveRecord::Migration
     drop_table :deliver_infos
   end
 end
+

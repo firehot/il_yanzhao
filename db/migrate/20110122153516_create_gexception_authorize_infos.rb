@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateGexceptionAuthorizeInfos < ActiveRecord::Migration
   def self.up
@@ -17,3 +18,4 @@ class CreateGexceptionAuthorizeInfos < ActiveRecord::Migration
     drop_table :gexception_authorize_infos
   end
 end
+

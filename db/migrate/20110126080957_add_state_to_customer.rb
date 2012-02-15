@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddStateToCustomer < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class AddStateToCustomer < ActiveRecord::Migration
     remove_column :customers, :state
   end
 end
+

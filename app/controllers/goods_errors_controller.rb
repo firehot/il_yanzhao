@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GoodsErrorsController < BaseController
   table :bill_date,:org,:except_des,:except_num,:note,:user,:human_state_name
   #需要跳过对update的权限检查,在进行核销/理赔/责任鉴定时候,使用了update
@@ -28,3 +29,4 @@ class GoodsErrorsController < BaseController
   end
 
 end
+

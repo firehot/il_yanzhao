@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe GoodsFeeSettlementList do
@@ -14,3 +15,4 @@ describe GoodsFeeSettlementList do
     @goods_fee_settlement_list.should be_posted
   end
 end
+

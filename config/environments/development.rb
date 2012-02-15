@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 IlYanzhao::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
@@ -45,3 +46,4 @@ UniformNotifier.active_notifiers.each do |notifier|
   responses << notifier.inline_notify(notify_message)
 end
 javascript_str = responses.join("\n")
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class DeliverInfosController < BaseController
   table :org,:deliver_date,:bill_no,:customer_name,:customer_no,:sum_carrying_fee,:sum_goods_fee,:sum_th_fee
@@ -17,3 +18,4 @@ class DeliverInfosController < BaseController
     render :partial => "search"
   end
 end
+

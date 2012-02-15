@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -6,3 +7,4 @@ describe TransitCompany do
     Factory.build(:transit_company).save!
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #运单编号生成器
 class BillNo < ActiveRecord::Base
@@ -7,3 +8,4 @@ class BillNo < ActiveRecord::Base
     bill_no.reload.bill_count
   end
 end
+

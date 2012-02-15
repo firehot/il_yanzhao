@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 require 'test_helper'
@@ -9,3 +10,4 @@ class BrowsingTest < ActionDispatch::PerformanceTest
     get '/'
   end
 end
+

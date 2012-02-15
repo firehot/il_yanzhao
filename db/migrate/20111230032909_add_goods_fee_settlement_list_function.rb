@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #添加分理处提款结算清单系统功能
 class AddGoodsFeeSettlementListFunction < ActiveRecord::Migration
@@ -27,3 +28,4 @@ class AddGoodsFeeSettlementListFunction < ActiveRecord::Migration
   def self.down
   end
 end
+

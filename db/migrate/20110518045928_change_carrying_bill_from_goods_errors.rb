@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeCarryingBillFromGoodsErrors < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class ChangeCarryingBillFromGoodsErrors < ActiveRecord::Migration
     change_column :goods_errors,:carrying_bill_id,:integer,:null => false
   end
 end
+

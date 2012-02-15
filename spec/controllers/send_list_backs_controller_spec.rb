@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -89,3 +90,4 @@ describe SendListBacksController do
     end
   end
 end
+

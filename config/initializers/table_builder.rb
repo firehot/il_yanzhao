@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module InheritedResources
   module TableBuilder
     def self.included(base)
@@ -60,3 +61,4 @@ module InheritedResources
   end
 end
 InheritedResources::Base.send(:include,InheritedResources::TableBuilder)
+

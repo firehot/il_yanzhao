@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class RemittancesController < BaseController
   table :bill_date,:from_org,:to_org,:should_fee,:act_fee,:human_state_name,:note
@@ -12,3 +13,4 @@ class RemittancesController < BaseController
     render :partial => "search"
   end
 end
+

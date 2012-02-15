@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 IlYanzhao::Application.routes.draw do
   resources :act_load_lists,:except => [:new] do
     get :search,:on => :collection
@@ -309,3 +310,4 @@ IlYanzhao::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+

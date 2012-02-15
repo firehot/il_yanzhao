@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddAccountToPayInfo < ActiveRecord::Migration
   def self.up
@@ -10,3 +11,4 @@ class AddAccountToPayInfo < ActiveRecord::Migration
     remove_column :pay_infos, :account_name
   end
 end
+

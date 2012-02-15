@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ReceiveRefoundsController < RefoundsController
   include BillOperate
@@ -12,3 +13,4 @@ class ReceiveRefoundsController < RefoundsController
   end
 
 end
+

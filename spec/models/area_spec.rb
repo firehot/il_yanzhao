@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Area do
@@ -6,3 +7,4 @@ describe Area do
   end
 
 end
+

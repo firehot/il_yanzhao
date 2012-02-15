@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class SendListsController < BaseController
   def create
@@ -26,3 +27,4 @@ class SendListsController < BaseController
   end
 
 end
+

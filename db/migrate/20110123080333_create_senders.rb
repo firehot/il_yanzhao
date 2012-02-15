@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #送货员
 class CreateSenders < ActiveRecord::Migration
@@ -17,3 +18,4 @@ class CreateSenders < ActiveRecord::Migration
     drop_table :senders
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateUserOrgs < ActiveRecord::Migration
   def self.up
@@ -14,3 +15,4 @@ class CreateUserOrgs < ActiveRecord::Migration
     drop_table :user_orgs
   end
 end
+

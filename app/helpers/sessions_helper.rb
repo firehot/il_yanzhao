@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module SessionsHelper
   def user_roles_for_select(user)
@@ -14,3 +15,4 @@ module SessionsHelper
     end
   end
 end
+

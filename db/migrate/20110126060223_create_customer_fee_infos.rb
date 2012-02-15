@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #客户费用信息,从运单信息中导入
 class CreateCustomerFeeInfos < ActiveRecord::Migration
@@ -15,3 +16,4 @@ class CreateCustomerFeeInfos < ActiveRecord::Migration
     drop_table :customer_fee_infos
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class DistributionList < ActiveRecord::Base
   belongs_to :user
@@ -37,3 +38,4 @@ class DistributionList < ActiveRecord::Base
       ]}
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #add bundler support
 require 'bundler/capistrano'
 set :application, "il_yanzhao"
@@ -65,3 +66,4 @@ namespace :deploy do
     end
   end
 end
+

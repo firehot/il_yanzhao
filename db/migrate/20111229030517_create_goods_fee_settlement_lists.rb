@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateGoodsFeeSettlementLists < ActiveRecord::Migration
   def self.up
@@ -21,3 +22,4 @@ class CreateGoodsFeeSettlementLists < ActiveRecord::Migration
     drop_table :goods_fee_settlement_lists
   end
 end
+

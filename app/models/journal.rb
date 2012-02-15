@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class Journal < ActiveRecord::Base
   belongs_to :org
@@ -60,3 +61,4 @@ class Journal < ActiveRecord::Base
     ret
   end
 end
+

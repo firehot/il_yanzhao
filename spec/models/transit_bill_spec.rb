@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -45,3 +46,4 @@ describe TransitBill do
     @transit_bill.should be_settlemented
   end
 end
+

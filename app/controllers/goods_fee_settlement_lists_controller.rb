@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class GoodsFeeSettlementListsController < BaseController
   #定义列表显示的列
   table :bill_date,:org,:sum_income_fee,:sum_spending_fee,:sum_rest_fee,:user,:human_state_name
@@ -14,3 +15,4 @@ class GoodsFeeSettlementListsController < BaseController
     redirect_to @goods_fee_settlement_list
   end
 end
+

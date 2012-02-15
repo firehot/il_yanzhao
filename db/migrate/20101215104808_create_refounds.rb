@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateRefounds < ActiveRecord::Migration
   def self.up
@@ -22,3 +23,4 @@ class CreateRefounds < ActiveRecord::Migration
     remove_column :carrying_bills,:refound_id
   end
 end
+

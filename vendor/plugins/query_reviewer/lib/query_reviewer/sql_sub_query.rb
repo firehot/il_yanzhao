@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module QueryReviewer
   # a single part of an SQL SELECT query
   class SqlSubQuery < OpenStruct
@@ -42,3 +43,4 @@ module QueryReviewer
     end
   end
 end
+

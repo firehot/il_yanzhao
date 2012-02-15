@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ReturnBillsController <  CarryingBillsController
   include BillOperate::BillPrint
@@ -26,3 +27,4 @@ class ReturnBillsController <  CarryingBillsController
     create!
   end
 end
+

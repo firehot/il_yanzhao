@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ModifyRptTurnOverChartDefaultAction < ActiveRecord::Migration
   def self.up
@@ -9,3 +10,4 @@ class ModifyRptTurnOverChartDefaultAction < ActiveRecord::Migration
   def self.down
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class Role < ActiveRecord::Base
   attr_accessor :all_role_sfos
@@ -55,3 +56,4 @@ class Role < ActiveRecord::Base
     self.name
   end
 end
+

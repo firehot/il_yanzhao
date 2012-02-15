@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddToShortFeeStateToCarryingBill < ActiveRecord::Migration
   def self.up
@@ -18,3 +19,4 @@ class AddToShortFeeStateToCarryingBill < ActiveRecord::Migration
     add_column :carrying_bills,:short_fee_state,:string,:limit => 20,:default => 'draft'
   end
 end
+

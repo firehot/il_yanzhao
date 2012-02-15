@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #角色操作权限表
 class CreateRoleSystemFunctionOperates < ActiveRecord::Migration
@@ -851,3 +852,4 @@ end
 def self.down
   drop_table :role_system_function_operates
 end
+

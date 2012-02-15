@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeRptNoPayDefaultAction < ActiveRecord::Migration
   #修改返程票据统计的default_action
@@ -10,3 +11,4 @@ class ChangeRptNoPayDefaultAction < ActiveRecord::Migration
   def self.down
   end
 end
+

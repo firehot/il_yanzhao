@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #机打票
 class ComputerBill < CarryingBill
@@ -7,3 +8,4 @@ class ComputerBill < CarryingBill
   #更新数据时,验证运单号/货号不可为空
   validates :bill_no,:goods_no,:to_org_id,:presence => true
 end
+

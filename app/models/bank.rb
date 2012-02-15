@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class Bank < ActiveRecord::Base
   validates :name,:code,:presence => true
@@ -6,3 +7,4 @@ class Bank < ActiveRecord::Base
     self.name
   end
 end
+

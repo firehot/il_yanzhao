@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #大车装车清单
 class CreateLoadLists < ActiveRecord::Migration
@@ -20,3 +21,4 @@ class CreateLoadLists < ActiveRecord::Migration
     drop_table :load_lists
   end
 end
+

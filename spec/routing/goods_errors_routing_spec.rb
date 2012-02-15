@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe GoodsErrorsController do
@@ -32,3 +33,4 @@ describe GoodsErrorsController do
     end
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddConfigTransitToCustomer < ActiveRecord::Migration
   def self.up
@@ -10,3 +11,4 @@ class AddConfigTransitToCustomer < ActiveRecord::Migration
     add_column :customers,:hand_fee_rate,:decimal,:precision => 15,:scale => 3,:default => 0.001
   end
 end
+

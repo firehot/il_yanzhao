@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.join(File.dirname(__FILE__), 'test_helper')
 
 class SqlSubqueryTest < Test::Unit::TestCase
@@ -15,3 +16,4 @@ class SqlSubqueryTest < Test::Unit::TestCase
     SqlSubQuery.new(options)
   end
 end
+

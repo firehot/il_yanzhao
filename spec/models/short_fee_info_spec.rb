@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -9,3 +10,4 @@ describe ShortFeeInfo do
     @short_fee_info.save!
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #拼音简写
 class AddPyToOrg < ActiveRecord::Migration
@@ -9,3 +10,4 @@ class AddPyToOrg < ActiveRecord::Migration
     remove_column :orgs, :py
   end
 end
+

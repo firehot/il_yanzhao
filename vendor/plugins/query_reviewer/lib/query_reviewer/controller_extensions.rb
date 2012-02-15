@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.join(File.dirname(__FILE__), "views", "query_review_box_helper")
 
 require "action_view"
@@ -63,3 +64,4 @@ module QueryReviewer
     end
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe GoodsFeeSettlementListsController do
@@ -33,3 +34,4 @@ describe GoodsFeeSettlementListsController do
 
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class BaseController < InheritedResources::Base
 
@@ -66,3 +67,4 @@ class BaseController < InheritedResources::Base
     ret
   end
 end
+

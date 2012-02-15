@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class GoodsExceptionsController < BaseController
   table :bill_date,:org,:carrying_bill,:except_des,:except_num,:from_fee,:to_fee,:human_state_name,:posted_date,:note
@@ -54,3 +55,4 @@ class GoodsExceptionsController < BaseController
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
+

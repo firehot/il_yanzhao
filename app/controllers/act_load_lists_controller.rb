@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ActLoadListsController < BaseController
   table :bill_date,:bill_no,:from_org,:to_org,:user,:note
   #GET search
@@ -18,3 +19,4 @@ class ActLoadListsController < BaseController
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
+

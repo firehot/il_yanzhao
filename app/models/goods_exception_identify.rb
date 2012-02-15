@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class GoodsExceptionIdentify < ActiveRecord::Base
   belongs_to :goods_exception
@@ -6,3 +7,4 @@ class GoodsExceptionIdentify < ActiveRecord::Base
     Date.today
   end
 end
+

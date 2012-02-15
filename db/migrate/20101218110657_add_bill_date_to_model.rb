@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddBillDateToModel < ActiveRecord::Migration
   def self.up
@@ -14,3 +15,4 @@ class AddBillDateToModel < ActiveRecord::Migration
     remove_column :pay_infos,:type
   end
 end
+

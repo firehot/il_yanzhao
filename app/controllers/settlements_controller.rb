@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class SettlementsController < BaseController
   table :org,:bill_date,:sum_goods_fee,:sum_carrying_fee,:user,:human_state_name,:note
@@ -29,4 +30,5 @@ class SettlementsController < BaseController
     render  :show
   end
 end
+
 

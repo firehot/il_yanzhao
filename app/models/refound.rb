@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #返款清单
 class Refound < ActiveRecord::Base
@@ -69,3 +70,4 @@ class Refound < ActiveRecord::Base
       ]}
   end
 end
+

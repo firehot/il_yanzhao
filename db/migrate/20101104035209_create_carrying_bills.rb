@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateCarryingBills < ActiveRecord::Migration
   def self.up
@@ -59,3 +60,4 @@ class CreateCarryingBills < ActiveRecord::Migration
     drop_table :carrying_bills
   end
 end
+

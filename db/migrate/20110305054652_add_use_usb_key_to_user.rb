@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddUseUsbKeyToUser < ActiveRecord::Migration
   def self.up
@@ -11,3 +12,4 @@ class AddUseUsbKeyToUser < ActiveRecord::Migration
     remove_column :users,:usb_pin
   end
 end
+

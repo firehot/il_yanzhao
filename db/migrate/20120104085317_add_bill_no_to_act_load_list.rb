@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddBillNoToActLoadList < ActiveRecord::Migration
   def self.up
@@ -8,3 +9,4 @@ class AddBillNoToActLoadList < ActiveRecord::Migration
     remove_column :act_load_lists, :bill_no
   end
 end
+

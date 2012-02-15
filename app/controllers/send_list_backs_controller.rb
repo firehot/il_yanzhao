@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class SendListBacksController < BaseController
   def create
@@ -31,3 +32,4 @@ class SendListBacksController < BaseController
     @send_list_back = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
   end
 end
+

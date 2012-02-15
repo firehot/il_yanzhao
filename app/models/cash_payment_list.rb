@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CashPaymentList < PaymentList
   attr_protected :bank_id
@@ -13,3 +14,4 @@ class CashPaymentList < PaymentList
   end
 
 end
+

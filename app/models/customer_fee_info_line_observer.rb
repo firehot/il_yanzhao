@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CustomerFeeInfoLineObserver < ActiveRecord::Observer
   def after_save(fee_info_line)
@@ -10,3 +11,4 @@ class CustomerFeeInfoLineObserver < ActiveRecord::Observer
     imported_customer.update_attributes(:cur_fee => fee_info_line.fee,:last_import_mth => 1.months.ago.strftime('%Y%m'))
   end
 end
+

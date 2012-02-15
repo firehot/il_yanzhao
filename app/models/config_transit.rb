@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ConfigTransit < ActiveRecord::Base
   validates_presence_of :rate
@@ -16,3 +17,4 @@ class ConfigTransit < ActiveRecord::Base
     (goods_fee*ret).ceil
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class LoadList < ActiveRecord::Base
   belongs_to :from_org,:class_name => "Org"
@@ -62,3 +63,4 @@ class LoadList < ActiveRecord::Base
       ]}
   end
 end
+

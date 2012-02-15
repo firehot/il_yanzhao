@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddOrgIdToConfigCash < ActiveRecord::Migration
   def self.up
@@ -17,3 +18,4 @@ class AddOrgIdToConfigCash < ActiveRecord::Migration
 
   end
 end
+

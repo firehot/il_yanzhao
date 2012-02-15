@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #客户提款基类
 class CreatePayInfos < ActiveRecord::Migration
@@ -20,3 +21,4 @@ class CreatePayInfos < ActiveRecord::Migration
     remove_column :carrying_bills,:pay_info_id
   end
 end
+

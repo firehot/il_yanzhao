@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -116,3 +117,4 @@ describe SendersController do
     end
   end
 end
+

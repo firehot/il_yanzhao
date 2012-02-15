@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class RolesController < BaseController
   #缓存(此处是http-cache)用户修改页面
@@ -8,3 +9,4 @@ class RolesController < BaseController
     @role = Role.new_with_default
   end
 end
+

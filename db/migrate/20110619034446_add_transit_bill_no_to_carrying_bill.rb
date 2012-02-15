@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddTransitBillNoToCarryingBill < ActiveRecord::Migration
   def self.up
@@ -11,3 +12,4 @@ class AddTransitBillNoToCarryingBill < ActiveRecord::Migration
     remove_column :carrying_bills,:transit_to_phone
   end
 end
+

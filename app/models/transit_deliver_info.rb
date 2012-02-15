@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class TransitDeliverInfo < ActiveRecord::Base
   belongs_to :org
@@ -22,3 +23,4 @@ class TransitDeliverInfo < ActiveRecord::Base
     Date.today
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeReturnBillDefaultAction < ActiveRecord::Migration
   #修改返程票据统计的default_action
@@ -9,3 +10,4 @@ class ChangeReturnBillDefaultAction < ActiveRecord::Migration
   def self.down
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe GoodsError do
@@ -8,3 +9,4 @@ describe GoodsError do
     @goods_error.save!
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class SendListLine < ActiveRecord::Base
   belongs_to :send_list
@@ -17,3 +18,4 @@ class SendListLine < ActiveRecord::Base
     end
   end
 end
+

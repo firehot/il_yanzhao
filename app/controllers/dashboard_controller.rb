@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class DashboardController < ApplicationController
   def index
@@ -20,3 +21,4 @@ class DashboardController < ApplicationController
     @refunded = Refound.refunded(org_ids)
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -6,3 +7,4 @@ describe CustomerLevelConfig do
     Factory.build(:customer_level_config).save!
   end
 end
+

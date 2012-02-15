@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'ruby-pinyin/pinyin'
 class Org < ActiveRecord::Base
@@ -41,3 +42,4 @@ class Org < ActiveRecord::Base
     self.py = py.to_pinyin_abbr(self.name)
   end
 end
+

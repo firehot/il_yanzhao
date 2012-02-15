@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddIsYardToOrg < ActiveRecord::Migration
   def self.up
@@ -9,3 +10,4 @@ class AddIsYardToOrg < ActiveRecord::Migration
     remove_column :orgs, :is_yard
   end
 end
+

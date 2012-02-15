@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #系统功能分类
 class CreateSystemFunctionGroups < ActiveRecord::Migration
@@ -15,3 +16,4 @@ class CreateSystemFunctionGroups < ActiveRecord::Migration
     drop_table :system_function_groups
   end
 end
+

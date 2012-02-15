@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreatePostInfos < ActiveRecord::Migration
   def self.up
@@ -20,3 +21,4 @@ class CreatePostInfos < ActiveRecord::Migration
     remove_column :carrying_bills,:post_info_id
   end
 end
+

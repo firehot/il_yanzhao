@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ImportedCustomersController < BaseController
   #检查上月是否有数据导入
@@ -21,3 +22,4 @@ class ImportedCustomersController < BaseController
     end
   end
 end
+

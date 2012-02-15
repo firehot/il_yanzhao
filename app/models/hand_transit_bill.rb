@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #手工中转运单
 class HandTransitBill < CarryingBill
@@ -20,3 +21,4 @@ class HandTransitBill < CarryingBill
     errors.add(:goods_no,"与发货地或中转地不匹配.") unless self.goods_no.include?("#{self.from_org.try(:simp_name)}#{self.transit_org.try(:simp_name)}")
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class GexceptionAuthorizeInfo < ActiveRecord::Base
   belongs_to :user
@@ -28,3 +29,4 @@ class GexceptionAuthorizeInfo < ActiveRecord::Base
     }
   end
 end
+

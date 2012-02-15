@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class PaymentList < ActiveRecord::Base
   belongs_to :bank
@@ -46,3 +47,4 @@ class PaymentList < ActiveRecord::Base
       ]}
   end
 end
+

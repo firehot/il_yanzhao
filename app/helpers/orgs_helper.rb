@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module OrgsHelper
   def orgs_for_select(include_summary = true)
@@ -93,3 +94,4 @@ module OrgsHelper
 
   end
 end
+

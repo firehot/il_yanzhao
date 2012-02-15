@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #中转物流公司信息
 class CreateTransitCompanies < ActiveRecord::Migration
@@ -18,3 +19,4 @@ class CreateTransitCompanies < ActiveRecord::Migration
     drop_table :transit_companies
   end
 end
+

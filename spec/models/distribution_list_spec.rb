@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -16,3 +17,4 @@ describe DistributionList do
     @computer_bill.should be_distributed
   end
 end
+

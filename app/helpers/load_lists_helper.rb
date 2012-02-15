@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module LoadListsHelper
   #票据状态
@@ -6,3 +7,4 @@ module LoadListsHelper
   end
 
 end
+

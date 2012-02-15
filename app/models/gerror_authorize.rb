@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class GerrorAuthorize < ActiveRecord::Base
   belongs_to :user
@@ -6,3 +7,4 @@ class GerrorAuthorize < ActiveRecord::Base
     Date.today
   end
 end
+

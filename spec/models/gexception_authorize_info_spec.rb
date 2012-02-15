@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 require 'spec_helper'
 
@@ -10,3 +11,4 @@ describe GexceptionAuthorizeInfo do
     @gexception_authorize_info.save!
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #添加客户分级导出功能
 class AddExportCustomerFeeInfoFunction < ActiveRecord::Migration
@@ -17,3 +18,4 @@ class AddExportCustomerFeeInfoFunction < ActiveRecord::Migration
   def self.down
   end
 end
+

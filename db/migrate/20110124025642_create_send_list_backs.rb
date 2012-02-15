@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #送货未交票返回记录
 class CreateSendListBacks < ActiveRecord::Migration
@@ -19,3 +20,4 @@ class CreateSendListBacks < ActiveRecord::Migration
     remove_column :send_list_lines,:send_list_back_id
   end
 end
+

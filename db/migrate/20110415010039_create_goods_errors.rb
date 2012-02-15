@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #多货少货信息
 class CreateGoodsErrors < ActiveRecord::Migration
@@ -20,3 +21,4 @@ class CreateGoodsErrors < ActiveRecord::Migration
     #drop_table :goods_errors
   end
 end
+

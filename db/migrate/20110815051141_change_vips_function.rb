@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class ChangeVipsFunction < ActiveRecord::Migration
   def self.up
@@ -31,3 +32,4 @@ class ChangeVipsFunction < ActiveRecord::Migration
   def self.down
   end
 end
+

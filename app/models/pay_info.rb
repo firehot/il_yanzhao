@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class PayInfo < ActiveRecord::Base
   has_many :carrying_bills,:order => "goods_no ASC"
@@ -62,3 +63,4 @@ class PayInfo < ActiveRecord::Base
     }
   end
 end
+

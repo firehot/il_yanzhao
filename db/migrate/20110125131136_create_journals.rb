@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 #coding: utf-8
@@ -67,3 +68,4 @@ class CreateJournals < ActiveRecord::Migration
     drop_table :journals
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class AddCurOrgToUser < ActiveRecord::Migration
   def self.up
@@ -15,3 +16,4 @@ class AddCurOrgToUser < ActiveRecord::Migration
     remove_column :users,:default_role_id
   end
 end
+

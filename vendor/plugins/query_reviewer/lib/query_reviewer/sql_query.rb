@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "ostruct"
 
 module QueryReviewer
@@ -128,3 +129,4 @@ module QueryReviewer
     end
   end
 end
+

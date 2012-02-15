@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 #coding: utf-8
 module RemittancesHelper
@@ -7,3 +8,4 @@ module RemittancesHelper
   end
 
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 module BillOperate
   def create
@@ -27,3 +28,4 @@ module BillOperate
     end
   end
 end
+

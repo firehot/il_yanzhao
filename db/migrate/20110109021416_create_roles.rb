@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #coding: utf-8
 class CreateRoles < ActiveRecord::Migration
   def self.up
@@ -13,3 +14,4 @@ class CreateRoles < ActiveRecord::Migration
     drop_table :roles
   end
 end
+
