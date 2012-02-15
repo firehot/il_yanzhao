@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddBuildActLoadListFunction < ActiveRecord::Migration
   def self.up
     sf = SystemFunction.find_by_subject_title('货物运输清单管理')

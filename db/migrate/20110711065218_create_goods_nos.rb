@@ -1,3 +1,4 @@
+#coding: utf-8
 class CreateGoodsNos < ActiveRecord::Migration
   def self.up
     create_table :goods_nos do |t|

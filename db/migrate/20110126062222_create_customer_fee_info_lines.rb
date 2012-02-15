@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class CreateCustomerFeeInfoLines < ActiveRecord::Migration
   def self.up
     create_table :customer_fee_info_lines do |t|

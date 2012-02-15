@@ -1,3 +1,4 @@
+#coding: utf-8
 class ModifyRptTurnOverChartDefaultAction < ActiveRecord::Migration
   def self.up
     #修改日营业额统计图的默认菜单url

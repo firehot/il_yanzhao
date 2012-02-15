@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class CreateGoodsExceptionIdentifies < ActiveRecord::Migration
   def self.up
     create_table :goods_exception_identifies do |t|

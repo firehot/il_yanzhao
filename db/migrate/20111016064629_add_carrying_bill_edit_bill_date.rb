@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddCarryingBillEditBillDate < ActiveRecord::Migration
   def self.up
     #添加运单录入修改运单日期功能

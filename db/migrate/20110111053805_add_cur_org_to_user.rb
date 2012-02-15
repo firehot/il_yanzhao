@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class AddCurOrgToUser < ActiveRecord::Migration
   def self.up
     change_column :users,:email,:string,:null => true
@@ -11,7 +10,7 @@ class AddCurOrgToUser < ActiveRecord::Migration
 
   def self.down
     change_column :users,:email,:string,:null => false
-    
+
     remove_column :users,:default_org_id
     remove_column :users,:default_role_id
   end

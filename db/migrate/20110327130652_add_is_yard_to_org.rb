@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddIsYardToOrg < ActiveRecord::Migration
   def self.up
     #是否中转中心

@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 #中转票据信息
 class CreateTransitInfos < ActiveRecord::Migration
   def self.up

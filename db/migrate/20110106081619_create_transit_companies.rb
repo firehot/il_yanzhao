@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 #中转物流公司信息
 class CreateTransitCompanies < ActiveRecord::Migration
   def self.up

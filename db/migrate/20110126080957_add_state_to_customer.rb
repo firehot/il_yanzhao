@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class AddStateToCustomer < ActiveRecord::Migration
   def self.up
     add_column :customers, :state, :string,:limit => 20

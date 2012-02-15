@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeShortFeeInfoDefaultAction < ActiveRecord::Migration
   def self.up
     sf = SystemFunction.find_by_subject_title("短途运费管理")

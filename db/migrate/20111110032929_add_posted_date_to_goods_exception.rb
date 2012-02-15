@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddPostedDateToGoodsException < ActiveRecord::Migration
   def self.up
     add_column :goods_exceptions, :posted_date, :date

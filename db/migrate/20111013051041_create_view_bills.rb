@@ -1,3 +1,4 @@
+#coding: utf-8
 class CreateViewBills < ActiveRecord::Migration
   def self.up
     sql = <<-EOF

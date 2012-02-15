@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 class CreatePostInfos < ActiveRecord::Migration
   def self.up
     create_table :post_infos do |t|

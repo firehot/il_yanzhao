@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeVipsFunction < ActiveRecord::Migration
   def self.up
     sf = SystemFunction.find_by_subject_title('转账客户管理')

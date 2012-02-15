@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddCompletedToCarryingBill < ActiveRecord::Migration
   def self.up
   end

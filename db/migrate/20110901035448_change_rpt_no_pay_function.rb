@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeRptNoPayFunction < ActiveRecord::Migration
   def self.up
     ##############################提货未提款统计#############################################

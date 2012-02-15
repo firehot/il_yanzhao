@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class CreateDistributionLists < ActiveRecord::Migration
   def self.up
     create_table :distribution_lists do |t|

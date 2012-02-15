@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 #给运单添加装车清单id
 class AddLoadListIdToCarryingBill < ActiveRecord::Migration
   def self.up

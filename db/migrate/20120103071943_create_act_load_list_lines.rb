@@ -1,3 +1,4 @@
+#coding:utf-8
 class CreateActLoadListLines < ActiveRecord::Migration
   def self.up
     create_table :act_load_list_lines do |t|

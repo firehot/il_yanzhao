@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddCarryingBillIndex < ActiveRecord::Migration
   def self.up
     add_index :carrying_bills,:transit_bill_no

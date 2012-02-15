@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddReturnGoodsRpt < ActiveRecord::Migration
   def self.up
     group_name = "查询统计"

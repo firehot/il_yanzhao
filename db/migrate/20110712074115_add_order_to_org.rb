@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddOrderToOrg < ActiveRecord::Migration
   def self.up
     #添加列表顺序

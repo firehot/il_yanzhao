@@ -1,3 +1,4 @@
+#coding: utf-8
 class ModifyTurnonverChartFunction < ActiveRecord::Migration
   def self.up
     #修改日营业额统计图的default_action

@@ -1,3 +1,4 @@
+#coding: utf-8
 #多货少货核销信息
 class CreateGerrorAuthorizes < ActiveRecord::Migration
   def self.up

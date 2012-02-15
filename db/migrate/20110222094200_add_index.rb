@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddIndex < ActiveRecord::Migration
   def self.up
 
@@ -69,7 +70,7 @@ class AddIndex < ActiveRecord::Migration
     #########customer_level_config###################
     add_index :customer_level_configs,:org_id
     #########customer_level_config###################
-    
+
 
     ###############deliver_infos#####################
     add_index :deliver_infos,:deliver_date
@@ -93,9 +94,9 @@ class AddIndex < ActiveRecord::Migration
     add_index :gexception_authorize_infos,:user_id
     add_index :gexception_authorize_infos,:goods_exception_id
     ###############gexception_authorize_infos#####################
-   
-    
-    
+
+
+
     ###############goods_exceptions#####################
     add_index :goods_exceptions,:bill_date
     add_index :goods_exceptions,:org_id
@@ -104,28 +105,28 @@ class AddIndex < ActiveRecord::Migration
     add_index :goods_exceptions,:user_id
     add_index :goods_exceptions,:state
     ###############goods_exceptions#####################
-    
-    
-    
+
+
+
     ###############goods_exception_identifies#####################
     add_index :goods_exception_identifies,:bill_date
     add_index :goods_exception_identifies,:user_id
     ###############goods_exception_identifies#####################
-   
-    
-    
+
+
+
     ###############il_configs#####################
     add_index :il_configs,:key
     ###############il_configs#####################
-    
-    
+
+
     ###############journals#####################
     add_index :journals,:org_id
     add_index :journals,:bill_date
     add_index :journals,:user_id
     ###############il_configs#####################
-    
-    
+
+
     ###############load_lists#####################
     add_index :load_lists,:bill_date
     add_index :load_lists,:bill_no
@@ -376,7 +377,7 @@ class AddIndex < ActiveRecord::Migration
     #########customer_level_config###################
     remove_index :customer_level_configs,:column => :org_id
     #########customer_level_config###################
-    
+
 
     ###############deliver_infos#####################
     remove_index :deliver_infos,:column => :deliver_date
@@ -400,9 +401,9 @@ class AddIndex < ActiveRecord::Migration
     remove_index :gexception_authorize_infos,:column => :user_id
     remove_index :gexception_authorize_infos,:column => :goods_exception_id
     ###############gexception_authorize_infos#####################
-   
-    
-    
+
+
+
     ###############goods_exceptions#####################
     remove_index :goods_exceptions,:column => :bill_date
     remove_index :goods_exceptions,:column => :org_id
@@ -411,28 +412,28 @@ class AddIndex < ActiveRecord::Migration
     remove_index :goods_exceptions,:column => :user_id
     remove_index :goods_exceptions,:column => :state
     ###############goods_exceptions#####################
-    
-    
-    
+
+
+
     ###############goods_exception_identifies#####################
     remove_index :goods_exception_identifies,:column => :bill_date
     remove_index :goods_exception_identifies,:column => :user_id
     ###############goods_exception_identifies#####################
-   
-    
-    
+
+
+
     ###############il_configs#####################
     remove_index :il_configs,:column => :key
     ###############il_configs#####################
-    
-    
+
+
     ###############journals#####################
     remove_index :journals,:column => :org_id
     remove_index :journals,:column => :bill_date
     remove_index :journals,:column => :user_id
     ###############il_configs#####################
-    
-    
+
+
     ###############load_lists#####################
     remove_index :load_lists,:column => :bill_date
     remove_index :load_lists,:column => :bill_no

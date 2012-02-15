@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddTransitBillNoToCarryingBill < ActiveRecord::Migration
   def self.up
     #中转票号和中转到货地电话

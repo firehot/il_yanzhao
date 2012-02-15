@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 #客户费用信息,从运单信息中导入
 class CreateCustomerFeeInfos < ActiveRecord::Migration
   def self.up

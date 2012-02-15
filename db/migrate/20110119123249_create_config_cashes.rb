@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 #代收货款,现金费用设置
 class CreateConfigCashes < ActiveRecord::Migration
   def self.up

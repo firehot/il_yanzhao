@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeGoodsExceptionDefaultAction < ActiveRecord::Migration
   def self.up
     sf = SystemFunction.find_by_subject_title("货损理赔")

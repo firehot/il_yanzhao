@@ -1,3 +1,4 @@
+#coding: utf-8
 #多货少货信息
 class CreateGoodsErrors < ActiveRecord::Migration
   def self.up

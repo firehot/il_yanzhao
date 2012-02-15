@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddRealNameToUser < ActiveRecord::Migration
   def self.up
     #用户实名

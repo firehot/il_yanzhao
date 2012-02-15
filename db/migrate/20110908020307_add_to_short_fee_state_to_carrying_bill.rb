@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddToShortFeeStateToCarryingBill < ActiveRecord::Migration
   def self.up
     #添加to_short_fee_state

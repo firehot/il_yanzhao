@@ -57,7 +57,8 @@ group :development do
   gem 'jquery-rails'
   gem "bullet"
   #在unix、linux运行环境下不需要
-  #gem "win32-open3"
+  #gem "win32-open3"   #ruby 1.8
+  gem "win32-open3-19"  #ruby 1.9
 end
 group :development, :test do
   gem 'rspec-rails','~>2.4.1'

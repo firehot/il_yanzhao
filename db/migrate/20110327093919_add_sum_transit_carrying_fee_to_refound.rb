@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddSumTransitCarryingFeeToRefound < ActiveRecord::Migration
   def self.up
     #合计中转运费

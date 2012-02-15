@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddShortFeeInfoWriteOffFunction < ActiveRecord::Migration
   def self.up
     #添加短途运费核销功能

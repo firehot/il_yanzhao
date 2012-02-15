@@ -1,3 +1,4 @@
+#coding: utf-8
 class CreateBillNos < ActiveRecord::Migration
   def self.up
     create_table :bill_nos do |t|

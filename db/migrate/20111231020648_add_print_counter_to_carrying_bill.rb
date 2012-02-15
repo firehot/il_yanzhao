@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddPrintCounterToCarryingBill < ActiveRecord::Migration
   def self.up
     #添加打印计数

@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddUseUsbKeyToUser < ActiveRecord::Migration
   def self.up
     #添加使用usb标志和usb_pin

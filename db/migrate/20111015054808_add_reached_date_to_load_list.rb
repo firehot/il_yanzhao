@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddReachedDateToLoadList < ActiveRecord::Migration
   def self.up
     add_column :load_lists, :reached_date, :date

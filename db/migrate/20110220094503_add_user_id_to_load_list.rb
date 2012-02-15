@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddUserIdToLoadList < ActiveRecord::Migration
   def self.up
     add_column :load_lists, :user_id, :integer

@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddOrgIdToConfigCash < ActiveRecord::Migration
   def self.up
     #添加针对发货地,到货地的现金手续费的设置

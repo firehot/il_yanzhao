@@ -1,3 +1,4 @@
+#coding: utf-8
 class CreateGoodsFeeSettlementLists < ActiveRecord::Migration
   def self.up
     create_table :goods_fee_settlement_lists do |t|

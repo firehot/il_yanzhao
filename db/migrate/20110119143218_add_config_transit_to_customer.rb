@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class AddConfigTransitToCustomer < ActiveRecord::Migration
   def self.up
     add_column :customers, :config_transit_id, :integer

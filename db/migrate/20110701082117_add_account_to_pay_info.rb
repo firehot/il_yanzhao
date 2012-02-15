@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddAccountToPayInfo < ActiveRecord::Migration
   def self.up
     add_column :pay_infos, :account_name, :string,:limit => 20

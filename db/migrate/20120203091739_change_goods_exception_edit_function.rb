@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeGoodsExceptionEditFunction < ActiveRecord::Migration
   def self.up
     #修改理赔修改功能

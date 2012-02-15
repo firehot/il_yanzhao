@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 #银行资料信息
 class CreateBanks < ActiveRecord::Migration
   def self.up

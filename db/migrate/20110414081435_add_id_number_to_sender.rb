@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddIdNumberToSender < ActiveRecord::Migration
   def self.up
     #添加身份证号

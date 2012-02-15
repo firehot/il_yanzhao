@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddFunctionRptGoodsFeeInout < ActiveRecord::Migration
   def self.up
   end

@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeLocalRptNoDelivery < ActiveRecord::Migration
   def self.up
     #修改 本地未提货统计/未提货报表为不分页

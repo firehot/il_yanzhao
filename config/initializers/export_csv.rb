@@ -2,7 +2,15 @@
 #为Array类添加导出csv方法
 require "nkf"
 class Array
-  BOM_HEADER ="FFFE".gsub(/\s/,'').to_a.pack("H*")
+  str = "FFFE".gsub(/\s/,'')
+  if str.respond_to?(:lines) then
+    lines = str.lines.to_a
+  else
+    lines = str.to_a
+  end
+
+  BOM_HEADER =lines.pack("H*")
+
   def to_csv(options = {})
     return '' if self.empty?
 

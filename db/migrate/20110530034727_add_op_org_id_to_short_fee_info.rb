@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddOpOrgIdToShortFeeInfo < ActiveRecord::Migration
   def self.up
     #给短途运费核销添加核销部门字段

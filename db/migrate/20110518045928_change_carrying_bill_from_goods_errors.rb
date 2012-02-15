@@ -1,3 +1,4 @@
+#coding: utf-8
 class ChangeCarryingBillFromGoodsErrors < ActiveRecord::Migration
   def self.up
     change_column :goods_errors,:carrying_bill_id,:integer,:null => true

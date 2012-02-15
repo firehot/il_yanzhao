@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddWriteOffDateToShortFeeInfo < ActiveRecord::Migration
   def self.up
     add_column :short_fee_infos, :write_off_date, :date

@@ -1,3 +1,4 @@
+#coding: utf-8
 class CreateShortFeeInfoLines < ActiveRecord::Migration
   def self.up
     create_table :short_fee_info_lines do |t|

@@ -1,5 +1,4 @@
 #coding: utf-8
-#coding: utf-8
 class CreateGexceptionAuthorizeInfos < ActiveRecord::Migration
   def self.up
     create_table :gexception_authorize_infos do |t|

@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddIsSummaryToOrg < ActiveRecord::Migration
   def self.up
     #机构是否总公司标志

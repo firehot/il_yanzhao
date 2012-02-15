@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddAreaFunction < ActiveRecord::Migration
   def self.up
   end

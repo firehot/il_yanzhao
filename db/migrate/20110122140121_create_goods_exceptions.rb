@@ -1,6 +1,4 @@
 #coding: utf-8
-#coding: utf-8
-#coding: utf-8
 #货物一场情况上报
 class CreateGoodsExceptions < ActiveRecord::Migration
   def self.up
