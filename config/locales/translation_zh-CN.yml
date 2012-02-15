@@ -631,6 +631,10 @@ zh-CN:
         sum_income_fee: "收入金额合计"
         sum_spending_fee: "支出金额合计"
         sum_rest_fee: "余额合计"
+        amount_fee: "实领金额"
+        amount_goods_fee: "手工(货款合计)"
+        amount_hand_fee: "手工(手续费合计)"
+        amount_k_carying_fee: "手工(扣运费合计)"
 
       act_load_list:
         bill_date: "日期"

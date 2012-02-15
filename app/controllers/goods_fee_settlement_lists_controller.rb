@@ -10,7 +10,7 @@ class GoodsFeeSettlementListsController < BaseController
   #确认清单,确认后将不可修改
   def post
     @goods_fee_settlement_list = resource_class.find(params[:id])
-    @goods_fee_settlement_list.post ? flash[:success] = "清单确认成功!" : flash[:error] = "清单确认失败!"
-    render :show
+    @goods_fee_settlement_list.post ? flash[:success] = "清单确认成功!" : flash[:error] = "清单确认失败,实领金额应大于0!"
+    redirect_to @goods_fee_settlement_list
   end
 end
