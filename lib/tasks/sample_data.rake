@@ -97,7 +97,7 @@ namespace :db do
   desc "创建默认用户"
   task :create_user => :environment do
     #创建系统默认用户
-    role = Role.new_with_default(:name => '管理员角色')
+    role = Role.new_with_default(:name => 'admin')
     role.role_system_function_operates.each { |r| r.is_select = true }
     role.save!
 

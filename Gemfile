@@ -1,3 +1,4 @@
+
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
@@ -25,7 +26,7 @@ gem 'factory_girl_rails', '1.0'
 gem 'easy_http_cache'
 gem "meta_search"
 #js compressor
-gem 'jammit'
+gem 'jammit',"~> 0.6.5"
 gem 'yui-compressor'
 gem "default_value_for", "~> 1.0.4"
 gem "jquery_notify_bar", "~> 0.0.4"
