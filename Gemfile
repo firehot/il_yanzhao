@@ -26,8 +26,7 @@ gem 'factory_girl_rails', '1.0'
 gem 'easy_http_cache'
 gem "meta_search"
 #js compressor
-gem 'jammit',"~> 0.6.5"
-gem 'yui-compressor'
+gem 'jammit'
 gem "default_value_for", "~> 1.0.4"
 gem "jquery_notify_bar", "~> 0.0.4"
 
@@ -57,6 +56,7 @@ gem "jquery_notify_bar", "~> 0.0.4"
 group :development do
   gem 'jquery-rails'
   gem "bullet"
+
   #在unix、linux运行环境下不需要
   #gem "win32-open3"   #ruby 1.8
   #gem "win32-open3-19"  #ruby 1.9
