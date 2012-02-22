@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 #add bundler support
 require 'bundler/capistrano'
-set :application, "il_yanzhao"
+set :application, "il_yanzhao_example"
 #set :repository,  "git://github.com/chengdh/il_yanzhao.git"
 set :repository, "."
 set :local_repository, "file:///media//WORK/il_yanzhao/.git"
