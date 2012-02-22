@@ -352,7 +352,7 @@ jQuery(function($) {
 					height: '6mm'
 				},
 				print_counter: {
-					text: (the_bill.print_counter +1) + "次打印": "",
+					text: (the_bill.print_counter +1) + "次打印",
 					left: '155mm',
 					top: '126mm',
 					width: '50mm',

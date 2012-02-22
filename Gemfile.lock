@@ -140,6 +140,7 @@ GEM
       rack (>= 1.0.0)
     web-app-theme (0.6.3)
     will_paginate (3.0.pre2)
+    win32-open3 (0.3.2-x86-mingw32)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -176,3 +177,4 @@ DEPENDENCIES
   validation_reflection
   web-app-theme (>= 0.6.2)
   will_paginate (~> 3.0.pre2)
+  win32-open3
