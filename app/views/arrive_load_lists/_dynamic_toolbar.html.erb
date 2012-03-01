@@ -23,6 +23,11 @@
       <li>
         <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), export_excel_arrive_load_list_path(resource),:title => "导出为EXCEL",:class => "btn_export_excel tipsy"  %>
       </li>
+      <%if can? :export_sms_txt,resource%>
+        <li>
+          <%= link_to image_tag("sms.png",:alt => "导出短信群发文件",:size => "16x16"), export_sms_txt_arrive_load_list_path(resource,:format => :text),:title => "导出短信群发文件",:class => "tipsy"  %>
+        </li>
+      <%end%>
     <%end%>
   </ul>
 </div>

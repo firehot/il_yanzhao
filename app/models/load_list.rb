@@ -50,6 +50,24 @@ class LoadList < ActiveRecord::Base
     csv_carrying_bills = CarryingBill.to_csv(self.carrying_bills.search,LoadList.carrying_bill_export_options,false)
     ret + csv_carrying_bills
   end
+  #导出sms群发文本
+  def to_sms_txt
+    return "" unless self.reached?
+    #去除固定电话
+    sms_bills = self.carrying_bills.find_all {|bill| bill.sms_mobile.present? }
+    group_sms_bills = sms_bills.group_by(&:sms_mobile)
+    #分别合计货物件数/运费合计/货款合计
+    sms_text = ''
+    group_sms_bills.each do |key,bills|
+      goods_num = bills.to_a.sum(&:goods_num)
+      carrying_fee_th = 0.0
+      bills.each {|the_bill| carrying_fee_th += the_bill.carrying_fee if the_bill.pay_type.eql?(CarryingBill::PAY_TYPE_TH)}
+      goods_fee = bills.to_a.sum(&:goods_fee)
+      sms_text += "#{key} #{IlConfig.client_name}到货,共#{goods_num}件,运费#{carrying_fee_th}元,货款#{goods_fee}元,地址:#{self.to_org.try(:location)},电话:#{self.to_org.try(:phone)}\r\n"
+    end
+    sms_text
+  end
+
   private
   def self.carrying_bill_export_options
     {
