@@ -6,6 +6,7 @@ class Settlement < ActiveRecord::Base
 
   belongs_to :org
   validates_presence_of :org_id
+  validates_associated :carrying_bills
   #定义状态机
   state_machine :initial => :billed do
     after_transition :on => :process,:billed => :settlemented do |settlement,transition|

@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class PayInfo < ActiveRecord::Base
   has_many :carrying_bills,:order => "goods_no ASC"
 
+  belongs_to :user
   belongs_to :org
   validates_presence_of :customer_name
-  belongs_to :user
+  validates_associated :carrying_bills
   #定义状态机
   state_machine :initial => :billed do
     after_transition do |pay_info,transition|

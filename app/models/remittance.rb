@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #汇款记录
 class Remittance < ActiveRecord::Base
   belongs_to :from_org,:class_name => "Org"

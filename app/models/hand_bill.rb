@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #手工运单
 class HandBill < CarryingBill
   validate :check_goods_no

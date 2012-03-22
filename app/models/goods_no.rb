@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #货号生成器
 class GoodsNo < ActiveRecord::Base
   belongs_to :from_org,:class_name => "Org"

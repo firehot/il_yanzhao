@@ -17,4 +17,3 @@ class CreateConfigCashes < ActiveRecord::Migration
     drop_table :config_cashes
   end
 end
-

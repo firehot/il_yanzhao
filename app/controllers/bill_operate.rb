@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 module BillOperate
   def create
     bill = resource_class.new(params[resource_class.model_name.underscore])
@@ -13,7 +12,16 @@ module BillOperate
     bill = resource_class.find(params[:id])
     bill = resource_class.includes(:carrying_bills).find(params[:id]) if bill.respond_to? :carrying_bills
     get_resource_ivar || set_resource_ivar(bill)
-    bill.process ? flash[:success] = "数据处理成功!" : flash[:error] = "数据处理失败!"
+    bill.process
+    if bill.valid?
+      flash[:success] = "数据处理成功!"
+    else
+      err_msg = ""
+      bill.errors.full_messages.each do |m|
+        err_msg += m
+      end
+      flash[:error] = err_msg
+    end
     render  :show
   end
   #票据打印

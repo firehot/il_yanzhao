@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #客户提款结算清单
 class GoodsFeeSettlementList < ActiveRecord::Base
   belongs_to :org

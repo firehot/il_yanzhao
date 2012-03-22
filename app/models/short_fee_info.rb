@@ -8,6 +8,7 @@ class ShortFeeInfo < ActiveRecord::Base
   has_many :short_fee_info_lines
   has_many :carrying_bills,:through => :short_fee_info_lines
   validates_presence_of :org_id,:bill_date
+  validates_associated :carrying_bills
 
   #定义状态机
   state_machine :initial => :draft do

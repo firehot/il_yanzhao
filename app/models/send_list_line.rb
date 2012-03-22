@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class SendListLine < ActiveRecord::Base
   belongs_to :send_list
   belongs_to :send_list_post

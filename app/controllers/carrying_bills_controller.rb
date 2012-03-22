@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #运单controller基础类
 class CarryingBillsController < BaseController
 

@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class GexceptionAuthorizeInfo < ActiveRecord::Base
   belongs_to :user
   belongs_to :goods_exception

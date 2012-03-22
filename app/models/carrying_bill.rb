@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class CustomerCodeValidator < ActiveModel::EachValidator
   def validate_each(object,attribute,value)
     if value.present?
@@ -487,6 +486,16 @@ class CarryingBill < ActiveRecord::Base
     #票据费用是否修改
     def fee_changed?
       !original_goods_fee.eql?(goods_fee) or !original_carrying_fee.eql?(carrying_fee ) or !original_insured_amount.eql?(insured_amount) or !original_insured_fee.eql?(insured_fee) or !original_from_short_carrying_fee.eql?(from_short_carrying_fee)  or !original_to_short_carrying_fee.eql?(to_short_carrying_fee)
+    end
+
+    #票据状态,目前系统内部状态较多,根据客户要求修改为有限的几个状态
+    def translate_state
+      t_state = "已开票" if self.billed?
+      t_state = "已发货" if self.loaded? or self.shipped? or self.reached? or self.distributed? or self.transited?
+      t_state = "已提货" if self.deliveried? or self.settlemented?
+      t_state = "未提款" if self.refunded? or self.refunded_confirmed? or self.payment_listed?
+      t_state = "已退货" if self.returned?
+      t_state = "已作废" if self.invalided?
     end
 
     protected

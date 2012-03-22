@@ -1,4 +1,5 @@
 <%= semantic_form_for resource ,:remote => true,:html => {:id => "distribution_list_form",:class => "bill_selector"} do |f|%>
+  <%= f.error_messages  %>
   <%= f.inputs do %>
     <%= f.hidden_field :user_id,:value => current_user.id if f.object.new_record?%>
     <%= f.input :bill_date,:as => :string,:input_html =>{:readonly => true,:size => 20,:class => 'datepicker'} %>

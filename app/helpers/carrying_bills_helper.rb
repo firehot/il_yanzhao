@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 module CarryingBillsHelper
   #运费支付方式显示
   def pay_type_des(pay_type)
@@ -64,5 +63,11 @@ module CarryingBillsHelper
   def print_counter_for_select
     [["打印多次",2]]
   end
+  #运单类型
+  def bill_types_for_select
+    [["机打运单","ComputerBill"],["手工运单","HandBill"],["中转运单","TransitBill"],["手工中转运单","HandTransitBill"],["退货单","ReturnBill"]]
+
+  end
+
 end
 

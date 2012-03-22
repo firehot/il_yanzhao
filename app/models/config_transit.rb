@@ -17,4 +17,3 @@ class ConfigTransit < ActiveRecord::Base
     (goods_fee*ret).ceil
   end
 end
-
