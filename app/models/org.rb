@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 require 'ruby-pinyin/pinyin'
 class Org < ActiveRecord::Base
   default_scope order("order_by ASC")

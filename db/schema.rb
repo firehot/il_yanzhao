@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322061204) do
+ActiveRecord::Schema.define(:version => 20120323022530) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -168,11 +168,12 @@ ActiveRecord::Schema.define(:version => 20120322061204) do
     t.decimal  "fee_from",   :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "fee_to",     :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "hand_fee",   :precision => 15, :scale => 2, :default => 0.0
-    t.boolean  "is_active",                                 :default => true, :null => false
+    t.boolean  "is_active",                                 :default => true,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "org_id"
     t.integer  "to_org_id"
+    t.decimal  "rate",       :precision => 10, :scale => 4, :default => 0.001
   end
 
   create_table "config_transits", :force => true do |t|

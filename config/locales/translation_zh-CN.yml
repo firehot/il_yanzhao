@@ -204,6 +204,7 @@ zh-CN:
         is_active: "有效"  #g
         org: "发货地"
         to_org: "到达地"
+        rate: 比例
 
       config_transit:
         name: "名称"  #g
