@@ -496,6 +496,7 @@ class CarryingBill < ActiveRecord::Base
       t_state = "未提款" if self.refunded? or self.refunded_confirmed? or self.payment_listed?
       t_state = "已退货" if self.returned?
       t_state = "已作废" if self.invalided?
+      t_state
     end
 
     protected
