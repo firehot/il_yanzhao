@@ -5,7 +5,11 @@
   <% end%>
   <%= f.inputs :name,:phone,:mobile,:address,:id_number %>
   <%= f.inputs do %>
-    <%= f.input :bank_id,:as => :select,:collection => Bank.where(:is_active => true),:include_blank => true %>
+    <%if f.object.new_record? %>
+      <%= f.input :bank_id,:as => :select,:collection => Bank.where(:is_active => true),:include_blank => true %>
+    <%else%>
+      <%= f.input :bank_id,:as => :hidden %>
+    <%end%>
     <%= f.input :bank_card %>
     <%= f.input :is_active %>
   <%end%>
