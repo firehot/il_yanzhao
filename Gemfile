@@ -38,7 +38,7 @@ gem "jquery_notify_bar", "~> 0.0.4"
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+#gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
