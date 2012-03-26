@@ -17,7 +17,7 @@ module CalculateHandfee
       goods_fee = args.delete(:goods_fee) {|gf| 0 }
       from_org_id = args.delete(:from_org_id)
       to_org_id = args.delete(:to_org_id)
-      config = ConfigCash.find_by_org_id_and_to_org_id_and_is_active(from_org_id,to_org_id,true)
+      config = self.find_by_org_id_and_to_org_id_and_is_active(from_org_id,to_org_id,true)
       ret = default_hand_fee(goods_fee)
       ret = config.rate*goods_fee if config
       ret.ceil

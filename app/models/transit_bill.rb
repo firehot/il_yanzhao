@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #中转机打运单
 class TransitBill < CarryingBill
   before_validation :generate_goods_no
