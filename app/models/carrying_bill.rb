@@ -44,7 +44,7 @@ class CarryingBill < ActiveRecord::Base
   #保存成功后,设置原始费用
   before_create :set_original_fee
   #计算手续费
-  before_save :cal_hand_fee
+  before_create :cal_hand_fee
 
   belongs_to :user
   belongs_to :from_org,:class_name => "Org"

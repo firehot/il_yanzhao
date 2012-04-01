@@ -8,7 +8,7 @@ module CalculateHandfee
     def default_hand_fee(goods_fee)
       hand_fee = goods_fee * 0.001
       #如果设置了手续费比例,但是未设置发货地和到达地,也视为默认设置
-      default_config_cash = self.find_by_org_id_and_to_org_id(nil,nil)
+      default_config_cash = self.find_by_org_id_and_to_org_id_and_is_active(nil,nil,true)
       hand_fee = default_config_cash.rate*goods_fee if default_config_cash
       hand_fee
     end
