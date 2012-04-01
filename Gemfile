@@ -38,7 +38,7 @@ gem "jquery_notify_bar", "~> 0.0.4"
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+#gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
@@ -64,6 +64,7 @@ group :development, :test do
   gem 'rspec-rails','~>2.4.1'
   gem 'web-app-theme', '>= 0.6.2'
   gem 'i18n_generators'
+  gem 'capistrano'
 end
 group :test do
   gem 'rspec','~>2.4.0'
