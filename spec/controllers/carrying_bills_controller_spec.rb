@@ -40,5 +40,12 @@ describe CarryingBillsController do
       response.should be_success
     end
   end
+  #测试多运单查询功能
+  describe "GET multi_bills_search" do
+    it "should be success" do
+      get :multi_bills_search
+      response.should be_success
+    end
+  end
 end
 

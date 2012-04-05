@@ -211,16 +211,14 @@ jQuery(function($) {
 		var insured_rate = parseFloat($('#insured_rate').val());
 		var insured_fee = Math.ceil(insured_amount * insured_rate / 1000);
 		$('#insured_fee').val(insured_fee);
-                //2012-02-03 如果保价费金额 > 0 则运费支付方式直接设为现金付,且不可更改
-                if(insured_fee > 0)
-                {
-                  $('#pay_type').val('CA');
-                  $('#pay_type option').attr('disabled',true);
-                  $('#pay_type option[value="CA"]').attr('disabled',false);
+		//2012-02-03 如果保价费金额 > 0 则运费支付方式直接设为现金付,且不可更改
+		if (insured_fee > 0) {
+			$('#pay_type').val('CA');
+			$('#pay_type option').attr('disabled', true);
+			$('#pay_type option[value="CA"]').attr('disabled', false);
 
-                }
-                else
-                  $('#pay_type option').attr('disabled',false);
+		}
+		else $('#pay_type option').attr('disabled', false);
 		//计算运费合计
 		var carrying_fee = parseFloat($('#carrying_fee').val());
 		var from_short_carrying_fee = parseFloat($('#from_short_carrying_fee').val());
@@ -896,7 +894,7 @@ jQuery(function($) {
 		});
 	});
 
-        /*
+	/*
 	//客户提款结算清单
 	//实领金额变化时,更新余额
 	var cal_rest_fee = function() {
@@ -1195,18 +1193,18 @@ jQuery(function($) {
 	$('#goods_fee_settlement_list_amount_hand_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_bills,#goods_fee_settlement_list_amount_goods_fee,#goods_fee_settlement_list_amount_fee').change(function() {
 
 		var amount_hand_fee_auto = 0;
-                var amount_goods_fee_auto = 0;
-                var amount_k_carrying_fee_auto = 0;
-                var amount_bills_auto = 0;
-                var amount_hand_fee = 0;
-                var amount_goods_fee = 0;
-                var amount_k_carrying_fee = 0;
-                var amount_bills = 0;
-                var amount_fee = 0;
-                var sum_bills = 0;
-                var sum_income_fee = 0;
-                var sum_spending_fee = 0;
-                var sum_rest_fee = 0;
+		var amount_goods_fee_auto = 0;
+		var amount_k_carrying_fee_auto = 0;
+		var amount_bills_auto = 0;
+		var amount_hand_fee = 0;
+		var amount_goods_fee = 0;
+		var amount_k_carrying_fee = 0;
+		var amount_bills = 0;
+		var amount_fee = 0;
+		var sum_bills = 0;
+		var sum_income_fee = 0;
+		var sum_spending_fee = 0;
+		var sum_rest_fee = 0;
 		amount_hand_fee_auto = parseFloat($('#amount_hand_fee_auto').text());
 		amount_goods_fee_auto = parseFloat($('#amount_goods_fee_auto').text());
 		amount_k_carrying_fee_auto = parseFloat($('#amount_k_carrying_fee_auto').text());
@@ -1229,12 +1227,27 @@ jQuery(function($) {
 		$('#sum_rest_fee').html(sum_rest_fee);
 		$('#sum_rest_fee_chinese').html($.num2chinese(sum_rest_fee.toString()));
 	});
-        // 实际装车清单,全选 / 不选
+	// 实际装车清单,全选 / 不选
 	$('#btn_act_load_list_line_select_all').live('click', function() {
 		$('.act_load_list_line_selector').attr('checked', true)
 	});
 	$('#btn_act_load_list_line_unselect_all').live('click', function() {
 		$('.act_load_list_line_selector').attr('checked', false)
 	});
+	//多运单查询
+	$('#txt_multi_bills_search').watermark('可用逗号分割多个运单号进行查询，比如:0000400,0000401,0000402')
+	$('#btn_multi_bills_search').click(function() {
+		var bills_string = $('#txt_multi_bills_search').val();
+		var bill_nos = bills_string.match(/\d{7}/g)
+		if (bill_nos) {
+			//将解析出的运单号加入到form中去
+			$.each(bill_nos, function(index, bill_no) {
+				var hidden_field = '<input name="search[bill_no_in][]" type="hidden" value="' + bill_no + '" />';
+				$('#multi_bills_search_form').append(hidden_field);
+			});
+            $('#multi_bills_search_form').submit();
+		}
+	});
+
 });
 

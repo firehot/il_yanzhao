@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #定义一个根机构
 Factory.define :department do |dep|
   dep.name 'department'
@@ -394,6 +393,8 @@ end
 Factory.define :cash_pay_info do |p|
   p.association :org,:factory => :zz
   p.customer_name "张三"
+  p.id_number "412929197510020418"
+  p.account_no "6222020001876098"
 end
 Factory.define :cash_pay_info_with_bills,:parent => :cash_pay_info do |p|
   p.after_create do |pi|
@@ -404,6 +405,8 @@ end
 Factory.define :transfer_pay_info do |p|
   p.association :org,:factory => :zz
   p.customer_name "张三"
+  p.id_number "412929197510020418"
+  p.account_no "6222020001876098"
 end
 Factory.define :transfer_pay_info_with_bills,:parent => :transfer_pay_info do |p|
   p.after_create do |pi|

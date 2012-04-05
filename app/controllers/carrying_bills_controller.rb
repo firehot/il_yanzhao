@@ -120,6 +120,10 @@ class CarryingBillsController < BaseController
       @carrying_bills = CarryingBill.where(:bill_no => bill_nos)
     end
   end
+  #显示多运单查询界面
+  #GET carrying_bills/multi_bills_search
+  def multi_bills_search
+  end
   private
   def check_expire
     if current_user.default_org.input_expire?

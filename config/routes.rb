@@ -241,6 +241,7 @@ IlYanzhao::Application.routes.draw do
     get :sum_goods_fee_inout,:on => :collection
     get :search_service_page,:on => :collection
     get :search_service,:on => :collection
+    get :multi_bills_search,:on => :collection
     put :reset,:on => :member
     put :invalidate,:on => :member
   end

@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8 
-#系统功能类 
-class SystemFunction < ActiveRecord::Base 
+#coding: utf-8
+#系统功能类
+class SystemFunction < ActiveRecord::Base
   belongs_to :system_function_group
-  has_many :system_function_operates
+  has_many :system_function_operates,:dependent => :destroy
   #根据传入的hash生成system_function,在rake task中调用
   def self.create_by_hash(attrs ={})
     group = SystemFunctionGroup.find_or_create_by_name(attrs[:group_name])
@@ -11,7 +11,7 @@ class SystemFunction < ActiveRecord::Base
     attrs[:function].each do |key,value|
       system_function = sf.system_function_operates.create(
                                               :name => value[:title],
-                                              :function_obj => 
+                                              :function_obj =>
       {
         :subject => attrs[:subject],
         :action => key,
