@@ -1,6 +1,23 @@
+<script type='text/javascript'>
+  if(!window.jQuery)
+  document.write('<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.min.js"><'+'/script>');
+</script>
+
 <%= form_tag search_service_carrying_bills_path,:method => :get,:style => "margin : 0;padding : 0;background : #EAE9E8;" do %>
-  <%=text_area_tag :bill_nos,"",:size => "25x4"%>
+  <%=text_area_tag :bill_nos,"录入运单编号,多票查询,以逗号分割运单号",:size => "25x4",:id => 'search_text',:style => 'color : gray;' %>
   <div style='text-align : right;'>
     <%=submit_tag "查询运单"%>
   </div>
 <% end%>
+<script type='text/javascript'>
+    jQuery(function($){
+        $('#search_text').focus(function(){$(this).val('');$(this).css({color : '#000'});});
+        $('#search_text').blur(function(){
+          if($.trim($(this).val()) == '')
+          {
+            $(this).val('录入运单编号,多票查询,以逗号分割运单号');
+            $(this).css({color : 'gray'});
+          }
+        });
+});
+</script>
