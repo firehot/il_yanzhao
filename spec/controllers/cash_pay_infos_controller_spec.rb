@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 require 'spec_helper'
 
 describe CashPayInfosController do
@@ -42,12 +41,12 @@ describe CashPayInfosController do
     describe "with valid params" do
       it "success create cash_pay_info" do
         lambda do
-          post :create,:cash_pay_info => {:org_id => Factory(:zz),:customer_name => "customer_name"},:bill_ids => [@computer_bill.id]
+          post :create,:cash_pay_info => {:org_id => Factory(:zz),:id_number => '412929197510020418',:account_no => '62220202100098765',:customer_name => "customer_name"},:bill_ids => [@computer_bill.id]
         end.should change(CashPayInfo,:count).by(1)
       end
 
       it "redirects to the created cash_pay_info" do
-        post :create,:cash_pay_info => {:org_id => Factory(:zz),:customer_name => "customer_name"},:bill_ids => [@computer_bill.id]
+        post :create,:cash_pay_info => {:org_id => Factory(:zz),:id_number => '412929197510020418',:account_no => '62220202100098765',:customer_name => "customer_name"},:bill_ids => [@computer_bill.id]
         response.should redirect_to(assigns(:cash_pay_info))
       end
     end

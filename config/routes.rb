@@ -242,6 +242,7 @@ IlYanzhao::Application.routes.draw do
     get :search_service_page,:on => :collection
     get :search_service,:on => :collection
     get :multi_bills_search,:on => :collection
+    get :customer_code_search,:on => :collection
     put :reset,:on => :member
     put :invalidate,:on => :member
   end

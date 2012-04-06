@@ -47,5 +47,12 @@ describe CarryingBillsController do
       response.should be_success
     end
   end
+  #测试按照客户编号查询运单功能
+  describe "GET customer_code_search" do
+    it "should be success" do
+      get :customer_code_search
+      response.should be_success
+    end
+  end
 end
 

@@ -122,8 +122,11 @@ class CarryingBillsController < BaseController
   end
   #显示多运单查询界面
   #GET carrying_bills/multi_bills_search
-  def multi_bills_search
-  end
+  def multi_bills_search ; end
+  #显示按照客户编号查询运单界面
+  #GET /carrying_bills/customer_code_search
+  def customer_code_search ; end
+
   private
   def check_expire
     if current_user.default_org.input_expire?
