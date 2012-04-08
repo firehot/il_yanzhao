@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class LoadListsController < BaseController
   include BillOperate
   table :bill_date,:bill_no,:from_org,:to_org,:human_state_name,:user,:note

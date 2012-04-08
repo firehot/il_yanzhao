@@ -73,6 +73,7 @@ zh-CN:
       goods_fee_settlement_list: "分理处货款收支清单"
       act_load_list: "装车清单"
       act_load_list_line: "装车清单明细"
+      goods_cat: 货物分类
 
 
     attributes:
@@ -96,6 +97,7 @@ zh-CN:
         to_org: "到货地"
         is_active: "有效"
         note: "备注"
+        order_by: 排序
 
       area:
         name: "名称"
@@ -647,4 +649,13 @@ zh-CN:
 
       act_load_list_line:
         load_num: "装车数量"
+
+      goods_cat:
+        parent: 所属分类
+        name: 名称
+        easy_code: 拼音简写
+        order_by: 排序
+        is_active: 有效标志
+        note: 备注
+
 

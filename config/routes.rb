@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 IlYanzhao::Application.routes.draw do
+  resources :goods_cats
+
   resources :act_load_lists,:except => [:new] do
     get :search,:on => :collection
     get :export_excel,:on => :member

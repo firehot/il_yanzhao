@@ -596,4 +596,9 @@ Factory.define :goods_fee_settlement_list do |gfs|
   gfs.amount_k_carrying_fee 487
   gfs.amount_bills 19
 end
+#货物分类
+Factory.define :goods_cat do |gc|
+  gc.name "家具"
+end
+
 
