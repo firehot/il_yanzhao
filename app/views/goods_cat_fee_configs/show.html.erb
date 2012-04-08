@@ -1,0 +1,8 @@
+<%= show_for @goods_cat_fee_config do |s| %>
+  <%= s.association :from_org %>
+  <%= s.association :to_org %>
+  <%= s.attribute :is_active %>
+<% end %>
+
+<%= link_to 'Edit', edit_goods_cat_fee_config_path(@goods_cat_fee_config) %> |
+<%= link_to 'Back', goods_cat_fee_configs_path %>

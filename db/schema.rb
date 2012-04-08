@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408024905) do
+ActiveRecord::Schema.define(:version => 20120408072221) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -314,6 +314,23 @@ ActiveRecord::Schema.define(:version => 20120408024905) do
   add_index "gexception_authorize_infos", ["goods_exception_id"], :name => "index_gexception_authorize_infos_on_goods_exception_id"
   add_index "gexception_authorize_infos", ["op_type"], :name => "index_gexception_authorize_infos_on_op_type"
   add_index "gexception_authorize_infos", ["user_id"], :name => "index_gexception_authorize_infos_on_user_id"
+
+  create_table "goods_cat_fee_config_lines", :force => true do |t|
+    t.decimal  "bottom_price",            :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "unit_price",              :precision => 15, :scale => 2, :default => 0.0
+    t.integer  "goods_cat_fee_config_id",                                                 :null => false
+    t.integer  "goods_cat_id",                                                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "goods_cat_fee_configs", :force => true do |t|
+    t.integer  "from_org_id",                   :null => false
+    t.integer  "to_org_id",                     :null => false
+    t.boolean  "is_active",   :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "goods_cats", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false

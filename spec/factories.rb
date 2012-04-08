@@ -600,5 +600,8 @@ end
 Factory.define :goods_cat do |gc|
   gc.name "家具"
 end
-
-
+#货物分类费用
+Factory.define :goods_cat_fee_config do |gcfc|
+  gcfc.association :from_org,:factory => :zz
+  gcfc.association :to_org,:factory => :ay
+end

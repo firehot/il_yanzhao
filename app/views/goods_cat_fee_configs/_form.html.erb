@@ -1,0 +1,29 @@
+<%= form_for(@goods_cat_fee_config) do |f| %>
+  <% if @goods_cat_fee_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@goods_cat_fee_config.errors.count, "error") %> prohibited this goods_cat_fee_config from being saved:</h2>
+
+      <ul>
+      <% @goods_cat_fee_config.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :from_org %><br />
+    <%= f.text_field :from_org %>
+  </div>
+  <div class="field">
+    <%= f.label :to_org %><br />
+    <%= f.text_field :to_org %>
+  </div>
+  <div class="field">
+    <%= f.label :is_active %><br />
+    <%= f.check_box :is_active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

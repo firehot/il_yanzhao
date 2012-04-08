@@ -1,0 +1,27 @@
+<h1>Listing goods_cat_fee_configs</h1>
+
+<table>
+  <tr>
+    <th>From org</th>
+    <th>To org</th>
+    <th>Is active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @goods_cat_fee_configs.each do |goods_cat_fee_config| %>
+  <tr>
+    <td><%= goods_cat_fee_config.from_org %></td>
+    <td><%= goods_cat_fee_config.to_org %></td>
+    <td><%= goods_cat_fee_config.is_active %></td>
+    <td><%= link_to 'Show', goods_cat_fee_config %></td>
+    <td><%= link_to 'Edit', edit_goods_cat_fee_config_path(goods_cat_fee_config) %></td>
+    <td><%= link_to 'Destroy', goods_cat_fee_config, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Goods cat fee config', new_goods_cat_fee_config_path %>
