@@ -7,4 +7,103 @@ require 'spec_helper'
 describe GoodsCatFeeConfigsController do
   login_admin
   render_views
+
+  describe "GET index" do
+    before(:each) do
+      @gc ||= Factory(:load_list_with_bills)
+    end
+
+    it "should be success" do
+      get :index
+      response.should be_success
+    end
+  end
+
+  describe "GET show" do
+    before(:each) do
+      @gc ||= Factory(:load_list_with_bills)
+    end
+
+    it "should render 'show'" do
+      get :show, :id => @gc
+      response.should render_template('show')
+    end
+  end
+
+  describe "GET new" do
+    it "should be sucesss" do
+      get :new
+      response.should be_success
+    end
+    it "should render template 'new'" do
+      get :new
+      response.should render_template('new')
+    end
+  end
+
+  describe "POST create" do
+    before(:each) do
+      @computer_bill = Factory(:computer_bill)
+    end
+    describe "with valid params" do
+      it "the gc should success create" do
+        lambda do
+          post :create,:gc => {:from_org_id => Factory(:zz),:to_org_id => Factory(:ay),:bill_no => "bill_no"},:bill_ids=> [@computer_bill.id]
+        end.should change(LoadList,:count).by(1)
+      end
+
+      it "redirects to the created gc" do
+        post :create,:gc => {:from_org_id => Factory(:zz),:to_org_id => Factory(:ay),:bill_no => "bill_no"},:bill_ids => [@computer_bill.id]
+        response.should redirect_to(assigns[:gc])
+      end
+    end
+
+    describe "with invalid params" do
+      it "re-renders the 'new' template" do
+        post :create, :gc => {:bill_no => "bill_no"},:bill_ids => [@computer_bill.id]
+        response.should render_template('new')
+      end
+    end
+  end
+
+
+  describe "DELETE destroy" do
+    before(:each) do
+      @gc ||= Factory(:load_list_with_bills)
+    end
+
+    it "destroys the requested gc" do
+      lambda do
+        delete :destroy ,:id => @gc
+      end.should change(LoadList,:count).by(-1)
+    end
+
+    it "redirects to the gcs list" do
+      delete :destroy, :id => @gc
+      response.should redirect_to(gcs_url)
+    end
+  end
+  #启动流程处理
+  describe "PUT process_handle" do
+    it "gc state should become shipped" do
+      @gc ||= Factory(:load_list_with_bills)
+      put :process_handle,:id =>@gc
+      response.should be_success
+    end
+
+    it "gc state should become 'reached' after reach process" do
+      shipped_list = Factory(:gc_shipped)
+      put :process_handle,:id =>shipped_list
+      response.should be_success
+    end
+  end
+  #创建实际装车清单
+  describe "GET build act_gc" do
+    it "should be success" do
+      @gc ||= Factory(:load_list_with_bills)
+      get :build_act_gc,:id => @load_list
+      response.should be_success
+    end
+  end
+
 end

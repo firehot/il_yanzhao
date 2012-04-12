@@ -3,5 +3,5 @@
 class GoodsCatFeeConfigLine < ActiveRecord::Base
   belongs_to :goods_cat_fee_config
   belongs_to :goods_cat
-  validates :goods_cat_fee_config,:goods_cat,:presence => true
+  validates :goods_cat,:presence => true
 end
