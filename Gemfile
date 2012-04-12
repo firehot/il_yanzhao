@@ -1,11 +1,17 @@
 source 'http://rubygems.org'
+#source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.2.0'
+group :assets do
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier', '>= 1.0.3'
+end
 #解决windows下mysql hanging问题
 #gem 'ghazel-mysql2'
 gem 'mysql2','0.2.7'
-gem "will_paginate", "~> 3.0.pre2"
-gem "devise",'1.1.5'
+gem "will_paginate", "~> 3.0.3"
+gem "devise",'2.0.4'
 gem "cancan",'1.5.0'
 #表单中的树形结构选择
 gem 'acts_as_tree',:git => 'git://github.com/parasew/acts_as_tree.git'
@@ -14,7 +20,7 @@ gem "validation_reflection"
 gem 'formtastic', '~>1.2.3'
 #state_machine
 gem 'state_machine'
-gem 'inherited_resources', '1.1.2'
+gem 'inherited_resources', '~>1.3.1'
 gem 'inherited_resources_views'
 gem 'dynamic_form'
 gem 'show_for'
@@ -23,7 +29,7 @@ gem 'fastercsv'
 gem 'uuid'
 gem 'factory_girl_rails', '1.0'
 gem 'easy_http_cache'
-gem "meta_search"
+gem "meta_search","~> 1.1.3"
 #js compressor
 gem 'jammit'
 gem "default_value_for", "~> 1.0.4"
