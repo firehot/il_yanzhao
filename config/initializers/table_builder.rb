@@ -3,7 +3,7 @@ module InheritedResources
   module TableBuilder
     def self.included(base)
       base.extend ClassMethods
-      base.class_inheritable_accessor :table_config
+      base.class_attribute :table_config
       base.table_config = {}
       base.send :helper_method, :index_table_columns
     end
@@ -25,28 +25,28 @@ module InheritedResources
 
       # Sets the columns to be displayed when the index table is rendered
       # for this resource.
-      # 
+      #
       # Simple usage:
-      # 
+      #
       # Pass in a list of the methods to call on your resource in the order
       # you wish to see them in the table
-      # 
+      #
       # class UsersController < InheritedViews::Base
       #   table :first_name, :last_name
       # end
-      # 
-      # 
+      #
+      #
       # Except:
-      # 
+      #
       # You can also use the default content columns from your ActiveRecord
       # object and only exclude certain columns.
-      # 
+      #
       # class UsersController < InheritedViews::Base
       #   table :except => :first_name
       # end
-      # 
+      #
       def table(*columns)
-        options = columns.extract_options!        
+        options = columns.extract_options!
 
         if options[:except]
           options[:except] = options[:except].is_a?(Array) ? options[:except] : [options[:except]]
@@ -61,4 +61,3 @@ module InheritedResources
   end
 end
 InheritedResources::Base.send(:include,InheritedResources::TableBuilder)
-

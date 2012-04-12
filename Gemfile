@@ -9,14 +9,13 @@ group :assets do
 end
 #解决windows下mysql hanging问题
 #gem 'ghazel-mysql2'
-gem 'mysql2','0.2.7'
+gem 'mysql2','~>0.3.11'
 gem "will_paginate", "~> 3.0.3"
 gem "devise",'2.0.4'
 gem "cancan",'1.5.0'
 #表单中的树形结构选择
 gem 'acts_as_tree',:git => 'git://github.com/parasew/acts_as_tree.git'
 #form 显示组件
-gem "validation_reflection"
 gem 'formtastic', '~>1.2.3'
 #state_machine
 gem 'state_machine'
