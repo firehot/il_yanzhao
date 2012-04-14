@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #机打票
 class ComputerBill < CarryingBill
   #创建/修改数据前生成票据编号和货号

@@ -22,7 +22,6 @@ class GoodsNo < ActiveRecord::Base
     GoodsNo.destroy_all(["from_org_id = ? AND to_org_id = ? AND gen_date < ? ",from_org_id,to_org_id,bill.bill_date])
     GoodsNo.increment_counter(:bill_count,goods_no.id)
 
-    "#{bill.bill_date.strftime('%y%m%d')}#{bill.from_org.simp_name}#{bill.transit_org.present? ? bill.transit_org.simp_name : bill.to_org.simp_name}#{goods_no.reload.bill_count}-#{bill.goods_num}"
+    goods_no = "#{bill.bill_date.strftime('%y%m%d')}#{bill.from_org.simp_name}#{bill.transit_org.present? ? bill.transit_org.simp_name : bill.to_org.simp_name}#{goods_no.reload.bill_count}-#{bill.goods_num}"
   end
 end
-

@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 require 'spec_helper'
 
 describe ComputerBillsController do
@@ -55,11 +54,18 @@ describe ComputerBillsController do
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:computer_bill).attributes
+      delete_attrs = %w[goods_no bill_no original_carrying_fee original_goods_fee original_from_short_carrying_fee insured_rate original_insured_amount id type original_insured_fee original_to_short_carrying_fee original_carrying_fee]
+      @attr.delete_if { |key,value| delete_attrs.include?(key)}
     end
     describe "success" do
       it "能够成功保存票据信息" do
         lambda do
           post :create, :computer_bill => @attr
+          bill = assigns(:computer_bill)
+          puts controller.send(:resource_class).to_s
+          puts bill.class
+          puts "goods_no=" + assigns(:computer_bill).goods_no
+          puts "goods_no=" + assigns(:computer_bill).from_org.simp_name
         end.should change(ComputerBill,:count).by(1)
       end
 

@@ -44,13 +44,13 @@ describe TransferPaymentListsController do
     describe "with valid params" do
       it "success create transfer_payment_list" do
         lambda do
-          post :create, :transfer_payment_list => {:org_id => Factory(:zz),:bank => Factory(:icbc)},:bill_ids => [@computer_bill.id]
+          post :create, :transfer_payment_list => {:org_id => Factory(:zz),:bank_id => Factory(:icbc).id},:bill_ids => [@computer_bill.id]
         end.should change(TransferPaymentList,:count).by(1)
       end
 
       it "redirects to the created transfer_payment_list" do
 
-        post :create, :transfer_payment_list => {:org_id => Factory(:zz),:bank => Factory(:icbc)},:bill_ids => [@computer_bill.id]
+        post :create, :transfer_payment_list => {:org_id => Factory(:zz),:bank_id => Factory(:icbc).id},:bill_ids => [@computer_bill.id]
         response.should redirect_to(assigns(:transfer_payment_list))
       end
     end
@@ -62,8 +62,5 @@ describe TransferPaymentListsController do
         response.should render_template("new")
       end
     end
-
   end
-
 end
-

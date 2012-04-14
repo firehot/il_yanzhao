@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #运单编号生成器
 class BillNo < ActiveRecord::Base
   def self.gen_bill_no

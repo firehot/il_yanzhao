@@ -49,6 +49,8 @@ describe VipsController do
   describe "POST create" do
     before(:each) do
       @attr = Factory.build(:vip).attributes
+      @attr.delete_if {|key,value| key=='type' or key=='id' or key=='code'}
+
     end
     describe "success" do
       it "能够成功保存票据信息" do
@@ -80,7 +82,7 @@ describe VipsController do
 
     describe "with valid params" do
       it "updates the requested vip" do
-        put :update, :id => @vip, :vip => @attr 
+        put :update, :id => @vip, :vip => @attr
         @vip.reload
         @vip.note.should == @attr[:note]
       end
@@ -107,17 +109,17 @@ describe VipsController do
     end
     it "destroys the requested vip" do
       lambda do
-        delete :destroy, :id => @vip 
+        delete :destroy, :id => @vip
       end.should change(Vip,:count).by(-1)
     end
 
     it "redirects to the vips list" do
-      delete :destroy, :id => @vip 
+      delete :destroy, :id => @vip
       response.should redirect_to(vips_url)
     end
   end
   describe "GET search" do
-    it "should be success" do 
+    it "should be success" do
       get :search
       response.should be_success
     end

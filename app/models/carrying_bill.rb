@@ -14,7 +14,7 @@ class CustomerCodeValidator < ActiveModel::EachValidator
   end
 end
 class CarryingBill < ActiveRecord::Base
-  attr_protected :insured_rate,:original_carrying_fee,:original_goods_fee,:original_from_short_carrying_fee,:original_to_short_carrying_fee,:original_insured_amount,:original_insured_fee
+  attr_protected :original_carrying_fee,:original_goods_fee,:original_from_short_carrying_fee,:original_to_short_carrying_fee,:original_insured_amount,:original_insured_fee
   #营业额统计
   scope :turnover,select('from_org_id,IFNULL(to_org_id,transit_org_id) as to_org_id,sum(carrying_fee) as sum_carrying_fee,sum(goods_fee) as sum_goods_fee,sum(goods_num) as sum_goods_num,sum(1) as sum_bill_count').group('from_org_id,to_org_id')
 
@@ -411,7 +411,8 @@ class CarryingBill < ActiveRecord::Base
       #如果是中转票据,则将中转站与始发站调换
       override_attr.merge!("from_org_id"=> self.transit_org_id,"to_org_id"=> self.from_org_id) unless self.transit_org_id.blank?
       return_attr = self.attributes.merge(override_attr)
-      return_attr.delete("goods_no")
+      delete_attrs = %w[goods_no original_carrying_fee original_goods_fee original_from_short_carrying_fee insured_rate original_insured_amount type original_insured_fee id original_to_short_carrying_fee original_carrying_fee]
+      return_attr.delete_if { |key,value| delete_attrs.include?(key)}
       self.build_return_bill(return_attr)
     end
     #重写to_s方法
@@ -511,7 +512,7 @@ class CarryingBill < ActiveRecord::Base
           :transit_org_name,:to_org_name,:pay_type_des,:from_short_carrying_fee,:to_short_carrying_fee,
           :carrying_fee,:carrying_fee_th,:k_carrying_fee,:k_hand_fee,:goods_fee,:insured_fee,:transit_carrying_fee,
           :transit_hand_fee,:act_pay_fee,:agent_carrying_fee,:th_amount,:goods_num,:note,:human_state_name
-      ]}
+        ]}
     end
     #机打运单编号从4000000开始
     #生成票据编号

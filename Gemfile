@@ -18,9 +18,8 @@ gem 'acts_as_tree',:git => 'git://github.com/parasew/acts_as_tree.git'
 #form 显示组件
 gem 'formtastic', '~>1.2.3'
 #state_machine
-gem 'state_machine'
+gem 'state_machine','~>1.1.2'
 gem 'inherited_resources', '~>1.3.1'
-gem 'inherited_resources_views'
 gem 'dynamic_form'
 gem 'show_for'
 gem 'fastercsv'
