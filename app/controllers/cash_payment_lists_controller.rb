@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class CashPaymentListsController < BaseController
   table :bill_date,:org,:user,:note
   include BillOperate

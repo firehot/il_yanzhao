@@ -61,11 +61,6 @@ describe ComputerBillsController do
       it "能够成功保存票据信息" do
         lambda do
           post :create, :computer_bill => @attr
-          bill = assigns(:computer_bill)
-          puts controller.send(:resource_class).to_s
-          puts bill.class
-          puts "goods_no=" + assigns(:computer_bill).goods_no
-          puts "goods_no=" + assigns(:computer_bill).from_org.simp_name
         end.should change(ComputerBill,:count).by(1)
       end
 
