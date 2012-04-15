@@ -44,7 +44,8 @@ class CarryingBill < ActiveRecord::Base
   #保存成功后,设置原始费用
   before_create :set_original_fee
   #计算手续费
-  before_create :cal_hand_fee
+  #NOTE 当修改单据的代收货款时，也重新计算运费
+  before_save :cal_hand_fee
 
   belongs_to :user
   belongs_to :from_org,:class_name => "Org"
@@ -537,10 +538,12 @@ class CarryingBill < ActiveRecord::Base
     end
     #计算手续费
     def cal_hand_fee
-      if self.goods_fee_cash?
-        self.k_hand_fee = ConfigCash.cal_hand_fee(:goods_fee => self.goods_fee,:from_org_id => self.from_org_id,:to_org_id => self.to_org_id)
-      else
-        self.k_hand_fee = ConfigTransit.cal_hand_fee(:goods_fee => self.goods_fee,:from_org_id => self.from_org_id,:to_org_id => self.to_org_id)
+      if self.new_record?  or self.changes[:goods_fee].present?
+        if self.goods_fee_cash?
+          self.k_hand_fee = ConfigCash.cal_hand_fee(:goods_fee => self.goods_fee,:from_org_id => self.from_org_id,:to_org_id => self.to_org_id)
+        else
+          self.k_hand_fee = ConfigTransit.cal_hand_fee(:goods_fee => self.goods_fee,:from_org_id => self.from_org_id,:to_org_id => self.to_org_id)
+        end
       end
       self.k_hand_fee
     end

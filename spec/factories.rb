@@ -605,3 +605,9 @@ Factory.define :goods_cat_fee_config do |gcfc|
   gcfc.association :from_org,:factory => :zz
   gcfc.association :to_org,:factory => :ay
 end
+Factory.define :goods_cat_fee_config_line do |line|
+  line.bottom_price 11.12
+  line.unit_price 14
+  line.association :goods_cat,:factory => :goods_cat
+end
+

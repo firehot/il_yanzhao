@@ -7,4 +7,77 @@ require 'spec_helper'
 describe GoodsCatFeeConfigsController do
   login_admin
   render_views
+
+  describe "GET index" do
+    before(:each) do
+      @gc ||= Factory(:goods_cat_fee_config)
+    end
+
+    it "should be success" do
+      get :index
+      response.should be_success
+    end
+  end
+
+  describe "GET show" do
+    before(:each) do
+      @gc ||= Factory(:goods_cat_fee_config)
+    end
+
+    it "should render 'show'" do
+      get :show, :id => @gc
+      response.should render_template('show')
+    end
+  end
+
+  describe "GET new" do
+    it "should be sucesss" do
+      get :new
+      response.should be_success
+    end
+    it "should render template 'new'" do
+      get :new
+      response.should render_template('new')
+    end
+  end
+
+  describe "POST create" do
+    describe "with valid params" do
+      it "the gc should success create" do
+        lambda do
+          post :create,:goods_cat_fee_config => {:from_org => Factory(:zz),:to_org => Factory(:ay)}
+        end.should change(GoodsCatFeeConfig,:count).by(1)
+      end
+
+      it "redirects to the created gc" do
+        post :create,:goods_cat_fee_config => {:from_org => Factory(:zz),:to_org => Factory(:ay)}
+        response.should redirect_to(assigns[:goods_cat_fee_config])
+      end
+    end
+
+    describe "with invalid params" do
+      it "re-renders the 'new' template" do
+        post :create, :goods_cat_fee_config => {}
+        response.should render_template('new')
+      end
+    end
+  end
+
+
+  describe "DELETE destroy" do
+    before(:each) do
+      @gc ||= Factory(:goods_cat_fee_config)
+    end
+
+    it "destroys the requested gc" do
+      lambda do
+        delete :destroy ,:id => @gc
+      end.should change(GoodsCatFeeConfig,:count).by(-1)
+    end
+
+    it "redirects to the gcs list" do
+      delete :destroy, :id => @gc
+      response.should redirect_to(goods_cat_fee_configs_url)
+    end
+  end
 end
