@@ -610,3 +610,4 @@ Factory.define :goods_cat_fee_config_line do |line|
   line.unit_price 14
   line.association :goods_cat,:factory => :goods_cat
 end
+
