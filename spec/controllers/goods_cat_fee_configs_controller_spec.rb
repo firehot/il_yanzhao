@@ -45,12 +45,12 @@ describe GoodsCatFeeConfigsController do
     describe "with valid params" do
       it "the gc should success create" do
         lambda do
-          post :create,:goods_cat_fee_config => {:from_org => Factory(:zz),:to_org => Factory(:ay)}
+          post :create,:goods_cat_fee_config => {:from_org_id => Factory(:zz).id,:to_org_id => Factory(:ay).id}
         end.should change(GoodsCatFeeConfig,:count).by(1)
       end
 
       it "redirects to the created gc" do
-        post :create,:goods_cat_fee_config => {:from_org => Factory(:zz),:to_org => Factory(:ay)}
+        post :create,:goods_cat_fee_config => {:from_org_id => Factory(:zz).id,:to_org_id => Factory(:ay).id}
         response.should redirect_to(assigns[:goods_cat_fee_config])
       end
     end

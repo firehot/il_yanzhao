@@ -83,14 +83,13 @@ IlYanzhao::Application.routes.draw do
 
   #将devise的url与model user产生的url区分开
   #参见https://github.com/plataformatec/devise/wiki/How-To:-Manage-users-through-a-CRUD-interface
-  devise_for :users,:controllers => {:sessions => "sessions"} do
+  devise_for :users,:controllers => {:sessions => "sessions"}
+  as :user do
     #登录成功后显示设置角色与部门界面
-    get "users/new_session_default",:to => "sessions#new_session_default",:as => :user_root
+    match "new_session_default",:to => "sessions#new_session_default",:via => :get,:as => :user_root
     #保存用户设置
-    put  "users/update_session_default",:to => "sessions#update_session_default",:as => :update_session_default
+    match  "update_session_default",:to => "sessions#update_session_default",:via => :put,:as => :update_session_default
   end
-
-  #match "users/new_session_default",:to => "sessions#new_session_default",:as => :user_root
 
   resources :users do
     get :search,:on => :collection

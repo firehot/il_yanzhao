@@ -65,12 +65,12 @@ group :development do
   #gem "win32-open3-19"  #ruby 1.9
 end
 group :development, :test do
-  gem 'rspec-rails','~>2.4.1'
+  gem 'rspec-rails','~>2.9.0'
   gem 'web-app-theme', '>= 0.6.2'
   gem 'i18n_generators'
   gem 'capistrano'
 end
 group :test do
-  gem 'rspec','~>2.4.0'
+  gem 'rspec','~>2.9.0'
   gem 'spork','0.9.0.rc4'
 end

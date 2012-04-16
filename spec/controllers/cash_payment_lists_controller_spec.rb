@@ -44,20 +44,20 @@ describe CashPaymentListsController do
       it "success create cash_payment_list" do
         lambda do
           post :create,:cash_payment_list => {:org_id => Factory(:zz)},:bill_ids => [@computer_bill.id]
-          :nd.should change(CashPaymentList,:count).by(1)
-        end
-
-        it "redirects to the created cash_payment_list" do
-          post :create,:cash_payment_list => {:org_id => Factory(:zz)},:bill_ids => [@computer_bill.id]
-          response.should redirect_to(assigns(:cash_payment_list))
-        end
+        end.should change(CashPaymentList,:count).by(1)
       end
 
-      describe "with invalid params" do
-        it "re-render the new 'template'" do
-          post :create, :cash_payment_list => {}
-          response.should render_template('new')
-        end
+
+      it "redirects to the created cash_payment_list" do
+        post :create,:cash_payment_list => {:org_id => Factory(:zz)},:bill_ids => [@computer_bill.id]
+        response.should redirect_to(assigns(:cash_payment_list))
+      end
+    end
+
+    describe "with invalid params" do
+      it "re-render the new 'template'" do
+        post :create, :cash_payment_list => {}
+        response.should render_template('new')
       end
     end
   end

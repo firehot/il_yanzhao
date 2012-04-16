@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class User < ActiveRecord::Base
   attr_accessor :all_user_orgs
   # Include default devise modules. Others available are:
@@ -64,4 +63,3 @@ class User < ActiveRecord::Base
     self.usb_pin = UUID.generate(:compact)
   end
 end
-
