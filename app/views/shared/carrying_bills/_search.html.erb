@@ -32,7 +32,7 @@
     <%= f.input :to_short_carrying_fee_gte,:label => "仅查询有到货短途费票据",:as => :boolean,:checked_value=> 0.1,:unchecked_value => 0 %>
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

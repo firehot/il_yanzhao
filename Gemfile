@@ -11,26 +11,25 @@ end
 #gem 'ghazel-mysql2'
 gem 'mysql2','~>0.3.11'
 gem "will_paginate", "~> 3.0.3"
-gem "devise",'2.0.4'
-gem "cancan",'1.5.0'
+gem "devise",'~>2.0.4'
+gem "cancan",'~>1.6.7'
 #表单中的树形结构选择
 gem 'acts_as_tree',:git => 'git://github.com/parasew/acts_as_tree.git'
 #form 显示组件
-gem 'formtastic', '~>1.2.3'
+gem 'formtastic', '~>2.2.0'
 #state_machine
 gem 'state_machine','~>1.1.2'
 gem 'inherited_resources', '~>1.3.1'
-gem 'dynamic_form'
-gem 'show_for'
-gem 'fastercsv'
+gem 'dynamic_form','~>1.1.4'
+gem 'show_for','~>0.2.4'
+gem 'fastercsv','~>1.5.4'
 #uuid generator
-gem 'uuid'
-gem 'factory_girl_rails', '1.0'
-gem 'easy_http_cache'
+gem 'uuid','~>2.3.5'
+gem 'easy_http_cache','~>2.2'
 gem "meta_search","~> 1.1.3"
 #js compressor
 gem 'jammit'
-gem "default_value_for", "~> 1.0.4"
+gem "default_value_for", "~> 1.0.7"
 gem "jquery_notify_bar", "~> 0.0.4"
 
 # Bundle edge Rails instead:
@@ -58,7 +57,7 @@ gem "jquery_notify_bar", "~> 0.0.4"
 # and rake tasks are available in development mode:
 group :development do
   gem 'jquery-rails'
-  gem "bullet"
+  gem "bullet",'~>2.3.1'
 
   #在unix、linux运行环境下不需要
   #gem "win32-open3"   #ruby 1.8
@@ -67,10 +66,12 @@ end
 group :development, :test do
   gem 'rspec-rails','~>2.9.0'
   gem 'web-app-theme', '>= 0.6.2'
-  gem 'i18n_generators'
-  gem 'capistrano'
+  gem 'i18n_generators','~>1.2.0'
+  gem 'capistrano','~>2.12.0'
 end
 group :test do
-  gem 'rspec','~>2.9.0'
-  gem 'spork','0.9.0.rc4'
+  gem "autotest-rails", "~> 4.1.2"
+  # factory_girl 3.1 不支持ruby1.8.7
+  gem 'factory_girl_rails', '~>1.1.0'
+  gem 'spork-rails','~>3.2.0'
 end
