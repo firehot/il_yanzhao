@@ -70,7 +70,7 @@ group :development, :test do
   gem 'capistrano','~>2.12.0'
 end
 group :test do
-  gem "autotest-rails", "~> 4.1.2"
+  gem "autotest-rails", "~>4.1.2"
   # factory_girl 3.1 不支持ruby1.8.7
   gem 'factory_girl_rails', '~>1.1.0'
   gem 'spork-rails','~>3.2.0'

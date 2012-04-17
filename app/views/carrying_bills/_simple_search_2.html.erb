@@ -29,7 +29,7 @@
 
     <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

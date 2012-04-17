@@ -4,6 +4,5 @@ class ConfigTransit < ActiveRecord::Base
   include CalculateHandfee
   belongs_to :org
   belongs_to :to_org,:class_name => "Org"
-  validates :rate,:numericality => {:greater_than => 0}
-  validates :rate,:presence => true
+  validates :rate,:presence => true,:numericality => {:greater_than_or_equal_to => 0}
 end

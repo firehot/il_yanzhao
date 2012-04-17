@@ -4,7 +4,7 @@
     <%= hidden_field_tag :hide_fields,params[:hide_fields]%>
     <%= text_area_tag :bill_nos,nil,:size => "90x5",:id => "txt_multi_bills_search" %>
   <% end %>
-  <%= f.buttons :class => 'text-left' do %>
+  <%= f.actions :class => 'text-left' do %>
     <%= link_to_function "查询运单","",:class => 'sexybutton sexysimple sexyblue',:id => "btn_multi_bills_search"  %>
   <% end %>
 <% end%>

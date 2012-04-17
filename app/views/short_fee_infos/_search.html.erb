@@ -10,7 +10,7 @@
     <%= f.input :org_id_eq,:label => "分理处/分公司",:as => :select,:collection => orgs_for_select %>
     <%= f.input :state_eq,:label => "状态",:as => :select,:collection => short_fee_info_states_for_select %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询短途运费核销信息",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

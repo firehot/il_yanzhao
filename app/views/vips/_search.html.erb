@@ -8,7 +8,7 @@
     <%= f.input :org_id_in,:label => "所属机构",:as => :select,:collection => current_ability_orgs_for_select,:include_blank => current_user.default_org.is_summary?,:input_html => {:class => "select_org"} %>
     <%= f.input :bank_id_eq,:label => "开户银行",:as => :select,:collection => Bank.where(:is_active => true) %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询转账客户信息",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

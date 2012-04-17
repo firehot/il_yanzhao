@@ -37,7 +37,7 @@
     <%= f.hidden_field :goods_fee_gt,:id => "simple_search_goods_fee_gt",:value => params[:search].try(:[],:goods_fee_gt)%>
     <%= f.hidden_field :state_ne,:value => "invalided"%>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

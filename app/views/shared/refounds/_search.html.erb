@@ -8,7 +8,7 @@
     <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input :state_eq,:label => "状态",:as => :select,:collection => refound_states_for_select %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询清单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

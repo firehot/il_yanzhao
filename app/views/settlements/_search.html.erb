@@ -7,7 +7,7 @@
     <%= f.input :bill_date_lte,:label => "~",:as => :string,:input_html =>{:class => 'datepicker',:size => 20,:readonly => true,:value => Date.today} %>
     <%= f.input :state_eq,:label => "状态",:as => :select,:collection => settlement_states_for_select,:input_html =>{:class => "ufd-select"}  %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询结算员交款清单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

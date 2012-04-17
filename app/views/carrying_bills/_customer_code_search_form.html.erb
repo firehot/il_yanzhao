@@ -4,7 +4,7 @@
     <%= hidden_field_tag :hide_fields,params[:hide_fields]%>
     <%= f.input :from_customer_code_or_from_customer_name_eq,:label => "客户编号/姓名",:as => :string,:input_html =>{:size => 20} %>
   <% end %>
-  <%= f.buttons do %>
+  <%= f.actions do %>
     <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>

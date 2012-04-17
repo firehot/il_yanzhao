@@ -13,7 +13,7 @@
     <%= f.input :exception_type_eq,:label => "异常类别",:as => :select,:collection => GoodsException.exception_types,:include_blank => true %>
     <%= f.input :state_eq,:label => "状态",:as => :select,:collection => goods_exception_states_for_select,:include_blank => true %>
   <% end %>
-  <%=f.buttons do %>
+  <%=f.actions do %>
     <%=submit_tag "查询理赔信息",:class => "sexybutton sexysimple sexyblue" %>
   <% end %>
 <% end%>
