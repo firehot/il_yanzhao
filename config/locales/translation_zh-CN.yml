@@ -1,9 +1,6 @@
 zh-CN:
   "false": "否"
   "true": "是"
-  will_paginate.previous_label:  '&laquo;上一页'
-  will_paginate.next_label:  '下一页&raquo;'
-
 
   flash:
     actions:
@@ -11,7 +8,13 @@ zh-CN:
         notice: "%{resource_name} 保存成功!"
 
   formtastic:
-    labels:
+    actions:
+        create: "保存"
+        update: "更新数据"
+        reset: "表单重置"
+        cancel: "取消"
+        submit: "提交"
+        search: "查询"
 
   activerecord:
 

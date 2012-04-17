@@ -33,6 +33,6 @@
     <%= f.input "completed_eq",:label => "查询历史运单",:as => :boolean %>
   <% end %>
   <%=f.actions do %>
-    <%=submit_tag "查询运单",:class => "sexybutton sexysimple sexyblue" %>
+    <%= f.action :submit,:label => :search,:button_html => { :class => "sexybutton sexysimple sexyblue",:disable_with => '查询中...' } %>
   <% end %>
 <% end%>

@@ -11,6 +11,7 @@ end
 #gem 'ghazel-mysql2'
 gem 'mysql2','~>0.3.11'
 gem "will_paginate", "~> 3.0.3"
+gem "will-paginate-i18n", "~> 0.1.1"
 gem "devise",'~>2.0.4'
 gem "cancan",'~>1.6.7'
 #表单中的树形结构选择
@@ -68,6 +69,7 @@ group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
   gem 'i18n_generators','~>1.2.0'
   gem 'capistrano','~>2.12.0'
+  gem "autotest-growl", "~> 0.2.16"
 end
 group :test do
   gem "autotest-rails", "~>4.1.2"
