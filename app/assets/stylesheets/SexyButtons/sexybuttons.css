@@ -1,43 +1,43 @@
 /*
  * Sexy Buttons
- * 
+ *
  * DESCRIPTION:
  * 	Sexy, skinnable HTML/CSS buttons with icons.
- * 
- * PROJECT URL: 
+ *
+ * PROJECT URL:
  * 	http://code.google.com/p/sexybuttons/
- * 
+ *
  * AUTHOR:
  * 	Richard Davies
  * 	http://www.richarddavies.us
  * 	Richard@richarddavies.us
- * 
+ *
  * VERSION:
  * 	1.1
- * 
+ *
  * LICENSE:
  * 	Apache License 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
  * 	Creative Commons 3.0 Attribution  (http://creativecommons.org/licenses/by/3.0/)
- * 
+ *
  * CREDITS:
  * 	Inspired by, derived from, and thanks to:
  * 	http://www.p51labs.com/simply-buttons-v2/
  * 	http://www.oscaralexander.com/tutorials/how-to-make-sexy-buttons-with-css.html
  * 	http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
  * 	http://www.elctech.com/snippets/make-your-buttons-look-super-awesome
- * 
+ *
  * USAGE:
  * 	Simply add class="sexybutton [skin]" to a <button> or <a> element and wrap the label text with double <span>s.
- * 	You can optionally add a "silk" icon to the button text by using a third <span> with class to identify the icon.   
- * 
- * EXAMPLE: 
+ * 	You can optionally add a "silk" icon to the button text by using a third <span> with class to identify the icon.
+ *
+ * EXAMPLE:
  * 	<button id="btn1" class="sexybutton" name="btn1" type="submit" value="Submit">
  * 		<span><span><span class="ok">Submit</span></span></span>
  * 	</button>
  */
 
 
-/* 
+/*
  *	Generic styles for all Sexy Buttons
  */
 
@@ -54,7 +54,7 @@
 	cursor: pointer;
 	user-select: none;
 	-moz-user-select: none;
-	
+
 	/* Fix extra width padding in IE */
 	_width: 0;
 	overflow: visible;
@@ -80,7 +80,7 @@
 	background-image: none;
 	background-repeat: no-repeat;
 	background-position: left center;
-	/* IE6 still requires a PNG transparency fix */ 
+	/* IE6 still requires a PNG transparency fix */
 	/* _background-image: none;		Or just hide icons from the undeserving IE6 */
 	/* _padding-left: 0;					Or just hide icons from the undeserving IE6 */
 }
@@ -89,7 +89,7 @@
 	padding-left: 0px;
 	padding-right: 21px;
 	background-position: right center;
-	/* IE6 still requires a PNG transparency fix */ 
+	/* IE6 still requires a PNG transparency fix */
 	/* _padding-right: 0;					Or just hide icons from the undeserving IE6 */
 }
 
@@ -103,7 +103,7 @@
 .sexybutton.disabled:active {
 	color: #333 !important;
 	cursor: inherit;
-	text-shadow: none; 
+	text-shadow: none;
 	opacity: 0.33;
 }
 
@@ -157,14 +157,14 @@
 	/* IE6 Hack */
 	_margin-top: 4px;
 	_vertical-align: text-bottom;
-	/* IE6 still requires a PNG transparency fix */ 
+	/* IE6 still requires a PNG transparency fix */
 	/* _display: none;		Or just hide icons from the undeserving IE6 */
 }
 
 .sexybutton img.after {
 	margin-right: 0;
 	margin-left: 5px;
-	/* IE6 still requires a PNG transparency fix */ 
+	/* IE6 still requires a PNG transparency fix */
 	/* _margin-left: 0;		Or just hide icons from the undeserving IE6 */
 }
 
@@ -174,12 +174,12 @@
 
 /*
  * Button Skins
- * 
- * .PNG background images with alpha transparency are also supplied if you'd rather use them instead of the 
- * default .GIF images. (Just beware of IE6's lack of support.) 
- * 
+ *
+ * .PNG background images with alpha transparency are also supplied if you'd rather use them instead of the
+ * default .GIF images. (Just beware of IE6's lack of support.)
+ *
  * Additional skins can be added below. The images/skins/ButtonTemplate.psd can be used to create new skins.
- * Prefix the skin name with "sexy" to avoid any potential conflicts with other class names. 
+ * Prefix the skin name with "sexy" to avoid any potential conflicts with other class names.
  */
 
 /* Silver Button Skin (the default skin) */
@@ -188,22 +188,22 @@
 .sexybutton.sexysilver {
 	color: #666 !important;
 }
-	
+
 .sexybutton:hover,
 .sexybutton:focus,
 .sexybutton.sexysilver:hover,
 .sexybutton.sexysilver:focus {
 	color: #333 !important;
 }
-	
+
 .sexybutton span,
 .sexybutton.sexysilver span {
-	background-image: url(/stylesheets/SexyButtons/images/skins/silver/button_right.gif);
+	background-image: url(/assets/SexyButtons/images/skins/silver/button_right.gif);
 }
 
 .sexybutton span span,
 .sexybutton.sexysilver span span {
-	background-image: url(/stylesheets/SexyButtons/images/skins/silver/button_left.gif);
+	background-image: url(/assets/SexyButtons/images/skins/silver/button_left.gif);
 }
 
 /* Orange Button Skin */
@@ -213,7 +213,7 @@
 .sexybutton.sexyorange:focus {
 	color: white !important;
 }
-	
+
 .sexybutton.sexyorange[disabled],
 .sexybutton.sexyorange[disabled]:hover,
 .sexybutton.sexyorange[disabled]:active,
@@ -224,13 +224,13 @@
 .sexybutton.sexyorange.disabled:focus {
 	color: #333 !important;
 }
-	
+
 .sexybutton.sexyorange span {
-	background-image: url(/stylesheets/SexyButtons/images/skins/orange/button_right.gif);
+	background-image: url(/assets/SexyButtons/images/skins/orange/button_right.gif);
 }
 
 .sexybutton.sexyorange span span {
-	background-image: url(/stylesheets/SexyButtons/images/skins/orange/button_left.gif);
+	background-image: url(/assets/SexyButtons/images/skins/orange/button_left.gif);
 }
 
 /* Yellow Button Skin */
@@ -240,55 +240,55 @@
 .sexybutton.sexyyellow:focus {
 	color: #994800 !important;
 }
-	
+
 .sexybutton.sexyyellow span {
-	background-image: url(/stylesheets/SexyButtons/images/skins/yellow/button_right.gif);
+	background-image: url(/assets/SexyButtons/images/skins/yellow/button_right.gif);
 }
 
 .sexybutton.sexyyellow span span {
-	background-image: url(/stylesheets/SexyButtons/images/skins/yellow/button_left.gif);
+	background-image: url(/assets/SexyButtons/images/skins/yellow/button_left.gif);
 }
 
 
-/* 
+/*
  * Simple Skin Buttons
  */
 
-.sexybutton.sexysimple { 
-	position: relative; 
+.sexybutton.sexysimple {
+	position: relative;
 	padding: 5px 10px 5px;
 	font: inherit;
 	font-size: 13px !important;
-	font-style: normal !important; 
-	font-weight: bold !important; 
+	font-style: normal !important;
+	font-weight: bold !important;
 	color: #fff !important;
-	line-height: 1; 
-	background-image: url(/stylesheets/SexyButtons/images/skins/simple/awesome-overlay-sprite.png);
+	line-height: 1;
+	background-image: url(/assets/SexyButtons/images/skins/simple/awesome-overlay-sprite.png);
 	background-repeat: repeat-x;
 	background-position: 0 0;
-	
+
 	/* Special effects */
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25), -2px 0 1px rgba(0,0,0,0.25); 
-	border-radius: 5px; 
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px; 
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25), -2px 0 1px rgba(0,0,0,0.25);
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-	
+
 	/* IE only stuff */
 	border-bottom: 1px solid transparent\9;
 	_background-image: none;
-	
+
 	/* Cross browser inline block hack - http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
 	display: -moz-inline-stack;
 	display: inline-block;
 	vertical-align: middle;
 	*display: inline !important;
 	position: relative;
-	
+
 	/* Force hasLayout in IE */
 	zoom: 1;
-	
+
 	/* Disable text selection (Firefox only)*/
 	-moz-user-select: none;
 }
@@ -299,26 +299,26 @@
 
 .sexybutton.sexysimple:hover,
 .sexybutton.sexysimple:focus {
-	background-position: 0 -50px; 
+	background-position: 0 -50px;
 	color: #fff !important;
 }
 
-.sexybutton.sexysimple:active { 
-	background-position: 0 -100px; 
-	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7); 
+.sexybutton.sexysimple:active {
+	background-position: 0 -100px;
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7);
 	/* Unfortunately, Safari doesn't support inset yet */
 	-webkit-box-shadow: none;
-	
+
 	/* IE only stuff */
 	border-bottom: 0\9;
 	border-top: 1px solid #666\9;
 }
 
-.sexybutton.sexysimple[disabled], 
-.sexybutton.sexysimple.disabled { 
-	background-position: 0 -150px; 
+.sexybutton.sexysimple[disabled],
+.sexybutton.sexysimple.disabled {
+	background-position: 0 -150px;
 	color: #333 !important;
-	text-shadow: none; 
+	text-shadow: none;
 }
 
 .sexybutton.sexysimple[disabled]:hover,
@@ -327,9 +327,9 @@
 .sexybutton.sexysimple.disabled:hover,
 .sexybutton.sexysimple.disabled:focus,
 .sexybutton.sexysimple.disabled:active {
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-} 
+}
 
 .sexybutton.sexysimple span {
 	height: auto;
@@ -337,7 +337,7 @@
 	padding-right: 0;
 	background-position: left center;
 	background-repeat: no-repeat;
-	/* IE6 still requires a PNG transparency fix */ 
+	/* IE6 still requires a PNG transparency fix */
 	/* _padding-left: 0;		Or just hide icons from the undeserving IE6 */
 }
 
@@ -345,7 +345,7 @@
 	padding-left: 0;
 	padding-right: 24px;
 	background-position: right center;
-	/* IE6 still requires a PNG transparency fix */ 
+	/* IE6 still requires a PNG transparency fix */
 	/* _padding-right: 0;		Or just hide icons from the undeserving IE6 */
 }
 
@@ -400,47 +400,47 @@
 /* Silk Icons - http://www.famfamfam.com/lab/icons/silk/ */
 /* (Obviously not all Silk icons are defined here. Feel free to define any other icons that you may need.) */
 
-.sexybutton span.ok				{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/tick.png) !important; }
-.sexybutton span.cancel			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/cross.png) !important; }
-.sexybutton span.add				{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/add.png) !important; }
-.sexybutton span.delete			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/delete.png) !important; }
-.sexybutton span.download		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/arrow_down.png) !important; }
-.sexybutton span.download2		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/package_down.png) !important; }
-.sexybutton span.upload			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/arrow_up.png) !important; }
-.sexybutton span.search			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/magnifier.png) !important; }
-.sexybutton span.find			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/find.png) !important; }
-.sexybutton span.first			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/resultset_first.png) !important; }
-.sexybutton span.prev			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/resultset_previous.png) !important; }
-.sexybutton span.next			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/resultset_next.png) !important; }
-.sexybutton span.last			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/resultset_last.png) !important; }
-.sexybutton span.play			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/play_blue.png) !important; }
-.sexybutton span.pause			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/pause_blue.png) !important; }
-.sexybutton span.rewind			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/rewind_blue.png) !important; }
-.sexybutton span.forward		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/forward_blue.png) !important; }
-.sexybutton span.stop			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/stop_blue.png) !important; }
-.sexybutton span.reload			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/reload.png) !important; }
-.sexybutton span.sync			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/arrow_refresh.png) !important; }
-.sexybutton span.save			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/disk.png) !important; }
-.sexybutton span.email			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/email.png) !important; }
-.sexybutton span.print			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/printer.png) !important; }
-.sexybutton span.heart			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/heart.png) !important; }
-.sexybutton span.like			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/thumb_up.png) !important; }
-.sexybutton span.dislike		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/thumb_down.png) !important; }
-.sexybutton span.accept			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/accept.png) !important; }
-.sexybutton span.decline		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/decline.png) !important; }
-.sexybutton span.help			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/help.png) !important; }
-.sexybutton span.home			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/house.png) !important; }
-.sexybutton span.info			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/information.png) !important; }
-.sexybutton span.cut				{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/cut.png) !important; }
-.sexybutton span.copy			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/page_white_copy.png) !important; }
-.sexybutton span.paste			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/paste_plain.png) !important; }
-.sexybutton span.erase			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/erase.png) !important; }
-.sexybutton span.undo			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/arrow_undo.png) !important; }
-.sexybutton span.redo			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/arrow_redo.png) !important; }
-.sexybutton span.edit			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/pencil.png) !important; }
-.sexybutton span.calendar		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/date.png) !important; }
-.sexybutton span.user			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/user.png) !important; }
-.sexybutton span.settings		{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/cog.png) !important; }
-.sexybutton span.cart			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/cart.png) !important; }
-.sexybutton span.wand			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/wand.png) !important; }
-.sexybutton span.wrench			{ background-image: url(/stylesheets/SexyButtons/images/icons/silk/wrench.png) !important; }
+.sexybutton span.ok				{ background-image: url(/assets/SexyButtons/images/icons/silk/tick.png) !important; }
+.sexybutton span.cancel			{ background-image: url(/assets/SexyButtons/images/icons/silk/cross.png) !important; }
+.sexybutton span.add				{ background-image: url(/assets/SexyButtons/images/icons/silk/add.png) !important; }
+.sexybutton span.delete			{ background-image: url(/assets/SexyButtons/images/icons/silk/delete.png) !important; }
+.sexybutton span.download		{ background-image: url(/assets/SexyButtons/images/icons/silk/arrow_down.png) !important; }
+.sexybutton span.download2		{ background-image: url(/assets/SexyButtons/images/icons/silk/package_down.png) !important; }
+.sexybutton span.upload			{ background-image: url(/assets/SexyButtons/images/icons/silk/arrow_up.png) !important; }
+.sexybutton span.search			{ background-image: url(/assets/SexyButtons/images/icons/silk/magnifier.png) !important; }
+.sexybutton span.find			{ background-image: url(/assets/SexyButtons/images/icons/silk/find.png) !important; }
+.sexybutton span.first			{ background-image: url(/assets/SexyButtons/images/icons/silk/resultset_first.png) !important; }
+.sexybutton span.prev			{ background-image: url(/assets/SexyButtons/images/icons/silk/resultset_previous.png) !important; }
+.sexybutton span.next			{ background-image: url(/assets/SexyButtons/images/icons/silk/resultset_next.png) !important; }
+.sexybutton span.last			{ background-image: url(/assets/SexyButtons/images/icons/silk/resultset_last.png) !important; }
+.sexybutton span.play			{ background-image: url(/assets/SexyButtons/images/icons/silk/play_blue.png) !important; }
+.sexybutton span.pause			{ background-image: url(/assets/SexyButtons/images/icons/silk/pause_blue.png) !important; }
+.sexybutton span.rewind			{ background-image: url(/assets/SexyButtons/images/icons/silk/rewind_blue.png) !important; }
+.sexybutton span.forward		{ background-image: url(/assets/SexyButtons/images/icons/silk/forward_blue.png) !important; }
+.sexybutton span.stop			{ background-image: url(/assets/SexyButtons/images/icons/silk/stop_blue.png) !important; }
+.sexybutton span.reload			{ background-image: url(/assets/SexyButtons/images/icons/silk/reload.png) !important; }
+.sexybutton span.sync			{ background-image: url(/assets/SexyButtons/images/icons/silk/arrow_refresh.png) !important; }
+.sexybutton span.save			{ background-image: url(/assets/SexyButtons/images/icons/silk/disk.png) !important; }
+.sexybutton span.email			{ background-image: url(/assets/SexyButtons/images/icons/silk/email.png) !important; }
+.sexybutton span.print			{ background-image: url(/assets/SexyButtons/images/icons/silk/printer.png) !important; }
+.sexybutton span.heart			{ background-image: url(/assets/SexyButtons/images/icons/silk/heart.png) !important; }
+.sexybutton span.like			{ background-image: url(/assets/SexyButtons/images/icons/silk/thumb_up.png) !important; }
+.sexybutton span.dislike		{ background-image: url(/assets/SexyButtons/images/icons/silk/thumb_down.png) !important; }
+.sexybutton span.accept			{ background-image: url(/assets/SexyButtons/images/icons/silk/accept.png) !important; }
+.sexybutton span.decline		{ background-image: url(/assets/SexyButtons/images/icons/silk/decline.png) !important; }
+.sexybutton span.help			{ background-image: url(/assets/SexyButtons/images/icons/silk/help.png) !important; }
+.sexybutton span.home			{ background-image: url(/assets/SexyButtons/images/icons/silk/house.png) !important; }
+.sexybutton span.info			{ background-image: url(/assets/SexyButtons/images/icons/silk/information.png) !important; }
+.sexybutton span.cut				{ background-image: url(/assets/SexyButtons/images/icons/silk/cut.png) !important; }
+.sexybutton span.copy			{ background-image: url(/assets/SexyButtons/images/icons/silk/page_white_copy.png) !important; }
+.sexybutton span.paste			{ background-image: url(/assets/SexyButtons/images/icons/silk/paste_plain.png) !important; }
+.sexybutton span.erase			{ background-image: url(/assets/SexyButtons/images/icons/silk/erase.png) !important; }
+.sexybutton span.undo			{ background-image: url(/assets/SexyButtons/images/icons/silk/arrow_undo.png) !important; }
+.sexybutton span.redo			{ background-image: url(/assets/SexyButtons/images/icons/silk/arrow_redo.png) !important; }
+.sexybutton span.edit			{ background-image: url(/assets/SexyButtons/images/icons/silk/pencil.png) !important; }
+.sexybutton span.calendar		{ background-image: url(/assets/SexyButtons/images/icons/silk/date.png) !important; }
+.sexybutton span.user			{ background-image: url(/assets/SexyButtons/images/icons/silk/user.png) !important; }
+.sexybutton span.settings		{ background-image: url(/assets/SexyButtons/images/icons/silk/cog.png) !important; }
+.sexybutton span.cart			{ background-image: url(/assets/SexyButtons/images/icons/silk/cart.png) !important; }
+.sexybutton span.wand			{ background-image: url(/assets/SexyButtons/images/icons/silk/wand.png) !important; }
+.sexybutton span.wrench			{ background-image: url(/assets/SexyButtons/images/icons/silk/wrench.png) !important; }

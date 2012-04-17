@@ -7,12 +7,12 @@
     <meta name="robots" content="all" />
     <title><%="#{IlConfig.system_title}"%>-登录</title>
     <%= stylesheet_link_tag 'login','SexyButtons/sexybuttons','jquery.notifyBar' %>
-    <!--[if IE 6]><%=include_stylesheets :il_ie_stylesheets %><![endif]-->
+    <!--[if IE 6]><%=stylesheet_link_tag :il_ie_stylesheets %><![endif]-->
     <%= javascript_include_tag "jquery" %>
     <%= javascript_include_tag 'jquery.livequery' %>
     <%= javascript_include_tag 'jquery.notifyBar' %>
     <%= javascript_include_tag 'ukey' %>
-    <!--[if lte IE 6]><%= include_javascripts :il_ie6_javascripts %><![endif]-->
+    <!--[if lte IE 6]><%= javascript_include_tag :il_ie6_javascripts %><![endif]-->
 
   </head>
   <body class='login'>
