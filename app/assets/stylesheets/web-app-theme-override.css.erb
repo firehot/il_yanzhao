@@ -253,7 +253,7 @@ bigger-font {font-size : 1.5em;}
   width : 200px;
   height : 20px;
   text-indent : 20px;
-  background :  url(/images/magnifier-left.png) no-repeat left center ;
+  background :  url(<%= asset_path "magnifier-left.png" %>) no-repeat left center ;
 }
 
 /* color */
@@ -265,11 +265,11 @@ th .current_sort_column {
   background-position: right center;
 }
 th .asc {
-  background-image: url(/images/sort--plus.png);
+  background-image: url(<%= asset_path "sort--plus.png" %>);
 }
 
 th .desc {
-  background-image: url(/images/sort--minus.png);
+  background-image: url(<%= asset_path "sort--minus.png" %>);
 }
 /*退货单新建界面上的说明*/
 #return_bill_before_new_form { margin-left : 200px;}

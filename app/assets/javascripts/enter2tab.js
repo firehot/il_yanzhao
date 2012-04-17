@@ -13,7 +13,7 @@ jQuery(function($) {
 			} else {
 				$(inputs[idx]).change(); //  handles submit buttons
 				inputs[idx + 1].focus(); //  handles submit buttons
-				var tag_name = $(inputs[idx + 1]).attr('tagName').toLowerCase();
+				var tag_name = $(inputs[idx + 1])[0].tagName.toLowerCase();
 				if (tag_name == 'input' || tag_name == 'textarea') inputs[idx + 1].select();
 			}
 			return false;
@@ -22,7 +22,7 @@ jQuery(function($) {
 	};
 	var on_focus = function(evt) {
 		var target_el = evt.target;
-		var tag_name = $(target_el).attr('tagName').toLowerCase();
+		var tag_name = $(target_el)[0].tagName.toLowerCase();
 		if ((tag_name == 'input' && $(target_el).attr('type').toLowerCase() == 'text') || tag_name == 'textarea' || tag_name == 'select') {
 			$(target_el).css({
 				backgroundColor: '#68B4EF'
@@ -33,7 +33,7 @@ jQuery(function($) {
 	var on_blur = function(evt) {
 		var target_el = evt.target;
 
-		var tag_name = $(target_el).attr('tagName').toLowerCase();
+		var tag_name = $(target_el)[0].tagName.toLowerCase();
 		if ((tag_name == 'input' && $(target_el).attr('type').toLowerCase() == 'text') || tag_name == 'textarea' || tag_name == 'select') {
 			$(target_el).css({
 				backgroundColor: '#FFF'
