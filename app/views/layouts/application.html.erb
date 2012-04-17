@@ -2,9 +2,9 @@
 <html>
   <head>
     <title><%="#{IlConfig.system_title}(#{current_user.default_org.name}|#{current_user.username})"%></title>
-    <%= include_stylesheets :il_stylesheets %>
+    <%= stylesheet_link_tag "il_stylesheets" %>
     <!--[if IE 6]>
-    <%= include_stylesheets :il_ie_stylesheets %>
+    <%= stylesheet_link_tag "il_ie_stylesheets" %>
     <![endif]-->
     <%= csrf_meta_tag %>
   </head>
@@ -63,12 +63,12 @@
       </div>
     </div>
   </body>
-  <%= include_javascripts :il_javascripts %>
+  <%= javascript_include_tag "il_javascripts" %>
   <!--[if IE]>
-  <%= include_javascripts :il_ie_javascripts %>
+  <%= javascript_include_tag "il_ie_javascripts" %>
   <![endif]-->
   <!--[if lte IE 6]>
-  <%= include_javascripts :il_ie6_javascripts %>
+  <%= javascript_include_tag "il_ie6_javascripts" %>
   <![endif]-->
   <%flash.each do |key, msg| %>
     <%= jquery_notify_bar(key, msg, :cls => key, :animation_speed => 'normal', :delay => 2000) %>

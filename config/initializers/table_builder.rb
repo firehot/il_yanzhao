@@ -17,11 +17,9 @@ module InheritedResources
     end
 
     module ClassMethods
-
       def default_table_columns
         resource_class.columns.collect{|column| column.name.to_sym } - [:created_at,:updated_at,:id]
       end
-
 
       # Sets the columns to be displayed when the index table is rendered
       # for this resource.

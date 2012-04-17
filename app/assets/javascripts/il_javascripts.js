@@ -1,0 +1,16 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require jquery.ui.datepicker-zh-CN
+//= require jquery.fancybox-1.3.4.pack
+//= require jquery.tipswift
+//= require select_org
+//= require jquery.livequery
+//= require jquery.notifyBar
+//= require jquery.watermark.min
+//= require jquery.cookies.2.2.0.min
+//= require jquery.blockUI
+//= require jquery.hotkeys
+//= require enter2tab
+//= require bill_selector
+//= require application

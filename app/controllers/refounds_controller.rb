@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class RefoundsController < BaseController
   include BillOperate
   table :bill_date,:from_org,:to_org,:human_state_name,:user,:sum_goods_fee,:sum_carrying_fee,:sum_fee

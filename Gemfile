@@ -7,6 +7,8 @@ group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
 end
+gem "jquery-rails", "~> 2.0.2"
+gem "jquery-ui-rails", "~> 0.2.2"
 #解决windows下mysql hanging问题
 #gem 'ghazel-mysql2'
 gem 'mysql2','~>0.3.11'
@@ -29,7 +31,7 @@ gem 'uuid','~>2.3.5'
 gem 'easy_http_cache','~>2.2'
 gem "meta_search","~> 1.1.3"
 #js compressor
-gem 'jammit'
+#gem 'jammit'
 gem "default_value_for", "~> 1.0.7"
 gem "jquery_notify_bar", "~> 0.0.4"
 
@@ -57,7 +59,6 @@ gem "jquery_notify_bar", "~> 0.0.4"
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development do
-  gem 'jquery-rails'
   gem "bullet",'~>2.3.1'
 
   #在unix、linux运行环境下不需要
