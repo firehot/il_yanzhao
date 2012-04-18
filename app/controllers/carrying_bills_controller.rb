@@ -36,13 +36,6 @@ class CarryingBillsController < BaseController
   def simple_search_with_created_at
     @search = resource_class.search(params[:search])
   end
-  def show
-    bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id],:include => [:from_org,:to_org,:transit_org,:from_customer,:user]))
-    respond_with(bill) do |format|
-      format.html
-      format.js { render :partial => "shared/carrying_bills/show",:object => bill}
-    end
-  end
   #重写destroy方法
   def destroy
     bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))

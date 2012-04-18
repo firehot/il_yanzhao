@@ -235,7 +235,7 @@ jQuery(function($) {
 
 	//双击某条记录打开详细信息
 	//tr[data-dblclick]
-	$('#bills_table,table.table[id$="index_table"]').live('dblclick', function(evt) {
+	$('#bills_table,table.table[id$="index_table"]').livequery('dblclick', function(evt) {
 		var target_el = $(evt.target).parent('tr');
 		if (target_el.attr('data-dblclick')) {
 			var el_anchor = $(target_el).find('a.show_link');
@@ -1073,7 +1073,7 @@ jQuery(function($) {
 
 	//自动获取明细信息
 	$('[data-detailUrl]').livequery(function() {
-		var url = $(this).data('detailUrl');
+		var url = $(this).data('detailurl');
 		var params = $(this).data('params');
 		$.get(url, params, null, 'script');
 	});

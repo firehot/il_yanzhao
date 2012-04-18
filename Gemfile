@@ -6,9 +6,10 @@ group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
+  gem "jquery-rails", "~> 2.0.2"
+  gem "jquery-ui-rails", "~> 0.2.2"
+  gem 'fancybox-rails','~> 0.1.4'
 end
-gem "jquery-rails", "~> 2.0.2"
-gem "jquery-ui-rails", "~> 0.2.2"
 #解决windows下mysql hanging问题
 #gem 'ghazel-mysql2'
 gem 'mysql2','~>0.3.11'
