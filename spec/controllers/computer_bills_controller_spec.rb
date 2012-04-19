@@ -130,11 +130,11 @@ describe ComputerBillsController do
   end
   describe "GET search" do
     it "should be success" do
-      get :search
+      get :search,:format => :js
       response.should be_success
     end
     it "should render '/shared/carrying_bills/search'" do
-      get :search
+      get :search,:format => :js
       response.should render_template('shared/carrying_bills/_search')
     end
   end

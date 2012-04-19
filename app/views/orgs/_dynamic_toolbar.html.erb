@@ -12,12 +12,12 @@
     <%end%>
     <%if can? :create,Branch%>
       <li>
-        <%= link_to image_tag("bank--plus.png",:alt => "新建分理处/分公司"), new_branch_path,:title => "新建分理处/分公司",:class => "tipsy fancybox"  %>
+        <%= link_to image_tag("bank--plus.png",:alt => "新建分理处/分公司"), new_branch_path(:format => :js),:title => "新建分理处/分公司",:class => "tipsy fancybox"  %>
       </li>
     <%end%>
     <%if can? :create,Department%>
       <li>
-        <%= link_to image_tag("chair--plus.png",:alt => "新建科室"), new_department_path,:title => "新建科室",:class => "tipsy fancybox"  %>
+        <%= link_to image_tag("chair--plus.png",:alt => "新建科室"), new_department_path(:format => :js),:title => "新建科室",:class => "tipsy fancybox"  %>
       </li>
     <%end%>
     <!--

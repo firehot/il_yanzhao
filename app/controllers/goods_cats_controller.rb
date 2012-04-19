@@ -8,8 +8,9 @@ class GoodsCatsController < BaseController
     @goods_cats = GoodsCat.search(params[:search]).order('parent_id ASC,created_at DESC')
   end
   def new
-    get_resource_ivar || set_resource_ivar(resource_class.new(params[resource_class.model_name.underscore.to_sym]))
-    render :partial => "form"
+    super do |format|
+      format.js {render :partial => "form"}
+    end
   end
   def edit
     super do |format|
