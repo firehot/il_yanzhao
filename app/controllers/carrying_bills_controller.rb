@@ -28,6 +28,11 @@ class CarryingBillsController < BaseController
   def search
     render :partial => "shared/carrying_bills/search"
   end
+  def show
+    super do |format|
+      format.js {render :partial => "shared/carrying_bills/show",:locals => {:show => resource }}
+    end
+  end
   #简单查询,用于报表统计
   def simple_search
     @search = resource_class.search(params[:search])

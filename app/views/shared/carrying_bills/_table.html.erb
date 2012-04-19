@@ -92,7 +92,7 @@
     <% bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index| %>
       <tr class="<%= cycle("odd", "even") %> <%=stranded_class(bill.stranded_days)%>" id='<%=bill.id%>' data-dblclick='true'>
         <td class='cbx_select_bill' style='display : none;'>
-          <%= link_to "查看",  polymorphic_url(bill),:remote => true,:class => (parent? ? "show_link popup-box" : "show_link"),:style => 'display : none;'%>
+          <%= link_to "查看",  polymorphic_url(bill,:format => parent? ? :js : nil),:class => (parent? ? "show_link popup-box" : "show_link"),:style => 'display : none;'%>
           <%=check_box_tag "bill_ids[]",bill.id,true,"data-bill" => "#{bill.to_json(:methods => [:carrying_fee_th,:k_carrying_fee,:act_pay_fee,:th_amount,:agent_carrying_fee,:carrying_fee_total,:send_state,:stranded_days])}" %>
         </td>
         <td class='order_no'>
@@ -102,7 +102,7 @@
           <%=bill.bill_date.strftime('%y-%m-%d')%>
         </td>
         <td class='bill_no'>
-          <%= link_to bill.bill_no,polymorphic_url(bill),:remote => true,:class => :fancybox %>
+          <%= link_to bill.bill_no,polymorphic_url(bill,:format => :js),:class => :fancybox %>
         </td>
         <td class='goods_no'>
           <%=bill.goods_no%>

@@ -12,7 +12,8 @@ class GoodsCatsController < BaseController
     render :partial => "form"
   end
   def edit
-    get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
-    render :partial => "form"
+    super do |format|
+      format.js {render :partial => "form"}
+    end
   end
 end
