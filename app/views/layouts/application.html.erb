@@ -33,7 +33,7 @@
               </div>
             </li>
             <li id='adv-query-wrap'>
-              <%=link_to "高级查询",search_carrying_bills_path(:not_remote => true),:class => 'fancybox',:id => "btn_advanced_search" %>
+              <%=link_to "高级查询",search_carrying_bills_path(:format => :js,:not_remote => true),:class => 'fancybox',:id => "btn_advanced_search" %>
               &nbsp;&nbsp;&nbsp;
               <%= link_to image_tag("question-balloon.png"), "/help.doc" %>
             </li>

@@ -456,11 +456,9 @@ class CarryingBill < ActiveRecord::Base
         :sum_insured_fee_th => search.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:insured_fee)
       }
       sum_info_tmp = search.select('sum(1) as count,sum(carrying_fee) as sum_carrying_fee,sum(k_hand_fee) as sum_k_hand_fee,sum(goods_fee) as sum_goods_fee,sum(insured_fee) as sum_insured_fee,sum(transit_carrying_fee) as sum_transit_carrying_fee,sum(transit_hand_fee) as sum_transit_hand_fee,sum(from_short_carrying_fee) as sum_from_short_carrying_fee,sum(to_short_carrying_fee) as sum_to_short_carrying_fee,sum(goods_num) as sum_goods_num').first.attributes
-      sum_info_tmp.each do |key,value|
-        sum_info_tmp.delete(key)
-        sum_info_tmp[key.to_sym] = value.blank? ? 0 : value
-      end
-      sum_info.merge!(sum_info_tmp)
+
+      #将hash key转换为symbol
+      sum_info.merge!(Hash[sum_info_tmp.map{ |k, v| [k.to_sym, (v.blank? ? 0 : v)] }])
       #运费合计 运费+保价费
       sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee]
       #提付运费合计

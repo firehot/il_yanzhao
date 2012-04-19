@@ -7,11 +7,13 @@ class OrgsController < BaseController
     @orgs = Org.search(params[:search]).order('parent_id ASC,created_at DESC')
   end
   def new
-    get_resource_ivar || set_resource_ivar(resource_class.new_with_config(params[resource_class.model_name.underscore.to_sym]))
-    render :partial => "form"
+    super do |format|
+      format.js {render :partial => "form"}
+    end
   end
   def edit
-    get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
-    render :partial => "form"
+    super do |format|
+      format.js {render :partial => "form"}
+    end
   end
 end
