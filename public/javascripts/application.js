@@ -416,10 +416,10 @@ jQuery(function($) {
 
 	});
 	//运单修改时,判断权限
-	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
+    //可修改货款时,除了运费其他都可以修改
+	$('form.update_goods_fee').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);
 		$('#carrying_bill_form select').attr('disabled', true);
-		$('#carrying_fee').attr('readonly', false);
 		$('#goods_fee').attr('readonly', false);
 		$('#from_customer_name').attr('readonly', false);
 		$('#from_customer_phone').attr('readonly', false);
@@ -435,6 +435,15 @@ jQuery(function($) {
 		$('#area_id').attr('disabled', false);
 		$('#to_org_id').attr('disabled', false);
 		$('#pay_type').attr('disabled', false);
+
+	});
+
+    //可修改运费时,只能修改运费,其他都不可修改
+	$('form.update_carrying_fee').livequery(function() {
+		$('#carrying_bill_form :input').attr('readonly', true);
+		$('#carrying_bill_form select').attr('disabled', true);
+		$('#carrying_fee').attr('readonly', false);
+		$('#note').attr('readonly', false);
 
 	});
 
