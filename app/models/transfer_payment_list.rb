@@ -28,7 +28,7 @@ class TransferPaymentList < PaymentList
   def cib_to_txt
     ret = ''
     self.carrying_bills.each_with_index do |bill,index|
-      ret += [index + 1,0,bill.from_customer.bank_card,bill.from_customer.name,'|',"#{bill.act_pay_fee}|",0].join('|') + "|\r\n"
+      ret += ['nb40',index + 1,0,bill.from_customer.bank_card,bill.from_customer.name,'兴业银行','|||',"#{bill.act_pay_fee}","燕赵#{bill.bill_no}"].join('|') + "|\r\n"
     end
     ret
   end
