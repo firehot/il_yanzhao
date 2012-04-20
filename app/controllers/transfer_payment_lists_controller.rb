@@ -23,4 +23,3 @@ class TransferPaymentListsController < BaseController
     @transfer_payment_list = resource_class.find(params[:id],:include => [:bank,:user,:carrying_bills])
   end
 end
-
