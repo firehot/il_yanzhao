@@ -431,12 +431,12 @@ jQuery(function($) {
 		$('#to_customer_phone').attr('readonly', false);
 		$('#to_customer_mobile').attr('readonly', false);
 		$('#note').attr('readonly', false);
-		$('#select_org_input_to_org_id').attr('readonly', false);
+		//$('#select_org_input_to_org_id').attr('readonly', false);
 
-		$('#from_org_id').attr('disabled', false);
-		$('#transit_org_id').attr('disabled', false);
-		$('#area_id').attr('disabled', false);
-		$('#to_org_id').attr('disabled', false);
+		//$('#from_org_id').attr('disabled', false);
+		//$('#transit_org_id').attr('disabled', false);
+		//$('#area_id').attr('disabled', false);
+		//$('#to_org_id').attr('disabled', false);
 		$('#pay_type').attr('disabled', false);
 
 	});
@@ -445,7 +445,8 @@ jQuery(function($) {
 	$('form.update_carrying_fee').livequery(function() {
 		$('#carrying_fee').attr('readonly', false);
 		$('#note').attr('readonly', false);
-
+		$('#insured_rate').attr('readonly', true);
+		$('#insured_fee').attr('readonly', true);
 	});
 
 	$('form.update_all').livequery(function() {
