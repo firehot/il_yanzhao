@@ -1,29 +1,41 @@
-<%= form_for(@goods_cat_fee_config) do |f| %>
-  <% if @goods_cat_fee_config.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@goods_cat_fee_config.errors.count, "error") %> prohibited this goods_cat_fee_config from being saved:</h2>
-
-      <ul>
-      <% @goods_cat_fee_config.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :from_org %><br />
-    <%= f.text_field :from_org %>
-  </div>
-  <div class="field">
-    <%= f.label :to_org %><br />
-    <%= f.text_field :to_org %>
-  </div>
-  <div class="field">
-    <%= f.label :is_active %><br />
-    <%= f.check_box :is_active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= semantic_form_for resource ,:html => {:id => "#{resource_class.name.underscore}_form" } do |f|%>
+  <%= f.error_messages %>
+  <table class='table'>
+    <tr>
+      <td>发货地</td>
+      <td><%= f.select :from_org_id,branches_for_select  %></td>
+      <td>到货地</td>
+      <td><%= f.select :to_org_id,branches_for_select  %></td>
+    </tr>
+  </table>
+  <table class='table'>
+    <thead>
+      <tr>
+        <td>&nbsp;</td>
+        <td>类别</td>
+        <td>最低价(元)</td>
+        <td>单价(元/立方)</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% f.object.all_group_lines.each do |parent_cat,lines|%>
+        <tr><td colspan='4'><%= parent_cat.name %></td></tr>
+        <%= f.semantic_fields_for :goods_cat_fee_config_lines,lines do |f_line|%>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <%= f_line.hidden_field :goods_cat_id %>
+              <%= f_line.object.goods_cat.name %>
+            </td>
+            <td>
+              <%= f_line.text_field :bottom_price %>
+            </td>
+            <td>
+              <%= f_line.text_field :unit_price %>
+            </td>
+          </tr>
+        <%end%>
+      <% end%>
+    </tbody>
+  </table>
 <% end %>

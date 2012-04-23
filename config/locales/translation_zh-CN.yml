@@ -80,6 +80,8 @@ zh-CN:
       act_load_list: "装车清单"
       act_load_list_line: "装车清单明细"
       goods_cat: 货物分类
+      goods_cat_fee_config: 货物分类-运费设置
+      goods_cat_fee_config_line: 货物分类-运费设置明细
 
 
     attributes:
