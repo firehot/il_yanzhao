@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423074249) do
+ActiveRecord::Schema.define(:version => 20120423140102) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -332,6 +332,18 @@ ActiveRecord::Schema.define(:version => 20120423074249) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "goods_cat_promotions", :force => true do |t|
+    t.integer  "goods_cat_id",                                                    :null => false
+    t.decimal  "from_fee",       :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "to_fee",         :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "promotion_rate", :precision => 15, :scale => 3, :default => 0.0
+    t.boolean  "is_active",                                     :default => true
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+  end
+
+  add_index "goods_cat_promotions", ["goods_cat_id"], :name => "index_goods_cat_promotions_on_goods_cat_id"
 
   create_table "goods_cats", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
