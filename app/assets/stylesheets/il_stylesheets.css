@@ -7,4 +7,6 @@
 *= require web-app-theme-override
 *= require formtastic
 *= require formtastic_changes
+*= require ufd/ufd-base
+*= require ufd/plain/plain
 */

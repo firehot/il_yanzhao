@@ -74,6 +74,9 @@ class CarryingBill < ActiveRecord::Base
   #对于原始单据来讲,有一个对应的退货单据
   has_one :return_bill,:foreign_key => "original_bill_id",:class_name => "ReturnBill"
 
+  #NOTE 20120424 添加goods_cat
+  belongs_to :goods_cat
+
 
   #该运单对应的送货信息
   #当前活动的只能有一条

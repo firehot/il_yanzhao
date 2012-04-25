@@ -660,6 +660,7 @@ zh-CN:
 
       goods_cat:
         parent: 所属分类
+        parent_id: 所属分类
         name: 名称
         easy_code: 拼音简写
         order_by: 排序

@@ -1,6 +1,6 @@
 /**
 	ufd 0.5: http://code.google.com/p/ufd/
-	
+
 	This is the default skin, a plain but attractive dropdown.
 */
 
@@ -34,7 +34,7 @@ span.ufd.plain-focus {
     width: 18px;
     height: 18px;
     margin-left: 1px; /* for divider */
-    background: url(/stylesheets/ufd/plain/icon.gif) no-repeat 0px 0px;
+    background: url(/assets/ufd/plain/icon.gif) no-repeat 0px 0px;
 }
 
 .ufd.plain button.focus {

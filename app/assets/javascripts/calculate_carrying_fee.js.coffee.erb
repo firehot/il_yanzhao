@@ -1,0 +1,39 @@
+$ ->
+  #建立分类字典
+  goods_cats = <%= GoodsCat.search(:is_active_eq => true,:parent_id_is_not_null => true ).order('parent_id ,order_by ASC').to_json(:methods => [:goods_cat_promotions,:parent]) %>
+  #构造goods_cat_id select
+  $('#goods_cat_id').append("<option value='#{cat.id}'>#{cat.parent.name}\##{cat.name}</option>") for cat in goods_cats
+
+  get_goods_cat_fee_config = ->
+    data_params =
+      "search[goods_cat_fee_config_from_org_id_eq]": $('#from_org_id').val()
+      "search[goods_cat_fee_config_to_org_id_eq]": $('#to_org_id').val()
+      "search[goods_cat_id_eq]": $('#goods_cat_id').val()
+
+    #计算运费金额
+    cal_carrying_fee = (fee_config) ->
+      if fee_config
+        #单位价格
+        unit_price = parseFloat fee_config.unit_price
+        #底价
+        bottom_price = parseFloat fee_config.bottom_price
+        #体积
+        goods_volume = parseFloat $('#goods_volume').val()
+        amt = unit_price*goods_volume
+        #合计金额小于最低价时,按最低价处理
+        amt = bottom_price if amt < bottom_price
+        #获取优惠信息
+        cat_with_promotions = (cat for cat in goods_cats when cat.id == fee_config.goods_cat_id)
+        if cat_with_promotions.length
+          promotions = cat_with_promotions[0].goods_cat_promotions
+          match_promotions = (p for p in promotions when amt > parseFloat(p.from_fee) and amt <= parseFloat(p.to_fee))
+          amt = amt - parseFloat(match_promotions[0].promotion_rate)*amt if match_promotions.length
+        $('#carrying_fee').val(amt)
+        amt
+
+    #发起ajax请求
+    $.getJSON('/goods_cat_fee_configs/single_config_line.js',data_params,cal_carrying_fee)
+
+  $('#goods_cat_id')
+    .ufd()
+    .change -> get_goods_cat_fee_config()
