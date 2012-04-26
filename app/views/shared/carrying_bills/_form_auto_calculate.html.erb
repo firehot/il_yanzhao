@@ -49,10 +49,18 @@
         <td><%= f.text_field :to_customer_mobile,:id => 'to_customer_mobile',:size => 20  %></td>
       </tr>
       <tr>
+        <td>货物分类</td>
+        <td colspan='3'>
+          <%= f.select :goods_cat_id,[],{:include_blank => true },:id => :goods_cat_id%>
+        </td>
+        <td>体积</td>
+        <td><%= f.text_field :goods_volume,:size => 15,:id => :goods_volume  %>方</td>
+      </tr>
+      <tr>
         <td>运费支付方式</td>
         <td><%= f.select :pay_type,CarryingBill.pay_types,{},:id => :pay_type %></td>
         <td>运费</td>
-        <td><%= f.text_field :carrying_fee,:id => "carrying_fee",:size => 15  %></td>
+        <td><%= f.text_field :carrying_fee,:id => "carrying_fee",:size => 15,:readonly => true  %></td>
         <td>代收货款</td>
         <td><%= f.text_field :goods_fee,:id => "goods_fee",:size => 15  %></td>
       </tr>
@@ -95,8 +103,7 @@
         <td><%= f.text_field :goods_num,:size => 15,:id => :goods_num %></td>
         <td>重量</td>
         <td><%= f.text_field :goods_weight,:size => 15  %></td>
-        <td>体积</td>
-        <td><%= f.text_field :goods_volume,:size => 15,:id => :goods_volume  %></td>
+        <td colspan='2'>&nbsp;</td>
       </tr>
       <tr>
         <td>备注</td>

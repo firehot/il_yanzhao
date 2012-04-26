@@ -25,6 +25,7 @@ zh-CN:
       cash_pay_info: "客户提款信息(现金)"  #g
       claim: "理赔信息"  #g
       computer_bill: "机打运单"  #g
+      auto_calculate_computer_bill: "机打运单-自动计算运费"  #g
       config_cash: "手续费设置(现金)"  #g
       config_transit: "手续费设置(转账)"  #g
       customer: "客户资料"  #g

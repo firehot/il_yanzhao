@@ -365,13 +365,15 @@ jQuery(function($) {
 		null, 'script');
 
 	};
-	$('form.computer_bill #customer_code,form.transit_bill #customer_code').live('change', search_customer_by_code);
+	$('form.computer_bill #customer_code,form.transit_bill #customer_code,form.auto_calculate_computer_bill #customer_code,').live('change', search_customer_by_code);
 	$('form.carrying_bill').live("change", calculate_carrying_bill).livequery(calculate_carrying_bill);
 
 	//根据不同的运单录入界面,隐藏部分字段
-	$('form.computer_bill').livequery(function() {
+	$('form.computer_bill,form.auto_calculate_computer_bill').livequery(function() {
 		$('#computer_bill_bill_no').attr('readonly', true);
 		$('#computer_bill_goods_no').attr('readonly', true);
+		$('#auto_calculate_computer_bill_bill_no').attr('readonly', true);
+		$('#auto_calculate_computer_bill_goods_no').attr('readonly', true);
 		if ($(this).hasClass('edit_bill_date')) {
 			$('#bill_date').addClass('datepicker');
 		}
@@ -736,7 +738,7 @@ jQuery(function($) {
 			"search[to_org_id_or_transit_org_id_eq]": $('#to_org_id').val(),
 			"search[state_eq]": 'deliveried',
 			"search[completed_eq]": 0,
-			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill'],
+			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill','AutoCalculateComputerBill'],
 			//以下设定运单列表中的显示及隐藏字段,设定为css选择符
 			"hide_fields": ".carrying_fee,.insured_fee",
 			"show_fields": ".transit_carrying_fee,.transit_hand_fee,.carrying_fee_th,.th_amount"
@@ -763,7 +765,7 @@ jQuery(function($) {
 			//是否显示选择列表
 			"search[carrying_bills_from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill"],
+			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill","AutoCalculateComputerBill"],
 			"search[carrying_bills_state_eq]": "settlemented",
 			"search[carrying_bills_completed_eq]": 0,
 			"search[carrying_bills_goods_fee_or_carrying_bills_carrying_fee_gt]": 0
@@ -797,7 +799,7 @@ jQuery(function($) {
 		var params = {
 			"search[from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[to_org_id_or_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill","AutoCalculateComputerBill"],
 			"search[state_eq]": "settlemented",
 			"search[completed_eq]": 0,
 			"search[goods_fee_or_carrying_fee_gt]": 0,
@@ -841,7 +843,7 @@ jQuery(function($) {
 	var gen_payment_list = function(evt) {
 		var params = {
 			"search[state_eq]": "refunded_confirmed",
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","AutoCalculateComputerBill"],
 			"search[goods_fee_gt]": 0,
 			"search[completed_eq]": 0,
 			//运单列表显示的字段
@@ -886,7 +888,7 @@ jQuery(function($) {
 
 		}
 		var params = {
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","AutoCalculateComputerBill"],
 			"search[state_eq]": "payment_listed",
 			"search[payment_list_id_in][]": selected_bill_ids,
 			"hide_fields": ".carrying_fee,.insured_fee",
@@ -919,7 +921,7 @@ jQuery(function($) {
 			"search[state_eq]": 'paid',
 			"search[completed_eq]": 0,
 			"search[from_customer_id_is_null]": 1,
-			"search[type_in][]": ['ComputerBill', 'HandBill', 'TransitBill', 'HandTransitBill'],
+			"search[type_in][]": ['ComputerBill', 'HandBill', 'TransitBill', 'HandTransitBill','AutoCalculateComputerBill'],
 			"hide_fields": ".carrying_fee,.insured_fee",
 			"show_fields": ".k_carrying_fee,.transit_hand_fee,.k_hand_fee,.act_pay_fee"
 
@@ -1126,7 +1128,7 @@ jQuery(function($) {
 	//form 自动获取焦点
 	$('.inner form').livequery(function() {
 		var the_form = $(this);
-		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill')) {
+		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill') || the_form.hasClass('auto_calculate_computer_bill') ) {
 
 			//机打运单,默认焦点定位到到货地
 			$('#select_org_input_to_org_id').focus();

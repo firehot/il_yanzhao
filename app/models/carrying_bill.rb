@@ -227,6 +227,7 @@ class CarryingBill < ActiveRecord::Base
       Date.today
     end
     default_value_for :goods_num,1
+    default_value_for :goods_volume,1
     default_value_for :insured_rate,0.003 #IlConfig.insured_rate
     default_value_for :from_short_carrying_fee,0
     default_value_for :to_short_carrying_fee,0

@@ -1,6 +1,13 @@
 # -*- encoding : utf-8 -*-
 IlYanzhao::Application.routes.draw do
 
+  resources :auto_calculate_computer_bills do
+    get :search,:on => :collection
+    get :export_excel,:on => :collection
+    put :invalidate,:on => :member
+    put :print_counter,:on => :member
+  end
+
   resources :goods_cat_fee_configs do
     get :single_config_line,:on => :collection
   end

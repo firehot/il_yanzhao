@@ -45,12 +45,14 @@
 						input_el.focus();
 						select_el.val("");
 						err_span.html("未找到!")
+                        $(select_el).trigger('change')
 						return false;
 					}
 					//查询到一个或多各结果
 					else {
 						input_el.val(ret_options.first().text());
 						select_el.val(ret_options.first().val());
+                        $(select_el).trigger('change')
 					}
 				}
 

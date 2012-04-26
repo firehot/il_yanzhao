@@ -65,9 +65,7 @@ module CarryingBillsHelper
   end
   #运单类型
   def bill_types_for_select
-    [["机打运单","ComputerBill"],["手工运单","HandBill"],["中转运单","TransitBill"],["手工中转运单","HandTransitBill"],["退货单","ReturnBill"]]
-
+    [["机打运单","ComputerBill"],["机打运单-自动计算","AutoCalculateComputerBill"],["手工运单","HandBill"],["中转运单","TransitBill"],["手工中转运单","HandTransitBill"],["退货单","ReturnBill"]]
   end
-
 end
 
