@@ -3,7 +3,7 @@
 require 'bundler/capistrano'
 set :application, "il_yanzhao_rails32"
 #set :repository,  "git://github.com/chengdh/il_yanzhao.git"
-set :repository, "."
+#set :repository, "~/myproject/il_yanzhao/.git"
 set :local_repository, "~/myproject/il_yanzhao/.git"
 set :branch, "upgrade_to_rails32"
 #set :local_repository, "file://f:/il_yanzhao/.git"
