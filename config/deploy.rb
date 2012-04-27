@@ -2,18 +2,13 @@
 #add bundler support
 require 'bundler/capistrano'
 set :application, "il_yanzhao_rails32"
-#set :repository,  "git://github.com/chengdh/il_yanzhao.git"
-#set :repository, "~/myproject/il_yanzhao/.git"
-set :local_repository, "~/myproject/il_yanzhao/.git"
+set :repository,  "."
 set :branch, "upgrade_to_rails32"
 #set :local_repository, "file://f:/il_yanzhao/.git"
 set :deploy_via, :copy
 set :copy_cache, true
 #
-#set :repository,  "file:///media//WORK/il_yanzhao/.git"
-
 set :scm, :git
-set :branch,:master
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 #role :web, "your web-server here"                          # Your HTTP server, Apache/etc
@@ -27,7 +22,9 @@ set :use_sudo,false
 default_run_options[:pty]=true
 
 #set rvm support
-set :rvm_ruby_string, '1.9.3-head@rails32_gemset'
+set :rvm_ruby_string, '1.9.3@rails32_gemset'
+set :rvm_path, "/usr/local/rvm"
+set :rvm_bin_path, "/usr/local/rvm/bin"
 require "rvm/capistrano"
 =begin
 set :default_environment, {
@@ -41,11 +38,15 @@ set :default_environment, {
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
 # these http://github.com/rails/irs_process_scripts
-
+namespace :rvm do
+  task :trust_rvmrc do
+    run "rvm rvmrc trust #{release_path}"
+  end
+end
 namespace :deploy do
-  desc "Generate assets with Jammit"
+  desc "Generate assets "
   task :generate_assets, :roles => :web do
-    run "cd #{deploy_to}/current && bundle exec jammit"
+    run "bundle exec rake assets:precompile"
   end
   desc "create cache dir"
   task :create_cache_dir,:roles => :web do
@@ -53,7 +54,7 @@ namespace :deploy do
     run "cd #{deploy_to}/current && chmod 777 tmp -R"
     #run "cd #{deploy_to}/current/tmp && chmod 777 cache"
   end
-  after "deploy:create_symlink","deploy:generate_assets","deploy:create_cache_dir"
+  after "deploy:create_symlink","rvm:trust_rvmrc","deploy:generate_assets","deploy:create_cache_dir"
 
   task :start do ; end
   task :stop do ; end

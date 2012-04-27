@@ -37,9 +37,8 @@ gem "default_value_for", "~> 1.0.7"
 gem "jquery_notify_bar", "~> 0.0.4"
 gem 'web-app-theme', :git =>'git://github.com/pilu/web-app-theme.git'
 gem 'unicorn'
-gem 'rvm-capistrano'
 gem 'capistrano','~>2.12.0'
-
+gem 'rvm-capistrano'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
