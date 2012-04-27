@@ -25,9 +25,11 @@ $ ->
         #获取优惠信息
         cat_with_promotions = (cat for cat in goods_cats when cat.id == fee_config.goods_cat_id)
         if cat_with_promotions.length
+          $('#goods_info').val(cat_with_promotions[0].name)
           promotions = cat_with_promotions[0].goods_cat_promotions
           match_promotions = (p for p in promotions when amt > parseFloat(p.from_fee) and amt <= parseFloat(p.to_fee))
           amt = amt - parseFloat(match_promotions[0].promotion_rate)*amt if match_promotions.length
+
         $('#carrying_fee').val(Math.round(amt))
         Math.round(amt)
 

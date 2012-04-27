@@ -36,6 +36,10 @@ gem "meta_search","~> 1.1.3"
 gem "default_value_for", "~> 1.0.7"
 gem "jquery_notify_bar", "~> 0.0.4"
 gem 'web-app-theme', :git =>'git://github.com/pilu/web-app-theme.git'
+gem 'unicorn'
+gem 'rvm-capistrano'
+gem 'capistrano','~>2.12.0'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -69,7 +73,6 @@ end
 group :development, :test do
   gem 'rspec-rails','~>2.9.0'
   gem 'i18n_generators','~>1.2.0'
-  gem 'capistrano','~>2.12.0'
   gem "autotest-growl", "~> 0.2.16"
 end
 group :test do

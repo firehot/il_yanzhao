@@ -1,10 +1,11 @@
 # -*- encoding : utf-8 -*-
 #add bundler support
 require 'bundler/capistrano'
-set :application, "il_yanzhao"
+set :application, "il_yanzhao_rails32"
 #set :repository,  "git://github.com/chengdh/il_yanzhao.git"
 set :repository, "."
 set :local_repository, "~/myproject/il_yanzhao/.git"
+set :branch, "upgrade_to_rails32"
 #set :local_repository, "file://f:/il_yanzhao/.git"
 set :deploy_via, :copy
 set :copy_cache, true
@@ -26,6 +27,9 @@ set :use_sudo,false
 default_run_options[:pty]=true
 
 #set rvm support
+set :rvm_ruby_string, '1.9.3-head@rails32_gemset'
+require "rvm/capistrano"
+=begin
 set :default_environment, {
   'PATH' => "/usr/local/rvm/gems/ree-1.8.7-2011.03/bin:/usr/local/rvm/bin:$PATH",
   'RUBY_VERSION' => 'ree 1.8.7',
@@ -33,6 +37,7 @@ set :default_environment, {
   'GEM_PATH'     => '/usr/local/rvm/gems/ree-1.8.7-2011.03:/usr/local/rvm/gems/ree-1.8.7-2011.01@rails3_gemset',
   'BUNDLE_PATH'     => '/usr/local/rvm/gems/ree-1.8.7-2011.03'
 }
+=end
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
 # these http://github.com/rails/irs_process_scripts
