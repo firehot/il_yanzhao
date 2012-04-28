@@ -3,7 +3,6 @@
  *
  *= require web-app-theme/base
  *= require web-app-theme/themes/activo/style.css
- *= require_self
- */
+*/
 
 /* Write here your css for overriding the theme's rules */

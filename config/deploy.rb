@@ -54,7 +54,7 @@ namespace :deploy do
     run "cd #{deploy_to}/current && chmod 777 tmp -R"
     #run "cd #{deploy_to}/current/tmp && chmod 777 cache"
   end
-  after "deploy:create_symlink","rvm:trust_rvmrc","deploy:create_cache_dir"
+  after "deploy:create_symlink","rvm:trust_rvmrc"
 
   task :start do ; end
   task :stop do ; end

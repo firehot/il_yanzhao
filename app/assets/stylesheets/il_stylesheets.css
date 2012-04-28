@@ -4,6 +4,7 @@
 *= require fancybox
 *= require jquery.tipswift
 *= require jquery.notifyBar
+*= require web_app_theme
 *= require web-app-theme-override
 *= require formtastic
 *= require formtastic_changes
