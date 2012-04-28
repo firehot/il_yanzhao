@@ -68,6 +68,6 @@ IlYanzhao::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile = %w( il_javascripts.js il_ie_javascripts.js il_ie6_javascripts.js il_login_javascriprs.js il_stylesheets.css  il_login.css il_ie_stylesheets.css )
+  config.assets.precompile += %w( il_javascripts.js il_ie_javascripts.js il_ie6_javascripts.js il_login_javascriprs.js il_stylesheets.css  il_login.css il_ie_stylesheets.css )
 end
 
