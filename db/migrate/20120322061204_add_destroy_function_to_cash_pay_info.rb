@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddDestroyFunctionToCashPayInfo < ActiveRecord::Migration
   def self.up
     #添加现金付款单的删除功能

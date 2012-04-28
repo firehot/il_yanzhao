@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "carrying_bill_id",                :null => false
     t.integer  "act_load_list_id",                :null => false
     t.integer  "load_num",         :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "act_load_lists", :force => true do |t|
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "note"
     t.string   "state",        :limit => 20, :default => "draft", :null => false
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "bill_no",      :limit => 20
   end
 
@@ -39,22 +39,22 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "order_by",                 :default => 0
     t.boolean  "is_active",                :default => true
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "banks", :force => true do |t|
     t.string   "name",                                       :null => false
     t.string   "code",       :limit => 20,                   :null => false
     t.boolean  "is_active",                :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "bill_nos", :force => true do |t|
     t.integer  "bill_count", :default => 4000000
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "carrying_bills", :force => true do |t|
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "state",                            :limit => 20
     t.boolean  "completed",                                                                     :default => false
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                                         :null => false
+    t.datetime "updated_at",                                                                                         :null => false
     t.integer  "original_bill_id"
     t.integer  "load_list_id"
     t.integer  "distribution_list_id"
@@ -159,8 +159,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.date     "bill_date"
     t.decimal  "act_compensate_fee", :precision => 15, :scale => 2
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   add_index "claims", ["bill_date"], :name => "index_claims_on_bill_date"
@@ -172,8 +172,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "fee_to",     :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "hand_fee",   :precision => 15, :scale => 2, :default => 0.0
     t.boolean  "is_active",                                 :default => true,  :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
     t.integer  "org_id"
     t.integer  "to_org_id"
     t.decimal  "rate",       :precision => 10, :scale => 4, :default => 0.001
@@ -184,8 +184,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "rate",                     :precision => 10, :scale => 4, :default => 0.001
     t.boolean  "is_active",                                               :default => true,  :null => false
     t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
     t.integer  "org_id"
     t.integer  "to_org_id"
   end
@@ -195,8 +195,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "name",                 :limit => 20,                                                 :null => false
     t.string   "phone",                :limit => 30
     t.decimal  "fee",                                :precision => 15, :scale => 2, :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                         :null => false
+    t.datetime "updated_at",                                                                         :null => false
   end
 
   add_index "customer_fee_info_lines", ["customer_fee_info_id"], :name => "index_customer_fee_info_lines_on_customer_fee_info_id"
@@ -205,8 +205,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "org_id",                  :null => false
     t.string   "mth",        :limit => 6, :null => false
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   add_index "customer_fee_infos", ["mth"], :name => "index_customer_fee_infos_on_mth"
@@ -218,8 +218,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "name",       :limit => 20,                                                 :null => false
     t.decimal  "from_fee",                 :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "to_fee",                   :precision => 15, :scale => 2, :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
   end
 
   add_index "customer_level_configs", ["org_id"], :name => "index_customer_level_configs_on_org_id"
@@ -237,8 +237,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "bank_card",         :limit => 30
     t.boolean  "is_active",                                                      :default => true
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                       :null => false
+    t.datetime "updated_at",                                                                       :null => false
     t.string   "type",              :limit => 20
     t.integer  "config_transit_id"
     t.decimal  "cur_fee",                         :precision => 15, :scale => 2
@@ -268,8 +268,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "customer_no",   :limit => 30
     t.string   "state",         :limit => 30
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "org_id",                      :null => false
   end
 
@@ -284,8 +284,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "org_id",                   :null => false
     t.text     "note"
     t.string   "state",      :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "distribution_lists", ["bill_date"], :name => "index_distribution_lists_on_bill_date"
@@ -298,8 +298,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id"
     t.integer  "goods_error_id", :null => false
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "gexception_authorize_infos", :force => true do |t|
@@ -309,8 +309,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "compensation_fee",                 :precision => 10, :scale => 2, :default => 0.0
     t.integer  "user_id"
     t.integer  "goods_exception_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                       :null => false
+    t.datetime "updated_at",                                                                       :null => false
   end
 
   add_index "gexception_authorize_infos", ["bill_date"], :name => "index_gexception_authorize_infos_on_bill_date"
@@ -323,16 +323,16 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "unit_price",              :precision => 15, :scale => 2, :default => 0.0
     t.integer  "goods_cat_fee_config_id",                                                 :null => false
     t.integer  "goods_cat_id",                                                            :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
   end
 
   create_table "goods_cat_fee_configs", :force => true do |t|
     t.integer  "from_org_id",                   :null => false
     t.integer  "to_org_id",                     :null => false
     t.boolean  "is_active",   :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "goods_cat_promotions", :force => true do |t|
@@ -354,8 +354,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.boolean  "is_active",                :default => true
     t.string   "easy_code",  :limit => 60
     t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "goods_errors", :force => true do |t|
@@ -367,8 +367,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "except_num",                     :default => 1
     t.text     "note"
     t.string   "state",            :limit => 20,                :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.integer  "op_org_id"
   end
 
@@ -379,8 +379,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id"
     t.decimal  "from_org_fee",       :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "to_org_fee",         :precision => 15, :scale => 2, :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
   end
 
   add_index "goods_exception_identifies", ["bill_date"], :name => "index_goods_exception_identifies_on_bill_date"
@@ -395,8 +395,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "state",            :limit => 20
     t.integer  "except_num",                     :default => 1
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.integer  "op_org_id"
     t.date     "posted_date"
   end
@@ -420,8 +420,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "amount_k_carrying_fee", :precision => 15, :scale => 2, :default => 0.0
     t.integer  "amount_bills",                                         :default => 0
     t.string   "state",                                                :default => "DR", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                             :null => false
+    t.datetime "updated_at",                                                             :null => false
   end
 
   create_table "goods_nos", :force => true do |t|
@@ -429,16 +429,16 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "to_org_id",                  :null => false
     t.date     "gen_date",                   :null => false
     t.integer  "bill_count",  :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "il_configs", :force => true do |t|
     t.string   "key",        :limit => 60, :null => false
     t.string   "title",      :limit => 60
     t.string   "value",      :limit => 60, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "il_configs", ["key"], :name => "index_il_configs_on_key"
@@ -471,8 +471,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "current_debt_4_5",                        :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "current_debt_ge_6",                       :precision => 15, :scale => 2, :default => 0.0
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                              :null => false
+    t.datetime "updated_at",                                                                              :null => false
   end
 
   add_index "journals", ["bill_date"], :name => "index_journals_on_bill_date"
@@ -488,8 +488,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.text     "note"
     t.string   "driver",       :limit => 20
     t.string   "vehicle_no",   :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "user_id"
     t.date     "reached_date"
   end
@@ -504,8 +504,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
   create_table "notifies", :force => true do |t|
     t.text     "notify_text"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "orgs", :force => true do |t|
@@ -519,8 +519,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "code",            :limit => 20
     t.string   "lock_input_time", :limit => 20
     t.string   "type",            :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.string   "py",              :limit => 20
     t.boolean  "is_yard",                       :default => false
     t.integer  "order_by",                      :default => 0
@@ -540,8 +540,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "id_number",     :limit => 30
     t.string   "state",         :limit => 20
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.date     "bill_date",                   :null => false
     t.string   "type",          :limit => 20
     t.string   "account_name",  :limit => 20
@@ -561,8 +561,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "state",      :limit => 20
     t.string   "type",       :limit => 20
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.date     "bill_date",                :null => false
   end
 
@@ -580,8 +580,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.date     "bill_date",                                                                :null => false
     t.decimal  "amount_fee",               :precision => 15, :scale => 2, :default => 0.0
     t.string   "state",      :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
   end
 
   add_index "post_infos", ["bill_date"], :name => "index_post_infos_on_bill_date"
@@ -598,8 +598,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.text     "note"
     t.decimal  "sum_goods_fee",                          :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "sum_carrying_fee",                       :precision => 15, :scale => 2, :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                             :null => false
+    t.datetime "updated_at",                                                                             :null => false
     t.decimal  "sum_transit_carrying_fee",               :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "sum_transit_hand_fee",                   :precision => 10, :scale => 2, :default => 0.0
   end
@@ -620,8 +620,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.decimal  "should_fee",                :precision => 15, :scale => 2, :default => 0.0
     t.decimal  "act_fee",                   :precision => 15, :scale => 2, :default => 0.0
     t.string   "state",       :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
   end
 
   add_index "remittances", ["bill_date"], :name => "index_remittances_on_bill_date"
@@ -635,8 +635,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "role_id",                                       :null => false
     t.integer  "system_function_operate_id",                    :null => false
     t.boolean  "is_select",                  :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   add_index "role_system_function_operates", ["is_select"], :name => "index_role_system_function_operates_on_is_select"
@@ -647,15 +647,15 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "role_id"
     t.integer  "system_function_id"
     t.boolean  "is_select",          :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name",       :limit => 30,                   :null => false
     t.boolean  "is_active",                :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "roles", ["is_active"], :name => "index_roles_on_is_active"
@@ -667,8 +667,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id"
     t.date     "bill_date"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "send_list_backs", ["bill_date"], :name => "index_send_list_backs_on_bill_date"
@@ -680,8 +680,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "send_list_id",                    :null => false
     t.integer  "carrying_bill_id",                :null => false
     t.string   "state",             :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "send_list_post_id"
     t.integer  "send_list_back_id"
   end
@@ -698,8 +698,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id"
     t.integer  "sender_id",  :null => false
     t.integer  "org_id",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "send_list_posts", ["bill_date"], :name => "index_send_list_posts_on_bill_date"
@@ -713,8 +713,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.text     "note"
     t.integer  "org_id",     :null => false
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "send_lists", ["bill_date"], :name => "index_send_lists_on_bill_date"
@@ -728,8 +728,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "mobile",     :limit => 20
     t.string   "address",    :limit => 60
     t.boolean  "is_active",                :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "id_number",  :limit => 20
   end
 
@@ -745,8 +745,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id"
     t.text     "note"
     t.string   "state",                    :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                             :null => false
+    t.datetime "updated_at",                                                                             :null => false
     t.date     "bill_date",                                                                              :null => false
     t.decimal  "sum_transit_carrying_fee",               :precision => 10, :scale => 2, :default => 0.0
     t.decimal  "sum_transit_hand_fee",                   :precision => 10, :scale => 2, :default => 0.0
@@ -760,8 +760,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
   create_table "short_fee_info_lines", :force => true do |t|
     t.integer  "short_fee_info_id"
     t.integer  "carrying_bill_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "short_fee_infos", :force => true do |t|
@@ -770,8 +770,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id"
     t.string   "state",          :limit => 20
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "op_org_id"
     t.date     "write_off_date"
   end
@@ -785,8 +785,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "name",       :limit => 30,                   :null => false
     t.integer  "order",                    :default => 1
     t.boolean  "is_active",                :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "system_function_groups", ["is_active"], :name => "index_system_function_groups_on_is_active"
@@ -797,8 +797,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.text     "function_obj"
     t.integer  "order",                            :default => 1
     t.boolean  "is_active",                        :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   add_index "system_function_operates", ["is_active"], :name => "index_system_function_operates_on_is_active"
@@ -809,8 +809,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "subject_title",            :limit => 30,                   :null => false
     t.integer  "order",                                  :default => 1
     t.boolean  "is_active",                              :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
     t.text     "default_action"
   end
 
@@ -824,8 +824,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.boolean  "is_active",                :default => true
     t.text     "note"
     t.string   "leader",     :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "transit_companies", ["is_active"], :name => "index_transit_companies_on_is_active"
@@ -836,8 +836,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.text     "note"
     t.decimal  "transit_hand_fee",               :precision => 15, :scale => 2
     t.string   "state",            :limit => 20
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
     t.integer  "user_id"
   end
 
@@ -855,8 +855,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "state",                :limit => 20
     t.decimal  "transit_carrying_fee",               :precision => 15, :scale => 2, :default => 0.0
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                         :null => false
+    t.datetime "updated_at",                                                                         :null => false
   end
 
   add_index "transit_infos", ["bill_date"], :name => "index_transit_infos_on_bill_date"
@@ -869,16 +869,16 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.integer  "user_id",                       :null => false
     t.integer  "org_id",                        :null => false
     t.boolean  "is_select",  :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "user_roles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
     t.boolean  "is_select",  :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "user_roles", ["is_select"], :name => "index_user_roles_on_is_select"
@@ -888,7 +888,6 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
   create_table "users", :force => true do |t|
     t.string   "email",                              :default => ""
     t.string   "encrypted_password",  :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                      :default => "",    :null => false
     t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                      :default => 0
@@ -899,8 +898,8 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.boolean  "is_active",                          :default => true
     t.boolean  "is_admin",                           :default => false
     t.string   "username",            :limit => 20,                     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.integer  "default_org_id"
     t.integer  "default_role_id"
     t.boolean  "use_usb",                            :default => false
