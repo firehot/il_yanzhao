@@ -4,7 +4,10 @@ IlYanzhao::Application.configure do
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
-  config.cache_classes = true
+  #config.cache_classes = true
+  #在生产环境下运行 rake db:migrate RAILS_ENV=production会出现表找不到的错误，
+  #参考https://github.com/activescaffold/active_scaffold/issues/131
+  config.cache_classes = (File.basename($0) == "rake" && ARGV.include?("db:migrate")) ? false : true
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -65,6 +68,6 @@ IlYanzhao::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile = %w( il_javascripts.js il_ie_javascripts.js il_ie6_javascripts.js il_login_javascriprs.js il_stylesheets.css  il_login.css il_ie_stylesheets.css )
 end
 
