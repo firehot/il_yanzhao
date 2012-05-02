@@ -35,10 +35,7 @@ gem "meta_search","~> 1.1.3"
 #gem 'jammit'
 gem "default_value_for", "~> 1.0.7"
 gem "jquery_notify_bar", "~> 0.0.4"
-gem 'web-app-theme', :git =>'git://github.com/pilu/web-app-theme.git'
 gem 'unicorn'
-gem 'capistrano','~>2.12.0'
-gem 'rvm-capistrano'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -64,6 +61,10 @@ gem 'rvm-capistrano'
 # and rake tasks are available in development mode:
 group :development do
   gem "bullet",'~>2.3.1'
+  gem 'web-app-theme', :git =>'git://github.com/pilu/web-app-theme.git'
+  gem 'capistrano','~>2.12.0'
+  gem 'rvm-capistrano','~> 1.1.0'
+  gem "capistrano-unicorn", "~> 0.1.6"
 
   #在unix、linux运行环境下不需要
   #gem "win32-open3"   #ruby 1.8

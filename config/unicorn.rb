@@ -1,5 +1,6 @@
 APP_ROOT = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
+=begin
 if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
   begin
     rvm_path = File.dirname(File.dirname(ENV['MY_RUBY_HOME']))
@@ -13,18 +14,15 @@ end
 
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 require 'bundler/setup'
-
-worker_processes 4
+=end
+worker_processes 16
 working_directory APP_ROOT
-
+# Should be 'production' by default, otherwise use other env
+rails_env = ENV['RAILS_ENV'] || 'production'
 preload_app true
-
 timeout 30
-
-listen APP_ROOT + "/tmp/sockets/unicorn.sock", :backlog => 64
-
+listen "127.0.0.1:5000"
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
-
 stderr_path APP_ROOT + "/log/unicorn.stderr.log"
 stdout_path APP_ROOT + "/log/unicorn.stdout.log"
 

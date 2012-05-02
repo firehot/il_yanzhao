@@ -26,6 +26,11 @@ set :rvm_ruby_string, '1.9.3@rails32_gemset'
 set :rvm_path, "/usr/local/rvm"
 set :rvm_bin_path, "/usr/local/rvm/bin"
 require "rvm/capistrano"
+
+
+#set unicorn support
+require 'capistrano-unicorn'
+set :unicorn_bin, 'r193_unicorn_rails'
 =begin
 set :default_environment, {
   'PATH' => "/usr/local/rvm/gems/ree-1.8.7-2011.03/bin:/usr/local/rvm/bin:$PATH",
@@ -44,23 +49,7 @@ namespace :rvm do
   end
 end
 namespace :deploy do
-  desc "Generate assets "
-  task :generate_assets, :roles => :web do
-    run "bundle exec rake assets:precompile"
-  end
-  desc "create cache dir"
-  task :create_cache_dir,:roles => :web do
-    run "cd #{deploy_to}/current/tmp && mkdir cache"
-    run "cd #{deploy_to}/current && chmod 777 tmp -R"
-    #run "cd #{deploy_to}/current/tmp && chmod 777 cache"
-  end
   after "deploy:create_symlink","rvm:trust_rvmrc"
-
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
   #自定义系统维护界面
   namespace :web do
     task :disable do
