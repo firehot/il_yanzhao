@@ -15,7 +15,7 @@ class GoodsCat < ActiveRecord::Base
   end
   def gen_py
     py = PinYin.instance
-    self.py = py.to_pinyin_abbr(self.name)
+    self.easy_code = py.to_pinyin_abbr(self.name)
   end
 
 end
