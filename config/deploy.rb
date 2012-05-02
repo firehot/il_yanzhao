@@ -27,10 +27,9 @@ set :rvm_path, "/usr/local/rvm"
 set :rvm_bin_path, "/usr/local/rvm/bin"
 require "rvm/capistrano"
 
-
 #set unicorn support
 require 'capistrano-unicorn'
-set :unicorn_bin, 'r193_unicorn_rails'
+set :unicorn_bin,'r193_unicorn_rails'
 =begin
 set :default_environment, {
   'PATH' => "/usr/local/rvm/gems/ree-1.8.7-2011.03/bin:/usr/local/rvm/bin:$PATH",
