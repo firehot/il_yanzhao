@@ -1,8 +1,7 @@
 $ ->
   #建立分类字典
-  goods_cats = <%= GoodsCat.search(:is_active_eq => true,:parent_id_is_not_null => true ).order('parent_id ,order_by ASC').to_json(:methods => [:goods_cat_promotions,:parent]) %>
+  goods_cats = $('#goods_cat_id').data("goods_cats")
   #构造goods_cat_id select
-  $('#goods_cat_id').append("<option value='#{cat.id}'>#{cat.parent.name}\##{cat.name}(#{cat.easy_code})</option>") for cat in goods_cats
 
   get_goods_cat_fee_config = ->
     data_params =
