@@ -221,7 +221,7 @@ Factory.define :hand_bill do |bill|
   bill.to_short_carrying_fee 20
   bill.pay_type CarryingBill::PAY_TYPE_CASH
   bill.goods_num 20
-  bill.bill_no "0000001"
+  bill.bill_no "0200001"
   bill.goods_no "110320郑石11-100"
   bill.goods_info "手工运单"
 end
@@ -280,7 +280,7 @@ Factory.define :hand_transit_bill do |bill|
   bill.to_short_carrying_fee 20
   bill.pay_type CarryingBill::PAY_TYPE_CASH
 
-  bill.bill_no "0000002"
+  bill.bill_no "0200002"
   bill.goods_no "110320安郑1-3"
   bill.goods_info "手工中转运单"
   bill.association :from_org,:factory => :ay
