@@ -5,7 +5,7 @@ module GoodsCatsHelper
   end
   #货物分类
   def goods_cats_for_select
-    GoodsCat.search(:is_active_eq => true,:parent_id_is_not_null => true ).order('parent_id ,order_by ASC').map {|gc| ["#{gc.parent.name}\##{gc.name}(#{gc.easy_code})",gc.id]}
+    GoodsCat.search(:is_active_eq => true,:parent_id_is_not_null => true ).order('parent_id ,order_by ASC').map {|gc| ["#{gc.parent.name}\##{gc.name}(#{gc.parent.easy_code}\##{gc.easy_code})",gc.id]}
   end
   #放置到界面上的goods_cats属性,data-goods_cats
   def goods_cats_for_data_json

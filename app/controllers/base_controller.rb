@@ -47,7 +47,6 @@ class BaseController < InheritedResources::Base
     params[:search]
   end
 
-  protected
   #根据传入参数判断哪个是最近日期,如果什么都不传,则返回当前时间
   def last_modified(objs = [])
     default_array = [current_user.updated_at,Date.today.beginning_of_day,Org.first(:order => 'updated_at DESC').try(:updated_at),Role.first(:order => "updated_at DESC").try(:updated_at)]

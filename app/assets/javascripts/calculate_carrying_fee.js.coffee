@@ -29,8 +29,8 @@ $ ->
           match_promotions = (p for p in promotions when amt > parseFloat(p.from_fee) and amt <= parseFloat(p.to_fee))
           amt = amt - parseFloat(match_promotions[0].promotion_rate)*amt if match_promotions.length
 
-        $('#carrying_fee').val(Math.round(amt))
-        Math.round(amt)
+        $('#carrying_fee').val(Math.ceil(amt))
+        Math.ceil(amt)
 
     #发起ajax请求
     $.getJSON('/goods_cat_fee_configs/single_config_line.js',data_params,cal_carrying_fee)
