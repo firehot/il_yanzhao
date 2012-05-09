@@ -422,10 +422,12 @@ jQuery(function($) {
 
 	});
 	//运单修改时,判断权限
-	$('form.update_carrying_fee,form.update_goods_fee').livequery(function() {
+	$('form.update_goods_fee,form.update_carrying_fee,form.update_all').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);
 		$('#carrying_bill_form select').attr('disabled', true);
-		$('#carrying_fee').attr('readonly', false);
+	});
+	//可修改货款时,除了运费其他都可以修改
+	$('form.update_goods_fee').livequery(function() {
 		$('#goods_fee').attr('readonly', false);
 		$('#from_customer_name').attr('readonly', false);
 		$('#from_customer_phone').attr('readonly', false);
@@ -434,18 +436,27 @@ jQuery(function($) {
 		$('#to_customer_phone').attr('readonly', false);
 		$('#to_customer_mobile').attr('readonly', false);
 		$('#note').attr('readonly', false);
-		$('#select_org_input_to_org_id').attr('readonly', false);
-
-		$('#from_org_id').attr('disabled', false);
-		$('#transit_org_id').attr('disabled', false);
-		$('#area_id').attr('disabled', false);
-		$('#to_org_id').attr('disabled', false);
+		//$('#select_org_input_to_org_id').attr('readonly', false);
+		//$('#from_org_id').attr('disabled', false);
+		//$('#transit_org_id').attr('disabled', false);
+		//$('#area_id').attr('disabled', false);
+		//$('#to_org_id').attr('disabled', false);
 		$('#pay_type').attr('disabled', false);
 
 	});
 
+	//可修改运费时,只能修改运费,其他都不可修改
+	$('form.update_carrying_fee').livequery(function() {
+		$('#carrying_fee').attr('readonly', false);
+		$('#note').attr('readonly', false);
+	});
+
 	$('form.update_all').livequery(function() {
-		$('#carrying_bill_form :input,#carrying_bill_form select').attr('readonly', false);
+		$('#carrying_bill_form :input').attr('readonly', false);
+		$('#carrying_bill_form select').attr('disabled', false);
+		$('#insured_rate').attr('readonly', true);
+		$('#insured_fee').attr('readonly', true);
+
 	});
 
 	//手工运单,自动解析日期和数量

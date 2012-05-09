@@ -1,7 +1,7 @@
 <%= semantic_form_for CarryingBill.search,:html => {:id => "multi_bills_search_form",:method => :get } do |f|%>
   <%= f.inputs do %>
-    <%= hidden_field_tag :show_fields,'.deliver_date,.pay_date'%>
-    <%= hidden_field_tag :hide_fields,params[:hide_fields]%>
+    <%= hidden_field_tag :show_fields,'.state,.deliver_date,.pay_date'%>
+    <%= hidden_field_tag :hide_fields,'.note'%>
     <%= text_area_tag :bill_nos,nil,:size => "90x5",:id => "txt_multi_bills_search" %>
   <% end %>
   <%= f.actions :class => 'text-left' do %>
