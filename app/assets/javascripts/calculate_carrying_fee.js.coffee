@@ -1,6 +1,6 @@
 $ ->
   #建立分类字典
-  goods_cats = $('#goods_cat_id').data("goods_cats")
+  goods_cats = $('#parent_goods_cat_id').data("goods_cats")
   #构造goods_cat_id select
 
   get_goods_cat_fee_config = ->
@@ -35,8 +35,17 @@ $ ->
     #发起ajax请求
     $.getJSON('/goods_cat_fee_configs/single_config_line.js',data_params,cal_carrying_fee)
 
+  #大类选择发生变化时,自动更新小类列表
+  on_parent_goods_cat_change = ->
+    children = (cat for cat in goods_cats when cat.parent_id == (Number) $('#parent_goods_cat_id').val())
+    $('#goods_cat_id').empty()
+    ($('#goods_cat_id').append("<option value=#{cat.id}>#{cat.name}(#{cat.easy_code})</option>") for cat in children)
+    $('#goods_cat_id').trigger('change').ufd()
+
+  $('#parent_goods_cat_id').change -> on_parent_goods_cat_change()
+
+  $('.auto_calculate_computer_bill #parent_goods_cat_id').ufd()
   $('form.auto_calculate_computer_bill #goods_cat_id')
-    .ufd()
     .change -> get_goods_cat_fee_config()
   #以下字段发生变化时,自动计算运费
   $('form.auto_calculate_computer_bill #from_org_id,form.auto_calculate_computer_bill #to_org_id,form.auto_calculate_computer_bill #goods_volume').change -> get_goods_cat_fee_config()
