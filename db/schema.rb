@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426032049) do
+ActiveRecord::Schema.define(:version => 20120518015608) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
     t.string   "from_short_fee_state",             :limit => 20,                                :default => "draft"
     t.integer  "print_counter",                                                                 :default => 0,       :null => false
     t.integer  "goods_cat_id"
+    t.decimal  "unit_price",                                     :precision => 15, :scale => 3, :default => 0.0
   end
 
   add_index "carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
@@ -886,6 +887,7 @@ ActiveRecord::Schema.define(:version => 20120426032049) do
   add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
 
   create_table "users", :force => true do |t|
+    t.string   "password_salt"
     t.string   "email",                              :default => ""
     t.string   "encrypted_password",  :limit => 128, :default => "",    :null => false
     t.string   "remember_token"

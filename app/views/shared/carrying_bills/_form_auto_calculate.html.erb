@@ -38,7 +38,7 @@
           <%= f.select :goods_cat_id,[],{:include_blank => true },:id => :goods_cat_id %>
         </td>
         <td>单价</td>
-        <td></td>
+        <td><%= f.text_field :unit_price,:id => :unit_price,:size => 10,:readonly => true %>元/方</td>
       </tr>
       <tr>
         <td>体积</td>

@@ -14,6 +14,7 @@ $ ->
       if fee_config
         #单位价格
         unit_price = parseFloat fee_config.unit_price
+        $('#unit_price').val(unit_price)
         #底价
         bottom_price = parseFloat fee_config.bottom_price
         #体积
@@ -31,6 +32,9 @@ $ ->
 
         $('#carrying_fee').val(Math.ceil(amt))
         Math.ceil(amt)
+      else
+        $('#unit_price').val(0)
+        $('#carrying_fee').val(0)
 
     #发起ajax请求
     $.getJSON('/goods_cat_fee_configs/single_config_line.js',data_params,cal_carrying_fee)
@@ -40,12 +44,13 @@ $ ->
     children = (cat for cat in goods_cats when cat.parent_id == (Number) $('#parent_goods_cat_id').val())
     $('#goods_cat_id').empty()
     ($('#goods_cat_id').append("<option value=#{cat.id}>#{cat.name}(#{cat.easy_code})</option>") for cat in children)
-    $('#goods_cat_id').trigger('change').ufd()
+    $('#goods_cat_id').trigger('change').ufd('changeOptions')
 
   $('#parent_goods_cat_id').change -> on_parent_goods_cat_change()
 
   $('.auto_calculate_computer_bill #parent_goods_cat_id').ufd()
   $('form.auto_calculate_computer_bill #goods_cat_id')
+    .ufd()
     .change -> get_goods_cat_fee_config()
   #以下字段发生变化时,自动计算运费
   $('form.auto_calculate_computer_bill #from_org_id,form.auto_calculate_computer_bill #to_org_id,form.auto_calculate_computer_bill #goods_volume').change -> get_goods_cat_fee_config()
