@@ -36,4 +36,3 @@ class ShortFeeInfo < ActiveRecord::Base
     sum_from + sum_to
   end
 end
-

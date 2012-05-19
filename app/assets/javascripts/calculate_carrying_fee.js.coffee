@@ -23,6 +23,7 @@ $ ->
         #合计金额小于最低价时,按最低价处理
         amt = bottom_price if amt < bottom_price
         #获取优惠信息
+        #FIXME 如果服务器端返回的是父机构的运费计算设置信息,则查找优惠信息时,也按照父机构的优惠信息进行查询
         cat_with_promotions = (cat for cat in goods_cats when cat.id == fee_config.goods_cat_id)
         if cat_with_promotions.length
           $('#goods_info').val(cat_with_promotions[0].name)

@@ -1,7 +1,7 @@
 #coding: utf-8
 #货物分类费用设置明细
 class GoodsCatFeeConfigLine < ActiveRecord::Base
-  belongs_to :goods_cat_fee_config
+  belongs_to :goods_cat_fee_config,:touch => true
   belongs_to :goods_cat
   validates :goods_cat,:presence => true
   #根据传入的参数获取运费计算设置信息
