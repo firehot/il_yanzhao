@@ -51,9 +51,13 @@
       <tr>
         <td>数量</td>
         <td><%= f.text_field :goods_num,:size => 15,:id => :goods_num %></td>
+        <td>包装</td>
+        <td>
+          <%= f.text_field :package,:size => 15%>
+          <%= f.hidden_field :goods_info,:id => :goods_info %>
+        </td>
         <td>代收货款</td>
         <td><%= f.text_field :goods_fee,:id => "goods_fee",:size => 15  %></td>
-        <td colspan='2'>&nbsp;</td>
       </tr>
 
       <tr>
@@ -101,14 +105,6 @@
         <td>总计</td>
         <td><span id='sum_fee'></span></td>
         <td colspan='2'></td>
-      </tr>
-      <tr>
-        <td>货物名称</td>
-        <td colspan='3'>
-          <%= f.text_field :goods_info,:size => 60,:id => :goods_info %>
-        </td>
-        <td>包装</td>
-        <td><%= f.text_field :package,:size => 15%></td>
       </tr>
       <tr>
         <td>备注</td>
