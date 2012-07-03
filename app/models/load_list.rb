@@ -5,6 +5,8 @@ class LoadList < ActiveRecord::Base
   belongs_to :to_org,:class_name => "Org"
   belongs_to :user
   has_many :carrying_bills,:order => "goods_no ASC"
+  #可以有多个提醒记录
+  has_many :notices
 
   validates_presence_of :from_org_id,:to_org_id,:bill_no
   validates_associated :carrying_bills
@@ -44,6 +46,13 @@ class LoadList < ActiveRecord::Base
       act_load_list.act_load_list_lines.build(:carrying_bill => bill)
     end
     act_load_list
+  end
+  #2012-7-3
+  #创建电话提醒信息,只是创建,并未保存到数据库
+  def build_notice
+    notice=self.notices.build(:org => self.to_org,:bill_date => self.bill_date)
+    notice.notice_lines << self.carrying_bills.map {|bill| NoticeLine.new(:carrying_bill => bill,:from_customer_phone => bill.notice_phone_for_arrive,:calling_text => bill.calling_text_for_arrive,:sms_text => bill.sms_text_for_arrive)}
+    notice
   end
   #导出到csv
   def to_csv

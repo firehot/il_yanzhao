@@ -610,4 +610,12 @@ Factory.define :goods_cat_fee_config_line do |line|
   line.unit_price 14
   line.association :goods_cat,:factory => :goods_cat
 end
-
+#到货提醒
+Factory.define :notice do |n|
+  n.association :org,:factory => :zz
+  n.load_list_id 1
+end
+#到货提醒明细
+Factory.define :notice_line do |nl|
+  nl.association :carrying_bill,:factory => :computer_bill
+end

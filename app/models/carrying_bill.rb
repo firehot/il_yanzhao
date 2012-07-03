@@ -258,6 +258,26 @@ class CarryingBill < ActiveRecord::Base
       the_mobile = to_customer_mobile if self.to_customer_mobile.present? and self.to_customer_mobile.size == 11
       the_mobile
     end
+    #2012-7-2添加
+    #NOTE 获取当前运单的到货提醒电话/手机
+    #有手机时,返回手机
+    #无手机时,返回电话
+    #两者都未填写返回nil
+    def notice_phone_for_arrive
+      notice_phone = nil
+      notice_phone = to_customer_phone if self.to_customer_phone.present?
+      notice_phone = to_customer_mobile if self.to_customer_mobile.present?
+      notice_phone
+    end
+    #生成到货提醒电话文本内容
+    #TODO 需要修改
+    def calling_text_for_arrive
+      "test calling text"
+    end
+    #TODO 生成到货提醒短信文本内容
+    def sms_text_for_arrive
+      "text sms text"
+    end
 
     def from_org_name
       ""
