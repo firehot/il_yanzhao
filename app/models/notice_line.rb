@@ -8,10 +8,21 @@ class NoticeLine < ActiveRecord::Base
   belongs_to :carrying_bill
   #虚拟属性,用于判断数据是否选中
   attr_accessor :_select
-  default_value_for :_select,true
+  default_value_for :_select,false
+  default_value_for :sms_state,'draft'
+  default_value_for :calling_state,'draft'
   before_validation :set_notice_info
 
   validates :carrying_bill_id,:from_customer_phone,:calling_text,:calling_state,:sms_state,:presence => true
+
+  #状态描述
+  def calling_state_desc
+    notice_line_state_desc(self.calling_state)
+  end
+  #状态描述
+  def sms_state_desc
+    notice_line_state_desc(self.sms_state)
+  end
 
   private
   def set_notice_info

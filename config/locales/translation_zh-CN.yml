@@ -74,6 +74,8 @@ zh-CN:
       act_load_list: "装车清单"
       act_load_list_line: "装车清单明细"
       goods_cat: 货物分类
+      notice: 到货通知清单
+      notice_line: 到货通知清单明细
 
 
     attributes:
@@ -98,6 +100,8 @@ zh-CN:
         is_active: "有效"
         note: "备注"
         order_by: 排序
+        state: 状态
+        state_desc: 状态
 
       area:
         name: "名称"
@@ -657,5 +661,20 @@ zh-CN:
         order_by: 排序
         is_active: 有效标志
         note: 备注
+
+      notice:
+        load_list: 关联到货清单
+
+      notice_line:
+        from_customer_phone: 电话/手机
+        calling_text: 语音文本
+        sms_text: 短信文本
+        calling_state: 通知状态
+        sms_state: 短信状态
+        calling_count: 呼叫次数
+        sms_count: 短信次数
+        last_calling_time: 最后呼叫时间
+        las_sms_time: 最后短信发送时间
+
 
 

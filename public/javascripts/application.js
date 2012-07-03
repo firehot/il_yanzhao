@@ -1245,6 +1245,15 @@ jQuery(function($) {
 	$('#btn_act_load_list_line_unselect_all').live('click', function() {
 		$('.act_load_list_line_selector').attr('checked', false)
 	});
+
+    //到货清单通知的全选/不选
+	$('#btn_notice_line_select_all').live('click', function() {
+		$('.notice_line_selector').attr('checked', true)
+	});
+	$('#btn_notice_line_unselect_all').live('click', function() {
+		$('.notice_line_selector').attr('checked', false)
+	});
+
 	//多运单查询
 	$('#txt_multi_bills_search').watermark('可用逗号分割多个运单号进行查询，比如:0000400,0000401,0000402')
 	$('#btn_multi_bills_search').click(function() {

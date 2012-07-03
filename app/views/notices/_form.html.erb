@@ -9,7 +9,7 @@
         <th>到货地:</th>
         <th><%= @notice.org%></th>
         <th>清单日期:</th>
-        <th><%= f.text_field :bill_date,:size => 10,:readonly => true%></th>
+        <th><%= f.text_field :bill_date,:size => 15,:readonly => true%></th>
 
         <th>状态:</th>
         <th><%= notice_state_desc @notice.state %></th>
@@ -47,8 +47,8 @@
             <%= line.check_box :_select,:class => "notice_line_selector"%>
             <%= line.hidden_field :carrying_bill_id %>
           </td>
-          <td><%= link_to line.object.carrying_bill.bill_no,line.object.carrying_bill,:class => :fancybox%></td>
-          <td><%= link_to line.object.carrying_bill.goods_no,line.object.carrying_bill,:class => :fancybox%></td>
+          <td><%= link_to line.object.carrying_bill.bill_no,polymorphic_url(line.object.carrying_bill,:format => :js),:class => :fancybox%></td>
+          <td><%= link_to line.object.carrying_bill.goods_no,polymorphic_url(line.object.carrying_bill,:format => :js),:class => :fancybox%></td>
           <td><%= line.text_field :from_customer_phone %></td>
           <td><%= line.text_field :calling_text %></td>
           <td><%= line.text_field :sms_text %></td>

@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 IlYanzhao::Application.routes.draw do
-  resources :notices
+  resources :notices do
+    get :search,:on => :collection
+  end
 
   resources :goods_cat_fee_configs
 

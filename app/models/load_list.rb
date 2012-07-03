@@ -77,6 +77,10 @@ class LoadList < ActiveRecord::Base
     end
     sms_text
   end
+  #重写to_s
+  def to_s
+    self.bill_no
+  end
 
   private
   def self.carrying_bill_export_options
