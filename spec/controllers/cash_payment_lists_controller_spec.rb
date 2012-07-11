@@ -61,5 +61,12 @@ describe CashPaymentListsController do
       end
     end
   end
+  #测试导出短信通知文本
+  describe 'Get export_smx_txt' do
+    it "should be success" do
+      p_list = Factory(:cash_payment_list_with_bills)
+      get :export_sms_txt,:id => p_list
+    end
+  end
 end
 

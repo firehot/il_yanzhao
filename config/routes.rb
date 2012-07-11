@@ -143,6 +143,7 @@ IlYanzhao::Application.routes.draw do
   resources :cash_payment_lists do
     get :search,:on => :collection
     get :export_excel,:on => :member
+    get :export_sms_txt,:on => :member
     resources :carrying_bills
   end
 

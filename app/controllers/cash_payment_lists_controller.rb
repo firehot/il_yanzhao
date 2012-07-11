@@ -16,5 +16,16 @@ class CashPaymentListsController < BaseController
   def export_excel
     @cash_payment_list = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
   end
+  #Get cash_payment_lists/:id/export_sms_txt:format
+  #导出短信群发文本
+  def export_sms_txt
+    @cash_payment_list = resource_class.find(params[:id])
+    respond_to do |format|
+      format.text do
+        send_data @cash_payment_list.export_sms_txt,:filename => 'sms.txt'
+      end
+    end
+  end
+
 end
 
