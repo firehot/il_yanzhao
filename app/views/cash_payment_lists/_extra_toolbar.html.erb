@@ -4,7 +4,7 @@
   </li>
   <%if can? :export_sms_txt,resource%>
     <li>
-      <%= link_to image_tag("sms.png",:alt => "导出短信群发文件",:size => "16x16"), export_sms_txt_cash_payment_list_path(resource,:format => :text),:title => "导出短信群发文件",:class => "tipsy"  %>
+      <%= link_to image_tag("notice_sms.png",:alt => "导出短信群发文件",:size => "16x16"), export_sms_txt_cash_payment_list_path(resource,:format => :text),:title => "导出短信群发文件",:class => "tipsy"  %>
     </li>
   <%end%>
 <%end%>
