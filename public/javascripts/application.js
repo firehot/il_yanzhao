@@ -609,6 +609,7 @@ jQuery(function($) {
 	//from_org_id_or_to_org_id != bill.from_org_id && org_id != bill.to_org_id 该运单不显示
 	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
 	//from_org_id_or_to_org_id == bill.to_org_id and bill.to_short_fee_state == 'offed' 该运单不显示
+    //
 	$('.short_fee_info_lines tr[data-bill]').livequery(function() {
 		var org_id = $('#from_org_id_or_to_org_id').val();
 		var bill_info = $(this).data('bill');

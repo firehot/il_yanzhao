@@ -28,6 +28,7 @@ gem "meta_search"
 gem 'jammit'
 gem "default_value_for", "~> 1.0.4"
 gem "jquery_notify_bar", "~> 0.0.4"
+gem "rails_config", "~> 0.3.1"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
