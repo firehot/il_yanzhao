@@ -16,6 +16,12 @@ class ArriveLoadListsController < LoadListsController
       end
     end
   end
+  #GET arrive_load_list/:id/build_notice
+  #创建到货提醒信息
+  def build_notice
+    @load_list = resource_class.find(params[:id])
+    @notice = @load_list.build_notice
+  end
   protected
   def collection
     @search = end_of_association_chain.accessible_by(current_ability,:read_arrive).search(params[:search])

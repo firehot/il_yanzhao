@@ -142,6 +142,8 @@ class Ability
     can :read,CustomerFeeInfo if can? :read,ImportedCustomer
     #可创建实际装车清单
     can :create,ActLoadList if can? :build_act_load_list,LoadList
+    #可创建到货通知清单如果有build_notice权限
+    can :create,Notice if can? :build_notice,LoadList
   end
   #定义运单修改权限
   def set_bill_update_permission(user)

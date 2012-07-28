@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 require 'spec_helper'
 
 describe CashPaymentList do
@@ -10,6 +9,9 @@ describe CashPaymentList do
   end
   it "应能够正确保存现金代收货款转账清单" do
     @cash_payment_list.save!
+  end
+  it "应能够正确导出短信通知文本" do
+    @cash_payment_list.export_sms_text.should_not be_blank
   end
   it "org_id 不可为空" do
     @cash_payment_list.org_id = nil

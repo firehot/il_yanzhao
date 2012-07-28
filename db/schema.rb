@@ -502,6 +502,33 @@ ActiveRecord::Schema.define(:version => 20120521034350) do
   add_index "load_lists", ["to_org_id"], :name => "index_load_lists_on_to_org_id"
   add_index "load_lists", ["user_id"], :name => "index_load_lists_on_user_id"
 
+  create_table "notice_lines", :force => true do |t|
+    t.integer  "notice_id",                                               :null => false
+    t.integer  "carrying_bill_id",                                        :null => false
+    t.string   "from_customer_phone", :limit => 60,                       :null => false
+    t.string   "calling_text",        :limit => 200,                      :null => false
+    t.string   "sms_text",            :limit => 200
+    t.string   "calling_state",       :limit => 20,  :default => "draft", :null => false
+    t.string   "sms_state",           :limit => 20,  :default => "draft", :null => false
+    t.integer  "calling_count",                      :default => 0
+    t.integer  "sms_count",                          :default => 0
+    t.datetime "last_calling_time"
+    t.datetime "last_sms_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notices", :force => true do |t|
+    t.integer  "org_id",                                          :null => false
+    t.integer  "load_list_id"
+    t.integer  "user_id"
+    t.date     "bill_date"
+    t.string   "state",        :limit => 20, :default => "draft", :null => false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notifies", :force => true do |t|
     t.text     "notify_text"
     t.integer  "user_id"

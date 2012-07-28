@@ -11,6 +11,9 @@ IlYanzhao::Application.routes.draw do
   resources :goods_cat_fee_configs do
     get :single_config_line,:on => :collection
   end
+  resources :notices do
+    get :search,:on => :collection
+  end
 
   resources :goods_cats
 
@@ -148,6 +151,7 @@ IlYanzhao::Application.routes.draw do
   resources :cash_payment_lists do
     get :search,:on => :collection
     get :export_excel,:on => :member
+    get :export_sms_txt,:on => :member
     resources :carrying_bills
   end
 
@@ -208,6 +212,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :member
     get :export_sms_txt,:on => :member
+    get :build_notice,:on => :member
     resources :carrying_bills
   end
 

@@ -5,6 +5,8 @@ class LoadList < ActiveRecord::Base
   belongs_to :to_org,:class_name => "Org"
   belongs_to :user
   has_many :carrying_bills,:order => "goods_no ASC"
+  #可以有多个提醒记录
+  has_many :notices
 
   validates_presence_of :from_org_id,:to_org_id,:bill_no
   validates_associated :carrying_bills
@@ -45,6 +47,13 @@ class LoadList < ActiveRecord::Base
     end
     act_load_list
   end
+  #2012-7-3
+  #创建电话提醒信息,只是创建,并未保存到数据库
+  def build_notice
+    notice=self.notices.build(:org => self.to_org,:bill_date => self.bill_date)
+    notice.notice_lines << self.carrying_bills.map {|bill| NoticeLine.new(:carrying_bill => bill,:from_customer_phone => bill.notice_phone_for_arrive,:calling_text => bill.calling_text_for_arrive,:sms_text => bill.sms_text_for_arrive)}
+    notice
+  end
   #导出到csv
   def to_csv
     ret = ["清单日期:",self.bill_date,"清单编号:",self.bill_no,"发货站:",self.from_org_name,"到达站:",self.to_org_name,"状态:" , self.human_state_name].export_line_csv(true)
@@ -67,6 +76,10 @@ class LoadList < ActiveRecord::Base
       sms_text += "#{key} #{IlConfig.client_name}到货,共#{goods_num}件,运费#{carrying_fee_th}元,货款#{goods_fee}元,地址:#{self.to_org.try(:location)},电话:#{self.to_org.try(:phone)}\r\n"
     end
     sms_text
+  end
+  #重写to_s
+  def to_s
+    self.bill_no
   end
 
   private

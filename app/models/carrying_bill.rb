@@ -16,10 +16,10 @@ end
 class CarryingBill < ActiveRecord::Base
   attr_protected :original_carrying_fee,:original_goods_fee,:original_from_short_carrying_fee,:original_to_short_carrying_fee,:original_insured_amount,:original_insured_fee
   #营业额统计
-  scope :turnover,select('from_org_id,IFNULL(to_org_id,transit_org_id) as to_org_id,sum(carrying_fee) as sum_carrying_fee,sum(goods_fee) as sum_goods_fee,sum(goods_num) as sum_goods_num,sum(1) as sum_bill_count').group('from_org_id,to_org_id')
+  scope :turnover,select('from_org_id,IFNULL(to_org_id,transit_org_id) as to_org_id,sum(carrying_fee) as sum_carrying_fee,sum(goods_fee) as sum_goods_fee,sum(goods_num) as sum_goods_num,sum(1) as sum_bill_count').where(["state <> ? ","invalided"]).group('from_org_id,to_org_id')
 
   #今日收货
-  scope :today_billed,lambda {|from_org_ids| select('pay_type,sum(carrying_fee) as carrying_fee,sum(goods_fee) as goods_fee,sum(goods_num) as goods_num,sum(1) as bill_count').where(:from_org_id => from_org_ids,:bill_date => Date.today).group(:pay_type)}
+  scope :today_billed,lambda {|from_org_ids| select('pay_type,sum(carrying_fee) as carrying_fee,sum(goods_fee) as goods_fee,sum(goods_num) as goods_num,sum(1) as bill_count').where(:from_org_id => from_org_ids,:bill_date => Date.today).where(["state <> ? ","invalided"]).group(:pay_type)}
   #今日提货
   scope :today_deliveried,lambda {|to_org_ids| select('type,pay_type,sum(carrying_fee) as carrying_fee,sum(goods_fee)  as goods_fee,sum(goods_num) as goods_num,sum(1) as bill_count').where(:to_org_id => to_org_ids,:state =>:deliveried).search(:deliver_info_deliver_date_eq => Date.today).group('type,pay_type')}
   #今日提款(仅指现金提款)
@@ -261,6 +261,25 @@ class CarryingBill < ActiveRecord::Base
       the_mobile = to_customer_phone if self.to_customer_phone.present? and self.to_customer_phone.size == 11
       the_mobile = to_customer_mobile if self.to_customer_mobile.present? and self.to_customer_mobile.size == 11
       the_mobile
+    end
+    #2012-7-2添加
+    #NOTE 获取当前运单的到货提醒电话/手机
+    #有手机时,返回手机
+    #无手机时,返回电话
+    #两者都未填写返回nil
+    def notice_phone_for_arrive
+      notice_phone = nil
+      notice_phone = to_customer_phone if self.to_customer_phone.present?
+      notice_phone = to_customer_mobile if self.to_customer_mobile.present?
+      notice_phone
+    end
+    #生成到货提醒电话文本内容
+    def calling_text_for_arrive
+      Settings.notice_arrive.phone % [self.goods_fee,self.carrying_fee_th,self.th_amount,self.to_org.try(:location),IlConfig.client_name,self.to_org.try(:phone)]
+    end
+    #生成到货提醒短信文本内容
+    def sms_text_for_arrive
+      Settings.notice_arrive.sms % [self.goods_fee,self.carrying_fee_th,self.th_amount,self.to_org.try(:location),IlConfig.client_name,self.to_org.try(:phone)]
     end
 
     def from_org_name
