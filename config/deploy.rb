@@ -25,8 +25,8 @@ set :deploy_to,"~/app"
 
 #set rvm support
 set :rvm_ruby_string, '1.9.3@rails32_gemset'
-set :rvm_path, "/usr/local/rvm"
-set :rvm_bin_path, "/usr/local/rvm/bin"
+set :rvm_path, "~/.rvm"
+set :rvm_bin_path, "~/.rvm/bin"
 require "rvm/capistrano"
 
 #set unicorn support
@@ -63,4 +63,3 @@ namespace :deploy do
     end
   end
 end
-before 'deploy:setup','rvm:install_rvm'
