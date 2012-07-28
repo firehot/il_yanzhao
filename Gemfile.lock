@@ -13,7 +13,7 @@ GIT
       thor (~> 0.14)
 
 GEM
-  remote: http://ruby.taobao.org/
+  remote: http://rubygems.org/
   specs:
     ZenTest (4.7.0)
     actionmailer (3.2.0)
