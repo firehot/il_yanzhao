@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521034350) do
+ActiveRecord::Schema.define(:version => 20120711032134) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -514,8 +514,8 @@ ActiveRecord::Schema.define(:version => 20120521034350) do
     t.integer  "sms_count",                          :default => 0
     t.datetime "last_calling_time"
     t.datetime "last_sms_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
   end
 
   create_table "notices", :force => true do |t|
@@ -525,8 +525,8 @@ ActiveRecord::Schema.define(:version => 20120521034350) do
     t.date     "bill_date"
     t.string   "state",        :limit => 20, :default => "draft", :null => false
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "notifies", :force => true do |t|
@@ -914,7 +914,6 @@ ActiveRecord::Schema.define(:version => 20120521034350) do
   add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "password_salt"
     t.string   "email",                              :default => ""
     t.string   "encrypted_password",  :limit => 128, :default => "",    :null => false
     t.string   "remember_token"

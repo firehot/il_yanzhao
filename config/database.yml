@@ -9,7 +9,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  database: il_yanzhao_development
+  database: il_yanzhao_r32_development
   pool: 5
   username: root
   password: root
@@ -22,7 +22,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  database: il_yanzhao_test
+  database: il_yanzhao_r32_test
   pool: 5
   username: root
   password: root

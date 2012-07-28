@@ -1,3 +1,4 @@
+#coding: utf-8
 class AddCashPaymentListExportSmsFunction < ActiveRecord::Migration
   def self.up
     sf = SystemFunction.find_by_subject_title('现金-代收货款支付')

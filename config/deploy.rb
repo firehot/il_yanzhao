@@ -60,3 +60,4 @@ namespace :deploy do
     end
   end
 end
+before 'deploy:setup','rvm:install_rvm'

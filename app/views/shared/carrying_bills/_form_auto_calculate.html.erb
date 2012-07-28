@@ -29,7 +29,7 @@
       <tr>
         <td>物品类别</td>
         <td>
-          <%cache "goods_cats_#{GoodsCat.order("updated_at DESC").first.updated_at.to_i}" do %>
+          <%cache "goods_cats_#{GoodsCat.order("updated_at DESC").first.try(:updated_at).to_i}" do %>
             <%= select_tag :parent_goods_cat_id,options_for_select(parent_goods_cats_for_select),:include_blank => true,:id => :parent_goods_cat_id,"data-goods_cats" => goods_cats_for_data_json %>
           <%end%>
         </td>
