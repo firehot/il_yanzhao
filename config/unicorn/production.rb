@@ -15,7 +15,7 @@ end
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 require 'bundler/setup'
 =end
-worker_processes 16
+worker_processes 4
 working_directory APP_ROOT
 # Should be 'production' by default, otherwise use other env
 rails_env = ENV['RAILS_ENV'] || 'production'
