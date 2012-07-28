@@ -21,7 +21,7 @@ working_directory APP_ROOT
 rails_env = ENV['RAILS_ENV'] || 'production'
 preload_app true
 timeout 30
-listen "127.0.0.1:5000"
+listen "/tmp/unicorn.production.sock"
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
 stderr_path APP_ROOT + "/log/unicorn.stderr.log"
 stdout_path APP_ROOT + "/log/unicorn.stdout.log"
