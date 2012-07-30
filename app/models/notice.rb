@@ -9,6 +9,11 @@ class Notice < ActiveRecord::Base
   has_many :carrying_bills,:through => :notice_lines
   #未选中的数据、无电话的数据自动过滤
   accepts_nested_attributes_for :notice_lines,:reject_if => proc {|attrs| attrs['_select'].eql?('0') || attrs['from_customer_phone'].blank? }
+  :A
+
+
+
+
   validates_presence_of :org_id,:load_list_id
   default_value_for :state,'draft'
   default_value_for :bill_date do
