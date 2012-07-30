@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class BaseController < InheritedResources::Base
 
-  authorize_resource
+  #authorize_resource
 
   before_filter :pre_process_search_params,:only => [:index]
   helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns,:last_modified
@@ -65,4 +65,3 @@ class BaseController < InheritedResources::Base
     ret
   end
 end
-
