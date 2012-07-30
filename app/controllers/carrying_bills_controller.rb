@@ -4,7 +4,8 @@ class CarryingBillsController < BaseController
   #查询服务,去除layout
   layout 'application',:except => [:search_service_page,:search_service]
   skip_before_filter :authenticate_user!,:only => [:search_service_page,:search_service]
-  skip_authorize_resource :only => [:search_service_page,:search_service]
+  #skip_authorize_resource :only => [:search_service_page,:search_service]
+  skip_authorize_resource
   #http_cache :new,:last_modified => Proc.new {|c| c.send(:last_modified)},:etag => Proc.new {|c| c.send(:etag,"carrying_bill_new")}
   #判断是否超过录单时间,超过录单时间后,不可再录入票据
   before_filter :check_expire,:only => :new
