@@ -37,6 +37,8 @@ gem "default_value_for", "~> 1.0.7"
 gem "jquery_notify_bar", "~> 0.0.4"
 gem 'unicorn'
 gem "rails_config", "~> 0.3.1"
+#性能分析工具
+gem 'newrelic_rpm'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
