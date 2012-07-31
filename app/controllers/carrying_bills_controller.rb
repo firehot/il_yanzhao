@@ -1,6 +1,11 @@
 # -*- encoding : utf-8 -*-
 #运单controller基础类
+
+require 'new_relic/agent/method_tracer'
 class CarryingBillsController < BaseController
+
+  include NewRelic::Agent::MethodTracer
+  add_method_tracer :new, 'Custom/carrying_bills_new'
   #查询服务,去除layout
   layout 'application',:except => [:search_service_page,:search_service]
   skip_before_filter :authenticate_user!,:only => [:search_service_page,:search_service]
