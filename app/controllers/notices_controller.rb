@@ -5,7 +5,10 @@ class NoticesController < BaseController
   #GET search
   #显示查询窗口
   def search
-    render :partial => "search"
+    respond_to do |format|
+      format.html
+      format.js  {render :partial => "search"}
+    end
   end
 
 end

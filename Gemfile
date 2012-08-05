@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 #source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.7'
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
@@ -39,6 +39,8 @@ gem 'unicorn'
 gem "rails_config", "~> 0.3.1"
 #性能分析工具
 gem 'newrelic_rpm'
+#序列化对象字段
+gem 'marshaled_attributes',"~> 0.1.0"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

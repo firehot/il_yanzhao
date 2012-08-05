@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711032134) do
+ActiveRecord::Schema.define(:version => 20120805091616) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -279,6 +279,13 @@ ActiveRecord::Schema.define(:version => 20120711032134) do
   add_index "deliver_infos", ["state"], :name => "index_deliver_infos_on_state"
   add_index "deliver_infos", ["user_id"], :name => "index_deliver_infos_on_user_id"
 
+  create_table "digitaction", :force => true do |t|
+    t.string "digit",  :limit => 45
+    t.string "action", :limit => 45
+    t.string "remark", :limit => 45
+    t.string "name",   :limit => 45
+  end
+
   create_table "distribution_lists", :force => true do |t|
     t.date     "bill_date"
     t.integer  "user_id"
@@ -525,6 +532,7 @@ ActiveRecord::Schema.define(:version => 20120711032134) do
     t.date     "bill_date"
     t.string   "state",        :limit => 20, :default => "draft", :null => false
     t.text     "note"
+    t.string   "bymanual",     :limit => 2
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
   end
@@ -827,6 +835,7 @@ ActiveRecord::Schema.define(:version => 20120711032134) do
     t.boolean  "is_active",                        :default => true, :null => false
     t.datetime "created_at",                                         :null => false
     t.datetime "updated_at",                                         :null => false
+    t.text     "new_function_obj"
   end
 
   add_index "system_function_operates", ["is_active"], :name => "index_system_function_operates_on_is_active"

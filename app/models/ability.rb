@@ -1,11 +1,12 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class Ability
   include CanCan::Ability
-  def initialize(user)
+  attr_accessor :user
+  def initialize(a_user)
+    @user = a_user
     set_alias_actions
-    set_user_powers(user)
-    set_bill_update_permission(user)
+    set_user_powers
+    set_bill_update_permission
   end
   private
   def set_alias_actions
@@ -80,42 +81,21 @@ class Ability
     alias_action :read ,:print_counter,:to => :print
     alias_action :read ,:to => :invalidate #运单作废
   end
+  #设置单个operate的权限
+  def set_single_operate_power(sfo)
+    f_obj = sfo.new_function_obj
+    subject_class = f_obj[:subject].constantize
+    action = f_obj[:action].to_sym
+    conditions = eval(f_obj[:conditions].to_s)
+    can action,subject_class,conditions
+    can :read_with_conditions,subject_class ,conditions if action.eql?(:read)
+  end
   #设置当前用户权限
-  def set_user_powers(user)
-    #设置read条件
-    SystemFunctionOperate.all.each do |sfo|
-      f_obj = sfo.function_obj
-      the_model_class = f_obj[:subject].constantize
-      conditions = f_obj[:conditions]
-      if f_obj[:action].eql?(:read)
-        if conditions.present?
-          can :read_with_conditions,the_model_class ,eval(f_obj[:conditions])
-        else
-          can :read_with_conditions,the_model_class
-        end
-      end
-    end
-
+  def set_user_powers
     if user.is_admin?
-      SystemFunctionOperate.all.each do |sfo|
-        f_obj = sfo.function_obj
-        the_model_class = f_obj[:subject].constantize
-        if f_obj[:conditions].present?
-          can f_obj[:action],the_model_class ,eval(f_obj[:conditions])
-        else
-          can f_obj[:action],the_model_class
-        end
-      end
+      SystemFunctionOperate.all.each { |sfo| set_single_operate_power(sfo)}
     else
-      user.default_role.selected_sfos.each do |sfo|
-        f_obj = sfo.function_obj
-        the_model_class = f_obj[:subject].constantize
-        if f_obj[:conditions].present?
-          can f_obj[:action],the_model_class ,eval(f_obj[:conditions])
-        else
-          can f_obj[:action],the_model_class
-        end
-      end
+      user.default_role.selected_sfos.each  { |sfo| set_single_operate_power(sfo)}
     end
     #设定用户对运单的操作权限
     ability_org_ids = user.current_ability_org_ids
@@ -146,7 +126,7 @@ class Ability
     can :create,Notice if can? :build_notice,LoadList
   end
   #定义运单修改权限
-  def set_bill_update_permission(user)
+  def set_bill_update_permission
     ability_org_ids = user.current_ability_org_ids
     #可修改20%运费
     if can? :update_carrying_fee_20,CarryingBill

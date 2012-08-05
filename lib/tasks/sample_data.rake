@@ -158,4 +158,12 @@ namespace :db do
     Rake::Task['db:import_seed_csv'].invoke
     Rake::Task['db:imp_customer'].invoke
   end
+  desc "转换system_function_operate new_function_obj"
+  task :convert_new_function_obj => :environment do
+    #将原function_obj字段中的数据重新使用marshal序列化
+    SystemFunctionOperate.all.each do |sfo|
+      sfo.new_function_obj = sfo.function_obj
+      sfo.save!
+    end
+  end
 end

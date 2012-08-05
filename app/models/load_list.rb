@@ -50,7 +50,7 @@ class LoadList < ActiveRecord::Base
   #2012-7-3
   #创建电话提醒信息,只是创建,并未保存到数据库
   def build_notice
-    notice=self.notices.build(:org => self.to_org,:bill_date => self.bill_date)
+    notice=self.notices.build(:org => self.to_org,:bill_date => self.bill_date,:note => "#{self.bill_date}:#{self.from_org.name} ~ #{self.to_org.try(:name)}")
     notice.notice_lines << self.carrying_bills.map {|bill| NoticeLine.new(:carrying_bill => bill,:from_customer_phone => bill.notice_phone_for_arrive,:calling_text => bill.calling_text_for_arrive,:sms_text => bill.sms_text_for_arrive)}
     notice
   end
