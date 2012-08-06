@@ -21,7 +21,7 @@ set :user,"lmis"
 set :use_sudo,false
 default_run_options[:pty]=true
 
-set :deploy_to,"~/app"
+set :deploy_to,"~/app/il_yanzhao_rails32"
 
 #set rvm support
 set :rvm_ruby_string, '1.9.3@rails32_gemset'
