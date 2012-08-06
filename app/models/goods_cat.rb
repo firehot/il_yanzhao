@@ -7,6 +7,7 @@ class GoodsCat < ActiveRecord::Base
   has_many :goods_cat_promotions
   validates_associated :goods_cat_promotions
   accepts_nested_attributes_for :goods_cat_promotions
+  #FIXME 此处有性能问题
   after_initialize :build_goods_cat_promotions
   before_create :gen_py
   private

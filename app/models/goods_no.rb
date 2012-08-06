@@ -8,7 +8,7 @@ class GoodsNo < ActiveRecord::Base
     if bill.from_org_id.blank?
       return nil
     end
-    if ["ComputerBill","HandBill","ReturnBill"].include? bill.type and bill.to_org_id.blank?
+    if ["ComputerBill","AutoCalculateComputerBill","HandBill","ReturnBill"].include? bill.type and bill.to_org_id.blank?
       return nil
     end
     if ["TransitBill","HandTransitBill"].include? bill.type and bill.transit_org_id.blank?

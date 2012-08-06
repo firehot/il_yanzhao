@@ -166,4 +166,31 @@ namespace :db do
       sfo.save!
     end
   end
+  desc "添加货物分类数据"
+  task :add_goods_cat_data => :environment do
+    #初始数据
+    goods_cat_data = {
+      "家具" => %w[床板 沙发 组合柜 门板 椅子 床垫 玻璃],
+      "洁具" => %w[马桶 浴缸 瓷砖 橱柜 面盆 水槽],
+      "建材" => %w[管件 门窗 板材 涂料 油漆 开关 插座],
+      "日化" => %w[洗发用品 沐浴用品 洁面用品 洗衣用品 洁牙用品 护肤用品],
+      "服装" => %w[服装],
+      "汽配" => %w[汽车配件 轮胎 润滑油 车灯 刹车片 轴承 保险杠],
+      "摩配" => %w[摩托配件 轮胎 润滑油],
+      "食品" => %w[膨化食品 干果 糖果 非膨化食品 乳制品 饮料 酒类],
+      "调味品" => %w[添加剂 食用油],
+      "鞋类" => %w[鞋],
+      "灯具" => %w[灯饰],
+      "玩具器械" => %w[益智玩具 模型玩具 运动玩具 毛绒玩具 玩具配件 大型游戏机],
+      "农副类" => %w[农药 种子 肥料],
+      "办公用品" => %w[名片 书籍 办公纸张],
+      "电子产品" => %w[手机 电子配件],
+      "广告材料" => %w[广告篷布],
+      "机械配件" => %w[大型机械 中型机械 小型机械]
+    }
+    goods_cat_data.each do |cat,child_cats|
+      parent_cat = GoodsCat.create!(:name => cat)
+      child_cats.each {|c_cat| parent_cat.children.create!(:name => c_cat )}
+    end
+  end
 end
