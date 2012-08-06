@@ -53,9 +53,8 @@ end
 #创建nginx的配置文件链接
 namespace :appserver_config do
   task :create_nginx_site_symbol_link do
-    run "cd /etc/nginx/sites-available && ln -s ~/app/il_yanzhao_rails32/current/config/server/production/nginx_host.conf il_yanzhao_rails32.conf"
+    run "cd /etc/nginx/sites-available && sudo ln -s ~/app/il_yanzhao_rails32/current/config/server/production/nginx_host.conf il_yanzhao_rails32.conf"
   end
-  after "deploy:setup","appserver_config:create_nginx_site_symbol_link"
 end
 namespace :deploy do
   after "deploy:create_symlink","rvm:trust_rvmrc"
