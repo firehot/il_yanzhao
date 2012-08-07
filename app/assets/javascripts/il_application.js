@@ -782,7 +782,7 @@ jQuery(function($) {
 			"search[carrying_bills_completed_eq]": 0,
 			"search[carrying_bills_goods_fee_or_carrying_bills_carrying_fee_gt]": 0
 		},
-		null, 'script')
+		null, 'script');
 	});
 	//全选结算清单
 	$('#check_all').live('click', function() {

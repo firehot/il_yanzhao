@@ -28,22 +28,28 @@ class Refound < ActiveRecord::Base
   end
   #提付运费合计,含提付保价费
   def sum_carrying_fee_th
-    self.carrying_bills.sum(:carrying_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
+    return 0 if new_record?
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:carrying_fee)
   end
   def sum_insured_fee_th
-    self.carrying_bills.sum(:insured_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
+    return 0 if new_record?
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:insured_fee)
+#    self.carrying_bills.sum(:insured_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
   end
 
   def sum_carrying_fee_th_total
     sum_carrying_fee_th + sum_insured_fee_th
   end
   def sum_transit_hand_fee
+    return 0 if new_record?
     self.carrying_bills.sum(:transit_hand_fee)
   end
   def sum_transit_carrying_fee
+    return 0 if new_record?
     self.carrying_bills.sum(:transit_carrying_fee)
   end
   def sum_goods_fee
+    return 0 if new_record?
     self.carrying_bills.sum(:goods_fee)
   end
 
