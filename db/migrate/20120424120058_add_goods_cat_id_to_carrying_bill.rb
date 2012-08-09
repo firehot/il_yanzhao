@@ -22,7 +22,7 @@ class AddGoodsCatIdToCarryingBill < ActiveRecord::Migration
   end
   def down
     #FIXME 此操作比较危险,应手工进行删除
-    #drop_table :carrying_bills
-    #rename_table :carrying_bills_old, :carrying_bills
+    drop_table :carrying_bills
+    rename_table :carrying_bills_old, :carrying_bills
   end
 end
