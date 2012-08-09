@@ -3,12 +3,7 @@
 #该字段用于存储使用marshal序列化后的function obj对象
 #原function_obj字段使用YAML序列化,有比较严重的性能问题
 class AddNewFunctionObjField < ActiveRecord::Migration
-  def up
+  def change
     add_column :system_function_operates,:new_function_obj,:text
-
-  end
-
-  def down
-    remove_column :system_function_operates,:new_function_obj
   end
 end
