@@ -124,7 +124,7 @@ namespace :db do
     from_org = Org.find_by_name('A')
     to_org = Org.find_by_name('邯郸')
     #生成200000张待处理票
-    (1..200).each do
+    (1..50000).each do
       ComputerBill.create!(:from_org => from_org,:to_org => to_org,:from_customer_name => "张三",:from_customer_phone => "1367904567",:to_customer_name => "李四",:to_customer_phone => "2343243",:carrying_fee => 44,:goods_fee => 1000,:pay_type =>"CA",:goods_num => 3,:goods_info => "示例",:user => User.first )
     end
   end
