@@ -11,7 +11,4 @@ class AddCashPaymentListExportSmsFunction < ActiveRecord::Migration
       sfo.save!
     end
   end
-
-  def self.down
-  end
 end
