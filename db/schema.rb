@@ -57,8 +57,7 @@ ActiveRecord::Schema.define(:version => 20120805091616) do
     t.datetime "updated_at",                      :null => false
   end
 
-  create_table "carrying_bills", :id => false, :force => true do |t|
-    t.integer  "id",                                                                                                  :null => false
+  create_table "carrying_bills", :force => true do |t|
     t.date     "bill_date",                                                                                           :null => false
     t.string   "bill_no",                          :limit => 30,                                                      :null => false
     t.string   "goods_no",                         :limit => 30,                                                      :null => false
@@ -88,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20120805091616) do
     t.text     "note"
     t.string   "type",                             :limit => 100
     t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                      :default => false,   :null => false
+    t.boolean  "completed",                                                                      :default => false
     t.integer  "user_id"
     t.datetime "created_at",                                                                                          :null => false
     t.datetime "updated_at",                                                                                          :null => false
@@ -488,7 +487,7 @@ ActiveRecord::Schema.define(:version => 20120805091616) do
   add_index "journals", ["org_id"], :name => "index_journals_on_org_id"
   add_index "journals", ["user_id"], :name => "index_journals_on_user_id"
 
-  create_table "lhma_2012_08_10_12_55_16_339_carrying_bills", :force => true do |t|
+  create_table "lhma_2012_08_10_15_10_44_905_carrying_bills", :force => true do |t|
     t.date     "bill_date",                                                                                          :null => false
     t.string   "bill_no",                          :limit => 30,                                                     :null => false
     t.string   "goods_no",                         :limit => 30,                                                     :null => false
@@ -551,420 +550,36 @@ ActiveRecord::Schema.define(:version => 20120805091616) do
     t.integer  "print_counter",                                                                 :default => 0,       :null => false
   end
 
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
-  add_index "lhma_2012_08_10_12_55_16_339_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
-
-  create_table "lhma_2012_08_10_12_55_27_671_carrying_bills", :force => true do |t|
-    t.date     "bill_date",                                                                                           :null => false
-    t.string   "bill_no",                          :limit => 30,                                                      :null => false
-    t.string   "goods_no",                         :limit => 30,                                                      :null => false
-    t.integer  "from_customer_id"
-    t.string   "from_customer_name",               :limit => 60,                                                      :null => false
-    t.string   "from_customer_phone",              :limit => 60
-    t.string   "from_customer_mobile",             :limit => 60
-    t.integer  "to_customer_id"
-    t.string   "to_customer_name",                 :limit => 60,                                                      :null => false
-    t.string   "to_customer_phone"
-    t.string   "to_customer_mobile",               :limit => 60
-    t.integer  "from_org_id"
-    t.integer  "transit_org_id"
-    t.integer  "to_org_id"
-    t.decimal  "insured_amount",                                  :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "insured_rate",                                    :precision => 10, :scale => 5, :default => 0.0
-    t.decimal  "insured_fee",                                     :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "carrying_fee",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_fee",                                       :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "from_short_carrying_fee",                         :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "to_short_carrying_fee",                           :precision => 10, :scale => 2, :default => 0.0
-    t.string   "pay_type",                         :limit => 20,                                                      :null => false
-    t.integer  "goods_num",                                                                      :default => 1
-    t.decimal  "goods_weight",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_volume",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.string   "goods_info"
-    t.text     "note"
-    t.string   "type",                             :limit => 100
-    t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                      :default => false
-    t.integer  "user_id"
-    t.datetime "created_at",                                                                                          :null => false
-    t.datetime "updated_at",                                                                                          :null => false
-    t.integer  "original_bill_id"
-    t.integer  "load_list_id"
-    t.integer  "distribution_list_id"
-    t.integer  "deliver_info_id"
-    t.integer  "settlement_id"
-    t.integer  "refound_id"
-    t.integer  "payment_list_id"
-    t.integer  "pay_info_id"
-    t.integer  "post_info_id"
-    t.decimal  "k_hand_fee",                                      :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_info_id"
-    t.decimal  "transit_carrying_fee",                            :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "transit_hand_fee",                                :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_deliver_info_id"
-    t.decimal  "original_carrying_fee",                           :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_goods_fee",                              :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_amount",                         :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_fee",                            :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_from_short_carrying_fee",                :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_to_short_carrying_fee",                  :precision => 15, :scale => 2, :default => 0.0
-    t.string   "package",                          :limit => 30
-    t.string   "transit_bill_no",                  :limit => 20
-    t.string   "transit_to_phone",                 :limit => 20
-    t.integer  "area_id"
-    t.string   "to_short_fee_state",               :limit => 20,                                 :default => "draft"
-    t.string   "from_short_fee_state",             :limit => 20,                                 :default => "draft"
-    t.integer  "print_counter",                                                                  :default => 0,       :null => false
-    t.integer  "goods_cat_id"
-    t.decimal  "unit_price",                                      :precision => 15, :scale => 3, :default => 0.0
-  end
-
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["goods_cat_id"], :name => "index_carrying_bills_on_goods_cat_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
-  add_index "lhma_2012_08_10_12_55_27_671_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
-
-  create_table "lhma_2012_08_10_12_58_26_605_carrying_bills", :force => true do |t|
-    t.date     "bill_date",                                                                                          :null => false
-    t.string   "bill_no",                          :limit => 30,                                                     :null => false
-    t.string   "goods_no",                         :limit => 30,                                                     :null => false
-    t.integer  "from_customer_id"
-    t.string   "from_customer_name",               :limit => 60,                                                     :null => false
-    t.string   "from_customer_phone",              :limit => 60
-    t.string   "from_customer_mobile",             :limit => 60
-    t.integer  "to_customer_id"
-    t.string   "to_customer_name",                 :limit => 60,                                                     :null => false
-    t.string   "to_customer_phone"
-    t.string   "to_customer_mobile",               :limit => 60
-    t.integer  "from_org_id"
-    t.integer  "transit_org_id"
-    t.integer  "to_org_id"
-    t.decimal  "insured_amount",                                 :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "insured_rate",                                   :precision => 10, :scale => 5, :default => 0.0
-    t.decimal  "insured_fee",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "carrying_fee",                                   :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_fee",                                      :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "from_short_carrying_fee",                        :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "to_short_carrying_fee",                          :precision => 10, :scale => 2, :default => 0.0
-    t.string   "pay_type",                         :limit => 20,                                                     :null => false
-    t.integer  "goods_num",                                                                     :default => 1
-    t.decimal  "goods_weight",                                   :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_volume",                                   :precision => 10, :scale => 2, :default => 0.0
-    t.string   "goods_info"
-    t.text     "note"
-    t.string   "type",                             :limit => 20
-    t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                     :default => false
-    t.integer  "user_id"
-    t.datetime "created_at",                                                                                         :null => false
-    t.datetime "updated_at",                                                                                         :null => false
-    t.integer  "original_bill_id"
-    t.integer  "load_list_id"
-    t.integer  "distribution_list_id"
-    t.integer  "deliver_info_id"
-    t.integer  "settlement_id"
-    t.integer  "refound_id"
-    t.integer  "payment_list_id"
-    t.integer  "pay_info_id"
-    t.integer  "post_info_id"
-    t.decimal  "k_hand_fee",                                     :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_info_id"
-    t.decimal  "transit_carrying_fee",                           :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "transit_hand_fee",                               :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_deliver_info_id"
-    t.decimal  "original_carrying_fee",                          :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_goods_fee",                             :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_amount",                        :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_fee",                           :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_from_short_carrying_fee",               :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_to_short_carrying_fee",                 :precision => 15, :scale => 2, :default => 0.0
-    t.string   "package",                          :limit => 30
-    t.string   "transit_bill_no",                  :limit => 20
-    t.string   "transit_to_phone",                 :limit => 20
-    t.integer  "area_id"
-    t.string   "to_short_fee_state",               :limit => 20,                                :default => "draft"
-    t.string   "from_short_fee_state",             :limit => 20,                                :default => "draft"
-    t.integer  "print_counter",                                                                 :default => 0,       :null => false
-  end
-
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
-  add_index "lhma_2012_08_10_12_58_26_605_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
-
-  create_table "lhma_2012_08_10_13_20_52_097_carrying_bills", :id => false, :force => true do |t|
-    t.integer  "id",                                                                                                  :null => false
-    t.date     "bill_date",                                                                                           :null => false
-    t.string   "bill_no",                          :limit => 30,                                                      :null => false
-    t.string   "goods_no",                         :limit => 30,                                                      :null => false
-    t.integer  "from_customer_id"
-    t.string   "from_customer_name",               :limit => 60,                                                      :null => false
-    t.string   "from_customer_phone",              :limit => 60
-    t.string   "from_customer_mobile",             :limit => 60
-    t.integer  "to_customer_id"
-    t.string   "to_customer_name",                 :limit => 60,                                                      :null => false
-    t.string   "to_customer_phone"
-    t.string   "to_customer_mobile",               :limit => 60
-    t.integer  "from_org_id"
-    t.integer  "transit_org_id"
-    t.integer  "to_org_id"
-    t.decimal  "insured_amount",                                  :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "insured_rate",                                    :precision => 10, :scale => 5, :default => 0.0
-    t.decimal  "insured_fee",                                     :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "carrying_fee",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_fee",                                       :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "from_short_carrying_fee",                         :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "to_short_carrying_fee",                           :precision => 10, :scale => 2, :default => 0.0
-    t.string   "pay_type",                         :limit => 20,                                                      :null => false
-    t.integer  "goods_num",                                                                      :default => 1
-    t.decimal  "goods_weight",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_volume",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.string   "goods_info"
-    t.text     "note"
-    t.string   "type",                             :limit => 100
-    t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                      :default => false,   :null => false
-    t.integer  "user_id"
-    t.datetime "created_at",                                                                                          :null => false
-    t.datetime "updated_at",                                                                                          :null => false
-    t.integer  "original_bill_id"
-    t.integer  "load_list_id"
-    t.integer  "distribution_list_id"
-    t.integer  "deliver_info_id"
-    t.integer  "settlement_id"
-    t.integer  "refound_id"
-    t.integer  "payment_list_id"
-    t.integer  "pay_info_id"
-    t.integer  "post_info_id"
-    t.decimal  "k_hand_fee",                                      :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_info_id"
-    t.decimal  "transit_carrying_fee",                            :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "transit_hand_fee",                                :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_deliver_info_id"
-    t.decimal  "original_carrying_fee",                           :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_goods_fee",                              :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_amount",                         :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_fee",                            :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_from_short_carrying_fee",                :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_to_short_carrying_fee",                  :precision => 15, :scale => 2, :default => 0.0
-    t.string   "package",                          :limit => 30
-    t.string   "transit_bill_no",                  :limit => 20
-    t.string   "transit_to_phone",                 :limit => 20
-    t.integer  "area_id"
-    t.string   "to_short_fee_state",               :limit => 20,                                 :default => "draft"
-    t.string   "from_short_fee_state",             :limit => 20,                                 :default => "draft"
-    t.integer  "print_counter",                                                                  :default => 0,       :null => false
-    t.integer  "goods_cat_id"
-    t.decimal  "unit_price",                                      :precision => 15, :scale => 3, :default => 0.0
-  end
-
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["goods_cat_id"], :name => "index_carrying_bills_on_goods_cat_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
-  add_index "lhma_2012_08_10_13_20_52_097_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
-
-  create_table "lhma_2012_08_10_13_21_33_650_carrying_bills", :id => false, :force => true do |t|
-    t.integer  "id",                                                                                                 :null => false
-    t.date     "bill_date",                                                                                          :null => false
-    t.string   "bill_no",                          :limit => 30,                                                     :null => false
-    t.string   "goods_no",                         :limit => 30,                                                     :null => false
-    t.integer  "from_customer_id"
-    t.string   "from_customer_name",               :limit => 60,                                                     :null => false
-    t.string   "from_customer_phone",              :limit => 60
-    t.string   "from_customer_mobile",             :limit => 60
-    t.integer  "to_customer_id"
-    t.string   "to_customer_name",                 :limit => 60,                                                     :null => false
-    t.string   "to_customer_phone"
-    t.string   "to_customer_mobile",               :limit => 60
-    t.integer  "from_org_id"
-    t.integer  "transit_org_id"
-    t.integer  "to_org_id"
-    t.decimal  "insured_amount",                                 :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "insured_rate",                                   :precision => 10, :scale => 5, :default => 0.0
-    t.decimal  "insured_fee",                                    :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "carrying_fee",                                   :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_fee",                                      :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "from_short_carrying_fee",                        :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "to_short_carrying_fee",                          :precision => 10, :scale => 2, :default => 0.0
-    t.string   "pay_type",                         :limit => 20,                                                     :null => false
-    t.integer  "goods_num",                                                                     :default => 1
-    t.decimal  "goods_weight",                                   :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "goods_volume",                                   :precision => 10, :scale => 2, :default => 0.0
-    t.string   "goods_info"
-    t.text     "note"
-    t.string   "type",                             :limit => 20
-    t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                     :default => false,   :null => false
-    t.integer  "user_id"
-    t.datetime "created_at",                                                                                         :null => false
-    t.datetime "updated_at",                                                                                         :null => false
-    t.integer  "original_bill_id"
-    t.integer  "load_list_id"
-    t.integer  "distribution_list_id"
-    t.integer  "deliver_info_id"
-    t.integer  "settlement_id"
-    t.integer  "refound_id"
-    t.integer  "payment_list_id"
-    t.integer  "pay_info_id"
-    t.integer  "post_info_id"
-    t.decimal  "k_hand_fee",                                     :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_info_id"
-    t.decimal  "transit_carrying_fee",                           :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "transit_hand_fee",                               :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "transit_deliver_info_id"
-    t.decimal  "original_carrying_fee",                          :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_goods_fee",                             :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_amount",                        :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_insured_fee",                           :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_from_short_carrying_fee",               :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "original_to_short_carrying_fee",                 :precision => 15, :scale => 2, :default => 0.0
-    t.string   "package",                          :limit => 30
-    t.string   "transit_bill_no",                  :limit => 20
-    t.string   "transit_to_phone",                 :limit => 20
-    t.integer  "area_id"
-    t.string   "to_short_fee_state",               :limit => 20,                                :default => "draft"
-    t.string   "from_short_fee_state",             :limit => 20,                                :default => "draft"
-    t.integer  "print_counter",                                                                 :default => 0,       :null => false
-  end
-
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
-  add_index "lhma_2012_08_10_13_21_33_650_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
+  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
 
   create_table "load_lists", :force => true do |t|
     t.date     "bill_date"
