@@ -41,6 +41,8 @@ gem "rails_config", "~> 0.3.1"
 gem 'newrelic_rpm'
 #序列化对象字段
 gem 'marshaled_attributes',"~> 0.1.0"
+#在线更新表结构
+gem "lhm", "~> 1.1.0"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

@@ -111,6 +111,8 @@ GEM
     jquery_notify_bar (0.0.4)
     json (1.7.4)
     kgio (2.7.4)
+    lhm (1.1.0)
+      activerecord
     macaddr (1.5.0)
       systemu (>= 2.4.0)
     mail (2.4.4)
@@ -278,6 +280,7 @@ DEPENDENCIES
   jquery-rails (~> 2.0.2)
   jquery-ui-rails (~> 0.2.2)
   jquery_notify_bar (~> 0.0.4)
+  lhm (~> 1.1.0)
   marshaled_attributes (~> 0.1.0)
   meta_search (~> 1.1.3)
   mysql2 (~> 0.3.11)
