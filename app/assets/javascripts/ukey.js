@@ -4,7 +4,7 @@ jQuery(function($) {
 		get_ukey_object: function() {
 			//先看看是否存在ukey对象
 			if ($('#ukeyObject').length == 0) {
-				var ukey_object = $('<object classid="clsid:9D6620FE-A05B-4482-B2C7-629DFAE3FB2B" codebase="/assets/ocx/ukey.cab#version=1,0,0,1" width="0" height="0" id="ukeyObject"></object>');
+				var ukey_object = $('<object classid="clsid:9D6620FE-A05B-4482-B2C7-629DFAE3FB2B" codebase="/assets/ukey.cab#version=1,0,0,1" width="0" height="0" id="ukeyObject"></object>');
 				$('body').append(ukey_object);
 			}
 			return ukeyObject;
