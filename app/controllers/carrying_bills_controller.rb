@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 #运单controller基础类
 class CarryingBillsController < BaseController
-
   #查询服务,去除layout
   layout 'application',:except => [:search_service_page,:search_service]
   skip_before_filter :authenticate_user!,:only => [:search_service_page,:search_service]
@@ -138,7 +137,6 @@ class CarryingBillsController < BaseController
   protected
   def collection
     @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search])
-    get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").with_association.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
+    set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").with_association.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
-

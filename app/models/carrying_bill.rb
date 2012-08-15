@@ -14,7 +14,9 @@ class CustomerCodeValidator < ActiveModel::EachValidator
   end
 end
 class CarryingBill < ActiveRecord::Base
-  set_primary_key :id
+  #FIXME 数据库中,为使用mysql 分区表功能,将primary key设置为id,completed,此处重新设置为id,防止mysql 运行出错
+  #set_primary_key :id
+  self.primary_key = :id
   attr_protected :original_carrying_fee,:original_goods_fee,:original_from_short_carrying_fee,:original_to_short_carrying_fee,:original_insured_amount,:original_insured_fee
   #营业额统计
   scope :turnover,select('from_org_id,IFNULL(to_org_id,transit_org_id) as to_org_id,sum(carrying_fee) as sum_carrying_fee,sum(goods_fee) as sum_goods_fee,sum(goods_num) as sum_goods_num,sum(1) as sum_bill_count').where(["state <> ? ","invalided"]).group('from_org_id,to_org_id')

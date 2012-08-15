@@ -8,7 +8,8 @@ class Notice < ActiveRecord::Base
   has_many :notice_lines,:dependent => :delete_all,:include => :carrying_bill
   has_many :carrying_bills,:through => :notice_lines
   #未选中的数据、无电话的数据自动过滤
-  accepts_nested_attributes_for :notice_lines,:reject_if => proc {|attrs| attrs['_select'].eql?('0') || attrs['from_customer_phone'].blank? }
+  #FIXME  修改时有问题
+  accepts_nested_attributes_for :notice_lines,:reject_if => proc {|attrs|attrs['from_customer_phone'].blank? || attrs['_select'].eql?('0') }
   :A
 
 

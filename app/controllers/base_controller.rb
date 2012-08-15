@@ -1,15 +1,14 @@
 # -*- encoding : utf-8 -*-
 class BaseController < InheritedResources::Base
 
-  authorize_resource
-
+  authorize_resource :except => :index
   before_filter :pre_process_search_params,:only => [:index]
   helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns,:last_modified
   respond_to :html,:xml,:js,:json,:csv
   protected
   def collection
     @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search])
-    get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
+    set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
   private
   #排序方法
