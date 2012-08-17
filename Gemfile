@@ -38,7 +38,7 @@ gem "jquery_notify_bar", "~> 0.0.4"
 gem 'unicorn'
 gem "rails_config", "~> 0.3.1"
 #性能分析工具
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 #序列化对象字段
 gem 'marshaled_attributes',"~> 0.1.0"
 #在线更新表结构

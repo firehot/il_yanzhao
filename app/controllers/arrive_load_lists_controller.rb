@@ -6,6 +6,10 @@ class ArriveLoadListsController < LoadListsController
   #先跳过基类的验证,然后重写自己的验证
   skip_authorize_resource
   authorize_resource :class => "LoadList",:instance_name => "load_list"
+
+  #显示导出短信文本界面
+  #GET arrive_load_lists/:id/show_export_sms
+  def show_export_sms ; end
   #Get arrive_load_lists/:id/export_sms_txt:format
   #导出短信群发文本
   def export_sms_txt

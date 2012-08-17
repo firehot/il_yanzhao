@@ -13,4 +13,11 @@ describe ArriveLoadListsController do
       response.should be_success
     end
   end
+  describe "GET show_export_sms" do
+    it "should be success" do
+      @load_list ||= Factory(:load_list_with_bills)
+      get :show_export_sms,:id => @load_list
+      response.should be_success
+    end
+  end
 end

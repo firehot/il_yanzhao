@@ -213,6 +213,7 @@ IlYanzhao::Application.routes.draw do
     get :export_excel,:on => :member
     get :export_sms_txt,:on => :member
     get :build_notice,:on => :member
+    get :show_export_sms,:on => :member
     resources :carrying_bills
   end
 
