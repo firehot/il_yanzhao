@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 #运单controller基础类
 class CarryingBillsController < BaseController
-  defaults :resource_class => CarryingBill
   #查询服务,去除layout
   layout 'application',:except => [:search_service_page,:search_service]
   skip_before_filter :authenticate_user!,:only => [:search_service_page,:search_service]
@@ -98,12 +97,13 @@ class CarryingBillsController < BaseController
   #日/月营业额统计
   def rpt_turnover
     @search = resource_class.where(:from_org_id => current_user.current_ability_org_ids).turnover.search(params[:search])
-    get_collection_ivar || set_collection_ivar(@search.all)
+    @carrying_bills = @search.all
+    #get_collection_ivar || set_collection_ivar(@search.all)
   end
   #营业额统计柱状图
   def turnover_chart
     @search = resource_class.where(:from_org_id =>current_user.current_ability_org_ids).turnover.search(params[:search])
-    get_collection_ivar || set_collection_ivar(@search.all)
+    @carrying_bills = @search.all
   end
   #货款出入情况
   def sum_goods_fee_inout
@@ -111,8 +111,7 @@ class CarryingBillsController < BaseController
     @sum_goods_fee_out = resource_class.sum_goods_fee_out(current_user.current_ability_org_ids,params[:date_from] || Date.today.beginning_of_month,params[:date_to] || Date.today.end_of_month)
   end
   #外部查询服务界面
-  def search_serviece_page
-  end
+  def search_serviece_page ; end
   def search_service
     if params[:bill_nos].blank?
       render :action => :search_service_page

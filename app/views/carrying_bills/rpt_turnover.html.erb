@@ -1,6 +1,6 @@
 <%
-    group_bills_by_from_org = collection.group_by(&:from_org)
-group_bills_by_to_org = collection.group_by(&:to_org)
+    group_bills_by_from_org = @carrying_bills.group_by(&:from_org)
+group_bills_by_to_org = @carrying_bills.group_by(&:to_org)
 from_orgs = group_bills_by_from_org.keys
 to_orgs = group_bills_by_to_org.keys
 %>
@@ -42,7 +42,7 @@ to_orgs = group_bills_by_to_org.keys
                 <%from_orgs.each do |from_org|%>
                   <td>
                     <% current_to_org_fee = group_bills_by_from_org[from_org].find {|bill| bill.to_org_id == to_org.id} %>
-                    <%=current_to_org_fee.try(:sum_carrying_fee) %>
+                    <%=current_to_org_fee.present? ? current_to_org_fee.sum_carrying_fee : 0 %>
                   </td>
                 <%end%>
                 <td><%=group_bills_by_to_org[to_org].sum(&:sum_carrying_fee)%></td>
@@ -56,8 +56,8 @@ to_orgs = group_bills_by_to_org.keys
               <%from_orgs.each do |org|%>
                 <td><%=group_bills_by_from_org[org].sum(&:sum_carrying_fee)%></td>
               <%end%>
-              <td><%=collection.to_a.sum(&:sum_carrying_fee)%></td>
-              <td><%=collection.to_a.sum(&:sum_goods_num)%></td>
+              <td><%=@carrying_bills.to_a.sum(&:sum_carrying_fee)%></td>
+              <td><%=@carrying_bills.to_a.sum(&:sum_goods_num)%></td>
             </tr>
           </tfoot>
         </table>

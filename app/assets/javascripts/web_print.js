@@ -415,6 +415,7 @@ jQuery(function($) {
 			if (bill.type == 'ComputerBill') print_counter_url = "/computer_bills/" + bill.id + "/print_counter";
 			if (bill.type == 'TransitBill') print_counter_url = "/transit_bills/" + bill.id + "/print_counter";
 			if (bill.type == 'ReturnBill') print_counter_url = "/return_bills/" + bill.id + "/print_counter";
+			if (bill.type == 'AutoCalculateComputerBill') print_counter_url = "/auto_calculate_computer_bills/" + bill.id + "/print_counter";
 
 			$.ajax({
 				url: print_counter_url,
