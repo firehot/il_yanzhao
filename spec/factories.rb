@@ -620,4 +620,7 @@ end
 #到货提醒明细
 Factory.define :notice_line do |nl|
   nl.association :carrying_bill,:factory => :computer_bill
+  nl.from_customer_phone "13567894567"
+  nl.calling_text "13567894567"
+  nl.sms_text "13567894567"
 end
