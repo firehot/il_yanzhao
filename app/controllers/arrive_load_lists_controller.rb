@@ -9,14 +9,16 @@ class ArriveLoadListsController < LoadListsController
 
   #显示导出短信文本界面
   #GET arrive_load_lists/:id/show_export_sms
-  def show_export_sms ; end
+  def show_export_sms
+    @load_list = resource_class.find(params[:id])
+  end
   #Get arrive_load_lists/:id/export_sms_txt:format
   #导出短信群发文本
   def export_sms_txt
     @load_list = resource_class.find(params[:id])
     respond_to do |format|
       format.text do
-        send_data @load_list.to_sms_txt,:filename => 'sms.txt'
+        send_data @load_list.to_sms_txt(params[:bill_ids]),:filename => 'sms.txt'
       end
     end
   end

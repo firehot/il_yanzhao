@@ -259,7 +259,7 @@ class CarryingBill < ActiveRecord::Base
     #2012-03-01添加
     #从to_customer_phone 和 to_customer_mobile中取可用的手机号
     #NOTE 实际录单时,录单人员可能将手机号录入到固定电话一栏中去
-    def sms_mobile
+    def sms_mobile_for_arrive
       the_mobile = nil
       the_mobile = to_customer_phone if self.to_customer_phone.present? and self.to_customer_phone.size == 11
       the_mobile = to_customer_mobile if self.to_customer_mobile.present? and self.to_customer_mobile.size == 11

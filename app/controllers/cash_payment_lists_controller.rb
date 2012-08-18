@@ -25,6 +25,5 @@ class CashPaymentListsController < BaseController
       end
     end
   end
-
 end
 

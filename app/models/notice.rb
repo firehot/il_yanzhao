@@ -10,10 +10,6 @@ class Notice < ActiveRecord::Base
   #未选中的数据、无电话的数据自动过滤
   #FIXME  修改时有问题
   accepts_nested_attributes_for :notice_lines,:reject_if => proc {|attrs|attrs['from_customer_phone'].blank? || attrs['_select'].eql?('0') }
-  :A
-
-
-
 
   validates_presence_of :org_id,:load_list_id
   default_value_for :state,'draft'

@@ -11,7 +11,7 @@ class NoticeLine < ActiveRecord::Base
   default_value_for :_select,false
   default_value_for :sms_state,'draft'
   default_value_for :calling_state,'draft'
-  before_validation :set_notice_info
+ # before_validation :set_notice_info
 
   validates :carrying_bill_id,:from_customer_phone,:calling_text,:calling_state,:sms_state,:presence => true
 
@@ -25,6 +25,7 @@ class NoticeLine < ActiveRecord::Base
   end
 
   private
+  #FIXME 不再使用
   def set_notice_info
     self.from_customer_phone = carrying_bill.notice_phone_for_arrive
     self.calling_text = carrying_bill.calling_text_for_arrive

@@ -80,6 +80,8 @@ class Ability
     #可打印运单,就具备运单打印计数功能
     alias_action :read ,:print_counter,:to => :print
     alias_action :read ,:to => :invalidate #运单作废
+    #可导出到货通知短信文本,就可显示短信文本生成界面
+    alias_action :show_export_sms,:to => :export_sms_txt
   end
   #设置单个operate的权限
   def set_single_operate_power(sfo)

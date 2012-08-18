@@ -13,9 +13,9 @@ jQuery(function($) {
 			else {
 				$.bill_selector.reset();
 				$.bill_selector.el = el;
-				$.bill_selector.ids = $.bill_selector.el.data('ids');
+				$.bill_selector.ids = [];//$.bill_selector.el.data('ids');
 
-				$.bill_selector.sum_info = $.bill_selector.el.data('sum');
+				$.bill_selector.sum_info = {};
 
 				$.bill_selector.options = $.extend({},
 				$.bill_selector.default_options, options);
@@ -32,8 +32,8 @@ jQuery(function($) {
 
 				$.bill_selector.initialized = true;
 			}
-			$.bill_selector.set_checkbox();
-			$.bill_selector.update_html();
+			//$.bill_selector.set_checkbox();
+			//$.bill_selector.update_html();
 			//显示票据选择控件
 			$('.select_bill_bar,.cbx_select_bill').livequery(function() {
 				$(this).show();
@@ -44,6 +44,8 @@ jQuery(function($) {
 				var href = $(this).attr('href');
 				$(this).attr('href', href + '.js');
 			});
+
+            $($.bill_selector).trigger('set_all', [true]);
 
 		},
 		//重置对象,重新初始化
@@ -81,8 +83,26 @@ jQuery(function($) {
 		},
 		//选中或不选中全部
 		set_all: function(event, is_select) {
-			$.bill_selector.selected_ids = is_select ? $.bill_selector.el.data('ids') : [];
-			if (is_select) $.bill_selector.sum_info = $.bill_selector.el.data('sum');
+			$.bill_selector.selected_ids = is_select ? $.bill_selector.el.data('ids').slice() : [];
+			if (is_select)
+            {
+                var sum_info = $.bill_selector.el.data('sum');
+				$.bill_selector.sum_info.count = parseFloat(sum_info.count);
+				$.bill_selector.sum_info.sum_carrying_fee = parseFloat(sum_info.sum_carrying_fee) ;
+				$.bill_selector.sum_info.sum_carrying_fee_th = parseFloat(sum_info.sum_carrying_fee_th) ;
+				$.bill_selector.sum_info.sum_k_carrying_fee = parseFloat(sum_info.sum_k_carrying_fee);
+				$.bill_selector.sum_info.sum_k_hand_fee = parseFloat(sum_info.sum_k_hand_fee);
+				$.bill_selector.sum_info.sum_act_pay_fee = parseFloat(sum_info.sum_act_pay_fee) ;
+				$.bill_selector.sum_info.sum_goods_fee = parseFloat(sum_info.sum_goods_fee) ;
+				$.bill_selector.sum_info.sum_insured_fee = parseFloat(sum_info.sum_insured_fee) ;
+				$.bill_selector.sum_info.sum_transit_carrying_fee = parseFloat(sum_info.sum_transit_carrying_fee) ;
+				$.bill_selector.sum_info.sum_transit_hand_fee = parseFloat(sum_info.sum_transit_hand_fee);
+				$.bill_selector.sum_info.sum_agent_carrying_fee = parseFloat(sum_info.sum_agent_carrying_fee) ;
+				$.bill_selector.sum_info.sum_th_amount = parseFloat(sum_info.sum_th_amount) ;
+				$.bill_selector.sum_info.sum_from_short_carrying_fee = parseFloat(sum_info.sum_from_short_carrying_fee) ;
+				$.bill_selector.sum_info.sum_to_short_carrying_fee = parseFloat(sum_info.sum_to_short_carrying_fee);
+				$.bill_selector.sum_info.sum_carrying_fee_total = parseFloat(sum_info.sum_carrying_fee_total);
+			}
 			else {
 				$.bill_selector.sum_info.count = 0;
 				$.bill_selector.sum_info.sum_carrying_fee = 0;

@@ -64,8 +64,10 @@ Factory.define :computer_bill do |bill|
   bill.bill_date Date.today
   bill.from_customer_name "发货人"
   bill.from_customer_phone "13676997527"
+  bill.from_customer_mobile "13676997527"
   bill.to_customer_name "收货人"
   bill.to_customer_phone "15138665197"
+  bill.to_customer_mobile "13676997527"
   bill.association :from_org,:factory => :zz
   bill.association :to_org,:factory => :sjz
   bill.insured_amount 1000

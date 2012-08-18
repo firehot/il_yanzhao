@@ -618,7 +618,7 @@ jQuery(function($) {
 	//from_org_id_or_to_org_id != bill.from_org_id && org_id != bill.to_org_id 该运单不显示
 	//from_org_id_or_to_org_id == bill.from_org_id and bill.from_short_fee_state == 'offed' 该运单不显示
 	//from_org_id_or_to_org_id == bill.to_org_id and bill.to_short_fee_state == 'offed' 该运单不显示
-    //
+	//
 	$('.short_fee_info_lines tr[data-bill]').livequery(function() {
 		var org_id = $('#from_org_id_or_to_org_id').val();
 		var bill_info = $(this).data('bill');
@@ -750,7 +750,7 @@ jQuery(function($) {
 			"search[to_org_id_or_transit_org_id_eq]": $('#to_org_id').val(),
 			"search[state_eq]": 'deliveried',
 			"search[completed_eq]": 0,
-			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill','AutoCalculateComputerBill'],
+			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
 			//以下设定运单列表中的显示及隐藏字段,设定为css选择符
 			"hide_fields": ".carrying_fee,.insured_fee",
 			"show_fields": ".transit_carrying_fee,.transit_hand_fee,.carrying_fee_th,.th_amount"
@@ -777,7 +777,7 @@ jQuery(function($) {
 			//是否显示选择列表
 			"search[carrying_bills_from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill","AutoCalculateComputerBill"],
+			"search[carrying_bills_type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill", "AutoCalculateComputerBill"],
 			"search[carrying_bills_state_eq]": "settlemented",
 			"search[carrying_bills_completed_eq]": 0,
 			"search[carrying_bills_goods_fee_or_carrying_bills_carrying_fee_gt]": 0
@@ -811,7 +811,7 @@ jQuery(function($) {
 		var params = {
 			"search[from_org_id_eq]": $('[name="refound[to_org_id]"]').val(),
 			"search[to_org_id_or_transit_org_id_eq]": $('[name="refound[from_org_id]"]').val(),
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill","AutoCalculateComputerBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "ReturnBill", "AutoCalculateComputerBill"],
 			"search[state_eq]": "settlemented",
 			"search[completed_eq]": 0,
 			"search[goods_fee_or_carrying_fee_gt]": 0,
@@ -855,7 +855,7 @@ jQuery(function($) {
 	var gen_payment_list = function(evt) {
 		var params = {
 			"search[state_eq]": "refunded_confirmed",
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","AutoCalculateComputerBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "AutoCalculateComputerBill"],
 			"search[goods_fee_gt]": 0,
 			"search[completed_eq]": 0,
 			//运单列表显示的字段
@@ -900,7 +900,7 @@ jQuery(function($) {
 
 		}
 		var params = {
-			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill","AutoCalculateComputerBill"],
+			"search[type_in][]": ["ComputerBill", "HandBill", "TransitBill", "HandTransitBill", "AutoCalculateComputerBill"],
 			"search[state_eq]": "payment_listed",
 			"search[payment_list_id_in][]": selected_bill_ids,
 			"hide_fields": ".carrying_fee,.insured_fee",
@@ -933,7 +933,7 @@ jQuery(function($) {
 			"search[state_eq]": 'paid',
 			"search[completed_eq]": 0,
 			"search[from_customer_id_is_null]": 1,
-			"search[type_in][]": ['ComputerBill', 'HandBill', 'TransitBill', 'HandTransitBill','AutoCalculateComputerBill'],
+			"search[type_in][]": ['ComputerBill', 'HandBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
 			"hide_fields": ".carrying_fee,.insured_fee",
 			"show_fields": ".k_carrying_fee,.transit_hand_fee,.k_hand_fee,.act_pay_fee"
 
@@ -1140,7 +1140,7 @@ jQuery(function($) {
 	//form 自动获取焦点
 	$('.inner form').livequery(function() {
 		var the_form = $(this);
-		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill') || the_form.hasClass('auto_calculate_computer_bill') ) {
+		if (the_form.hasClass('computer_bill') || the_form.hasClass('transit_bill') || the_form.hasClass('return_bill') || the_form.hasClass('auto_calculate_computer_bill')) {
 
 			//机打运单,默认焦点定位到到货地
 			$('#select_org_input_to_org_id').focus();
@@ -1256,7 +1256,7 @@ jQuery(function($) {
 		$('.act_load_list_line_selector').attr('checked', false)
 	});
 
-    //到货清单通知的全选/不选
+	//到货清单通知的全选/不选
 	$('#btn_notice_line_select_all').live('click', function() {
 		$('.notice_line_selector').attr('checked', true)
 	});
@@ -1277,6 +1277,28 @@ jQuery(function($) {
 			});
 			$('#multi_bills_search_form').submit();
 		}
+	});
+
+	//到货请打导出短信文本
+	$('#btn_export_sms_txt').click(function() {
+		if ($.bill_selector.selected_ids.length == 0) {
+			$.notifyBar({
+				html: "请先选择要通知的运单!",
+				delay: 3000,
+				animationSpeed: "normal",
+				cls: 'error'
+			});
+			return false;
+		}
+
+		$('#export_sms_form input').remove('[type|="hidden"][name|="bill_ids[]"]');
+		//附加选中的运单id到form中
+		$.each($.bill_selector.selected_ids, function(index, value) {
+			var hidden_field = $("<input type='hidden' name='bill_ids[]' value='" + value + "' />");
+			$('#export_sms_form').append(hidden_field);
+
+		});
+		$('#export_sms_form').trigger('submit');
 	});
 
 });

@@ -15,10 +15,10 @@ class CashPaymentList < PaymentList
   #生成短信通知文本信息
   def export_sms_txt
     #去除固定电话
-    sms_bills = self.carrying_bills.find_all {|bill| bill.sms_mobile.present? and bill.goods_fee > 0 }
+    sms_bills = self.carrying_bills.find_all {|bill| bill.from_customer_mobile.present? and bill.goods_fee > 0 }
     sms_text = ''
     sms_bills.each do |bill|
-      sms_text += Settings.notice_cash_payment_list.sms % [bill.bill_no,IlConfig.client_name]
+      sms_text += Settings.notice_cash_payment_list.sms_batch % [bill.from_customer_mobile,bill.bill_no,IlConfig.client_name]
     end
     sms_text
   end
