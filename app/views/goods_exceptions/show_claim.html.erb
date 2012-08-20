@@ -5,7 +5,7 @@
     <div class="inner">
       <%= render "show" %>
       <div id='<%="#{resource_class.name.underscore}_form_wrap" %>' >
-        <%= semantic_form_for resource ,:html => {:id => "goods_exception_form"} do |f|%>
+        <%= semantic_form_for resource ,:remote => true,:html => {:id => "goods_exception_form"} do |f|%>
           <%=f.error_messages %>
           <%= render :partial => 'form_with_claim',:locals => {:f => f} %>
         <%end%>
