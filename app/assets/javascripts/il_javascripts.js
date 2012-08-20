@@ -18,4 +18,5 @@
 //= require enter2tab
 //= require bill_selector
 //= require il_application
+//=require web_print
 //= require calculate_carrying_fee

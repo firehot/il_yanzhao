@@ -211,7 +211,7 @@ IlYanzhao::Application.routes.draw do
     get :process_handle,:on => :member
     get :search,:on => :collection
     get :export_excel,:on => :member
-    get :export_sms_txt,:on => :member
+    post :export_sms_txt,:on => :member
     get :build_notice,:on => :member
     get :show_export_sms,:on => :member
     resources :carrying_bills

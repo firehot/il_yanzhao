@@ -26,7 +26,7 @@
             <li>
               <div id='home-search-box-wrap'>
                 <%=form_tag carrying_bills_path,:id => 'home-search-form',:method => :get do%>
-                  <%=text_field_tag "search[bill_no_or_goods_no_eq]","",:id => 'home-search-box'%>
+                  <%=text_field_tag "search[bill_no_eq]","",:id => 'home-search-box'%>
                   <%=hidden_field_tag :show_fields,".state"%>
                 <%end%>
               </div>

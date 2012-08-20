@@ -161,26 +161,9 @@ jQuery(function($) {
 
 		//导出数据到excel, ie only
 		export_excel: function(table_content, func_set_style) {
-			try {
-
-				window.clipboardData.setData("Text", table_content);
-				ExApp = new ActiveXObject("Excel.Application");
-				var ExWBk = ExApp.Workbooks.add();
-				var ExWSh = ExWBk.ActiveSheet;
-				ExApp.DisplayAlerts = false;
-				if (func_set_style) func_set_style(ExWSh);
-				ExApp.visible = true;
-				ExWSh.Paste();
-			}
-			catch(e) {
-				$.notifyBar({
-					html: "导出失败,请确认您已安装excel软件,并调整了IE的安全设置.",
-					delay: 3000,
-					animationSpeed: "normal",
-					cls: 'error'
-				});
-				return false;
-			}
+            //table_html = func_set_style(table_content).html();
+            table_html = $(table_content).html();
+            window.open('data:application/vnd.ms-excel,' + table_html);
 		},
 		//模拟mouseclick
 		fireClick: function(el) {
@@ -194,7 +177,17 @@ jQuery(function($) {
 				el.click();
 			}
 
+		},
+        //获取打印控件,可以在chrome safari下使用,在ie下,该函数被重写
+		get_print_object: function() {
+			//先看看是否存在print对象
+			if ($('#printObject').length == 0) {
+                var print_object=$('<embed id=printObject" type="application/x-print-lodop" width=0 height=0 pluginspage="/assets/NPCAOSOFT_WEB_PRINT_lodop.dll"></embed>');
+				$('body').append(print_object);
+			}
+			return printObject;
 		}
+
 	});
 	//初始化区域选择
 	$('.select_org').select_combobox();
