@@ -172,14 +172,17 @@ jQuery(function($) {
 				})
 			};
 			return function(table, func_set_style) {
-				if (func_set_style) func_set_style($(table));
+				try {
+					if (func_set_style) func_set_style($(table));
+				}
+				catch(ex) {}
 				var ctx = {
 					worksheet: name || 'Worksheet',
-					table: table.html()
+					table: $(table).html()
 				};
 				window.location.href = uri + base64(format(template, ctx));
 			}
-		}(),
+		} (),
 		//模拟mouseclick
 		fireClick: function(el) {
 			if (!el) return;
