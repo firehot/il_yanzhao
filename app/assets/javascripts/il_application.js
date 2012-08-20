@@ -160,11 +160,26 @@ jQuery(function($) {
 		},
 
 		//导出数据到excel, ie only
-		export_excel: function(table_content, func_set_style) {
-			//table_html = func_set_style(table_content).html();
-			//table_html = $(table_content).html();
-			window.open('data:application/vnd.ms-excel,' + table_content);
-		},
+		export_excel: function() {
+			var uri = 'data:application/vnd.ms-excel;base64,',
+			template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+			base64 = function(s) {
+				return window.btoa(unescape(encodeURIComponent(s)))
+			},
+			format = function(s, c) {
+				return s.replace(/{(\w+)}/g, function(m, p) {
+					return c[p];
+				})
+			};
+			return function(table, func_set_style) {
+				if (func_set_style) func_set_style($(table));
+				var ctx = {
+					worksheet: name || 'Worksheet',
+					table: table.html()
+				};
+				window.location.href = uri + base64(format(template, ctx));
+			}
+		}(),
 		//模拟mouseclick
 		fireClick: function(el) {
 			if (!el) return;
@@ -184,8 +199,8 @@ jQuery(function($) {
 		check_lodop: function() {
 			var print_object = $.get_print_object();
 			if ((print_object == null) || (typeof(print_object.VERSION) == "undefined") || print_object.VERSION < "6.1.2.0") {
-                var download_bar =$("<div id='notify-down-print-object' class='notify'><span class='notify-text'>系统检测到您的浏览器需要安装打印控件,请点击<a href='/assets/install_lodop32.exe'>此处</a>下载安装,安装后关闭浏览器并重新进入系统.</span></div>");
-                $('#notify-bar').after(download_bar);
+				var download_bar = $("<div id='notify-down-print-object' class='notify'><span class='notify-text'>系统检测到您的浏览器需要安装打印控件,请点击<a href='/assets/install_lodop32.exe'>此处</a>下载安装,安装后关闭浏览器并重新进入系统.</span></div>");
+				$('#notify-bar').after(download_bar);
 
 				return false;
 			}
