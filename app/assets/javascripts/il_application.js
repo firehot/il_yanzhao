@@ -182,7 +182,7 @@ jQuery(function($) {
 		get_print_object: function() {
 			//先看看是否存在print对象
 			if ($('#printObject').length == 0) {
-                var print_object=$('<embed id=printObject" type="application/x-print-lodop" width=0 height=0 pluginspage="/assets/NPCAOSOFT_WEB_PRINT_lodop.dll"></embed>');
+                var print_object=$('<embed id="printObject" type="application/x-print-lodop" width=0 height=0 pluginspage="/assets/NPCAOSOFT_WEB_PRINT_lodop.dll"></embed>');
 				$('body').append(print_object);
 			}
 			return printObject;
