@@ -2,7 +2,7 @@
 #运单controller基础类
 class CarryingBillsController < BaseController
   #查询服务,去除layout
-  layout 'application',:except => [:search_service_page,:search_service]
+  layout false,:only => [:search_service_page,:search_service]
   skip_before_filter :authenticate_user!,:only => [:search_service_page,:search_service]
   skip_authorize_resource :only => [:search_service_page,:search_service]
   #http_cache :new,:last_modified => Proc.new {|c| c.send(:last_modified)},:etag => Proc.new {|c| c.send(:etag,"carrying_bill_new")}
