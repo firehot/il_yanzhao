@@ -184,7 +184,7 @@ jQuery(function($) {
 		check_lodop: function() {
 			var print_object = $.get_print_object();
 			if ((print_object == null) || (typeof(print_object.VERSION) == "undefined") || print_object.VERSION < "6.1.2.0") {
-                var download_bar =$("<div id='notify-down-print-object' class='notify'><span class='notify-text' '>系统检测到您的浏览器需要安装打印控件,请点击<a href='/assets/install_lodop32.exe'>此处</a>下载安装,安装后关闭浏览器并重新进入系统.</span></div>");
+                var download_bar =$("<div id='notify-down-print-object' class='notify'><span class='notify-text'>系统检测到您的浏览器需要安装打印控件,请点击<a href='/assets/install_lodop32.exe'>此处</a>下载安装,安装后关闭浏览器并重新进入系统.</span></div>");
                 $('#notify-bar').after(download_bar);
 
 				return false;
