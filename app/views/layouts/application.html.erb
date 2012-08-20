@@ -45,7 +45,7 @@
         </div>
       </div>
       <%if Notify.last.present?%>
-        <div id='notify-bar' style='display : none;'>
+        <div id='notify-bar' style='display : none;' class='notify'>
           <span class='notify-close'><a title='关闭提醒信息'>x</a></span>
           <span class='notify-text' data-notify='<%=Notify.last.to_json%>'><%=Notify.last.try(:notify_text)%></span>
         </div>

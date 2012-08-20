@@ -356,6 +356,7 @@ jQuery(function($) {
 		},
 		//打印运单
 		print_bill: function(config) {
+            if(!$.check_lodop()) return;
 			var print_object = $.get_print_object();
 			print_object.PRINT_INITA(config.page.top, config.page.left, config.page.width, config.page.height, config.page.name);
 			print_object.SET_PRINT_PAGESIZE(1, config.page.width, config.page.height, "");
@@ -377,6 +378,7 @@ jQuery(function($) {
 		},
 		//打印html内容
 		print_html: function(config) {
+            if(!$.check_lodop()) return;
 			var print_object = $.get_print_object();
 			print_object.PRINT_INITA(config.top, config.left, config.width, config.height, config.print_name);
 			print_object.SET_PRINT_PAGESIZE(1, config.width, config.height, "");

@@ -161,9 +161,9 @@ jQuery(function($) {
 
 		//导出数据到excel, ie only
 		export_excel: function(table_content, func_set_style) {
-            //table_html = func_set_style(table_content).html();
-            table_html = $(table_content).html();
-            window.open('data:application/vnd.ms-excel,' + table_html);
+			//table_html = func_set_style(table_content).html();
+			//table_html = $(table_content).html();
+			window.open('data:application/vnd.ms-excel,' + table_content);
 		},
 		//模拟mouseclick
 		fireClick: function(el) {
@@ -178,14 +178,30 @@ jQuery(function($) {
 			}
 
 		},
-        //获取打印控件,可以在chrome safari下使用,在ie下,该函数被重写
+		//判断是否已安装打印控件
+		//已安装,返回true
+		//未安装,返回false
+		check_lodop: function() {
+			var print_object = $.get_print_object();
+			if ((print_object == null) || (typeof(print_object.VERSION) == "undefined") || print_object.VERSION < "6.1.2.0") {
+                var download_bar =$("<div id='notify-down-print-object' class='notify'><span class='notify-text' '>系统检测到您的浏览器需要安装打印控件,请点击<a href='/assets/install_lodop32.exe'>此处</a>下载安装,安装后关闭浏览器并重新进入系统.</span></div>");
+                $('#notify-bar').after(download_bar);
+
+				return false;
+			}
+			return true;
+		},
+		//获取打印控件,可以在chrome safari下使用,在ie下,该函数被重写
 		get_print_object: function() {
 			//先看看是否存在print对象
-			if ($('#printObject').length == 0) {
-                var print_object=$('<embed id="printObject" type="application/x-print-lodop" width=0 height=0 pluginspage="/assets/NPCAOSOFT_WEB_PRINT_lodop.dll"></embed>');
+			if ($('#print_object').length == 0) {
+				var print_object = $('<span id="print_object"><object id="print_object_ie" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0><embed id="print_object_other" type="application/x-print-lodop" width=0 height=0 pluginspage="install_lodop32.exe"></embed></object></span>');
+
 				$('body').append(print_object);
 			}
-			return printObject;
+			//判断返回那个对象
+			if ($.browser.msie) return print_object_ie;
+			else return print_object_other;
 		}
 
 	});
