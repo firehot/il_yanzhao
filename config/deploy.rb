@@ -14,8 +14,8 @@ set :scm, :git
 #role :app, "your app-server here"                          # This may be the same as your `Web` server
 #role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
-server "zz.yanzhaowuliu.com",:app,:web,:db,:primary => true
-#server "192.168.0.202",:app,:web,:db,:primary => true
+#server "zz.yanzhaowuliu.com",:app,:web,:db,:primary => true
+server "192.168.0.202",:app,:web,:db,:primary => true
 
 set :user,"lmis"
 set :use_sudo,false
@@ -26,12 +26,12 @@ set :deploy_to,"~/app/il_yanzhao_rails32"
 #set rvm support
 set :rvm_ruby_string, '1.9.3@rails32_gemset'
 #若rvm以user wide 安装,则rvm相关信息设置如下
-#set :rvm_path, "~/.rvm"
-#set :rvm_bin_path, "~/.rvm/bin"
+set :rvm_path, "~/.rvm"
+set :rvm_bin_path, "~/.rvm/bin"
 
 #若rvm以system wide安装,则rvm设置如下
-set :rvm_path, "/usr/local/rvm"
-set :rvm_bin_path, "/usr/local/rvm/bin"
+#set :rvm_path, "/usr/local/rvm"
+#set :rvm_bin_path, "/usr/local/rvm/bin"
 
 require "rvm/capistrano"
 
@@ -56,12 +56,6 @@ namespace :rvm do
   end
 end
 
-#创建nginx的配置文件链接
-namespace :appserver_config do
-  task :create_nginx_site_symbol_link do
-    run "cd /etc/nginx/sites-available && sudo ln -s ~/app/il_yanzhao_rails32/current/config/server/production/nginx_host.conf il_yanzhao_rails32.conf"
-  end
-end
 namespace :deploy do
   after "deploy:create_symlink","rvm:trust_rvmrc"
   #自定义系统维护界面
