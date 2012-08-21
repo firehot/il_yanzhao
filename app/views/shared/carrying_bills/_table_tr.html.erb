@@ -1,4 +1,4 @@
-<tr id='<%="bill_#{bill.id}" %>' data-bill='<%=bill.to_json(:methods => [:carrying_fee_th,:k_carrying_fee,:agent_carrying_fee,:act_pay_fee,:th_amount,:send_state])%>' class='bill_cal_sum'>
+<tr id='<%="bill_#{bill.id}" %>' data-bill='<%=bill.to_json(:methods => [:carrying_fee_th,:k_carrying_fee,:agent_carrying_fee,:act_pay_fee,:th_amount,:send_state,:from_short_fee_saved?,:to_short_fee_saved?])%>' class='bill_cal_sum'>
   <td class='bill_date' style='display : none;'>
     <%= link_to "查看",   polymorphic_url(bill,:format => :js),:class => "show_link fancybox",:style => 'display : none;'%>
     <%=bill.bill_date.strftime('%y-%m-%d')%>

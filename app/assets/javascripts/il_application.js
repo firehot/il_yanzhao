@@ -203,6 +203,7 @@ jQuery(function($) {
 			var print_object = $.get_print_object();
 			if ((print_object == null) || (typeof(print_object.VERSION) == "undefined") || print_object.VERSION < "6.1.2.0") {
 				var download_bar = $("<div id='notify-down-print-object' class='notify'><span class='notify-text'>系统检测到您的浏览器需要安装打印控件,请点击<a href='/assets/install_lodop32.exe'>此处</a>下载安装,安装后关闭浏览器并重新进入系统.</span></div>");
+				$('#notify-down-print-object').remove();
 				$('#notify-bar').after(download_bar);
 
 				return false;
@@ -213,7 +214,7 @@ jQuery(function($) {
 		get_print_object: function() {
 			//先看看是否存在print对象
 			if ($('#print_object').length == 0) {
-				var print_object = $('<span id="print_object"><object id="print_object_ie" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0><embed id="print_object_other" type="application/x-print-lodop" width=0 height=0 pluginspage="install_lodop32.exe"></embed></object></span>');
+				var print_object = $('<span id="print_object"><object id="print_object_ie" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0><embed id="print_object_other" type="application/x-print-lodop" width=0 height=0></embed></object></span>');
 
 				$('body').append(print_object);
 			}
@@ -224,7 +225,9 @@ jQuery(function($) {
 
 	});
 	//初始化区域选择
-	$('.select_org').select_combobox();
+	$('.select_org').livequery(function() {
+		$(this).select_combobox();
+	});
 	//导出excel按钮绑定
 	$('.btn_export_excel').click(function() {
 		var url = $(this).attr('href');
@@ -438,7 +441,8 @@ jQuery(function($) {
 	});
 	$('form.return_bill').livequery(function() {
 		$(this).find('input').attr('readonly', true);
-		$('#return_bill_note').attr('readonly', false);
+		$(this).find('select option').attr('disabled', true);
+		$('#note').attr('readonly', false);
 		if ($(this).hasClass('edit_bill_date')) {
 			$('#bill_date').addClass('datepicker');
 		}
@@ -451,7 +455,7 @@ jQuery(function($) {
 	//运单修改时,判断权限
 	$('form.update_goods_fee,form.update_carrying_fee,form.update_all').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', true);
-		$('#carrying_bill_form select').attr('disabled', true);
+		$('#carrying_bill_form select option').attr('disabled', true);
 	});
 	//可修改货款时,除了运费其他都可以修改
 	$('form.update_goods_fee').livequery(function() {
@@ -480,7 +484,7 @@ jQuery(function($) {
 
 	$('form.update_all').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', false);
-		$('#carrying_bill_form select').attr('disabled', false);
+		$('#carrying_bill_form select option').attr('disabled', false);
 		$('#insured_rate').attr('readonly', true);
 		$('#insured_fee').attr('readonly', true);
 
@@ -652,8 +656,8 @@ jQuery(function($) {
 		if (bill_info) {
 
 			if (bill_info.from_org_id != org_id && bill_info.to_org_id != org_id) $(this).remove();
-			if (bill_info.from_org_id == org_id && (bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
-			if (bill_info.to_org_id == org_id && (bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
+			if (bill_info.from_org_id == org_id && (bill_info["from_short_fee_saved?"] || bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
+			if (bill_info.to_org_id == org_id && (bill_info["to_short_fee_saved?"] || bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
 			$('#bills_table_body').trigger('tr_changed');
 
 		}

@@ -15,12 +15,21 @@ class CashPaymentList < PaymentList
   #生成短信通知文本信息
   def export_sms_txt
     #去除固定电话
-    sms_bills = self.carrying_bills.find_all {|bill| bill.from_customer_mobile.present? and bill.goods_fee > 0 }
+    sms_bills = self.carrying_bills.find_all {|bill| bill.sms_mobile_for_sender.present? and bill.goods_fee > 0 }
+    group_sms_bills = sms_bills.group_by(&:sms_mobile_for_arrive)
+    #分别合计货物件数/运费合计/货款合计
     sms_text = ''
-    sms_bills.each do |bill|
-      sms_text += Settings.notice_cash_payment_list.sms_batch % [bill.from_customer_mobile,bill.bill_no,IlConfig.client_name]
+    group_sms_bills.each do |key,bills|
+      goods_num = bills.to_a.sum(&:goods_num)
+      carrying_fee_th = 0.0
+      bill_nos = ""
+      bills.each do |the_bill|
+        carrying_fee_th += the_bill.carrying_fee if the_bill.pay_type.eql?(CarryingBill::PAY_TYPE_TH)
+        bill_nos +="#{the_bill.bill_no},"
+      end
+      goods_fee = bills.to_a.sum(&:goods_fee)
+      sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos,IlConfig.client_name]
     end
     sms_text
   end
 end
-

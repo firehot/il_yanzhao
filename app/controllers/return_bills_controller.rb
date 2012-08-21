@@ -3,8 +3,7 @@ class ReturnBillsController <  CarryingBillsController
   defaults :resource_class => ReturnBill
   include BillOperate::BillPrint
   before_filter :pre_process_search_params,:only => [:new]
-  def before_new
-  end
+  def before_new ; end
   def new
     if params[:search].blank? or params[:search][:bill_no_eq].blank?
       flash[:error] = "请录入原运单号码."

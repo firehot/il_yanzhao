@@ -47,11 +47,10 @@ $ ->
     ($('#goods_cat_id').append("<option value=#{cat.id}>#{cat.name}(#{cat.easy_code})</option>") for cat in children)
     $('#goods_cat_id').trigger('change').ufd('changeOptions')
 
-  $('#parent_goods_cat_id').change -> on_parent_goods_cat_change()
+  $('#parent_goods_cat_id').livequery('change',on_parent_goods_cat_change)
 
-  $('.auto_calculate_computer_bill #parent_goods_cat_id').ufd()
-  $('form.auto_calculate_computer_bill #goods_cat_id')
-    .ufd()
-    .change -> get_goods_cat_fee_config()
+  $('.auto_calculate_computer_bill #parent_goods_cat_id').livequery( -> $(this).ufd())
+  $('form.auto_calculate_computer_bill #goods_cat_id').livequery(-> $(this).ufd())
+  $('form.auto_calculate_computer_bill #goods_cat_id').livequery("change",get_goods_cat_fee_config)
   #以下字段发生变化时,自动计算运费
-  $('form.auto_calculate_computer_bill #from_org_id,form.auto_calculate_computer_bill #to_org_id,form.auto_calculate_computer_bill #goods_volume').change -> get_goods_cat_fee_config()
+  $('form.auto_calculate_computer_bill #from_org_id,form.auto_calculate_computer_bill #to_org_id,form.auto_calculate_computer_bill #goods_volume').livequery('change',get_goods_cat_fee_config)

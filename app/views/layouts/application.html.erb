@@ -44,12 +44,12 @@
           </ul>
         </div>
       </div>
-      <%if Notify.last.present?%>
-        <div id='notify-bar' style='display : none;' class='notify'>
+      <div id='notify-bar' style='display : none;' class='notify'>
+        <%if Notify.last.present?%>
           <span class='notify-close'><a title='关闭提醒信息'>x</a></span>
           <span class='notify-text' data-notify='<%=Notify.last.to_json%>'><%=Notify.last.try(:notify_text)%></span>
-        </div>
-      <%end%>
+        <%end%>
+      </div>
       <div id="wrapper" class="wat-cf">
         <div id="main">
           <%= yield %>

@@ -15,7 +15,6 @@ class CustomerCodeValidator < ActiveModel::EachValidator
 end
 class CarryingBill < ActiveRecord::Base
   #FIXME 数据库中,为使用mysql 分区表功能,将primary key设置为id,completed,此处重新设置为id,防止mysql 运行出错
-  #set_primary_key :id
   self.primary_key = :id
   attr_protected :original_carrying_fee,:original_goods_fee,:original_from_short_carrying_fee,:original_to_short_carrying_fee,:original_insured_amount,:original_insured_fee
   #营业额统计
@@ -40,7 +39,7 @@ class CarryingBill < ActiveRecord::Base
   #货款支出情况
   scope :sum_goods_fee_out,lambda {|from_org_ids,date_from,date_to| select('from_org_id,sum(goods_fee) as sum_goods_fee_out').where(:from_org_id => from_org_ids,:state => ["paid",'posted'] ,:updated_at => date_from..date_to).group('from_org_id')}
 
-  scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:user]
+  scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:short_fee_info_lines,:user]
 
 
   #before_validation :set_customer
@@ -86,6 +85,8 @@ class CarryingBill < ActiveRecord::Base
   has_one :send_list_line
   #有多条装车记录
   has_many :act_load_list_lines
+  #有多条短途运费明细记录
+  has_many :short_fee_info_lines
 
   #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
   validate :check_k_carrying_fee
@@ -265,6 +266,14 @@ class CarryingBill < ActiveRecord::Base
       the_mobile = to_customer_mobile if self.to_customer_mobile.present? and self.to_customer_mobile.size == 11
       the_mobile
     end
+    #得到发货人手机
+    def sms_mobile_for_sender
+      the_mobile = nil
+      the_mobile = from_customer_phone if self.from_customer_phone.present? and self.from_customer_phone.size == 11
+      the_mobile = from_customer_mobile if self.from_customer_mobile.present? and self.from_customer_mobile.size == 11
+      the_mobile
+    end
+
     #2012-7-2添加
     #NOTE 获取当前运单的到货提醒电话/手机
     #有手机时,返回手机
@@ -430,8 +439,8 @@ class CarryingBill < ActiveRecord::Base
         "to_customer_id"=> nil,
         "pay_type"=> PAY_TYPE_TH,
         "goods_fee"=> 0,
-        "from_short_carrying_fee" => self.to_short_carrying_fee*2,
-        "to_short_carrying_fee" => self.from_short_carrying_fee*2,
+        "from_short_carrying_fee" => (pay_type == PAY_TYPE_CASH ? self.to_short_carrying_fee : self.to_short_carrying_fee*2),
+        "to_short_carrying_fee" => (pay_type == PAY_TYPE_CASH ? self.from_short_carrying_fee : self.from_short_carrying_fee*2),
         "carrying_fee"=> (pay_type == PAY_TYPE_CASH ? self.carrying_fee : 2*self.carrying_fee),
         "note"=> "原运单票据号:#{self.bill_no},货号:#{self.goods_no},运费:#{self.carrying_fee},代收货款;#{self.goods_fee}"
       }
@@ -524,6 +533,13 @@ class CarryingBill < ActiveRecord::Base
       t_state = "已退货" if self.returned?
       t_state = "已作废" if self.invalided?
       t_state
+    end
+    #是否已保存短途信息
+    def from_short_fee_saved?
+      self.short_fee_info_lines.joins(:short_fee_info).where("short_fee_infos.org_id = ?",self.from_org_id).exists?
+    end
+    def to_short_fee_saved?
+      self.short_fee_info_lines.joins(:short_fee_info).where("short_fee_infos.org_id = ?",self.to_org_id).exists?
     end
 
     protected

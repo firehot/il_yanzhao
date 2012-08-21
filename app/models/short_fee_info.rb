@@ -5,7 +5,7 @@ class ShortFeeInfo < ActiveRecord::Base
   #核销部门
   belongs_to :op_org,:class_name => "Org"
   belongs_to :user
-  has_many :short_fee_info_lines
+  has_many :short_fee_info_lines,:dependent => :destroy
   has_many :carrying_bills,:through => :short_fee_info_lines
   validates_presence_of :org_id,:bill_date
   validates_associated :carrying_bills

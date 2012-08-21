@@ -35,19 +35,19 @@
       <tr>
         <td>发货人</td>
         <td><%= f.text_field :from_customer_name,:id => 'from_customer_name',:size => 20  %></td>
-        <td>电话</td>
-        <td><%= f.text_field :from_customer_phone,:id => 'from_customer_phone',:size => 20  %></td>
         <td>手机</td>
         <td><%= f.text_field :from_customer_mobile,:id => 'from_customer_mobile',:size => 20  %></td>
-      </tr>
+        <td>电话</td>
+        <td><%= f.text_field :from_customer_phone,:id => 'from_customer_phone',:size => 20  %></td>
+     </tr>
       <tr>
         <td>收货人</td>
         <td><%= f.text_field :to_customer_name,:id => 'to_customer_name',:size => 20  %></td>
-        <td>电话</td>
-        <td><%= f.text_field :to_customer_phone,:id => 'to_customer_phone',:size => 20  %></td>
         <td>手机</td>
         <td><%= f.text_field :to_customer_mobile,:id => 'to_customer_mobile',:size => 20  %></td>
-      </tr>
+        <td>电话</td>
+        <td><%= f.text_field :to_customer_phone,:id => 'to_customer_phone',:size => 20  %></td>
+    </tr>
       <tr>
         <td>运费支付方式</td>
         <td><%= f.select :pay_type,CarryingBill.pay_types,{},:id => :pay_type %></td>
