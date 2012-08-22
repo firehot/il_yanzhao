@@ -32,8 +32,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  database: il_yanzhao_r32_production
-  #database: il_yanzhao_production
+  #database: il_yanzhao_r32_production
+  database: il_yanzhao_production
   pool: 5
   username: root
   password: root
