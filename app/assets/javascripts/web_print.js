@@ -329,7 +329,7 @@ jQuery(function($) {
 				},
 
 				from_org_phone: {
-                                                  text: the_bill.from_org.name + "(" + the_bill.from_org.location +"):" +  the_bill.from_org.phone,
+					text: the_bill.from_org.name + "(" + the_bill.from_org.location + "):" + the_bill.from_org.phone,
 					left: '102mm',
 					top: '95mm',
 					width: '90mm',
@@ -337,14 +337,14 @@ jQuery(function($) {
 				},
 
 				to_org_phone: {
-					text: the_bill.to_org ? (the_bill.to_org.name +  ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
+					text: the_bill.to_org ? (the_bill.to_org.name + ":" + the_bill.to_org.phone) : (the_bill.transit_org.name + ":" + the_bill.transit_org.phone),
 					left: '102mm',
 					top: '100mm',
 					width: '90mm',
 					height: '6mm'
 				},
 				print_counter: {
-					text: (the_bill.print_counter +1) + "次打印",
+					text: (the_bill.print_counter + 1) + "次打印",
 					left: '155mm',
 					top: '126mm',
 					width: '50mm',
@@ -356,7 +356,7 @@ jQuery(function($) {
 		},
 		//打印运单
 		print_bill: function(config) {
-            if(!$.check_lodop()) return;
+			if (!$.check_lodop()) return false;
 			var print_object = $.get_print_object();
 			print_object.PRINT_INITA(config.page.top, config.page.left, config.page.width, config.page.height, config.page.name);
 			print_object.SET_PRINT_PAGESIZE(1, config.page.width, config.page.height, "");
@@ -375,10 +375,11 @@ jQuery(function($) {
 			}
 			//print_object.PREVIEW();
 			print_object.PRINT();
+			return true;
 		},
 		//打印html内容
 		print_html: function(config) {
-            if(!$.check_lodop()) return;
+			if (!$.check_lodop()) return;
 			var print_object = $.get_print_object();
 			print_object.PRINT_INITA(config.top, config.left, config.width, config.height, config.print_name);
 			print_object.SET_PRINT_PAGESIZE(1, config.width, config.height, "");
@@ -401,22 +402,24 @@ jQuery(function($) {
 		else {
 			var bill = $(this).data('print');
 			var config = $.get_print_config(bill);
-			$.print_bill(config);
-			$(this).data('printed', true);
-			//打印计数
-			var print_counter_url = "";
-			if (bill.type == 'ComputerBill') print_counter_url = "/computer_bills/" + bill.id + "/print_counter";
-			if (bill.type == 'TransitBill') print_counter_url = "/transit_bills/" + bill.id + "/print_counter";
-			if (bill.type == 'ReturnBill') print_counter_url = "/return_bills/" + bill.id + "/print_counter";
-			if (bill.type == 'AutoCalculateComputerBill') print_counter_url = "/auto_calculate_computer_bills/" + bill.id + "/print_counter";
+			var ret = $.print_bill(config);
 
-			$.ajax({
-				url: print_counter_url,
-				type: 'PUT',
-				success: function() {
-					$('#bill_print_counter').html((bill.print_counter + 1) + "次打印");
-				}
-			});
+			if (ret) {
+				$(this).data('printed', true);
+				//打印计数
+				var print_counter_url = "";
+				if (bill.type == 'ComputerBill') print_counter_url = "/computer_bills/" + bill.id + "/print_counter";
+				if (bill.type == 'TransitBill') print_counter_url = "/transit_bills/" + bill.id + "/print_counter";
+				if (bill.type == 'ReturnBill') print_counter_url = "/return_bills/" + bill.id + "/print_counter";
+				if (bill.type == 'AutoCalculateComputerBill') print_counter_url = "/auto_calculate_computer_bills/" + bill.id + "/print_counter";
+				$.ajax({
+					url: print_counter_url,
+					type: 'PUT',
+					success: function() {
+						$('#bill_print_counter').html((bill.print_counter + 1) + "次打印");
+					}
+				});
+			}
 		}
 	});
 
@@ -512,3 +515,4 @@ jQuery(function($) {
 	//提货打印,触发自动打印事件
 	$('.auto_print_bill').trigger('click');
 });
+
