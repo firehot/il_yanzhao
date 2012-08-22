@@ -290,7 +290,7 @@ class CarryingBill < ActiveRecord::Base
     end
     #生成到货提醒短信文本内容
     def sms_text_for_arrive
-      Settings.notice_arrive.sms % [self.to_org.try(:name),self.bill_no,self.th_amount,self.to_org.try(:location),self.to_org.try(:phone)]
+      Settings.notice_arrive.sms % [self.to_org.try(:name),self.goods_no,self.th_amount,self.to_org.try(:location),self.to_org.try(:phone)]
     end
 
     def from_org_name
