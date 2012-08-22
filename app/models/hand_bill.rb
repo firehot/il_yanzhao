@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 #手工运单
 class HandBill < CarryingBill
+
+  validates :bill_no,:goods_no,:uniqueness => true
+
   validate :check_goods_no
   validates_presence_of :to_org_id,:bill_no,:goods_no
   #手工运单,编号从0 ～ 3999999

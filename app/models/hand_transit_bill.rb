@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 #手工中转运单
 class HandTransitBill < CarryingBill
-  validate :check_goods_no,:in => :create
+
+  validates :bill_no,:goods_no,:uniqueness => true
+  validate :check_goods_no
   validates_presence_of :transit_org_id,:area_id,:bill_no,:goods_no
   #手工运单,编号从0 ～ 3999999
   validates_inclusion_of :bill_no,:in => '0000000'..'3999999'

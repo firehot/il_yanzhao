@@ -13,6 +13,7 @@ describe DistributionList do
   end
   it "分货单处理后,其状态应变为'已分货'" do
     @distribution_list.process
+
     @distribution_list.should be_distributed
     @computer_bill.should be_distributed
   end

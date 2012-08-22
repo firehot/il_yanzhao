@@ -91,7 +91,6 @@ class CarryingBill < ActiveRecord::Base
   #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
   validate :check_k_carrying_fee
 
-  validates :bill_no,:goods_no,:uniqueness => true
   #运单编号为7位数字
   validates_format_of :bill_no,:with => /^(TH)*\d{7}$/
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info

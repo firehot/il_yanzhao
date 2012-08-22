@@ -24,6 +24,19 @@ module BillOperate
     end
     render  :show
   end
+=begin
+  protected
+  #重写create_resource,提高执行速度
+  def create_resource(object)
+    CarryingBill.transaction do
+      foreign_key = resource_class.reflect_on_association(:carrying_bills).foreign_key
+      object.save
+      CarryingBill.update_all({foreign_key => object.id},{:id => params[:bill_ids],:completed => false }) unless params[:bill_ids].blank?
+      object.process
+    end
+  end
+=end
+
   #票据打印
   module BillPrint
     #PUT computer_bills/:id/print_counter

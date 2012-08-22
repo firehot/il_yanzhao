@@ -6,7 +6,6 @@ class DistributionList < ActiveRecord::Base
 
   belongs_to :org
   validates_presence_of :org_id,:bill_date
-  validates_associated :carrying_bills
   #定义状态机
   state_machine :initial => :billed do
     after_transition do |distribution_list,transition|
