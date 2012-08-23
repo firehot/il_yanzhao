@@ -28,7 +28,7 @@ class CashPaymentList < PaymentList
         bill_nos << the_bill.bill_no
       end
       #goods_fee = bills.to_a.sum(&:goods_fee).try(:to_i)
-      sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos.join(" "),IlConfig.client_name]
+      sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos.join(" ")]
     end
     sms_text
   end

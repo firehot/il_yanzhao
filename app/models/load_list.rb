@@ -69,14 +69,12 @@ class LoadList < ActiveRecord::Base
     sms_text = ''
     group_sms_bills.each do |key,bills|
       goods_num = bills.to_a.sum(&:goods_num)
-      carrying_fee_th = 0.0
       goods_nos = []
       bills.each do |the_bill|
-        carrying_fee_th += the_bill.carrying_fee if the_bill.pay_type.eql?(CarryingBill::PAY_TYPE_TH)
-        goods_nos << the_bill.goods_no
+        goods_nos << the_bill.goods_no[6..-1]
       end
-      goods_fee = bills.to_a.sum(&:goods_fee).to_i
-      sms_text += Settings.notice_arrive.sms_batch % [key,self.to_org.try(:name),goods_nos.join(" "),carrying_fee_th + goods_fee,self.to_org.try(:location),self.to_org.try(:phone)]
+      goods_fee = bills.to_a.sum(&:th_amount).to_i
+      sms_text += Settings.notice_arrive.sms_batch % [key,self.to_org.try(:name),goods_nos.join(" "),goods_fee,self.to_org.try(:location),self.to_org.try(:phone)]
     end
     sms_text
   end
