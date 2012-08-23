@@ -22,8 +22,10 @@ class CashPaymentListsController < BaseController
     @cash_payment_list = resource_class.find(params[:id])
     respond_to do |format|
       format.text do
-        #send_data Iconv.iconv("GB2312","UTF-8",@cash_payment_list.export_sms_txt),:filename => 'sms.txt'
-        send_data @cash_payment_list.export_sms_txt,:filename => 'sms.txt'
+        #FIXME 垃圾短信公司,客户端软件不支持utf-8格式的导出文件,只能进行转换
+        send_txt = Iconv.conv("gb2312//IGNORE","utf-8",@cash_payment_list.export_sms_txt)
+        send_data send_txt,:type => "text/plain;charset=gb2312;header=present",:filename => 'sms.txt'
+        #send_data @cash_payment_list.export_sms_txt,:filename => 'sms.txt'
       end
     end
   end
