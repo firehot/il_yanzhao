@@ -22,13 +22,13 @@ class CashPaymentList < PaymentList
     group_sms_bills.each do |key,bills|
       goods_num = bills.to_a.sum(&:goods_num)
       carrying_fee_th = 0.0
-      bill_nos = ""
+      bill_nos = []
       bills.each do |the_bill|
         carrying_fee_th += the_bill.carrying_fee if the_bill.pay_type.eql?(CarryingBill::PAY_TYPE_TH)
-        bill_nos +="#{the_bill.bill_no},"
+        bill_nos << the_bill.bill_no
       end
-      goods_fee = bills.to_a.sum(&:goods_fee)
-      sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos,IlConfig.client_name] + "\r\n"
+      #goods_fee = bills.to_a.sum(&:goods_fee).try(:to_i)
+      sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos.join(" "),IlConfig.client_name]
     end
     sms_text
   end
