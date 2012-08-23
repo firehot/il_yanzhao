@@ -1,8 +1,8 @@
 #到货通知
 notice_arrive:
-  sms: "燕赵物流货到%s,运单号%s,货款合计:%s,地址:%s,电话:%s"
+  sms: "燕赵物流货到%s,货号%s,货款合计:%s,地址:%s,电话:%s"
   phone: "您好,燕赵物流货物已到,稍后短信通知,请查收."
-  sms_batch: "%s  燕赵物流货到%s,运单号%s,货款合计:%s,地址:%s,电话:%s\r\n"
+  sms_batch: "%s  燕赵物流货到%s,货号%s,货款合计:%s,地址:%s,电话:%s\r\n"
 
 #现金提款通知
 notice_cash_payment_list:
