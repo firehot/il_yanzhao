@@ -30,7 +30,7 @@ module BillOperate
     CarryingBill.transaction do
       foreign_key = resource_class.reflect_on_association(:carrying_bills).foreign_key
       object.save
-      CarryingBill.update_all({foreign_key => object.id},{:id => params[:bill_ids],:completed => false }) unless params[:bill_ids].blank?
+      CarryingBill.where(:completed => false,:id => params[:bill_ids]).update_all(foreign_key => object.id) unless params[:bill_ids].blank?
       object.process
     end
   end
