@@ -21,7 +21,7 @@ class CashPaymentListsController < BaseController
     @cash_payment_list = resource_class.find(params[:id])
     respond_to do |format|
       format.text do
-        send_data @cash_payment_list.export_sms_txt,:filename => 'sms.txt'
+        send_data Iconv.iconv("GB2312","UTF-8",@cash_payment_list.export_sms_txt),:filename => 'sms.txt'
       end
     end
   end
