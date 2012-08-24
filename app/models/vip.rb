@@ -38,4 +38,3 @@ class Vip <  Customer
     se = "%04d" % next_seq
   end
 end
-

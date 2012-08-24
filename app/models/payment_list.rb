@@ -2,7 +2,10 @@
 class PaymentList < ActiveRecord::Base
   belongs_to :bank
   belongs_to :org
-  has_many :carrying_bills,:order => "carrying_bills.to_org_id,carrying_bills.bill_date,carrying_bills.from_org_id,carrying_bills.goods_no ASC"
+
+  #FIXME rails3.1 BUG #6978 如果对象是new_record,在执行association finder和where/sum等函数时,会产生错误的sql语句
+  has_many :carrying_bills,:order => "carrying_bills.to_org_id,carrying_bills.bill_date,carrying_bills.from_org_id,carrying_bills.goods_no ASC",:conditions => "payment_list_id IS NOT NULL"
+
 
   belongs_to :user
 
@@ -21,15 +24,15 @@ class PaymentList < ActiveRecord::Base
   end
   #运费合计
   def sum_goods_fee
-    self.carrying_bills.to_a.sum(&:goods_fee)
+    self.carrying_bills.sum(:goods_fee)
   end
   #扣手续费
   def sum_k_hand_fee
-    self.carrying_bills.to_a.sum(&:k_hand_fee)
+    self.carrying_bills.sum(:k_hand_fee)
   end
   #扣运费
   def sum_k_carrying_fee
-    self.carrying_bills.to_a.sum(&:k_carrying_fee)
+    self.carrying_bills.sum(:k_carrying_fee)
   end
   #应付合计
   def sum_act_pay_fee

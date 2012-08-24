@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class PayInfo < ActiveRecord::Base
-  has_many :carrying_bills,:order => "goods_no ASC"
+
+  #FIXME rails3.1 BUG #6978 如果对象是new_record,在执行association finder和where/sum等函数时,会产生错误的sql语句
+  has_many :carrying_bills,:order => "goods_no ASC",:conditions => "pay_info_id IS NOT NULL"
 
   belongs_to :user
   belongs_to :org

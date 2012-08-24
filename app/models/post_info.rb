@@ -3,7 +3,9 @@
 class PostInfo < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
-  has_many :carrying_bills,:order => "goods_no ASC"
+
+  #FIXME rails3.1 BUG #6978 如果对象是new_record,在执行association finder和where/sum等函数时,会产生错误的sql语句
+  has_many :carrying_bills,:order => "goods_no ASC",:conditions => "post_info_id IS NOT NULL"
 
   validates_presence_of :org_id
   after_create :create_goods_fee_settlement_list

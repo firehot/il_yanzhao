@@ -3,7 +3,10 @@
 #返款清单
 class Refound < ActiveRecord::Base
   belongs_to :user
-  has_many :carrying_bills,:order => "goods_no ASC"
+
+  #FIXME rails3.1 BUG #6978 如果对象是new_record,在执行association finder和where/sum等函数时,会产生错误的sql语句
+  has_many :carrying_bills,:order => "goods_no ASC",:conditions => "refound_id IS NOT NULL"
+
 
   belongs_to :from_org,:class_name => "Org"
   belongs_to :to_org,:class_name => "Org"
@@ -27,11 +30,9 @@ class Refound < ActiveRecord::Base
   end
   #提付运费合计,含提付保价费
   def sum_carrying_fee_th
-    return 0 if new_record?
     self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:carrying_fee)
   end
   def sum_insured_fee_th
-    return 0 if new_record?
     self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:insured_fee)
 #    self.carrying_bills.sum(:insured_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
   end
@@ -40,15 +41,12 @@ class Refound < ActiveRecord::Base
     sum_carrying_fee_th + sum_insured_fee_th
   end
   def sum_transit_hand_fee
-    return 0 if new_record?
     self.carrying_bills.sum(:transit_hand_fee)
   end
   def sum_transit_carrying_fee
-    return 0 if new_record?
     self.carrying_bills.sum(:transit_carrying_fee)
   end
   def sum_goods_fee
-    return 0 if new_record?
     self.carrying_bills.sum(:goods_fee)
   end
 
