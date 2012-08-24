@@ -18,7 +18,6 @@ class GoodsException < ActiveRecord::Base
   #异常数量不能大于货物数量
   validates_presence_of :org_id,:carrying_bill,:op_org_id
   validate :check_except_num,:check_already_submit,:on => :create
-  validates_associated :carrying_bill
   #定义状态机
   state_machine :initial => :submited do
     event :process do

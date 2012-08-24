@@ -8,7 +8,6 @@ class SendListPost < ActiveRecord::Base
   has_many :send_list_lines
   has_many :carrying_bills,:through => :send_list_lines,:order => "goods_no ASC"
 
-  validates_associated :carrying_bills
 
 
 

@@ -6,8 +6,6 @@ class TransitInfo < ActiveRecord::Base
   belongs_to :transit_company  #中转公司
   has_many :carrying_bills
   validates_presence_of :org_id
-  validates_associated :carrying_bills
-  validates_associated :transit_company
 
   accepts_nested_attributes_for :transit_company
 

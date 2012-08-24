@@ -6,7 +6,6 @@ class PostInfo < ActiveRecord::Base
   has_many :carrying_bills,:order => "goods_no ASC"
 
   validates_presence_of :org_id
-  validates_associated :carrying_bills
   after_create :create_goods_fee_settlement_list
 
   #定义状态机

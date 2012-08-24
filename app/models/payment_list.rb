@@ -5,7 +5,6 @@ class PaymentList < ActiveRecord::Base
   has_many :carrying_bills,:order => "carrying_bills.to_org_id,carrying_bills.bill_date,carrying_bills.from_org_id,carrying_bills.goods_no ASC"
 
   belongs_to :user
-  validates_associated :carrying_bills
 
   default_value_for :bill_date do
     Date.today

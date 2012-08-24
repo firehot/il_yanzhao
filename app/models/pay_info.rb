@@ -5,7 +5,6 @@ class PayInfo < ActiveRecord::Base
   belongs_to :user
   belongs_to :org
   validates_presence_of :customer_name,:id_number,:account_no
-  #validates_associated :carrying_bills
   #定义状态机
   state_machine :initial => :billed do
     after_transition do |pay_info,transition|

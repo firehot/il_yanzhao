@@ -9,7 +9,6 @@ class SendList < ActiveRecord::Base
   has_many :carrying_bills,:through => :send_list_lines
 
   validates_presence_of :org_id,:bill_date
-  validates_associated :carrying_bills
 
   default_value_for :bill_date do
     Date.today

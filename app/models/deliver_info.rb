@@ -5,7 +5,6 @@ class DeliverInfo < ActiveRecord::Base
   has_many :carrying_bills,:order => "goods_no ASC"
 
   validates_presence_of :customer_name,:deliver_date,:org_id
-  validates_associated :carrying_bills
   #定义状态机
   state_machine :initial => :billed do
     after_transition do |deliver_info,transition|
