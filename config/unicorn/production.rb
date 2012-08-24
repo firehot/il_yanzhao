@@ -22,7 +22,7 @@ working_directory APP_ROOT
 rails_env = ENV['RAILS_ENV'] || 'production'
 preload_app true
 #目前有些处理超过1分钟
-timeout 80
+timeout 120
 listen "/tmp/unicorn.production.sock"
 listen "127.0.0.1:5000"
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
