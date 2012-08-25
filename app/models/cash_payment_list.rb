@@ -31,6 +31,8 @@ class CashPaymentList < PaymentList
       #goods_fee = bills.to_a.sum(&:goods_fee).try(:to_i)
       sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos.join(" ")]
     end
+    #加一个空行
+    sms_text +="===============================以下运单无手机号===============================================\r\n"
     no_mobile_sms_bills.each do |bill|
       sms_text += Settings.notice_cash_payment_list.sms_batch % [bill.try(:phone_or_mobile_for_sender),bill.bill_no]
     end

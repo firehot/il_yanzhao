@@ -63,7 +63,7 @@ class LoadList < ActiveRecord::Base
   def to_sms_txt(ids = {})
     #去除固定电话和空号
     sms_bills = self.carrying_bills.find(ids).find_all {|bill| bill.sms_mobile_for_arrive.present? }
-    no_phone_sms_bills = self.carrying_bills.find(ids).find_all {|bill| bill.sms_mobile_for_arrive.blank? }
+    no_mobile_sms_bills = self.carrying_bills.find(ids).find_all {|bill| bill.sms_mobile_for_arrive.blank? }
     group_sms_bills = sms_bills.group_by(&:sms_mobile_for_arrive)
     #分别合计货物件数/运费合计/货款合计
     sms_text = ''
@@ -76,7 +76,8 @@ class LoadList < ActiveRecord::Base
       goods_fee = bills.to_a.sum(&:th_amount).to_i
       sms_text += Settings.notice_arrive.sms_batch % [key,self.to_org.try(:name),goods_nos.join(" "),goods_fee,self.to_org.try(:location),self.to_org.try(:phone)]
     end
-    no_phone_sms_bills.each do |bill|
+    sms_text +="===============================以下运单无手机号===============================================\r\n"
+    no_mobile_sms_bills.each do |bill|
       goods_no = bill.goods_no[6..-1]
       sms_text += Settings.notice_arrive.sms_batch % [bill.try(:phone_or_mobile_for_arrive),self.to_org.try(:name),goods_no,bill.th_amount,self.to_org.try(:location),self.to_org.try(:phone)]
     end
