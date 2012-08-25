@@ -2,9 +2,9 @@
 module BillOperate
   def create
     bill = resource_class.new(params[resource_class.model_name.underscore])
-#    bill.carrying_bill_ids  = params[:bill_ids]  unless params[:bill_ids].blank?
+    bill.carrying_bill_ids  = params[:bill_ids]  unless params[:bill_ids].blank?
     get_resource_ivar || set_resource_ivar(bill)
-#    bill.process
+    bill.process
     create!
   end
   #PUT/:load_list_id/process_handle
@@ -24,6 +24,7 @@ module BillOperate
     end
     render  :show
   end
+=begin
   protected
   #重写create_resource,提高执行速度
   def create_resource(object)
@@ -34,6 +35,7 @@ module BillOperate
       object.process
     end
   end
+=end
 
   #票据打印
   module BillPrint

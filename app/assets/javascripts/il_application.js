@@ -896,10 +896,12 @@ jQuery(function($) {
 		if (evt.data.is_cash) {
 			params["search[from_customer_id_is_null"] = "1";
 			params["search[from_org_id_eq]"] = $('#from_org_id').val();
+			$('#from_org_id option').attr('disabled',true);
 		}
 		else {
 			params["search[from_customer_id_is_not_null"] = "1";
 			params["search[from_customer_bank_id_eq]"] = $('#bank_id').val();
+			$('#bank_id option').attr('disabled',true);
 		}
 
 		$.get('/carrying_bills', params, null, 'script');
