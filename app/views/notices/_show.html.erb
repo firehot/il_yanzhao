@@ -24,8 +24,10 @@
       <th class='text-center'>票号</th>
       <th class='text-center'>货号</th>
       <th class='text-center'>通知电话</th>
+      <th class='text-center'>呼叫次数</th>
       <th class='text-center'>通知文本</th>
       <th class='text-center'>短信文本</th>
+      <th class='text-center'>发送次数</th>
       <th class='text-center'>通知状态</th>
       <th class='text-center'>短信状态</th>
     </tr>
@@ -38,7 +40,9 @@
         <td><%= link_to line.carrying_bill.goods_no,polymorphic_url(line.carrying_bill,:format => :js),:class => :fancybox%></td>
         <td><%= line.from_customer_phone %></td>
         <td><%= line.calling_text %></td>
+        <td><%= line.calling_count %></td>
         <td><%= line.sms_text %></td>
+        <td><%= line.sms_count %></td>
         <td><%= line.calling_state_desc %></td>
         <td><%= line.sms_state_desc %></td>
       </tr>

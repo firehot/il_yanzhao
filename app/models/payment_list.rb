@@ -32,7 +32,7 @@ class PaymentList < ActiveRecord::Base
   end
   #扣运费
   def sum_k_carrying_fee
-    self.carrying_bills.sum(:k_carrying_fee)
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:carrying_fee)
   end
   #应付合计
   def sum_act_pay_fee
@@ -49,4 +49,3 @@ class PaymentList < ActiveRecord::Base
       ]}
   end
 end
-
