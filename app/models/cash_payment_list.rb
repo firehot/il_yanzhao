@@ -16,6 +16,7 @@ class CashPaymentList < PaymentList
   def export_sms_txt
     #去除固定电话
     sms_bills = self.carrying_bills.find_all {|bill| bill.sms_mobile_for_sender.present? and bill.goods_fee > 0 }
+    no_mobile_sms_bills = self.carrying_bills.find_all {|bill| bill.sms_mobile_for_sender.blank? and bill.goods_fee > 0 }
     group_sms_bills = sms_bills.group_by(&:sms_mobile_for_sender)
     #分别合计货物件数/运费合计/货款合计
     sms_text = ''
@@ -30,6 +31,10 @@ class CashPaymentList < PaymentList
       #goods_fee = bills.to_a.sum(&:goods_fee).try(:to_i)
       sms_text += Settings.notice_cash_payment_list.sms_batch % [key,bill_nos.join(" ")]
     end
+    no_mobile_sms_bills.each do |bill|
+      sms_text += Settings.notice_cash_payment_list.sms_batch % [bill.try(:phone_or_mobile_for_sender),bill.bill_no]
+    end
+
     sms_text
   end
 end

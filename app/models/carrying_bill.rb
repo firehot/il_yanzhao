@@ -93,6 +93,8 @@ class CarryingBill < ActiveRecord::Base
 
   #运单编号为7位数字
   validates_format_of :bill_no,:with => /^(TH)*\d{7}$/
+  #验证运单号码是否正确
+  validates_format_of :goods_no, :with => /(\d{6})(\p{any}{2})(\d{1,10})-(\d{1,10})/
   validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
   validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:goods_num
   validates_numericality_of :goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000
@@ -265,6 +267,21 @@ class CarryingBill < ActiveRecord::Base
       the_mobile = to_customer_mobile if self.to_customer_mobile.present? and self.to_customer_mobile.size == 11
       the_mobile
     end
+    #得到收货人联系方式,如果有手机则优先返回手机,否则返回其他联系方式
+    def phone_or_mobile_for_arrive
+      phone_or_mobile = sms_mobile_for_arrive
+      phone_or_mobile = self.to_customer_mobile if phone_or_mobile.blank?
+      phone_or_mobile = self.to_customer_phone if phone_or_mobile.blank?
+      phone_or_mobile
+    end
+    #得到发货人联系方式,如果有手机则优先返回手机,否则返回其他联系方式
+    def phone_or_mobile_for_sender
+      phone_or_mobile = sms_mobile_for_sender
+      phone_or_mobile = self.from_customer_mobile if phone_or_mobile.blank?
+      phone_or_mobile = self.from_customer_phone if phone_or_mobile.blank?
+      phone_or_mobile
+    end
+
     #得到发货人手机
     def sms_mobile_for_sender
       the_mobile = nil
