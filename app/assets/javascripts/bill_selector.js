@@ -19,7 +19,7 @@ jQuery(function($) {
 
 				$.bill_selector.options = $.extend({},
 				$.bill_selector.default_options, options);
-				$.bill_selector.selected_ids = $.bill_selector.el.data('ids');
+				$.bill_selector.selected_ids = $.bill_selector.el.data('ids').slice();
 				$('.cbx_select_bill [data-bill]').live('click', $.bill_selector.bill_click);
 				$($.bill_selector).bind('set_all', $.bill_selector.set_all);
 				//绑定全选和不选按钮
@@ -30,10 +30,9 @@ jQuery(function($) {
 					$($.bill_selector).trigger('set_all', [false]);
 				});
 
+                $($.bill_selector).trigger('set_all', [true]);
 				$.bill_selector.initialized = true;
 			}
-			//$.bill_selector.set_checkbox();
-			//$.bill_selector.update_html();
 			//显示票据选择控件
 			$('.select_bill_bar,.cbx_select_bill').livequery(function() {
 				$(this).show();
@@ -44,8 +43,9 @@ jQuery(function($) {
 				var href = $(this).attr('href');
 				$(this).attr('href', href + '.js');
 			});
+			$.bill_selector.set_checkbox();
+			$.bill_selector.update_html();
 
-            $($.bill_selector).trigger('set_all', [true]);
 
 		},
 		//重置对象,重新初始化
