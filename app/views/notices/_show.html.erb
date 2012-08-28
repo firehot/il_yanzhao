@@ -38,7 +38,7 @@
         <td><%= index + 1 %></td>
         <td><%= link_to line.carrying_bill.bill_no,polymorphic_url(line.carrying_bill,:format => :js),:class => :fancybox%></td>
         <td><%= link_to line.carrying_bill.goods_no,polymorphic_url(line.carrying_bill,:format => :js),:class => :fancybox%></td>
-        <td><%= line.from_customer_phone %></td>
+        <td style='font-weight : bold;font-size : 14px;'><%= line.from_customer_phone %></td>
         <td><%= line.calling_text %></td>
         <td><%= line.calling_count %></td>
         <td><%= line.sms_text %></td>
