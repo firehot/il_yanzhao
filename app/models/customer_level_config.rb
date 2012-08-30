@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class CustomerLevelConfig < ActiveRecord::Base
   belongs_to :org
   validates_presence_of :name
@@ -60,4 +59,3 @@ class CustomerLevelConfig < ActiveRecord::Base
     end
   end
 end
-

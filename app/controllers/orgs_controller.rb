@@ -7,7 +7,8 @@ class OrgsController < BaseController
     @orgs = Org.search(params[:search]).order('parent_id ASC,created_at DESC')
   end
   def new
-    super do |format|
+    set_resource_ivar(resource_class.new_with_config)
+    new! do |format|
       format.js {render :partial => "form"}
     end
   end
