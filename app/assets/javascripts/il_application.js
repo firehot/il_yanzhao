@@ -1099,30 +1099,39 @@ jQuery(function($) {
 			backgroundColor: 'blue',
 			color: '#fff'
 		});
+		$(this).find("a")css({color: '#fff'});
+
 	});
 	$('.rpt_no_delivery tr.green-bill').livequery(function() {
 		$(this).css({
 			backgroundColor: 'green',
 			color: '#fff'
 		});
+
+		$(this).find("a")css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.yellow-bill').livequery(function() {
 		$(this).css({
 			backgroundColor: 'yellow'
 
 		});
+
+		$(this).find("a")css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.red-bill').livequery(function() {
 		$(this).css({
 			backgroundColor: 'red',
 			color: '#fff'
 		});
+
+		$(this).find("a")css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.black-bill').livequery(function() {
 		$(this).css({
 			backgroundColor: 'black',
 			color: '#fff'
 		});
+		$(this).find("a")css({color: '#fff'});
 	});
 
 	//自动获取明细信息

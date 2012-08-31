@@ -88,6 +88,9 @@ class CarryingBill < ActiveRecord::Base
   #有多条短途运费明细记录
   has_many :short_fee_info_lines
 
+  #有多条通知明细信息
+  #has_many :notice_lines
+
   #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
   validate :check_k_carrying_fee
 
