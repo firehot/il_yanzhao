@@ -1099,7 +1099,7 @@ jQuery(function($) {
 			backgroundColor: 'blue',
 			color: '#fff'
 		});
-		$(this).find("a")css({color: '#fff'});
+		$(this).find("a").css({color: '#fff'});
 
 	});
 	$('.rpt_no_delivery tr.green-bill').livequery(function() {
@@ -1108,7 +1108,7 @@ jQuery(function($) {
 			color: '#fff'
 		});
 
-		$(this).find("a")css({color: '#fff'});
+		$(this).find("a").css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.yellow-bill').livequery(function() {
 		$(this).css({
@@ -1116,7 +1116,7 @@ jQuery(function($) {
 
 		});
 
-		$(this).find("a")css({color: '#fff'});
+		$(this).find("a").css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.red-bill').livequery(function() {
 		$(this).css({
@@ -1124,14 +1124,14 @@ jQuery(function($) {
 			color: '#fff'
 		});
 
-		$(this).find("a")css({color: '#fff'});
+		$(this).find("a").css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.black-bill').livequery(function() {
 		$(this).css({
 			backgroundColor: 'black',
 			color: '#fff'
 		});
-		$(this).find("a")css({color: '#fff'});
+		$(this).find("a").css({color: '#fff'});
 	});
 
 	//自动获取明细信息
