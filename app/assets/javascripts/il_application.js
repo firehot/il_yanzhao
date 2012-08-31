@@ -1115,8 +1115,6 @@ jQuery(function($) {
 			backgroundColor: 'yellow'
 
 		});
-
-		$(this).find("a").css({color: '#fff'});
 	});
 	$('.rpt_no_delivery tr.red-bill').livequery(function() {
 		$(this).css({
