@@ -13,6 +13,7 @@ IlYanzhao::Application.routes.draw do
   end
   resources :notices do
     get :search,:on => :collection
+    get :new_with_no_delivery,:on => :collection
   end
 
   resources :goods_cats
@@ -257,6 +258,7 @@ IlYanzhao::Application.routes.draw do
     get :simple_search,:on => :collection
     get :simple_search_with_created_at,:on => :collection
     get :export_excel,:on => :collection
+    get :export_sms_txt,:on => :collection
     get :sum_goods_fee_inout,:on => :collection
     get :search_service_page,:on => :collection
     get :search_service,:on => :collection

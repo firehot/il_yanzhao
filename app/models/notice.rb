@@ -11,7 +11,7 @@ class Notice < ActiveRecord::Base
   #FIXME  修改时有问题
   accepts_nested_attributes_for :notice_lines,:reject_if => proc {|attrs|attrs['from_customer_phone'].blank? || attrs['_select'].eql?('0') }
 
-  validates_presence_of :org_id,:load_list_id
+  validates_presence_of :org_id
   default_value_for :state,'draft'
   default_value_for :bill_date do
     Date.today

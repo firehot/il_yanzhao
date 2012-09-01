@@ -896,12 +896,12 @@ jQuery(function($) {
 		if (evt.data.is_cash) {
 			params["search[from_customer_id_is_null"] = "1";
 			params["search[from_org_id_eq]"] = $('#from_org_id').val();
-			$('#from_org_id option').attr('disabled',true);
+			$('#from_org_id option').attr('disabled', true);
 		}
 		else {
 			params["search[from_customer_id_is_not_null"] = "1";
 			params["search[from_customer_bank_id_eq]"] = $('#bank_id').val();
-			$('#bank_id option').attr('disabled',true);
+			$('#bank_id option').attr('disabled', true);
 		}
 
 		$.get('/carrying_bills', params, null, 'script');
@@ -1099,7 +1099,9 @@ jQuery(function($) {
 			backgroundColor: 'blue',
 			color: '#fff'
 		});
-		$(this).find("a").css({color: '#fff'});
+		$(this).find("a").css({
+			color: '#fff'
+		});
 
 	});
 	$('.rpt_no_delivery tr.green-bill').livequery(function() {
@@ -1108,7 +1110,9 @@ jQuery(function($) {
 			color: '#fff'
 		});
 
-		$(this).find("a").css({color: '#fff'});
+		$(this).find("a").css({
+			color: '#fff'
+		});
 	});
 	$('.rpt_no_delivery tr.yellow-bill').livequery(function() {
 		$(this).css({
@@ -1122,14 +1126,18 @@ jQuery(function($) {
 			color: '#fff'
 		});
 
-		$(this).find("a").css({color: '#fff'});
+		$(this).find("a").css({
+			color: '#fff'
+		});
 	});
 	$('.rpt_no_delivery tr.black-bill').livequery(function() {
 		$(this).css({
 			backgroundColor: 'black',
 			color: '#fff'
 		});
-		$(this).find("a").css({color: '#fff'});
+		$(this).find("a").css({
+			color: '#fff'
+		});
 	});
 
 	//自动获取明细信息
@@ -1319,7 +1327,7 @@ jQuery(function($) {
 		}
 	});
 
-	//到货请打导出短信文本
+	//到货清单导出短信文本
 	$('#btn_export_sms_txt').click(function() {
 		if ($.bill_selector.selected_ids.length == 0) {
 			$.notifyBar({
@@ -1341,5 +1349,38 @@ jQuery(function($) {
 		$('#export_sms_form').trigger('submit');
 	});
 
+	//未提货报表选择单据
+	//FIXME 支持分页选择
+	//jquery中checkbox click事件的问题,如下所述
+	//http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox
+	$('#btn_select_notice_failed').livequery('click', function() {
+		$($.bill_selector).trigger('set_all', [false]);
+		$('.notice_is_failed .cbx_select_bill [data-bill]').trigger('click');
+	});
+	$('#btn_select_notice_draft').livequery('click', function() {
+		$($.bill_selector).trigger('set_all', [false]);
+		$('.notice_draft .cbx_select_bill [data-bill]').trigger('click');
+	});
+	$('#btn_select_notice_called').livequery('click', function() {
+		$($.bill_selector).trigger('set_all', [false]);
+		$('.notice_is_called .cbx_select_bill [data-bill]').trigger('click');
+	});
+	//未提货报表导出短信群发文本
+	$('.btn_export_sms_txt_with_no_delivery').click(function() {
+		$(this).bind('ajax:before', function() {
+			if ($.bill_selector.selected_ids.length == 0) {
+				$.notifyBar({
+					html: "请选择要通知的运单!",
+					delay: 3000,
+					animationSpeed: "normal",
+					cls: 'error'
+				});
+				return false;
+			}
+			$(this).data('params', {
+				"id[]": bill_ids,
+			});
+		});
+	});
 });
 

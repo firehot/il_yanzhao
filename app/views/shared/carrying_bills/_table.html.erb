@@ -13,6 +13,14 @@
         选择:
         <%=link_to_function "全选",'',:id => "btn_select_all",:title => "选中全部票据",:class => 'tipsy'%> |
         <%=link_to_function "不选",'',:id => "btn_unselect_all",:title => "取消选中的票据",:class => 'tipsy'%>
+        <span id="notice_select_group" style='display : none;'>
+          |
+        <%=link_to_function "通知失败的",'',:id => "btn_select_notice_failed",:title => "选择到货通知失败的票据",:class => 'tipsy'%>
+        |
+        <%=link_to_function "未通知的",'',:id => "btn_select_notice_draft",:title => "选择还未进行到货通知的票据",:class => 'tipsy'%>
+        |
+        <%=link_to_function "已通知的",'',:id => "btn_select_notice_called",:title => "选择已经发送到货通知的票据",:class => 'tipsy'%>
+      </span>
       </th>
       <th class='bill_date' style='display : none;'>&nbsp;</th>
       <th class='pay_type'><span id="bill_count"></span></th>
@@ -45,6 +53,8 @@
       <th class='stranded_days' style='display :none;'>&nbsp;</th>
       <th class='deliver_date' style='display :none;'>&nbsp;</th>
       <th class='pay_date' style='display :none;'>&nbsp;</th>
+      <th class='phone_notice_state_for_arrive' style='display :none;'>&nbsp;</th>
+      <th class='sms_notice_state_for_arrive' style='display :none;'>&nbsp;</th>
       <th class='note'>&nbsp;</th>
     </tr>
     <tr class='text-center table-header'>
@@ -85,12 +95,14 @@
       <th class='stranded_days text-center' style='display :none;'>滞留天数</th>
       <th class='deliver_date' style='display :none;'>提货日期</th>
       <th class='pay_date' style='display :none;'>提款日期</th>
+      <th class='phone_notice_state_for_arrive' style='display :none;'>电话</th>
+      <th class='sms_notice_state_for_arrive' style='display :none;'>短信</th>
       <th class='note text-center'>备注</th>
     </tr>
   </thead>
   <tbody>
     <% bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index| %>
-      <tr class="<%= cycle("odd", "even") %> <%=stranded_class(bill.stranded_days)%>" id='<%=bill.id%>' data-dblclick='true'>
+      <tr class="<%= cycle("odd", "even") %> <%=stranded_class(bill.stranded_days)%> <%="notice_#{bill.try(:phone_notice_state_for_arrive)}"%>" id='<%=bill.id%>' data-dblclick='true'>
         <td class='cbx_select_bill' style='display : none;'>
           <%= link_to "查看",  polymorphic_url(bill,:format => parent? ? :js : nil),:class => (parent? ? "show_link popup-box" : "show_link"),:style => 'display : none;'%>
           <%=check_box_tag "bill_ids[]",bill.id,true,"data-bill" => "#{bill.to_json(:methods => [:carrying_fee_th,:k_carrying_fee,:act_pay_fee,:th_amount,:agent_carrying_fee,:carrying_fee_total,:send_state,:stranded_days])}" %>
@@ -153,7 +165,8 @@
         <td class='stranded_days' style='display :none;'><%=bill.stranded_days%>天</td>
         <td class='deliver_date' style='display :none;'><%=bill.deliver_info.try(:deliver_date)%></td>
         <td class='pay_date' style='display :none;'><%=bill.pay_info.try(:bill_date)%></td>
-
+        <td class='phone_notice_state_for_arrive' style='display :none;'><%=notice_line_state_desc bill.try(:phone_notice_state_for_arrive)%></td>
+        <td class='sms_notice_state_for_arrive' style='display :none;'><%=notice_line_state_desc bill.try(:sms_notice_state_for_arrive)%></td>
         <td class="note" style='overflow :hidden;'>
           <div style='height : 13px;width : 50px;'><%= bill.note%></div>
         </td>
@@ -197,6 +210,8 @@
       <td class='stranded_days' style='display :none;'>&nbsp;</td>
       <td class='deliver_date' style='display :none;'>&nbsp;</td>
       <td class='pay_date' style='display :none;'>&nbsp;</td>
+      <td class='phone_notice_state_for_arrive' style='display :none;'>&nbsp;</td>
+      <td class='sms_notice_state_for_arrive' style='display :none;'>&nbsp;</td>
       <td class='note'>&nbsp;</td>
     </tr>
   </tfoot>

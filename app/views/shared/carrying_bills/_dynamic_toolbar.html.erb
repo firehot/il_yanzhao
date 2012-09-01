@@ -85,6 +85,22 @@
       <li>
         <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), self.send("export_excel_#{controller_name.tableize}_path",:search => params[:search],:show_fields => params[:show_fields],:hide_fields => params[:hide_fields],:sort => params[:sort],:direction => params[:direction]),:title => "导出为EXCEL",:class => "btn_export_excel tipsy"  %>
       </li>
+      <!--未提货票据生成到货通知清单-->
+      <%if params[:rpt_type].eql?('rpt_no_delivery') %>
+        <%if can? :build_notice,CarryingBill %>
+          <li>
+            <%= link_to image_tag("notice_phone.png",:alt => "生成到货通知清单",:size => '16x16') ,new_with_no_delivery_notices_path(:format => :js),:remote => true,:title => "生成到货通知清单",:class => "tipsy btn_build_notice_with_no_delivery"  %>
+          </li>
+          <li>
+            <%= link_to_function image_tag("disk-black.png",:alt => "保存到货通知清单"), "$('#notice_form').trigger('submit')",:title => "保存到货通知清单",:class => "tipsy btn_save btn_create_notice_with_no_delivery",:style => "display : none;"  %>
+          </li>
+        <%end%>
+        <%if can? :export_sms_txt,CarryingBill %>
+          <li>
+            <%= link_to image_tag("sms.png",:alt => "导出短信群发文件",:size => "16x16"), export_sms_txt_carrying_bills_path(:format => :text),:title => "导出短信群发文件",:class => "btn_export_sms_txt_with_no_delivery tipsy"  %>
+          </li>
+        <%end%>
+      <%end%>
     <%end%>
     <%if params[:action] == "rpt_turnover"%>
       <li>

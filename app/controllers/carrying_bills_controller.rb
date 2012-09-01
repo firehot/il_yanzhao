@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 #运单controller基础类
+require 'iconv'
 class CarryingBillsController < BaseController
   #查询服务,去除layout
   layout false,:only => [:search_service_page,:search_service]
@@ -23,6 +24,17 @@ class CarryingBillsController < BaseController
     @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search]).order(sort_column + ' ' + sort_direction)
   end
 
+  #导出短信群发文本
+  #GET carrying_bills/export_sms_txt.txt
+  def export_sms_txt
+    respond_to do |format|
+      format.text do
+        #FIXME 垃圾短信公司,客户端软件不支持utf-8格式的导出文件,只能进行转换
+        send_txt = Iconv.conv("gb2312//IGNORE","utf-8",resource_class.export_sms_txt_for_arrive(params[:id]))
+        send_data send_txt,:type => "text/plain;charset=gb2312;header=present",:filename => 'sms.txt'
+      end
+    end
+  end
   #GET search
   #显示查询窗口
   def search

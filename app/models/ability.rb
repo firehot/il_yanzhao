@@ -126,6 +126,8 @@ class Ability
     can :create,ActLoadList if can? :build_act_load_list,LoadList
     #可创建到货通知清单如果有build_notice权限
     can :create,Notice if can? :build_notice,LoadList
+    can :new_with_no_delivery,Notice if can? :build_notice,CarryingBill
+    can :create,Notice if can? :build_notice,CarryingBill
   end
   #定义运单修改权限
   def set_bill_update_permission

@@ -14,6 +14,31 @@ class CustomerCodeValidator < ActiveModel::EachValidator
   end
 end
 class CarryingBill < ActiveRecord::Base
+  #class method
+  #导出短信文本
+  def self.export_sms_txt_for_arrive(ids=[])
+    #去除固定电话和空号
+    sms_bills = self.find(ids).find_all {|bill| bill.sms_mobile_for_arrive.present? }
+    no_mobile_sms_bills = self.find(ids).find_all {|bill| bill.sms_mobile_for_arrive.blank? }
+    group_sms_bills = sms_bills.group_by(&:sms_mobile_for_arrive)
+    #分别合计货物件数/运费合计/货款合计
+    sms_text = ''
+    group_sms_bills.each do |key,bills|
+      goods_num = bills.to_a.sum(&:goods_num)
+      goods_nos = []
+      bills.each do |the_bill|
+        goods_nos << the_bill.goods_no[6..-1]
+      end
+      goods_fee = bills.to_a.sum(&:th_amount).to_i
+      sms_text += Settings.notice_arrive.sms_batch % [key,bills[0].to_org.try(:name),goods_nos.join(" "),goods_fee,bills[0].to_org.try(:location),bills[0].to_org.try(:phone)]
+    end
+    sms_text +="===============================以下运单无手机号===============================================\r\n"
+    no_mobile_sms_bills.each do |bill|
+      goods_no = bill.goods_no[6..-1]
+      sms_text += Settings.notice_arrive.sms_batch % [bill.try(:phone_or_mobile_for_arrive),bill.to_org.try(:name),goods_no,bill.th_amount,bill.to_org.try(:location),bill.to_org.try(:phone)]
+    end
+    sms_text
+  end
   #FIXME 数据库中,为使用mysql 分区表功能,将primary key设置为id,completed,此处重新设置为id,防止mysql 运行出错
   self.primary_key = :id
   attr_protected :original_carrying_fee,:original_goods_fee,:original_from_short_carrying_fee,:original_to_short_carrying_fee,:original_insured_amount,:original_insured_fee
@@ -39,7 +64,7 @@ class CarryingBill < ActiveRecord::Base
   #货款支出情况
   scope :sum_goods_fee_out,lambda {|from_org_ids,date_from,date_to| select('from_org_id,sum(goods_fee) as sum_goods_fee_out').where(:from_org_id => from_org_ids,:state => ["paid",'posted'] ,:updated_at => date_from..date_to).group('from_org_id')}
 
-  scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:short_fee_info_lines,:user]
+  scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:short_fee_info_lines,:user,:notice_lines]
 
 
   #before_validation :set_customer
@@ -89,7 +114,7 @@ class CarryingBill < ActiveRecord::Base
   has_many :short_fee_info_lines
 
   #有多条通知明细信息
-  #has_many :notice_lines
+  has_many :notice_lines
 
   #验证运费支付方式为从货款扣时,货款必须大于运费,否则不能保存
   validate :check_k_carrying_fee
@@ -311,6 +336,21 @@ class CarryingBill < ActiveRecord::Base
     #生成到货提醒短信文本内容
     def sms_text_for_arrive
       Settings.notice_arrive.sms % [self.to_org.try(:name),self.goods_no[6..-1],self.th_amount.to_i,self.to_org.try(:location),self.to_org.try(:phone)]
+    end
+    #到货通知状态
+    #记录到货通知电话状态:
+    def phone_notice_state_for_arrive
+      state='draft'
+      state = "is_failed" if self.notice_lines.where(:calling_state => "is_failed").exists?
+      state = "is_called" if self.notice_lines.where(:calling_state => "is_called").exists?
+      state
+    end
+    #到货通知短信状态
+    def sms_notice_state_for_arrive
+      state='draft'
+      state = "is_failed" if self.notice_lines.where(:calling_state => "is_failed").exists?
+      state = "is_sended" if self.notice_lines.where(:calling_state => "is_called").exists?
+      state
     end
 
     def from_org_name

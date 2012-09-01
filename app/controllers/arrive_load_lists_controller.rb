@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 #coding： utf-8
 #到货清单
+require 'iconv'
 class ArriveLoadListsController < LoadListsController
   defaults :resource_class => LoadList, :collection_name => 'load_lists', :instance_name => 'load_list'
   #先跳过基类的验证,然后重写自己的验证

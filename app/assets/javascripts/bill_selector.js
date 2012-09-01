@@ -20,7 +20,10 @@ jQuery(function($) {
 				$.bill_selector.options = $.extend({},
 				$.bill_selector.default_options, options);
 				$.bill_selector.selected_ids = $.bill_selector.el.data('ids').slice();
-				$('.cbx_select_bill [data-bill]').live('click', $.bill_selector.bill_click);
+
+                //http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox
+                //jquery中checkbox click事件的问题
+				$('.cbx_select_bill [data-bill]').live('change', $.bill_selector.bill_click);
 				$($.bill_selector).bind('set_all', $.bill_selector.set_all);
 				//绑定全选和不选按钮
 				$($.bill_selector.options.btn_select_all).live("click", function() {
@@ -135,7 +138,7 @@ jQuery(function($) {
 
 		//选中或不选中某张票据
 		bill_click: function(event) {
-			var cur_el = $(event.target);
+			var cur_el = $(event.currentTarget);
 			var the_bill = cur_el.data('bill');
 			if (cur_el.attr('checked')) {
 				//向selected_ids中添加选中票据的id

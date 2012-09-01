@@ -10,6 +10,7 @@ class SystemFunction < ActiveRecord::Base
     attrs[:function].each do |key,value|
       sfo = sf.system_function_operates.build(:name => value[:title])
       sfo.function_obj = {:subject => attrs[:subject],:action => key,:conditions => value[:conditions]}
+      sfo.new_function_obj = {:subject => attrs[:subject],:action => key,:conditions => value[:conditions]}
       sfo.save!
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120805091616) do
+ActiveRecord::Schema.define(:version => 20120901035659) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -57,7 +57,8 @@ ActiveRecord::Schema.define(:version => 20120805091616) do
     t.datetime "updated_at",                      :null => false
   end
 
-  create_table "carrying_bills", :force => true do |t|
+  create_table "carrying_bills", :id => false, :force => true do |t|
+    t.integer  "id",                                                                                                  :null => false
     t.date     "bill_date",                                                                                           :null => false
     t.string   "bill_no",                          :limit => 30,                                                      :null => false
     t.string   "goods_no",                         :limit => 30,                                                      :null => false
@@ -87,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20120805091616) do
     t.text     "note"
     t.string   "type",                             :limit => 100
     t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                      :default => false
+    t.boolean  "completed",                                                                      :default => false,   :null => false
     t.integer  "user_id"
     t.datetime "created_at",                                                                                          :null => false
     t.datetime "updated_at",                                                                                          :null => false
