@@ -1367,20 +1367,28 @@ jQuery(function($) {
 	});
 	//未提货报表导出短信群发文本
 	$('.btn_export_sms_txt_with_no_delivery').click(function() {
-		$(this).bind('ajax:before', function() {
-			if ($.bill_selector.selected_ids.length == 0) {
-				$.notifyBar({
-					html: "请选择要通知的运单!",
-					delay: 3000,
-					animationSpeed: "normal",
-					cls: 'error'
-				});
-				return false;
-			}
-			$(this).data('params', {
-				"id[]": bill_ids,
+		if ($.bill_selector.selected_ids.length == 0) {
+			$.notifyBar({
+				html: "请选择要通知的运单!",
+				delay: 3000,
+				animationSpeed: "normal",
+				cls: 'error'
 			});
+			return false;
+		}
+		$('#carrying_bill_export_sms_txt_form').remove();
+		var export_sms_txt_form = "<form action='/carrying_bills/export_sms_txt.text' method='get' id='carrying_bill_export_sms_txt_form' style='display : none;'></form>";
+
+		$('#table_wrap').before(export_sms_txt_form);
+        $('#carrying_bill_export_sms_txt_form').remove('[type|="hidden"][name|="bill_ids[]"]');
+		//附加选中的运单id到form中
+		$.each($.bill_selector.selected_ids, function(index, value) {
+			var hidden_field = $("<input type='hidden' name='bill_ids[]' value='" + value + "' />");
+			$('#carrying_bill_export_sms_txt_form').append(hidden_field);
+
 		});
+		$('#carrying_bill_export_sms_txt_form').trigger('submit');
+
 	});
 });
 

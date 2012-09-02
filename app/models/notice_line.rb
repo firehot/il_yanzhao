@@ -13,7 +13,7 @@ class NoticeLine < ActiveRecord::Base
   default_value_for :calling_state,'draft'
  # before_validation :set_notice_info
 
-  validates :carrying_bill_id,:from_customer_phone,:calling_text,:calling_state,:sms_state,:presence => true
+  validates :carrying_bill_id,:calling_text,:calling_state,:sms_state,:presence => true
 
   #状态描述
   def calling_state_desc

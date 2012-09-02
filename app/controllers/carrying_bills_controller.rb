@@ -30,7 +30,7 @@ class CarryingBillsController < BaseController
     respond_to do |format|
       format.text do
         #FIXME 垃圾短信公司,客户端软件不支持utf-8格式的导出文件,只能进行转换
-        send_txt = Iconv.conv("gb2312//IGNORE","utf-8",resource_class.export_sms_txt_for_arrive(params[:id]))
+        send_txt = Iconv.conv("gb2312//IGNORE","utf-8",resource_class.export_sms_txt_for_arrive(params[:bill_ids]))
         send_data send_txt,:type => "text/plain;charset=gb2312;header=present",:filename => 'sms.txt'
       end
     end

@@ -89,7 +89,7 @@
       <%if params[:rpt_type].eql?('rpt_no_delivery') %>
         <%if can? :build_notice,CarryingBill %>
           <li>
-            <%= link_to image_tag("notice_phone.png",:alt => "生成到货通知清单",:size => '16x16') ,new_with_no_delivery_notices_path(:format => :js),:remote => true,:title => "生成到货通知清单",:class => "tipsy btn_build_notice_with_no_delivery"  %>
+            <%= link_to image_tag("notice_phone.png",:alt => "生成到货通知清单/导出短信通知文件",:size => '16x16') ,new_with_no_delivery_notices_path(:format => :js),:remote => true,:title => "生成到货通知清单/导出短信通知文件",:class => "tipsy btn_build_notice_with_no_delivery"  %>
           </li>
           <li>
             <%= link_to_function image_tag("disk-black.png",:alt => "保存到货通知清单"), "$('#notice_form').trigger('submit')",:title => "保存到货通知清单",:class => "tipsy btn_save btn_create_notice_with_no_delivery",:style => "display : none;"  %>
@@ -97,7 +97,7 @@
         <%end%>
         <%if can? :export_sms_txt,CarryingBill %>
           <li>
-            <%= link_to image_tag("sms.png",:alt => "导出短信群发文件",:size => "16x16"), export_sms_txt_carrying_bills_path(:format => :text),:title => "导出短信群发文件",:class => "btn_export_sms_txt_with_no_delivery tipsy"  %>
+            <%= link_to_function image_tag("sms.png",:alt => "导出短信群发文件",:size => "16x16"), "",:title => "导出短信群发文件",:class => "btn_export_sms_txt_with_no_delivery tipsy",:style => "display : none;"  %>
           </li>
         <%end%>
       <%end%>
