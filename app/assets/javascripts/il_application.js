@@ -1380,7 +1380,6 @@ jQuery(function($) {
 		var export_sms_txt_form = "<form action='/carrying_bills/export_sms_txt.text' method='get' id='carrying_bill_export_sms_txt_form' style='display : none;'></form>";
 
 		$('#table_wrap').before(export_sms_txt_form);
-        $('#carrying_bill_export_sms_txt_form').remove('[type|="hidden"][name|="bill_ids[]"]');
 		//附加选中的运单id到form中
 		$.each($.bill_selector.selected_ids, function(index, value) {
 			var hidden_field = $("<input type='hidden' name='bill_ids[]' value='" + value + "' />");
