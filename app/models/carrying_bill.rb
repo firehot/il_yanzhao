@@ -123,8 +123,9 @@ class CarryingBill < ActiveRecord::Base
   validates_format_of :bill_no,:with => /^(TH)*\d{7}$/
   #验证运单号码是否正确
   validates_format_of :goods_no, :with => /(\d{6})(\p{any}{2})(\d{1,10})-(\d{1,10})/
-  validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
-  validates_numericality_of :insured_amount,:insured_rate,:insured_fee,:goods_num
+  validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_customer_mobile,:to_customer_mobile,:from_org_id,:goods_info
+  validates_length_of :from_customer_mobile,:to_customer_mobile, :is => 11
+  validates_numericality_of :insured_fee,:goods_num
   validates_numericality_of :goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000
   validates :customer_code,:customer_code => true
   #初始创建运单时,运费必须大于0
@@ -261,7 +262,9 @@ class CarryingBill < ActiveRecord::Base
     end
     default_value_for :goods_num,1
     default_value_for :goods_volume,1
-    default_value_for :insured_rate,0.003 #IlConfig.insured_rate
+    default_value_for :insured_fee do
+      IlConfig.insured_fee
+    end
     default_value_for :from_short_carrying_fee,0
     default_value_for :to_short_carrying_fee,0
     default_value_for :insured_amount,0
@@ -382,12 +385,6 @@ class CarryingBill < ActiveRecord::Base
       self.from_customer.bank.name
     end
 
-    #以千分数表示的保价费
-    def insured_rate_disp
-      self.insured_rate*1000
-    end
-    def insured_rate_disp=(rate)
-    end
     #送货状态
     def send_state
       send_state = "draft"
@@ -498,6 +495,7 @@ class CarryingBill < ActiveRecord::Base
         "to_customer_id"=> nil,
         "pay_type"=> PAY_TYPE_TH,
         "goods_fee"=> 0,
+        "insured_fee" => (pay_type == PAY_TYPE_CASH ? self.insured_fee : self.insured_fee*2),
         "from_short_carrying_fee" => (pay_type == PAY_TYPE_CASH ? self.to_short_carrying_fee : self.to_short_carrying_fee*2),
         "to_short_carrying_fee" => (pay_type == PAY_TYPE_CASH ? self.from_short_carrying_fee : self.from_short_carrying_fee*2),
         "carrying_fee"=> (pay_type == PAY_TYPE_CASH ? self.carrying_fee : 2*self.carrying_fee),

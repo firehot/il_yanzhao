@@ -236,6 +236,7 @@ jQuery(function($) {
 	});
 
 	var calculate_carrying_bill = function() {
+        /*FIXME 取消保险费计算,直接从系统设置中读取
 		//计算保价费合计
 		var insured_amount = parseFloat($('#insured_amount').val());
 		var insured_rate = parseFloat($('#insured_rate').val());
@@ -249,6 +250,8 @@ jQuery(function($) {
 
 		}
 		else $('#pay_type option').attr('disabled', false);
+        */
+        var insured_fee = parseFloat($('#insured_fee').val());
 		//计算运费合计
 		var carrying_fee = parseFloat($('#carrying_fee').val());
 		var from_short_carrying_fee = parseFloat($('#from_short_carrying_fee').val());
@@ -485,7 +488,6 @@ jQuery(function($) {
 	$('form.update_all').livequery(function() {
 		$('#carrying_bill_form :input').attr('readonly', false);
 		$('#carrying_bill_form select option').attr('disabled', false);
-		$('#insured_rate').attr('readonly', true);
 		$('#insured_fee').attr('readonly', true);
 
 	});
@@ -500,10 +502,8 @@ jQuery(function($) {
 		if ($(this).parents('form.carrying_bill').hasClass('edit_bill_date')) {
 			$('#bill_date').val(changed_bill_date);
 			$('#goods_num').val(goods_num);
-
 		}
 		else if (changed_bill_date == bill_date) {
-
 			$('#goods_num').val(goods_num);
 		}
 		else {
