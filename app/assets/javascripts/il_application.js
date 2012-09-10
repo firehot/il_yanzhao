@@ -171,14 +171,14 @@ jQuery(function($) {
 					return c[p];
 				})
 			};
-			return function(table, func_set_style) {
+			return function(table_str, func_set_style) {
 				try {
-					if (func_set_style) func_set_style($(table));
+					if (func_set_style) func_set_style($(table_str));
 				}
 				catch(ex) {}
 				var ctx = {
 					worksheet: name || 'Worksheet',
-					table: $(table).html()
+					table: table_str
 				};
 				window.location.href = uri + base64(format(template, ctx));
 			}
