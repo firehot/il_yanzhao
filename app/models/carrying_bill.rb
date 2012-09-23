@@ -403,6 +403,21 @@ class CarryingBill < ActiveRecord::Base
       ret = self.insured_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
       ret
     end
+    #ADD at 2012-9-23
+    #提货发货短途费,运费支付方式为提货付时,等于发货短途费,其他为0
+    def from_short_carrying_fee_th
+      ret = 0
+      ret = self.from_short_carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
+      ret
+    end
+    #ADD at 2012-9-23
+    #提货到货短途费,运费支付方式为提货付时,等于到货短途费,其他为0
+    def to_short_carrying_fee_th
+      ret = 0
+      ret = self.to_short_carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
+      ret
+    end
+
 
     #扣运费,运费支付方式为从货款扣除时等于运费,否则为0
     def k_carrying_fee
@@ -410,9 +425,36 @@ class CarryingBill < ActiveRecord::Base
       ret = self.carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_K_GOODSFEE
       ret
     end
+    #2012-9-23
+    #扣保险费,运费支付为[从货款扣]时等与保险费,否则为0
+    def k_insured_fee
+      ret = 0
+      ret = self.insured_fee if self.pay_type == CarryingBill::PAY_TYPE_K_GOODSFEE
+      ret
+    end
+    #2012-9-23
+    #扣发货短途,运费支付为[从货款扣]时等于发货短途费,否则为0
+    def k_from_short_carrying_fee
+      ret = 0
+      ret = self.from_short_carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_K_GOODSFEE
+      ret
+    end
+    #2012-9-23
+    #扣到货短途,运费支付为[从货款扣]时等于到货短途费,否则为0
+    def k_to_short_carrying_fee
+      ret = 0
+      ret = self.to_short_carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_K_GOODSFEE
+      ret
+    end
+    #Added at 2012-9-23
+    #扣运费合计 = 扣运费 + 扣保险费 + 扣到货短途 + 扣发货短途
+    def k_carrying_fee_total
+      self.k_carrying_fee + self.k_insured_fee + self.k_from_short_carrying_fee + self.k_to_short_carrying_fee
+    end
+
     #实提货款 原货款 - 扣运费 - 扣手续费
     def act_pay_fee
-      ret = self.goods_fee - self.k_hand_fee - self.k_carrying_fee - self.transit_hand_fee
+      ret = self.goods_fee - self.k_hand_fee - self.k_carrying_fee - self.transit_hand_fee - self.k_insured_fee - self.k_from_short_carrying_fee - self.k_to_short_carrying_fee
     end
     #代收运费解释：原票运费支付方式为提货付的，代收运费=原运费—中转运费；
     #原票运费支付方式为现金付的，代收运费为0
@@ -423,21 +465,31 @@ class CarryingBill < ActiveRecord::Base
     end
 
     #得到提货应收金额
+    #NOTE 2012-09-23
+    #运费支付方式为提货付时: 提货应收 = 提付运费 - 中转手续费 - 中转运费 - 中转运费 + 货款 + 保险费 + 发货短途 + 收货短途
     def th_amount
       amount = self.carrying_fee_th - self.transit_hand_fee - self.transit_carrying_fee + self.goods_fee
-      amount += self.insured_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
+      amount += self.insured_fee + self.from_short_carrying_fee + self.to_short_carrying_fee if self.pay_type == CarryingBill::PAY_TYPE_TH
       amount
     end
+
     #运费总计
+    #NOTE  指的是运费 + 保险费 + 发货短途 + 到货短途,与付款方式无关
+    #2012-9-23 发货短途运费和到货短途运费也计入合计运费中去
+    #NOTE 运费合计 = 运费 + 保险费 + 发货地短途 + 到货地短途
+
     def carrying_fee_total
-      carrying_fee + insured_fee
+      carrying_fee + insured_fee + from_short_carrying_fee + to_short_carrying_fee
     end
     #提付运费合计
     #运费支付方式=提货付 提付运费合计 = 运费 + 保价费
     #其他支付方式 提副运费合计 = 0
+    #2012-9-23 发货短途运费和到货短途运费也计入合计运费中去
+    #付款方式为现金付时:提付运费合计 = 0
+    #付款方式为提货付时:提付运费合计 = 运费 + 保险费 + 发货地短途 + 到货地短途
     def carrying_fee_th_total
       ret = 0
-      ret = carrying_fee + insured_fee if pay_type.eql?(CarryingBill::PAY_TYPE_TH)
+      ret = carrying_fee + insured_fee + from_short_carrying_fee + to_short_carrying_fee if pay_type.eql?(CarryingBill::PAY_TYPE_TH)
       ret
     end
 
@@ -544,23 +596,37 @@ class CarryingBill < ActiveRecord::Base
         :sum_carrying_fee_re => search.where(:pay_type => CarryingBill::PAY_TYPE_RETURN).sum(:carrying_fee),
         #自货款扣除运费合计
         :sum_k_carrying_fee => search.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:carrying_fee),
+        #自货款扣保险费
+        :sum_k_insured_fee => search.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:insured_fee),
+        #自货款扣发货短途
+        :sum_k_from_short_carrying_fee => search.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:from_short_carrying_fee),
+        #自货款扣到货短途
+        :sum_k_to_short_carrying_fee => search.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:to_short_carrying_fee),
         #提付保价费合计
-        :sum_insured_fee_th => search.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:insured_fee)
+        :sum_insured_fee_th => search.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:insured_fee),
+        #2012-9-23 付款方式为提货付时,合计发货短途运费及到货短途运费
+        :sum_from_short_carrying_fee_th => search.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:from_short_carrying_fee),
+        :sum_to_short_carrying_fee_th => search.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:to_short_carrying_fee)
       }
-      sum_info_tmp = search.select('sum(1) as count,sum(carrying_fee) as sum_carrying_fee,sum(k_hand_fee) as sum_k_hand_fee,sum(goods_fee) as sum_goods_fee,sum(insured_fee) as sum_insured_fee,sum(transit_carrying_fee) as sum_transit_carrying_fee,sum(transit_hand_fee) as sum_transit_hand_fee,sum(from_short_carrying_fee) as sum_from_short_carrying_fee,sum(to_short_carrying_fee) as sum_to_short_carrying_fee,sum(goods_num) as sum_goods_num').first.attributes
+      sum_info_tmp = search.select('sum(1) as sum_count,sum(carrying_fee) as sum_carrying_fee,sum(k_hand_fee) as sum_k_hand_fee,sum(goods_fee) as sum_goods_fee,sum(insured_fee) as sum_insured_fee,sum(transit_carrying_fee) as sum_transit_carrying_fee,sum(transit_hand_fee) as sum_transit_hand_fee,sum(from_short_carrying_fee) as sum_from_short_carrying_fee,sum(to_short_carrying_fee) as sum_to_short_carrying_fee,sum(goods_num) as sum_goods_num').first.attributes
 
       #将hash key转换为symbol
       sum_info.merge!(Hash[sum_info_tmp.map{ |k, v| [k.to_sym, (v.blank? ? 0 : v)] }])
-      #运费合计 运费+保价费
-      sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee]
-      #提付运费合计
+      #运费合计 运费+保险费+发货短途 + 到货短途
+      sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee] + sum_info[:sum_from_short_carrying_fee] + sum_info[:sum_to_short_carrying_fee]
+
+      #从货款扣运费合计
+      sum_info[:sum_k_carrying_fee_total] = sum_info[:sum_k_carrying_fee] + sum_info[:sum_k_insured_fee] + sum_info[:sum_k_from_short_carrying_fee] + sum_info[:sum_k_to_short_carrying_fee]
+
       #实提货款合计
-      sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_carrying_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee]
+      sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee] - sum_info[:sum_k_carrying_fee_total]
       sum_info[:sum_agent_carrying_fee] =0
       #提付运费大于零时,才有代收运费,否则代收运费为0
       sum_info[:sum_agent_carrying_fee] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] if sum_info[:sum_carrying_fee_th] > 0
-      sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
-      sum_info[:sum_carrying_fee_th_total] = sum_info[:sum_carrying_fee_th] + sum_info[:sum_insured_fee_th]
+      #提付运费合计
+      sum_info[:sum_carrying_fee_th_total] = sum_info[:sum_carrying_fee_th] + sum_info[:sum_insured_fee_th] + sum_info[:sum_from_short_carrying_fee_th] + sum_info[:sum_to_short_carrying_fee_th]
+     #提货应收合计
+      sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th_total] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
       sum_info
     end
     #转换为打印使用的json

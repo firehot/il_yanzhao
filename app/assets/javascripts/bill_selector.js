@@ -13,27 +13,23 @@ jQuery(function($) {
 			else {
 				$.bill_selector.reset();
 				$.bill_selector.el = el;
-				$.bill_selector.ids = [];//$.bill_selector.el.data('ids');
-
+				$.bill_selector.ids = []; //$.bill_selector.el.data('ids');
 				$.bill_selector.sum_info = {};
-
-				$.bill_selector.options = $.extend({},
-				$.bill_selector.default_options, options);
 				$.bill_selector.selected_ids = $.bill_selector.el.data('ids').slice();
 
-                //http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox
-                //jquery中checkbox click事件的问题
+				//http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox
+				//jquery中checkbox click事件的问题
 				$('.cbx_select_bill [data-bill]').live('change', $.bill_selector.bill_click);
 				$($.bill_selector).bind('set_all', $.bill_selector.set_all);
 				//绑定全选和不选按钮
-				$($.bill_selector.options.btn_select_all).live("click", function() {
+				$('#btn_select_all').live("click", function() {
 					$($.bill_selector).trigger('set_all', [true]);
 				});
-				$($.bill_selector.options.btn_unselect_all).live("click", function() {
+				$('#btn_unselect_all').live("click", function() {
 					$($.bill_selector).trigger('set_all', [false]);
 				});
 
-                $($.bill_selector).trigger('set_all', [true]);
+				$($.bill_selector).trigger('set_all', [true]);
 				$.bill_selector.initialized = true;
 			}
 			//显示票据选择控件
@@ -49,7 +45,6 @@ jQuery(function($) {
 			$.bill_selector.set_checkbox();
 			$.bill_selector.update_html();
 
-
 		},
 		//重置对象,重新初始化
 		reset: function() {
@@ -58,70 +53,26 @@ jQuery(function($) {
 			$($.bill_selector).unbind('set_all');
 			//绑定全选和不选按钮
 			if (typeof($.bill_selector.options) != 'undefined') {
-				$($.bill_selector.options.btn_select_all).die('click');
-				$($.bill_selector.options.btn_unselect_all).die('click');
+				$('#btn_select_all').die('click');
+				$('#btn_unselect_all').die('click');
 			}
 
 		},
-		//默认设置
-		default_options: {
-			count: "#bill_count",
-			sum_carrying_fee: "#sum_carrying_fee",
-			sum_carrying_fee_total: "#sum_carrying_fee_total",
-			sum_carrying_fee_th: "#sum_carrying_fee_th",
-			sum_k_carrying_fee: "#sum_k_carrying_fee",
-			sum_k_hand_fee: "#sum_k_hand_fee",
-			sum_act_pay_fee: "#sum_act_pay_fee",
-			sum_goods_fee: "#sum_goods_fee",
-			sum_transit_carrying_fee: "#sum_transit_carrying_fee",
-			sum_transit_hand_fee: "#sum_transit_hand_fee",
-			sum_agent_carrying_fee: "#sum_agent_carrying_fee",
-			sum_th_amount: "#sum_th_amount",
-			sum_insured_fee: "#sum_insured_fee",
-			sum_from_short_carrying_fee: "#sum_from_short_carrying_fee",
-			sum_to_short_carrying_fee: "#sum_to_short_carrying_fee",
-			btn_select_all: "#btn_select_all",
-			btn_unselect_all: "#btn_unselect_all"
-
-		},
+		//合计的对象的键值对象
+		sum_info_key_array: ["sum_count", "sum_carrying_fee", "sum_carrying_fee_total", "sum_carrying_fee_th", "sum_k_carrying_fee", "sum_carrying_fee_th_total", "sum_k_carrying_fee_total", "sum_k_hand_fee", "sum_act_pay_fee", "sum_goods_fee", "sum_transit_carrying_fee", "sum_transit_hand_fee", "sum_agent_carrying_fee", "sum_th_amount", "sum_insured_fee", "sum_insured_fee_th", "sum_k_insured_fee", "sum_from_short_carrying_fee", "sum_from_short_carrying_fee_th", "sum_k_from_short_carrying_fee", "sum_to_short_carrying_fee", "sum_to_short_carrying_fee_th", "sum_k_to_short_carrying_fee"],
 		//选中或不选中全部
 		set_all: function(event, is_select) {
 			$.bill_selector.selected_ids = is_select ? $.bill_selector.el.data('ids').slice() : [];
-			if (is_select)
-            {
-                var sum_info = $.bill_selector.el.data('sum');
-				$.bill_selector.sum_info.count = parseFloat(sum_info.count);
-				$.bill_selector.sum_info.sum_carrying_fee = parseFloat(sum_info.sum_carrying_fee) ;
-				$.bill_selector.sum_info.sum_carrying_fee_th = parseFloat(sum_info.sum_carrying_fee_th) ;
-				$.bill_selector.sum_info.sum_k_carrying_fee = parseFloat(sum_info.sum_k_carrying_fee);
-				$.bill_selector.sum_info.sum_k_hand_fee = parseFloat(sum_info.sum_k_hand_fee);
-				$.bill_selector.sum_info.sum_act_pay_fee = parseFloat(sum_info.sum_act_pay_fee) ;
-				$.bill_selector.sum_info.sum_goods_fee = parseFloat(sum_info.sum_goods_fee) ;
-				$.bill_selector.sum_info.sum_insured_fee = parseFloat(sum_info.sum_insured_fee) ;
-				$.bill_selector.sum_info.sum_transit_carrying_fee = parseFloat(sum_info.sum_transit_carrying_fee) ;
-				$.bill_selector.sum_info.sum_transit_hand_fee = parseFloat(sum_info.sum_transit_hand_fee);
-				$.bill_selector.sum_info.sum_agent_carrying_fee = parseFloat(sum_info.sum_agent_carrying_fee) ;
-				$.bill_selector.sum_info.sum_th_amount = parseFloat(sum_info.sum_th_amount) ;
-				$.bill_selector.sum_info.sum_from_short_carrying_fee = parseFloat(sum_info.sum_from_short_carrying_fee) ;
-				$.bill_selector.sum_info.sum_to_short_carrying_fee = parseFloat(sum_info.sum_to_short_carrying_fee);
-				$.bill_selector.sum_info.sum_carrying_fee_total = parseFloat(sum_info.sum_carrying_fee_total);
+			if (is_select) {
+				var sum_info = $.bill_selector.el.data('sum');
+				$.each($.bill_selector.sum_info_key_array, function(unused, key) {
+					$.bill_selector.sum_info[key] = parseFloat(sum_info[key]);
+				});
 			}
 			else {
-				$.bill_selector.sum_info.count = 0;
-				$.bill_selector.sum_info.sum_carrying_fee = 0;
-				$.bill_selector.sum_info.sum_carrying_fee_th = 0;
-				$.bill_selector.sum_info.sum_k_carrying_fee = 0;
-				$.bill_selector.sum_info.sum_k_hand_fee = 0;
-				$.bill_selector.sum_info.sum_act_pay_fee = 0;
-				$.bill_selector.sum_info.sum_goods_fee = 0;
-				$.bill_selector.sum_info.sum_insured_fee = 0;
-				$.bill_selector.sum_info.sum_transit_carrying_fee = 0;
-				$.bill_selector.sum_info.sum_transit_hand_fee = 0;
-				$.bill_selector.sum_info.sum_agent_carrying_fee = 0;
-				$.bill_selector.sum_info.sum_th_amount = 0;
-				$.bill_selector.sum_info.sum_from_short_carrying_fee = 0;
-				$.bill_selector.sum_info.sum_to_short_carrying_fee = 0;
-				$.bill_selector.sum_info.sum_carrying_fee_total = 0;
+				$.each($.bill_selector.sum_info_key_array, function(unused, key) {
+					$.bill_selector.sum_info[key] = 0;
+				});
 			}
 			$.bill_selector.set_checkbox();
 			$.bill_selector.update_html();
@@ -143,67 +94,27 @@ jQuery(function($) {
 			if (cur_el.attr('checked')) {
 				//向selected_ids中添加选中票据的id
 				if ($.inArray(the_bill.id, $.bill_selector.selected_ids) == - 1) $.bill_selector.selected_ids.push(the_bill.id);
-				$.bill_selector.sum_info.count += 1;
-				$.bill_selector.sum_info.sum_carrying_fee = parseFloat($.bill_selector.sum_info.sum_carrying_fee) + parseFloat(the_bill.carrying_fee);
-				$.bill_selector.sum_info.sum_carrying_fee_th = parseFloat($.bill_selector.sum_info.sum_carrying_fee_th) + parseFloat(the_bill.carrying_fee_th);
-				$.bill_selector.sum_info.sum_goods_fee = parseFloat($.bill_selector.sum_info.sum_goods_fee) + parseFloat(the_bill.goods_fee);
-				$.bill_selector.sum_info.sum_insured_fee = parseFloat($.bill_selector.sum_info.sum_insured_fee) + parseFloat(the_bill.insured_fee);
-				$.bill_selector.sum_info.sum_k_hand_fee = parseFloat($.bill_selector.sum_info.sum_k_hand_fee) + parseFloat(the_bill.k_hand_fee);
-				$.bill_selector.sum_info.sum_k_carrying_fee = parseFloat($.bill_selector.sum_info.sum_k_carrying_fee) + parseFloat(the_bill.k_carrying_fee);
-				$.bill_selector.sum_info.sum_act_pay_fee = parseFloat($.bill_selector.sum_info.sum_act_pay_fee) + parseFloat(the_bill.act_pay_fee);
-				$.bill_selector.sum_info.sum_from_short_carrying_fee = parseFloat($.bill_selector.sum_info.sum_from_short_carrying_fee) + parseFloat(the_bill.from_short_carrying_fee);
-				$.bill_selector.sum_info.sum_to_short_carrying_fee = parseFloat($.bill_selector.sum_info.sum_to_short_carrying_fee) + parseFloat(the_bill.to_short_carrying_fee);
-
-				$.bill_selector.sum_info.sum_transit_carrying_fee = parseFloat($.bill_selector.sum_info.sum_transit_carrying_fee) + parseFloat(the_bill.transit_carrying_fee);
-				$.bill_selector.sum_info.sum_transit_hand_fee = parseFloat($.bill_selector.sum_info.sum_transit_hand_fee) + parseFloat(the_bill.transit_hand_fee);
-				$.bill_selector.sum_info.sum_agent_carrying_fee = parseFloat($.bill_selector.sum_info.sum_agent_carrying_fee) + parseFloat(the_bill.agent_carrying_fee);
-				$.bill_selector.sum_info.sum_th_amount = parseFloat($.bill_selector.sum_info.th_amount) + parseFloat(the_bill.th_amount);
-				$.bill_selector.sum_info.sum_carrying_fee_total = parseFloat($.bill_selector.sum_info.sum_carrying_fee_total) + parseFloat(the_bill.carrying_fee_total);
-
+				$.each($.bill_selector.sum_info_key_array, function(unused, key) {
+					if (key == 'sum_count') $.bill_selector.sum_info[key] += 1;
+					else $.bill_selector.sum_info[key] += parseFloat(the_bill[key.slice(4)]);
+				});
 			}
 			else {
 				var index = $.inArray(the_bill.id, $.bill_selector.selected_ids)
 				if (index > - 1) $.bill_selector.selected_ids.splice(index, 1);
 
-				$.bill_selector.sum_info.count -= 1;
-				$.bill_selector.sum_info.sum_carrying_fee = parseFloat($.bill_selector.sum_info.sum_carrying_fee) - parseFloat(the_bill.carrying_fee);
-				$.bill_selector.sum_info.sum_carrying_fee_th = parseFloat($.bill_selector.sum_info.sum_carrying_fee_th) - parseFloat(the_bill.carrying_fee_th);
-				$.bill_selector.sum_info.sum_goods_fee = parseFloat($.bill_selector.sum_info.sum_goods_fee) - parseFloat(the_bill.goods_fee);
-				$.bill_selector.sum_info.sum_insured_fee = parseFloat($.bill_selector.sum_info.sum_insured_fee) - parseFloat(the_bill.insured_fee);
-				$.bill_selector.sum_info.sum_k_hand_fee = parseFloat($.bill_selector.sum_info.sum_k_hand_fee) - parseFloat(the_bill.k_hand_fee);
-				$.bill_selector.sum_info.sum_k_carrying_fee = parseFloat($.bill_selector.sum_info.sum_k_carrying_fee) - parseFloat(the_bill.k_carrying_fee);
-				$.bill_selector.sum_info.sum_act_pay_fee = parseFloat($.bill_selector.sum_info.sum_act_pay_fee) - parseFloat(the_bill.act_pay_fee);
-				$.bill_selector.sum_info.sum_from_short_carrying_fee = parseFloat($.bill_selector.sum_info.sum_from_short_carrying_fee) - parseFloat(the_bill.from_short_carrying_fee);
-				$.bill_selector.sum_info.sum_to_short_carrying_fee = parseFloat($.bill_selector.sum_info.sum_to_short_carrying_fee) - parseFloat(the_bill.to_short_carrying_fee);
-
-				$.bill_selector.sum_info.sum_transit_carrying_fee = parseFloat($.bill_selector.sum_info.sum_transit_carrying_fee) - parseFloat(the_bill.transit_carrying_fee);
-				$.bill_selector.sum_info.sum_transit_hand_fee = parseFloat($.bill_selector.sum_info.sum_transit_hand_fee) - parseFloat(the_bill.transit_hand_fee);
-				$.bill_selector.sum_info.sum_agent_carrying_fee = parseFloat($.bill_selector.sum_info.sum_agent_carrying_fee) - parseFloat(the_bill.agent_carrying_fee);
-				$.bill_selector.sum_info.sum_th_amount = parseFloat($.bill_selector.sum_info.th_amount) - parseFloat(the_bill.th_amount);
-				$.bill_selector.sum_info.sum_carrying_fee_total = parseFloat($.bill_selector.sum_info.sum_carrying_fee_total) - parseFloat(the_bill.carrying_fee_total);
-
+				$.each($.bill_selector.sum_info_key_array, function(unused, key) {
+					if (key == 'sum_count') $.bill_selector.sum_info[key] -= 1;
+					else $.bill_selector.sum_info[key] -= parseFloat(the_bill[key.slice(4)])
+				});
 			}
 			$.bill_selector.update_html();
 		},
 		//更新界面显示
 		update_html: function() {
-			$($.bill_selector.options.count).html($.bill_selector.sum_info.count + "票");
-			$($.bill_selector.options.sum_carrying_fee).html($.bill_selector.sum_info.sum_carrying_fee);
-			$($.bill_selector.options.sum_carrying_fee_th).html($.bill_selector.sum_info.sum_carrying_fee_th);
-			$($.bill_selector.options.sum_k_carrying_fee).html($.bill_selector.sum_info.sum_k_carrying_fee);
-			$($.bill_selector.options.sum_k_hand_fee).html($.bill_selector.sum_info.sum_k_hand_fee);
-			$($.bill_selector.options.sum_act_pay_fee).html($.bill_selector.sum_info.sum_act_pay_fee);
-			$($.bill_selector.options.sum_goods_fee).html($.bill_selector.sum_info.sum_goods_fee);
-			$($.bill_selector.options.sum_insured_fee).html($.bill_selector.sum_info.sum_insured_fee);
-			$($.bill_selector.options.sum_from_short_carrying_fee).html($.bill_selector.sum_info.sum_from_short_carrying_fee);
-
-			$($.bill_selector.options.sum_to_short_carrying_fee).html($.bill_selector.sum_info.sum_to_short_carrying_fee);
-
-			$($.bill_selector.options.sum_transit_carrying_fee).html($.bill_selector.sum_info.sum_transit_carrying_fee);
-			$($.bill_selector.options.sum_transit_hand_fee).html($.bill_selector.sum_info.sum_transit_hand_fee);
-			$($.bill_selector.options.sum_agent_carrying_fee).html($.bill_selector.sum_info.sum_agent_carrying_fee);
-			$($.bill_selector.options.sum_th_amount).html($.bill_selector.sum_info.sum_th_amount);
-			$($.bill_selector.options.sum_carrying_fee_total).html($.bill_selector.sum_info.sum_carrying_fee_total);
+			$.each($.bill_selector.sum_info_key_array, function(unused, key) {
+				$('#' + key).html($.bill_selector.sum_info[key])
+			});
 			//触发选择改变事件
 			$($.bill_selector).trigger('select:change');
 
@@ -308,7 +219,7 @@ jQuery(function($) {
 				"to_org_id_or_transit_org_id_eq": ($('#to_org_id_or_transit_org_id').length == 0) ? "": $('#to_org_id_or_transit_org_id').val(),
 				"search[bill_date_eq]": ($('#bill_date_eq').length == 0) ? "": $('#bill_date_eq').val(),
 				"search[state_eq]": ($('#state_eq').length == 0) ? "": $('#state_eq').val(),
-				"search[type_in][]": ($('#type_in').length == 0) ? ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill','AutoCalculateComputerBill'] : $('#type_in').data('type') //要查询的运单类型
+				"search[type_in][]": ($('#type_in').length == 0) ? ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'] : $('#type_in').data('type') //要查询的运单类型
 			}
 		}
 	}

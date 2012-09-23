@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 #coding: utf-8
 class LoadList < ActiveRecord::Base
+  default_scope :include => [:from_org,:to_org,:user]
   belongs_to :from_org,:class_name => "Org"
   belongs_to :to_org,:class_name => "Org"
   belongs_to :user
