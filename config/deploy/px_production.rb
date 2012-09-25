@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 #add bundler support
 require 'bundler/capistrano'
+set :rails_env,   "px_production"
+set :unicorn_env, "px_production"
+set :app_env,     "px_production"
+
 set :application, "px_il_yanzhao_rails32"
 set :repository,  "."
 set :branch, "modify_insured_fee"
@@ -32,11 +36,14 @@ require "rvm/capistrano"
 require 'capistrano-unicorn'
 set :unicorn_bin,'r193_unicorn_rails'
 
-after "deploy:symlink", :update_database_yml
+#NOTE 在生成assets前修改数据库设置
+before "deploy:assets:precompile", :update_database_yml
 desc "根据不同的staging修改数据库名称"
 task :update_database_yml do
-  replacements = { "il_yanzhao_r32_production" => "il_yanzhao_r32_production" }
-  replacements.each_pair do |pattern, sub|
-    run "sed -i 's/#{pattern}/#{sub}/' ~/app/il_yanzhao_rails32/current/config/database.yml"
+  replacements = {
+    'il_yanzhao_r32_production' => 'il_yanzhao_r32_production'
+  }
+  replacements.each do |pattern, sub|
+    run "sed -i '' 's@#{pattern}@#{sub}@' #{release_path}/config/database.yml"
   end
 end

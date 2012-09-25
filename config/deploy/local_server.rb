@@ -1,4 +1,7 @@
 # -*- encoding : utf-8 -*-
+set :rails_env,   "local_server"
+set :unicorn_env, "local_server"
+set :app_env,     "local_server"
 #add bundler support
 require 'bundler/capistrano'
 set :application, "local_il_yanzhao_rails32"
@@ -32,6 +35,7 @@ require "rvm/capistrano"
 require 'capistrano-unicorn'
 set :unicorn_bin,'r193_unicorn_rails'
 
+#NOTE 在生成assets前修改数据库设置
 before "deploy:assets:precompile", :update_database_yml
 desc "根据不同的staging修改数据库名称"
 task :update_database_yml do

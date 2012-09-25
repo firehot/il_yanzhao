@@ -37,12 +37,13 @@ set :unicorn_bin,'r193_unicorn_rails'
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
 # these http://github.com/rails/irs_process_scripts
-
-after "deploy:symlink", :update_database_yml
+before "deploy:assets:precompile", :update_database_yml
 desc "根据不同的staging修改数据库名称"
 task :update_database_yml do
-  replacements = { "il_yanzhao_r32_production" => "il_yanzhao_production" }
-  replacements.each_pair do |pattern, sub|
-    run "sed -i 's/#{pattern}/#{sub}/' ~/app/il_yanzhao_rails32/current/config/database.yml"
+  replacements = {
+    'il_yanzhao_r32_production' => 'il_yanzhao_production'
+  }
+  replacements.each do |pattern, sub|
+    run "sed -i '' 's@#{pattern}@#{sub}@' #{release_path}/config/database.yml"
   end
 end
