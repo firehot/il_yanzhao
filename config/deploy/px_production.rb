@@ -3,7 +3,7 @@
 require 'bundler/capistrano'
 set :rails_env,   "production"
 set :unicorn_env, "px_production"
-set :app_env,     "px_production"
+set :app_env,     "production"
 
 set :application, "px_il_yanzhao_rails32"
 set :repository,  "."

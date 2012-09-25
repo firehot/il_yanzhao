@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 set :rails_env,   "production"
 set :unicorn_env, "local_server"
-set :app_env,     "local_server"
+set :app_env,     "production"
 #add bundler support
 require 'bundler/capistrano'
 set :application, "local_il_yanzhao_rails32"
