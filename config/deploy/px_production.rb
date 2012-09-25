@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 #add bundler support
 require 'bundler/capistrano'
-set :rails_env,   "px_production"
+set :rails_env,   "local_server"
 set :unicorn_env, "px_production"
 set :app_env,     "px_production"
 
