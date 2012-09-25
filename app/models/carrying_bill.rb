@@ -344,15 +344,15 @@ class CarryingBill < ActiveRecord::Base
     #记录到货通知电话状态:
     def phone_notice_state_for_arrive
       state='draft'
-      state = "is_failed" if self.notice_lines.where(:calling_state => "is_failed").exists?
-      state = "is_called" if self.notice_lines.where(:calling_state => "is_called").exists?
+      state = "is_failed" if self.notice_lines.any? {|line| line.calling_state.eql? "is_failed" }
+      state = "is_called" if self.notice_lines.any? {|line| line.calling_state.eql? "is_called" }
       state
     end
     #到货通知短信状态
     def sms_notice_state_for_arrive
       state='draft'
-      state = "is_failed" if self.notice_lines.where(:calling_state => "is_failed").exists?
-      state = "is_sended" if self.notice_lines.where(:calling_state => "is_called").exists?
+      state = "is_failed" if self.notice_lines.any? {|line| line.sms_state.eql? "is_failed" }
+      state = "is_sended" if self.notice_lines.any? {|line| line.sms_state.eql? "is_sended" }
       state
     end
 

@@ -63,4 +63,3 @@ class DeliverInfo < ActiveRecord::Base
     }
   end
 end
-
