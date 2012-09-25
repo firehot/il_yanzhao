@@ -32,13 +32,14 @@ require "rvm/capistrano"
 require 'capistrano-unicorn'
 set :unicorn_bin,'r193_unicorn_rails'
 
+before "deploy:assets:precompile", :update_database_yml
 desc "根据不同的staging修改数据库名称"
 task :update_database_yml do
   replacements = {
-    "il_yanzhao_r32_production" => "il_yanzhao_r32_production",
-    "\/var\/run\/mysqld\/mysqld.sock" => "\/tmp\/mysql.sock" #mac 系统下mysql.sock位置与linux不同
+    'il_yanzhao_r32_production' => 'il_yanzhao_r32_production'
+    #"/var/run/mysqld/mysqld.sock" => "/tmp/mysql.sock" #mac 系统下mysql.sock位置与linux不同
   }
-  replacements.each_pair do |pattern, sub|
+  replacements.each do |pattern, sub|
     run "sed -i 's/#{pattern}/#{sub}/' ~/app/il_yanzhao_rails32/current/config/database.yml"
   end
 end
