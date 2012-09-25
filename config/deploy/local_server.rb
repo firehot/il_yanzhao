@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-set :rails_env,   "local_server"
+set :rails_env,   "production"
 set :unicorn_env, "local_server"
 set :app_env,     "local_server"
 #add bundler support
