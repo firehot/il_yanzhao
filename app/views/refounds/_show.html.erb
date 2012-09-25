@@ -12,23 +12,30 @@
     </td>
     <td>结算员:</td>
     <td><%=resource.user%></td>
-    <td colspan='2'>&nbsp;</td>
   </tr>
   <tr>
-    <td>返程货款:</td>
-    <td><%=resource.sum_goods_fee %></td>
-    <td>运费合计:</td>
-    <td><%=resource.sum_carrying_fee_th_total %></td>
-    <td>中转运费:</td>
-    <td><%=resource.sum_transit_carrying_fee %></td>
-    <td>中转手续费:</td>
-    <td><%=resource.sum_transit_hand_fee %></td>
-    <td>合计:</td>
-    <td><%=resource.sum_fee %></td>
+    <th>货款</th>
+    <th>+运费[提]</th>
+    <th>+保险费[提]</th>
+    <th>+发货短途[提]</th>
+    <th>+到货短途[提]</th>
+    <th>-中转运费</th>
+    <th>-中转手续费</th>
+    <th>=合计</th>
+  </tr>
+  <tr>
+    <td><span id='refound_sum_goods_fee'><%= resource.sum_goods_fee %></span></td>
+    <td><span id='refound_sum_carrying_fee_th'><%= resource.sum_carrying_fee_th %></span></td>
+    <td><span id='refound_sum_insured_fee_th'><%= resource.sum_insured_fee_th %></span></td>
+    <td><span id='refound_sum_from_short_carrying_fee_th'><%= resource.sum_from_short_carrying_fee_th %></span></td>
+    <td><span id='refound_sum_to_short_carrying_fee_th'><%= resource.sum_to_short_carrying_fee_th %></span></td>
+    <td><span id='refound_sum_transit_carrying_fee'><%=resource.sum_transit_carrying_fee %></span></td>
+    <td><span id='refound_sum_transit_hand_fee'><%=resource.sum_transit_hand_fee %></span></td>
+    <td><span id='refound_sum_th_amount'><%=resource.sum_th_amount %></span></td>
   </tr>
   <tr>
     <td>备注</td>
-    <td colspan='7'>
+    <td colspan='5'>
       <%=resource.note %>
     </td>
     <td>状态</td>

@@ -1,4 +1,4 @@
-<tr id='<%="bill_#{bill.id}" %>' data-bill='<%=bill.to_json(:methods => bill_to_json_methods)%>' class='bill_cal_sum'>
+<tr id='<%="bill_#{bill.id}" %>' data-bill='<%=bill.to_json(bill_to_json_methods)%>' class='bill_cal_sum'>
   <td class='bill_date' style='display : none;'>
     <%= link_to "查看",   polymorphic_url(bill,:format => :js),:class => "show_link fancybox",:style => 'display : none;'%>
     <%=bill.bill_date.strftime('%y-%m-%d')%>
@@ -19,29 +19,32 @@
     <%=bill.to_customer_name%>
     <%="(#{bill.to_customer_mobile})"%>
   </td>
-  <td class='pay_type'>
-    <%=pay_type_des(bill.pay_type) %>
-  </td>
-  <td class="carrying_fee">
-    <%=bill.carrying_fee %>
-  </td>
-  <td class="carrying_fee_th" style='display : none;'>
-    <%=bill.carrying_fee_th %>
-  </td>
-  <td class="goods_fee">
-    <%=bill.goods_fee %>
-  </td>
-  <td class="k_hand_fee" style='display : none;'><%=bill.k_hand_fee%></td>
+  <!--运费-->
+  <td class='pay_type'><%=pay_type_des(bill.pay_type) %></td>
+  <td class="carrying_fee"><%=bill.carrying_fee %></td>
+  <td class="carrying_fee_th" style='display : none;'><%=bill.carrying_fee_th %></td>
   <td class="k_carrying_fee" style='display : none;'><%= bill.k_carrying_fee %></td>
-  <td class="act_pay_fee" style='display : none;'><%= bill.act_pay_fee %></td>
-  <th class="insured_fee text-center"><%= bill.insured_fee %></td>
+  <!--保险费-->
+  <th class="insured_fee text-center" style='display : none;'><%= bill.insured_fee %></td>
   <td class="insured_fee_th text-center" style='display : none;'><%= bill.insured_fee_th %></td>
   <td class="k_insured_fee text-center" style='display : none;'><%= bill.k_insured_fee %></td>
-  <td class="carrying_fee_total text-center"><%= bill.carrying_fee_total %></td>
+
+  <!--短途运费-->
+  <td class="from_short_carrying_fee text-center" style='display : none;'><%= bill.from_short_carrying_fee %></td>
+  <td class="from_short_carrying_fee_th" style='display : none;'><%= bill.from_short_carrying_fee_th %></td>
+  <td class="k_from_short_carrying_fee" style='display : none;'><%= bill.k_from_short_carrying_fee %></td>
+  <td class="to_short_carrying_fee text-center" style='display : none;'><%= bill.to_short_carrying_fee %></td>
+  <td class="to_short_carrying_fee_th" style='display : none;'><%= bill.to_short_carrying_fee_th %></td>
+  <td class="k_to_short_carrying_fee" style='display : none;'><%= bill.k_to_short_carrying_fee %></td>
+  <!--运费合计-->
+  <td class="carrying_fee_total text-center" style='display : none;'><%= bill.carrying_fee_total %></td>
   <td class="carrying_fee_th_total" style='display : none;'><%= bill.carrying_fee_th_total %></td>
   <td class="k_carrying_fee_total" style='display : none;'><%= bill.k_carrying_fee_total %></td>
 
+  <!--代收货款-->
+  <td class="goods_fee"><%=bill.goods_fee %></td>
 
+  <!--中转资料-->
   <td class="transit_company" style='display : none;'><%= bill.transit_info.try(:transit_company) %></td>
   <td class="transit_bill_no" style='display : none;'><%= bill.transit_bill_no %></td>
   <td class="transit_bill_no_edit" style='display : none;'><%= text_field_tag "transit_bill_no_edit[]",bill.transit_bill_no %></td>
@@ -55,14 +58,12 @@
   <td class="agent_carrying_fee" style='display : none;'><%= bill.agent_carrying_fee %></td>
   <td class="th_amount" style='display : none;'><%= bill.th_amount %></td>
 
-  <td class="from_short_carrying_fee text-center" style='display : none;'><%= bill.from_short_carrying_fee %></td>
-  <td class="from_short_carrying_fee_th" style='display : none;'><%= bill.from_short_carrying_fee_th %></td>
-  <td class="k_from_short_carrying_fee" style='display : none;'><%= bill.k_from_short_carrying_fee %></td>
-  <td class="to_short_carrying_fee text-center" style='display : none;'><%= bill.to_short_carrying_fee %></td>
-  <td class="to_short_carrying_fee_th" style='display : none;'><%= bill.to_short_carrying_fee_th %></td>
-  <td class="k_to_short_carrying_fee" style='display : none;'><%= bill.k_to_short_carrying_fee %></td>
+  <!--手续费-->
+  <td class="k_hand_fee" style='display : none;'><%=bill.k_hand_fee%></td>
+  <td class="act_pay_fee" style='display : none;'><%= bill.act_pay_fee %></td>
 
 
+  <!--其他-->
   <td class="note">
     <div style='width : 50px;height : 1em;overflow : hidden;'>
       <%= bill.note %>

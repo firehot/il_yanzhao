@@ -281,9 +281,13 @@ zh-CN:
         note: "备注"  #g
         org: "机构"  #g
         carrying_bills: "提货明细"  #g
-        sum_carrying_fee: "应收运费"
+        sum_carrying_fee_th: "运费[提]"
+        sum_insured_fee_th: "保险费[提]"
+        sum_from_short_carrying_fee_th: "发货短途[提]"
+        sum_to_short_carrying_fee_th: "到货短途[提]"
+        sum_carrying_fee_th_total: "运费合计[提]"
         sum_goods_fee: "应收货款"
-        sum_th_fee: "提货应收金额"
+        sum_th_amount: "提货应收"
 
       org:
         name: "机构名称"  #g
@@ -368,7 +372,11 @@ zh-CN:
       settlement:
         title: "标题"  #g
         sum_goods_fee: "代收货款合计"  #g
-        sum_carrying_fee: "运费合计"  #g
+        sum_carrying_fee_th: "运费[提]"  #g
+        sum_insured_fee_th: "保险费[提]"  #g
+        sum_from_short_carrying_fee_th: "发货短途[提]"  #g
+        sum_to_short_carrying_fee_th: "到货短途[提]"  #g
+        sum_th_amount: "提货应收"  #g
         note: "备注"  #g
         state: "状态"  #g
         bill_date: "日期"  #g
@@ -569,8 +577,14 @@ zh-CN:
         state: "状态"  #g
         note: "备注"  #g
         sum_goods_fee: "代收货款合计"  #g
-        sum_carrying_fee: "运费合计"  #g
-        sum_fee: "合计"
+        sum_carrying_fee_th: "运费[提]"  #g
+        sum_insured_fee_th: "保险费[提]"  #g
+        sum_from_short_carrying_fee_th: "发货短途[提]"  #g
+        sum_to_short_carrying_fee_th: "到货短途[提]"  #g
+        sum_carrying_fee_th: "运费[提]"  #g
+        sum_transit_hand_fee: "中转手续费"
+        sum_transit_carrying_fee: "中转运费"
+        sum_th_amount: "提货应收"
         carrying_bills: "运单明细"  #g
         from_org_id: "付款机构"
         from_org: "付款机构"  #g

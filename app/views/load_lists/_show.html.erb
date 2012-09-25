@@ -1,4 +1,4 @@
-<table class='table' data-detailUrl='<%=load_list_carrying_bills_path(resource,:show_fields => ".from_short_carrying_fee,.to_short_carrying_fee")%>'>
+<table class='table' data-detailUrl='<%=load_list_carrying_bills_path(resource,show_or_hidden_fields)%>'>
   <tr>
     <td>日期:</td>
     <td><%=resource.bill_date.strftime('%Y-%m-%d')%></td>

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 #coding: utf-8
 class SettlementsController < BaseController
-  table :org,:bill_date,:sum_goods_fee,:sum_carrying_fee,:user,:human_state_name,:note
+  table :org,:bill_date,:sum_carrying_fee_th,:sum_insured_fee_th,:sum_from_short_carrying_fee_th,:sum_to_short_carrying_fee_th,:sum_goods_fee,:sum_th_amount,:user,:human_state_name,:note
   include BillOperate
   def new
     @settlement = Settlement.new
@@ -30,5 +30,3 @@ class SettlementsController < BaseController
     render  :show
   end
 end
-
-

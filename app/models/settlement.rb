@@ -51,7 +51,7 @@ class Settlement < ActiveRecord::Base
   end
 
   def sum_carrying_fee_th_total
-    sum_carrying_fee_th + sum_insured_fee_th
+    sum_carrying_fee_th + sum_insured_fee_th + sum_from_short_carrying_fee_th + sum_to_short_carrying_fee_th
   end
   def sum_transit_hand_fee
     self.carrying_bills.sum(:transit_hand_fee)
@@ -62,8 +62,15 @@ class Settlement < ActiveRecord::Base
   def sum_goods_fee
     self.carrying_bills.sum(:goods_fee)
   end
+  def sum_from_short_carrying_fee_th
+    self.carrying_bills.sum(:from_short_carrying_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
+  end
+  def sum_to_short_carrying_fee_th
+    self.carrying_bills.sum(:to_short_carrying_fee,:conditions => {:pay_type => CarryingBill::PAY_TYPE_TH})
+  end
 
-  def sum_fee
+
+  def sum_th_amount
     self.sum_goods_fee + self.sum_carrying_fee_th_total - self.sum_transit_hand_fee - self.sum_transit_carrying_fee
   end
 

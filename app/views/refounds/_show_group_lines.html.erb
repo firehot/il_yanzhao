@@ -10,16 +10,24 @@
       <th class='customer'>发货人~收货人</th>
       <th class='bill_date' style='display : none;'>开票日期</th>
       <th class='pay_type'>付款方式</th>
-      <th class="insured_fee_th">保价费</th>
-      <th class="carrying_fee_th">提付运费</th>
+      <th class="carrying_fee_th" style='display : none;'>运费[提]</th>
+      <th class="insured_fee_th" style='display : none;'>保价费[提]</th>
+      <th class="from_short_carrying_fee_th" style='display : none;'>发货短途[提]</th>
+      <th class="to_short_carrying_fee_th" style='display : none;'>到货短途[提]</th>
+      <th class="carrying_fee_th_total">
+        <%=link_to_function '运费合计[提]','',:class => "tipsy btn_carrying_fee_th_total_toogle",:title => "点击切换显示组成明细费用" %>
+      </th>
+      <th class="transit_carrying_fee">中转运费</th>
+      <th class="transit_hand_fee">中转手续费</th>
       <th class="goods_fee">代收货款</th>
+      <th class="th_amount">提货应收</th>
       <th class='note'>备注</th>
     </tr>
   </thead>
   <tbody>
     <%group_collection = resource.carrying_bills.sort_by {|bill| bill.from_org.simp_name}.group_by(&:from_org)%>
     <% group_collection.each do |from_org,bills| %>
-      <tr><td colspan='12'><%= from_org.name %></td></tr>
+      <tr><td colspan='20'><%= from_org.name %></td></tr>
       <%bills.sort_by {|bill| bill.sort_seq}.each_with_index do |bill,index|%>
         <tr class="<%= cycle("odd", "even") %>" data-dblclick='true'>
           <td style='display : none;'>
@@ -47,20 +55,25 @@
           <td class='pay_type'>
             <%=pay_type_des(bill.pay_type) %>
           </td>
-          <td class="insured_fee_th"><%=bill.insured_fee_th%></td>
-          <td class="carrying_fee_th">
+          <td class="carrying_fee_th" style='display : none;'>
             <%=bill.carrying_fee_th %>
           </td>
-          <td class="goods_fee">
-            <%=bill.goods_fee %>
-          </td>
+
+          <td class="insured_fee_th" style='display : none;'><%=bill.insured_fee_th%></td>
+          <td class="from_short_carrying_fee_th" style='display : none;'><%=bill.from_short_carrying_fee_th%></td>
+          <td class="to_short_carrying_fee_th" style='display : none;'><%=bill.to_short_carrying_fee_th%></td>
+          <td class="carrying_fee_th_total"><%=bill.carrying_fee_th_total%></td>
+          <td class="transit_carrying_fee"><%=bill.transit_carrying_fee %></td>
+          <td class="transit_hand_fee"><%=bill.transit_hand_fee %></td>
+          <td class="goods_fee"><%=bill.goods_fee %></td>
+          <td class="th_amount"><%=bill.th_amount %></td>
           <td class="note">
             <div style='width : 50px;height : 30px;overflow : hidden;'>
               <%= bill.note %>
             </div>
           </td>
         </tr>
-      <% end -%>
+      <% end %>
       <tr>
         <td style='display : none;'>&nbsp;</td>
         <td class='order_no'>&nbsp;</td>
@@ -70,12 +83,18 @@
         <td class='customer'>小计</td>
         <td class='bill_date' style='display : none;'>&nbsp;</td>
         <td class='pay_type'><%=bills.size%>票</td>
-        <td class="insured_fee_th"><%=bills.sum(&:insured_fee_th)%></td>
-        <td class="carrying_fee_th"><%=bills.sum(&:carrying_fee_th)%></td>
+        <td class="carrying_fee_th" style='display : none;'><%=bills.sum(&:carrying_fee_th)%></td>
+        <td class="insured_fee_th" style='display : none;'><%=bills.sum(&:insured_fee_th)%></td>
+        <td class="from_short_carrying_fee_th" style='display : none;'><%=bills.sum(&:from_short_carrying_fee_th)%></td>
+        <td class="to_short_carrying_fee_th" style='display : none;'><%=bills.sum(&:to_short_carrying_fee_th)%></td>
+        <td class="carrying_fee_th_total"><%=bills.sum(&:carrying_fee_th_total)%></td>
+        <td class="transit_carrying_fee"><%=bills.sum(&:transit_carrying_fee)%></td>
+        <td class="transit_hand_fee"><%=bills.sum(&:transit_hand_fee)%></td>
         <td class="goods_fee"><%=bills.sum(&:goods_fee)%></td>
+        <td class="th_amount"><%=bills.sum(&:th_amount)%></td>
         <td class='note'>&nbsp;</td>
       </tr>
-    <% end -%>
+    <% end %>
   </tbody>
   <tfoot>
     <tr>
@@ -87,9 +106,15 @@
       <td class='customer'>总计</td>
       <td class='bill_date' style='display : none;'>&nbsp;</td>
       <td class='pay_type'><%=resource.carrying_bills.count %>票</td>
-      <td class="insured_fee_th"><%=resource.sum_insured_fee_th%></td>
-      <td class="carrying_fee_th"><%=resource.sum_carrying_fee_th%></td>
+      <td class="carrying_fee_th" style='display : none;'><%=resource.sum_carrying_fee_th%></td>
+      <td class="insured_fee_th" style='display : none;'><%=resource.sum_insured_fee_th%></td>
+      <td class="from_short_carrying_fee_th" style='display : none;'><%=resource.sum_from_short_carrying_fee_th%></td>
+      <td class="to_short_carrying_fee_th" style='display : none;'><%=resource.sum_to_short_carrying_fee_th%></td>
+      <td class="carrying_fee_th_total"><%=resource.sum_carrying_fee_th_total %></td>
+      <td class="transit_carrying_fee"><%=resource.sum_transit_carrying_fee%></td>
+      <td class="transit_hand_fee"><%=resource.sum_transit_hand_fee %></td>
       <td class="goods_fee"><%=resource.sum_goods_fee%></td>
+      <td class="th_amount"><%=resource.sum_th_amount%></td>
       <td class='note'>&nbsp;</td>
     </tr>
   </tfoot>

@@ -9,7 +9,7 @@ jQuery(function($) {
 		//option 初始化的一些选项
 		initialize: function(el, options) {
 
-			if ($.bill_selector.initialized);
+			if (!!$.bill_selector.initialized);
 			else {
 				$.bill_selector.reset();
 				$.bill_selector.el = el;
@@ -59,6 +59,7 @@ jQuery(function($) {
 
 		},
 		//合计的对象的键值对象
+        //该键值和data-bill属性对象的attr相对应,比如sum_carrying_fee => bill.carrying_fee
 		sum_info_key_array: ["sum_count", "sum_carrying_fee", "sum_carrying_fee_total", "sum_carrying_fee_th", "sum_k_carrying_fee", "sum_carrying_fee_th_total", "sum_k_carrying_fee_total", "sum_k_hand_fee", "sum_act_pay_fee", "sum_goods_fee", "sum_transit_carrying_fee", "sum_transit_hand_fee", "sum_agent_carrying_fee", "sum_th_amount", "sum_insured_fee", "sum_insured_fee_th", "sum_k_insured_fee", "sum_from_short_carrying_fee", "sum_from_short_carrying_fee_th", "sum_k_from_short_carrying_fee", "sum_to_short_carrying_fee", "sum_to_short_carrying_fee_th", "sum_k_to_short_carrying_fee"],
 		//选中或不选中全部
 		set_all: function(event, is_select) {
