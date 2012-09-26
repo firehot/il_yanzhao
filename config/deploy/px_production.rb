@@ -44,6 +44,6 @@ task :update_database_yml do
     'il_yanzhao_r32_production' => 'il_yanzhao_r32_production'
   }
   replacements.each do |pattern, sub|
-    run "sed -i '' 's@#{pattern}@#{sub}@' #{release_path}/config/database.yml"
+    run "sed -i 's@#{pattern}@#{sub}@' #{release_path}/config/database.yml"
   end
 end
