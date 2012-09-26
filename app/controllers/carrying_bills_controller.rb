@@ -106,6 +106,15 @@ class CarryingBillsController < BaseController
     flash[:success] = "运单已被作废."
     redirect_to bill
   end
+  #运单注销
+  #PUT /carrying_bills/:id/cancel
+  def cancel
+    bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
+    bill.cancel
+    flash[:success] = "运单已被注销."
+    redirect_to bill
+  end
+
   #日/月营业额统计
   def rpt_turnover
     @search = resource_class.where(:from_org_id => current_user.current_ability_org_ids).turnover.search(params[:search])

@@ -30,7 +30,7 @@ module CarryingBillExtend
         scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:short_fee_info_lines,:user,:notice_lines]
       end
     end
-    #instance methods
+    #below define instance methods
     #class methods
     module ClassMethods ; end
   end

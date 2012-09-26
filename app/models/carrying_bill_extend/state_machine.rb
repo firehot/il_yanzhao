@@ -2,32 +2,6 @@
 # 定义运单state_machine相关方法
 module CarryingBillExtend
   module StateMachine
-    #根据运单不同情况设置completed标志
-    #现金付/回执付/无代收货款,自动置结束标记
-    def set_completed_settlemented
-      self.update_attributes(:completed => true) if [PayType::PAY_TYPE_RETURN,PayType::PAY_TYPE_CASH].include?(self.pay_type) and self.goods_fee == 0
-    end
-    #现金提款
-    def set_completed_posted
-      self.update_attributes(:completed => true) if self.goods_fee_cash?
-    end
-    #转账提款
-    def set_completed_paid
-      self.update_attributes(:completed => true) unless self.goods_fee_cash?
-    end
-    #退货后,原始单据直接标志为完成
-    def set_completed_returned
-      self.update_attributes(:completed => true)
-    end
-    #提货付运费且货款为0,收款清单确认后,自动完成
-    def set_completed_refunded_confirmed
-      self.update_attributes(:completed => true) if self.pay_type.eql? PayType::PAY_TYPE_TH and self.goods_fee == 0
-    end
-    #运单作废后,设标志为完成
-    def set_completed_invalid
-      self.update_attributes(:completed => true)
-    end
-
     def self.included(base)
       base.class_eval do
         #定义state_machine
@@ -61,23 +35,21 @@ module CarryingBillExtend
 
           #正常运单处理流程(包括机打运单/手工运单/退货单据)
           event :standard_process do
-            transition(:billed => :loaded,   #装车
-                       :loaded => :shipped,#发货
-                       :shipped => :reached,#到货
-                       :deliveried => :settlemented,#日结清单
-                       :settlemented => :refunded,#返款
-                       :refunded => :refunded_confirmed,#返款确认
-                       :refunded_confirmed => :payment_listed,#支付清单
-                       :payment_listed => :paid,#货款已支付
-                       :paid => :posted) #过帐结束
+            transition :billed => :loaded,   #装车
+              :loaded => :shipped,#发货
+              :shipped => :reached,#到货
+              :deliveried => :settlemented,#日结清单
+              :settlemented => :refunded,#返款
+              :refunded => :refunded_confirmed,#返款确认
+              :refunded_confirmed => :payment_listed,#支付清单
+              :payment_listed => :paid,#货款已支付
+              :paid => :posted #过帐结束
 
             #普通运单到货后有分发操作,中转运单不存在分发操作
             transition :reached => :distributed,:distributed => :deliveried,:if => lambda {|bill| bill.transit_org_id.blank?}
 
             #中转运单处理流程
             transition :reached => :transited,:transited => :deliveried,:if => lambda {|bill| bill.transit_org_id.present?}
-
-            #TODO 现金付运费,不存在代收货款的运单,提货后处理流程如何?
           end
 
           #退货单处理流程
@@ -102,6 +74,13 @@ module CarryingBillExtend
           event :invalidate do
             transition :billed => :invalided
           end
+
+          #运单注销处理
+          after_transition :on => :cancel,[:reached,:distributed] => :canceled,:do => :set_completed_cancel
+          event :cancel do
+            transition [:reached,:distributed] => :canceled
+          end
+
 
           #根据运单状态进行验证操作
           state :loaded,:shipped,:reached do
@@ -154,5 +133,35 @@ module CarryingBillExtend
           end
           end
           end
+          #根据运单不同情况设置completed标志
+          #现金付/回执付/无代收货款,自动置结束标记
+          def set_completed_settlemented
+            self.update_attributes(:completed => true) if [PayType::PAY_TYPE_RETURN,PayType::PAY_TYPE_CASH].include?(self.pay_type) and self.goods_fee == 0
+          end
+          #现金提款
+          def set_completed_posted
+            self.update_attributes(:completed => true) if self.goods_fee_cash?
+          end
+          #转账提款
+          def set_completed_paid
+            self.update_attributes(:completed => true) unless self.goods_fee_cash?
+          end
+          #退货后,原始单据直接标志为完成
+          def set_completed_returned
+            self.update_attributes(:completed => true)
+          end
+          #提货付运费且货款为0,收款清单确认后,自动完成
+          def set_completed_refunded_confirmed
+            self.update_attributes(:completed => true) if self.pay_type.eql? PayType::PAY_TYPE_TH and self.goods_fee == 0
+          end
+          #运单作废后,设标志为完成
+          def set_completed_invalid
+            self.update_attributes(:completed => true)
+          end
+          #运单注销后,设标志为完成
+          def set_completed_cancel
+            self.update_attributes(:completed => true)
+          end
+
           end
           end
