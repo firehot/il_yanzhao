@@ -8,4 +8,3 @@ class TransitBill < CarryingBill
   #验证中转运费和中转手续费不可大于运费
   validate :check_transit_fee
 end
-

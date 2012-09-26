@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 set :stages, %w(production px_production local_server)
 set :default_stage, "local_server"
-after "deploy:create_symlink", :update_database_yml
 require 'capistrano/ext/multistage'
 namespace :rvm do
   task :trust_rvmrc do
