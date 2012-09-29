@@ -82,22 +82,12 @@
         <td><%= f.text_field :to_customer_mobile,:id => 'to_customer_mobile',:size => 20  %></td>
       </tr>
       <tr>
-        <td>保价金额</td>
-        <td><%= f.text_field :insured_amount,:id => "insured_amount",:size => 15  %></td>
-        <td>保价比例</td>
-        <td>
-          <%= f.text_field :insured_rate_disp,:id => "insured_rate",:readonly => true,:size => 15  %>‰
-          <%= f.hidden_field :insured_rate %>
-        </td>
         <td>保价费</td>
         <td><%= f.text_field :insured_fee,:id => "insured_fee",:readonly => true,:size => 15 %></td>
-      </tr>
-      <tr>
         <td>发货地短途运费</td>
         <td><%= f.text_field :from_short_carrying_fee,:id => "from_short_carrying_fee",:size => 15  %></td>
         <td>到货地短途运费</td>
         <td><%= f.text_field :to_short_carrying_fee,:id => "to_short_carrying_fee",:size => 15  %></td>
-        <td colspan='2'></td>
       </tr>
       <tr>
         <td>运费总计</td>

@@ -41,4 +41,3 @@ class Org < ActiveRecord::Base
     self.py = py.to_pinyin_abbr(self.name)
   end
 end
-

@@ -69,8 +69,8 @@
     <td class='col_43mm'><span class='label'>&yen;:</span><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.th_amount %></span></td>
   </tr>
   <tr>
-    <td class='col_13mm'><span class='label'>保值</span></td>
-    <td colspan='6' class='col_82mm'><span class='label'>保价金额:</span> <%=show.insured_amount%>&times;3‰=<%=show.insured_fee%></td>
+    <td class='col_13mm'><span class='label'>保险费</span></td>
+    <td colspan='6' class='col_82mm'><%=convertNumToChinese show.insured_fee%></td>
     <td class='col_43mm'><span class='label'>&yen;:</span><span style='font-size : 1.4em;font-weight : bold;color : blue;'><%=show.insured_fee %></span></td>
   </tr>
   <tr>

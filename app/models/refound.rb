@@ -7,7 +7,6 @@ class Refound < ActiveRecord::Base
   #FIXME rails3.1 BUG #6978 如果对象是new_record,在执行association finder和where/sum等函数时,会产生错误的sql语句
   has_many :carrying_bills,:order => "goods_no ASC",:conditions => "refound_id IS NOT NULL"
 
-
   belongs_to :from_org,:class_name => "Org"
   belongs_to :to_org,:class_name => "Org"
   has_one :remittance
@@ -38,7 +37,7 @@ class Refound < ActiveRecord::Base
   end
 
   def sum_carrying_fee_th_total
-    sum_carrying_fee_th + sum_insured_fee_th
+    sum_carrying_fee_th + sum_insured_fee_th + sum_from_short_carrying_fee_th + sum_to_short_carrying_fee_th
   end
   def sum_transit_hand_fee
     self.carrying_bills.sum(:transit_hand_fee)
@@ -49,8 +48,14 @@ class Refound < ActiveRecord::Base
   def sum_goods_fee
     self.carrying_bills.sum(:goods_fee)
   end
+  def sum_from_short_carrying_fee_th
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:from_short_carrying_fee)
+  end
+  def sum_to_short_carrying_fee_th
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_TH).sum(:to_short_carrying_fee)
+  end
 
-  def sum_fee
+  def sum_th_amount
     self.sum_goods_fee + self.sum_carrying_fee_th_total - self.sum_transit_hand_fee - self.sum_transit_carrying_fee
   end
   #导出到csv

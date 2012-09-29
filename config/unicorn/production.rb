@@ -1,20 +1,5 @@
 APP_ROOT = File.expand_path("..",File.dirname(File.dirname(__FILE__)))
 
-=begin
-if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
-  begin
-    rvm_path = File.dirname(File.dirname(ENV['MY_RUBY_HOME']))
-    rvm_lib_path = File.join(rvm_path, 'lib')
-    require 'rvm'
-    RVM.use_from_path! APP_ROOT
-  rescue LoadError
-    raise "RVM ruby lib is currently unavailable."
-  end
-end
-
-ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
-require 'bundler/setup'
-=end
 #燕赵目前服务器使用ibm 3650 m2 使用8核CPU E5530 2.40GHz
 worker_processes 16
 working_directory APP_ROOT

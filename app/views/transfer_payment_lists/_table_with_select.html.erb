@@ -5,10 +5,13 @@
       <th>清单日期</th>
       <th>银行</th>
       <th>结算员</th>
-      <th>应支付货款</th>
-      <th>扣运费</th>
-      <th>扣手续费</th>
-      <th>应付合计</th>
+      <th>应付货款</th>
+      <th>运费[扣]</th>
+      <th>保险费[扣]</th>
+      <th>发货短途[扣]</th>
+      <th>到货短途[扣]</th>
+      <th>手续费[扣]</th>
+      <th>实付货款</th>
   </tr>
   <% collection.each_with_index do |resource,index| %>
     <tr class="<%= cycle 'odd', 'even' %>">
@@ -19,6 +22,9 @@
       <td><%= resource.user %></td>
       <td><%= resource.sum_goods_fee %></td>
       <td><%= resource.sum_k_carrying_fee %></td>
+      <td><%= resource.sum_k_insured_fee %></td>
+      <td><%= resource.sum_k_from_short_carrying_fee %></td>
+      <td><%= resource.sum_k_to_short_carrying_fee %></td>
       <td><%= resource.sum_k_hand_fee %></td>
       <td><%= resource.sum_act_pay_fee %></td>
     </tr>

@@ -54,5 +54,14 @@ describe CarryingBillsController do
       response.should be_success
     end
   end
+  #测试运单注销cancel功能
+  describe "PUT carrying_bill/:id/cancel" do
+    it "shoud cancel current bill" do
+      @carrying_bill = Factory(:computer_bill_reached)
+      put :cancel,:id => @carrying_bill
+      assigns[:carrying_bill].should be_canceled
+    end
+
+  end
 end
 

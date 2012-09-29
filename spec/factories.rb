@@ -211,8 +211,10 @@ Factory.define :hand_bill do |bill|
   bill.bill_date Date.today
   bill.from_customer_name "发货人"
   bill.from_customer_phone "13676997527"
+  bill.from_customer_mobile "13676997527"
   bill.to_customer_name "收货人"
   bill.to_customer_phone "15138665197"
+  bill.to_customer_mobile "15138665197"
   bill.association :from_org,:factory => :zz
   bill.association :to_org,:factory => :sjz
   bill.insured_amount 1000
@@ -232,8 +234,10 @@ Factory.define :transit_bill do |bill|
   bill.bill_date Date.today
   bill.from_customer_name "发货人"
   bill.from_customer_phone "13676997527"
+  bill.from_customer_mobile "13676997527"
   bill.to_customer_name "收货人"
   bill.to_customer_phone "15138665197"
+  bill.to_customer_mobile "15138665197"
   bill.insured_amount 1000
   bill.insured_rate 0.001
   bill.carrying_fee 200
@@ -272,8 +276,10 @@ Factory.define :hand_transit_bill do |bill|
   bill.bill_date Date.today
   bill.from_customer_name "发货人"
   bill.from_customer_phone "13676997527"
+  bill.from_customer_mobile "13676997527"
   bill.to_customer_name "收货人"
   bill.to_customer_phone "15138665197"
+  bill.to_customer_mobile "15138665197"
   bill.insured_amount 1000
   bill.insured_rate 0.001
   bill.carrying_fee 200

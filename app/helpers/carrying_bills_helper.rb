@@ -67,5 +67,9 @@ module CarryingBillsHelper
   def bill_types_for_select
     [["机打运单","ComputerBill"],["机打运单-自动计算","AutoCalculateComputerBill"],["手工运单","HandBill"],["中转运单","TransitBill"],["手工中转运单","HandTransitBill"],["退货单","ReturnBill"]]
   end
+  #运单导出为json包含的methods数组
+  def bill_to_json_methods
+    {:methods => [:carrying_fee_th,:k_carrying_fee,:carrying_fee_total,:carrying_fee_th_total,:k_carrying_fee_total,:agent_carrying_fee,:act_pay_fee,:insured_fee,:insured_fee_th,:k_insured_fee,:from_short_carrying_fee,:from_short_carrying_fee_th,:k_from_short_carrying_fee,:to_short_carrying_fee,:to_short_carrying_fee_th,:k_to_short_carrying_fee,:th_amount,:send_state,:from_short_fee_saved?,:to_short_fee_saved?,:stranded_days]}
+  end
 end
 

@@ -6,6 +6,7 @@ IlYanzhao::Application.routes.draw do
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
     put :print_counter,:on => :member
+    put :cancel,:on => :member
   end
 
   resources :goods_cat_fee_configs do
@@ -222,12 +223,14 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :cancel,:on => :member
   end
 
   resources :transit_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :cancel,:on => :member
     put :print_counter,:on => :member
   end
 
@@ -235,6 +238,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :cancel,:on => :member
   end
 
   resources :return_bills do
@@ -242,6 +246,7 @@ IlYanzhao::Application.routes.draw do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :cancel,:on => :member
     put :print_counter,:on => :member
   end
 
@@ -266,12 +271,14 @@ IlYanzhao::Application.routes.draw do
     get :customer_code_search,:on => :collection
     put :reset,:on => :member
     put :invalidate,:on => :member
+    put :cancel,:on => :member
   end
 
   resources :computer_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
     put :invalidate,:on => :member
+    put :cancel,:on => :member
     put :print_counter,:on => :member
   end
 

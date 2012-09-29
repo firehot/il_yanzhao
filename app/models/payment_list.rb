@@ -34,9 +34,22 @@ class PaymentList < ActiveRecord::Base
   def sum_k_carrying_fee
     self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:carrying_fee)
   end
+  #扣保险费
+  def sum_k_insured_fee
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:insured_fee)
+  end
+  #扣发货短途
+  def sum_k_from_short_carrying_fee
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:from_short_carrying_fee)
+  end
+  #扣到货短途
+  def sum_k_to_short_carrying_fee
+    self.carrying_bills.where(:pay_type => CarryingBill::PAY_TYPE_K_GOODSFEE).sum(:to_short_carrying_fee)
+  end
+
   #应付合计
   def sum_act_pay_fee
-    sum_goods_fee - sum_k_hand_fee - sum_k_carrying_fee
+    sum_goods_fee - sum_k_hand_fee - sum_k_carrying_fee - sum_k_insured_fee - sum_k_from_short_carrying_fee - sum_k_to_short_carrying_fee
   end
   def self.carrying_bill_export_options
     {

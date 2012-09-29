@@ -30,6 +30,7 @@ zh-CN:
            posted: "已结帐"
            returned: "已退货"
            invalided: "已作废"
+           canceled: "已注销"
         from_short_fee_state:
           states:
             draft: "草稿"

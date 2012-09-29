@@ -39,7 +39,7 @@
         <td><%= f.text_field :from_customer_mobile,:id => 'from_customer_mobile',:size => 20  %></td>
         <td>电话</td>
         <td><%= f.text_field :from_customer_phone,:id => 'from_customer_phone',:size => 20  %></td>
-     </tr>
+      </tr>
       <tr>
         <td>收货人</td>
         <td><%= f.text_field :to_customer_name,:id => 'to_customer_name',:size => 20  %></td>
@@ -47,7 +47,7 @@
         <td><%= f.text_field :to_customer_mobile,:id => 'to_customer_mobile',:size => 20  %></td>
         <td>电话</td>
         <td><%= f.text_field :to_customer_phone,:id => 'to_customer_phone',:size => 20  %></td>
-    </tr>
+      </tr>
       <tr>
         <td>运费支付方式</td>
         <td><%= f.select :pay_type,CarryingBill.pay_types,{},:id => :pay_type %></td>
@@ -57,22 +57,19 @@
         <td><%= f.text_field :goods_fee,:id => "goods_fee",:size => 15  %></td>
       </tr>
       <tr>
-        <td>保价金额</td>
-        <td><%= f.text_field :insured_amount,:id => "insured_amount",:size => 15  %></td>
-        <td>保价比例</td>
+        <td>保险费</td>
         <td>
-          <%= f.text_field :insured_rate_disp,:id => "insured_rate",:readonly => true,:size => 15  %>‰
-          <%= f.hidden_field :insured_rate %>
+          <!--分公司不用输入保险费-->
+          <% if current_user.default_org.in_summary? %>
+            <%=f.text_field :insured_fee,:id => "insured_fee",:readonly => true,:size => 15 %>
+          <%else %>
+            <%= f.text_field :insured_fee,:id => "insured_fee",:value => 0,:readonly => true,:size => 15 %>
+          <%end %>
         </td>
-        <td>保价费</td>
-        <td><%= f.text_field :insured_fee,:id => "insured_fee",:readonly => true,:size => 15 %></td>
-      </tr>
-      <tr>
         <td>发货地短途运费</td>
         <td><%= f.text_field :from_short_carrying_fee,:id => "from_short_carrying_fee",:size => 15  %></td>
         <td>到货地短途运费</td>
         <td><%= f.text_field :to_short_carrying_fee,:id => "to_short_carrying_fee",:size => 15  %></td>
-        <td colspan='2'></td>
       </tr>
       <tr>
         <td>运费总计</td>
@@ -88,7 +85,6 @@
         </td>
         <td>包装</td>
         <td><%= f.text_field :package,:size => 15%></td>
-
       </tr>
       <tr>
         <td>数量</td>

@@ -10,7 +10,7 @@
           </p>
           <p>
             <%=text_field_tag "search[bill_no_eq]","",:class => 'search_box_return_bill' %>
-            <%=submit_tag "生成退货单",:class => 'sexybutton sexysimple sexyblue'%>
+            <%=submit_tag "生成退货单",:disable_with => "正在生成退货单...",:class => 'sexybutton sexysimple sexyblue'%>
           </p>
           <ul class='hint'>
             <li>只有确认到货后的票据才能进行退货操作</li>

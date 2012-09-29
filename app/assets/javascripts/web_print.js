@@ -248,11 +248,11 @@ jQuery(function($) {
 					width: '20mm',
 					height: '6mm'
 				},
-				insured_amount: {
-					text: the_bill.insured_amount,
+				insured_fee_chinese: {
+					text: $.num2chinese(the_bill.insured_fee),
 					left: '130mm',
 					top: '51mm',
-					width: '20mm',
+					width: '62mm',
 					height: '7mm'
 				},
 

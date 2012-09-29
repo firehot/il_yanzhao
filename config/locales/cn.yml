@@ -32,7 +32,7 @@ cn:
         to_area: "到货地"
         insured_amount: "保价金额"
         insured_rate: "保价比例(每千元)"
-        insured_fee: "保价费"
+        insured_fee: "保险费"
         carrying_fee: "运费"
         goods_fee: "代收货款"
         from_short_carrying_fee: "发货地短途运费"

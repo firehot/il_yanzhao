@@ -97,7 +97,93 @@ module ApplicationHelper
     end
     ret
   end
+  #各个业务模块中hidden_fields和show_fields的显示
+  #参数1：cp_path  默认值为当前controller的controller_name 可覆盖
+  #返回: {:show_fields => "",:hidden_fields => ""}
+  def show_or_hidden_fields(cp_name_or_key = controller_name)
+    search_key = cp_name_or_key.to_sym
+    default_show_fields = %w[.order_no .bill_no .goods_no .from_to .customer .pay_type .carrying_fee .goods_fee .note]
+    default_hide_fields = %w[.insured_fee .carrying_fee_th .k_carrying_fee .insured_fee_th .k_insured_fee .from_short_carrying_fee .from_short_carrying_fee_th .k_from_short_carrying_fee .to_short_carrying_fee .to_short_carrying_fee_th .k_to_short_carrying_fee .carrying_fee_total .carrying_fee_th_total .k_carrying_fee_total .transit_carrying_fee .transit_hand_fee .agent_carying_fee .th_amount .k_hand_fee .act_pay_fee .transit_company .transit_bill_no .transit_to_phone,.state .from_short_fee_state .to_short_fee_state .send_date .stranded_days .deliver_date .pay_date .phone_notice_state_for_arrive .sms_notice_state_for_arrive]
+    controller_show_or_hide_fields = {
+      :load_lists => {:show_fields => %w[.carrying_fee_total],:hide_fields => []},
+      :arrive_load_lists => {:show_fields => %w[.carrying_fee_total],:hide_fields => []},
+      :distribution_lists => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.carrying_fee_th_total .th_amount]
+      },
+      :deliver_infos => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.carrying_fee_th_total .th_amount]
+      },
+      #货物中转
+      :transit_infos => {
+        :hide_fields => %w[.carrying_fee .note],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_to_phone .transit_bill_no .transit_company .transit_carrying_fee]
+      },
+      #货物中转form
+      :transit_info_form => {
+        :hide_fields => %w[.carrying_fee .note],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_carrying_fee_edit .transit_to_phone_edit .transit_bill_no_edit]
+      },
+      #中转提货
+      :transit_deliver_infos => {
+        :hide_fields => %w[.carrying_fee .note .customer],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_to_phone .transit_bill_no .transit_company .transit_carrying_fee .transit_hand_fee]
+      },
+      :transit_deliver_info_form => {
+        :hide_fields => %w[.carrying_fee .note .customer],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_hand_fee_edit .transit_to_phone .transit_bill_no .transit_company]
+      },
 
+      :settlements => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_carrying_fee .transit_hand_fee]
+      },
+      :refounds => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_carrying_fee .transit_hand_fee]
+      },
+      :receive_refounds => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.carrying_fee_th_total .th_amount .transit_carrying_fee .transit_hand_fee]
+      },
+      :cash_payment_lists => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.k_carrying_fee_total .k_hand_fee,.transit_hand_fee .act_pay_fee]
+      },
+      :transfer_payment_lists => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.k_carrying_fee_total .k_hand_fee,.transit_hand_fee .act_pay_fee]
+      },
+      :cash_pay_infos => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.k_carrying_fee_total .k_hand_fee,.transit_hand_fee .act_pay_fee]
+      },
+      :transfer_pay_infos => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.k_carrying_fee_total .k_hand_fee,.transit_hand_fee .act_pay_fee]
+      },
+      :post_infos => {
+        :hide_fields => %w[.carrying_fee],
+        :show_fields => %w[.k_carrying_fee_total .k_hand_fee .transit_hand_fee .act_pay_fee]
+      }
+    }
 
+    return {} if controller_show_or_hide_fields[search_key].blank?
+
+    show_fields = default_show_fields + controller_show_or_hide_fields[search_key][:show_fields]
+    show_fields.uniq!
+    show_fields -= controller_show_or_hide_fields[search_key][:hide_fields]
+    {
+      :show_fields => show_fields.join(','),
+      :hide_fields => controller_show_or_hide_fields[search_key][:hide_fields].join(",")
+    }
+  end
+  #将show_or_hidden_fields转换为字符串
+  #其形式类似与 "a" : "1","b" : "2" 在设置html element的data属性时使用
+  def show_or_hidden_fields_to_str(c_name = controller_name)
+    ret_arr = show_or_hidden_fields(c_name).map {|k,v| "\"#{k}\" : \"#{v}\""}
+    ret_arr.join(",")
+  end
 end
 

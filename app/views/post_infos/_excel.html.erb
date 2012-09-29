@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td colspan='10' style='text-align : center;font-size : 14px;'>
+    <td colspan='14' style='text-align : center;font-size : 14px;'>
       (<%="#{resource.org.name}|#{resource.bill_date}"%>)客户提款结算清单
     </td>
   </tr>
@@ -11,16 +11,17 @@
     <td style='border : thin solid #000;'><%= resource.org.name %></td>
     <td style='border : thin solid #000;' colspan="5">结算日期:</td>
     <td style='border : thin solid #000;'> <%=resource.bill_date.strftime('%Y-%m-%d')%></td>
+    <td style='border :thin solid #000;' colspan='4'></td>
   </tr>
   <tr>
-    <td style='border : thin solid #000;' colspan="9" class='text-right'>实领金额:</td>
+    <td style='border : thin solid #000;' colspan="13" class='text-right'>实领金额:</td>
     <td style='border : thin solid #000;'><%=resource.amount_fee %></td>
   </tr>
   <tr>
     <td style='border : thin solid #000;'>原货款:</td>
     <td style='border : thin solid #000;'><%=resource.sum_goods_fee %></td>
-    <td style='border : thin solid #000;'>货款扣运费:</td>
-    <td style='border : thin solid #000;'><%=resource.sum_k_carrying_fee%></td>
+    <td style='border : thin solid #000;'>扣运费合计:</td>
+    <td style='border : thin solid #000;'><%=resource.sum_k_carrying_fee + resource.sum_k_insured_fee + resource.sum_k_from_short_carrying_fee + resource.sum_k_to_short_carrying_fee %></td>
     <td style='border : thin solid #000;'>扣手续费:</td>
     <td style='border : thin solid #000;'><%=resource.sum_k_hand_fee %></td>
     <td style='border : thin solid #000;'>中转手续费:</td>
@@ -29,12 +30,12 @@
     <td style='border : thin solid #000;'><%=resource.sum_act_pay_fee %></td>
   </tr>
   <tr>
-    <td style='border : thin solid #000;' colspan="9" class='text-right'>余额:</td>
+    <td style='border : thin solid #000;' colspan="13" class='text-right'>余额:</td>
     <td style='border : thin solid #000;'><%=resource.sum_rest_fee %></td>
   </tr>
   <tr>
     <td style='border : thin solid #000;'>备注</td>
-    <td colspan='9'>
+    <td colspan='13'>
       <%=resource.note %>
     </td>
   </tr>
@@ -47,6 +48,10 @@
       <td style='border : thin solid #000;'>代收货款</td>
       <td style='border : thin solid #000;'>扣运费</td>
       <td style='border : thin solid #000;'>扣手续费</td>
+      <th style='border : thin solid #000;'>扣保险费</th>
+      <th style='border : thin solid #000;'>扣发货短途</th>
+      <th style='border : thin solid #000;'>扣到货短途</th>
+
       <td style='border : thin solid #000;'>扣中转手续费</td>
       <td style='border : thin solid #000;'>实提货款</td>
       <td style='border : thin solid #000;'>运费支付方式</td>
@@ -63,6 +68,10 @@
         <td style='border : thin solid #000;'><%= bill.goods_fee%></td>
         <td style='border : thin solid #000;'><%= bill.k_carrying_fee%></td>
         <td style='border : thin solid #000;'><%= bill.k_hand_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.k_insured_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.k_from_short_carrying_fee%></td>
+        <td style='border : thin solid #000;'><%= bill.k_to_short_carrying_fee%></td>
+
         <td style='border : thin solid #000;'><%= bill.transit_hand_fee%></td>
         <td style='border : thin solid #000;'><%= bill.act_pay_fee%></td>
         <td style='border : thin solid #000;'><%= bill.pay_type_des%></td>
@@ -76,6 +85,10 @@
       <td style='border : thin solid #000;'><%=resource.sum_goods_fee%></td>
       <td style='border : thin solid #000;'><%=resource.sum_k_carrying_fee%></td>
       <td style='border : thin solid #000;'><%=resource.sum_k_hand_fee%></td>
+      <td style='border : thin solid #000;'><%=resource.carrying_bills.to_a.sum(&:k_insured_fee)%></td>
+      <td style='border : thin solid #000;'><%=resource.carrying_bills.to_a.sum(&:k_from_short_carrying_fee)%></td>
+      <td style='border : thin solid #000;'><%=resource.carrying_bills.to_a.sum(&:k_to_short_carrying_fee)%></td>
+
       <td style='border : thin solid #000;'><%=resource.sum_transit_hand_fee%></td>
       <td style='border : thin solid #000;'><%=resource.sum_act_pay_fee%></td>
       <td style='border : thin solid #000;'></td>
