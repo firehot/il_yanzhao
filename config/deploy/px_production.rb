@@ -7,7 +7,7 @@ set :app_env,     "production"
 
 set :application, "px_il_yanzhao_rails32"
 set :repository,  "."
-set :branch, "modify_insured_fee"
+set :branch, "upgrade_to_rails32"
 set :deploy_via, :copy
 set :copy_cache, true
 #
