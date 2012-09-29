@@ -110,6 +110,7 @@ class CarryingBillsController < BaseController
   #PUT /carrying_bills/:id/cancel
   def cancel
     bill = get_resource_ivar || set_resource_ivar(resource_class.find(params[:id]))
+    bill.note += params[:cancel_note] if params[:cancel_note].present?
     bill.cancel
     flash[:success] = "运单已被注销."
     redirect_to bill

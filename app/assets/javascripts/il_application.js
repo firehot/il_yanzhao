@@ -159,11 +159,11 @@ jQuery(function($) {
 			return newchar;
 		},
 
-        //得到当前controller的显示或隐藏字段字符串
-        show_or_hidden_fields_obj : function() {
-            var obj = $('#global_data').data('show_or_hidden_fields');
-            return obj;
-        }(),
+		//得到当前controller的显示或隐藏字段字符串
+		show_or_hidden_fields_obj: function() {
+			var obj = $('#global_data').data('show_or_hidden_fields');
+			return obj;
+		} (),
 
 		//导出数据到excel, for none ie browser
 		export_excel: function() {
@@ -712,7 +712,9 @@ jQuery(function($) {
 	//对票据进行操作时,计算合计值
 	var cal_sum = function() {
 		var sum_info = {};
-        $.each($.bill_selector.sum_info_key_array, function(unused, key) {sum_info[key] = 0;});
+		$.each($.bill_selector.sum_info_key_array, function(unused, key) {
+			sum_info[key] = 0;
+		});
 		$('#bills_table_body tr[data-bill]').each(function() {
 			var the_bill = $(this).data('bill');
 			$.each($.bill_selector.sum_info_key_array, function(unused, key) {
@@ -759,7 +761,7 @@ jQuery(function($) {
 			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill']
 			//以下设定运单列表中的显示及隐藏字段,设定为css选择符
 		};
-        $.extend(params,$.show_or_hidden_fields_obj);
+		$.extend(params, $.show_or_hidden_fields_obj);
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
@@ -826,7 +828,7 @@ jQuery(function($) {
 			"search[goods_fee_or_carrying_fee_gt]": 0,
 			"search[settlement_id_in][]": selected_bill_ids
 		};
-        $.extend(params,$.show_or_hidden_fields_obj);
+		$.extend(params, $.show_or_hidden_fields_obj);
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
@@ -870,8 +872,8 @@ jQuery(function($) {
 			"search[goods_fee_gt]": 0,
 			"search[completed_eq]": 0
 		};
-        //运单列表显示的字段
-        $.extend(params,$.show_or_hidden_fields_obj);
+		//运单列表显示的字段
+		$.extend(params, $.show_or_hidden_fields_obj);
 		if (evt.data.is_cash) {
 			params["search[from_customer_id_is_null"] = "1";
 			params["search[from_org_id_eq]"] = $('#from_org_id').val();
@@ -916,8 +918,8 @@ jQuery(function($) {
 			"search[state_eq]": "payment_listed",
 			"search[payment_list_id_in][]": selected_bill_ids
 		};
-        //运单列表显示的字段
-        $.extend(params,$.show_or_hidden_fields_obj);
+		//运单列表显示的字段
+		$.extend(params, $.show_or_hidden_fields_obj);
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
@@ -948,8 +950,8 @@ jQuery(function($) {
 			"search[type_in][]": ['ComputerBill', 'HandBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill']
 
 		};
-        //运单列表显示的字段
-        $.extend(params,$.show_or_hidden_fields_obj);
+		//运单列表显示的字段
+		$.extend(params, $.show_or_hidden_fields_obj);
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
@@ -1007,8 +1009,8 @@ jQuery(function($) {
 			"search[send_list_line_state_eq]": "sended",
 			"search[to_org_id_eq]": $('#to_org_id').val()
 		};
-        //运单列表显示的字段
-        $.extend(params,$.show_or_hidden_fields_obj);
+		//运单列表显示的字段
+		$.extend(params, $.show_or_hidden_fields_obj);
 		$(this).data('params', params);
 
 	});
@@ -1233,15 +1235,22 @@ jQuery(function($) {
 
 	});
 	//分理处货款收支清单,录入变化时自动计算
-	$('#goods_fee_settlement_list_amount_hand_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_bills,#goods_fee_settlement_list_amount_goods_fee,#goods_fee_settlement_list_amount_fee').change(function() {
+	$('#goods_fee_settlement_list_amount_hand_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_k_carrying_fee,#goods_fee_settlement_list_amount_k_from_short_carrying_fee,#goods_fee_settlement_list_amount_k_to_short_carrying_fee,#goods_fee_settlement_list_amount_k_insured_fee,#goods_fee_settlement_list_amount_bills,#goods_fee_settlement_list_amount_goods_fee,#goods_fee_settlement_list_amount_fee').change(function() {
 
 		var amount_hand_fee_auto = 0;
 		var amount_goods_fee_auto = 0;
 		var amount_k_carrying_fee_auto = 0;
+		var amount_k_insured_fee_auto = 0;
+		var amount_k_from_short_carrying_fee_auto = 0;
+		var amount_k_to_short_carrying_fee_auto = 0;
+
 		var amount_bills_auto = 0;
 		var amount_hand_fee = 0;
 		var amount_goods_fee = 0;
 		var amount_k_carrying_fee = 0;
+		var amount_k_insured_fee = 0;
+		var amount_k_from_short_carrying_fee = 0;
+		var amount_k_to_short_carrying_fee = 0;
 		var amount_bills = 0;
 		var amount_fee = 0;
 		var sum_bills = 0;
@@ -1251,15 +1260,21 @@ jQuery(function($) {
 		amount_hand_fee_auto = parseFloat($('#amount_hand_fee_auto').text());
 		amount_goods_fee_auto = parseFloat($('#amount_goods_fee_auto').text());
 		amount_k_carrying_fee_auto = parseFloat($('#amount_k_carrying_fee_auto').text());
+		amount_k_insured_fee_auto = parseFloat($('#amount_k_insured_fee_auto').text());
+		amount_k_from_short_carrying_fee_auto = parseFloat($('#amount_k_from_short_carrying_fee_auto').text());
+		amount_k_to_short_carrying_fee_auto = parseFloat($('#amount_k_to_short_carrying_fee_auto').text());
 		amount_bills_auto = parseFloat($('#amount_bills_auto').text());
 		amount_hand_fee = parseFloat($('#goods_fee_settlement_list_amount_hand_fee').val());
 		amount_goods_fee = parseFloat($('#goods_fee_settlement_list_amount_goods_fee').val());
 		amount_k_carrying_fee = parseFloat($('#goods_fee_settlement_list_amount_k_carrying_fee').val());
+		amount_k_from_short_carrying_fee = parseFloat($('#goods_fee_settlement_list_amount_k_from_short_carrying_fee').val());
+		amount_k_to_short_carrying_fee = parseFloat($('#goods_fee_settlement_list_amount_k_to_short_carrying_fee').val());
+		amount_k_insured_fee = parseFloat($('#goods_fee_settlement_list_amount_k_insured_fee').val());
 		amount_bills = parseFloat($('#goods_fee_settlement_list_amount_bills').val());
 		amount_fee = parseFloat($('#goods_fee_settlement_list_amount_fee').val());
 
 		sum_bills = amount_bills + amount_bills_auto;
-		sum_income_fee = amount_hand_fee + amount_hand_fee_auto + amount_k_carrying_fee + amount_k_carrying_fee_auto + amount_fee;
+		sum_income_fee = amount_hand_fee + amount_hand_fee_auto + amount_k_carrying_fee + amount_k_carrying_fee_auto + amount_k_insured_fee + amount_k_insured_fee_auto + amount_k_from_short_carrying_fee + amount_k_from_short_carrying_fee_auto +amount_k_to_short_carrying_fee + amount_k_to_short_carrying_fee_auto +  amount_fee;
 		sum_spending_fee = amount_goods_fee + amount_goods_fee_auto;
 		sum_rest_fee = sum_income_fee - sum_spending_fee;
 		$('#sum_bills').html(sum_bills);
@@ -1364,9 +1379,26 @@ jQuery(function($) {
 
 	});
 
-    //处理运费合计点击切换显示明细
-    $('.btn_carrying_fee_total_toogle').livequery('click',function() {$('.insured_fee,.from_short_carrying_fee,.to_short_carrying_fee').toggle();});
-    $('.btn_carrying_fee_th_total_toogle').livequery('click',function() {$('.carrying_fee_th,.insured_fee_th,.from_short_carrying_fee_th,.to_short_carrying_fee_th').toggle();});
-    $('.btn_k_carrying_fee_total_toogle').livequery('click',function() {$('.k_carrying_fee,.k_insured_fee,.k_from_short_carrying_fee,.k_to_short_carrying_fee').toggle();});
+	//处理运费合计点击切换显示明细
+	$('.btn_carrying_fee_total_toogle').livequery('click', function() {
+		$('.insured_fee,.from_short_carrying_fee,.to_short_carrying_fee').toggle();
+	});
+	$('.btn_carrying_fee_th_total_toogle').livequery('click', function() {
+		$('.carrying_fee_th,.insured_fee_th,.from_short_carrying_fee_th,.to_short_carrying_fee_th').toggle();
+	});
+	$('.btn_k_carrying_fee_total_toogle').livequery('click', function() {
+		$('.k_carrying_fee,.k_insured_fee,.k_from_short_carrying_fee,.k_to_short_carrying_fee').toggle();
+	});
+
+	//运单注销,显示修改备注
+	$('.btn_cancel').click(function() {
+		var ret = window.prompt("注销后,运单将不能再使用,请录入备注:")
+		if (!ret) return false;
+        else
+    {
+        origin_href = $('.btn_cancel').attr('href');
+            $(".btn_cancel").attr('href',origin_href + "?cancel_note=" + ret);
+    }
+	});
 });
 

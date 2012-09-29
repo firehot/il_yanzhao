@@ -30,6 +30,19 @@ class GoodsFeeSettlementList < ActiveRecord::Base
   def amount_hand_fee_auto
     self.post_info.try(:sum_k_hand_fee).to_f
   end
+  #扣保险费
+  def amount_k_insured_fee_auto
+    self.post_info.try(:sum_k_insured_fee).to_f
+  end
+  #扣发货短途
+  def amount_k_from_short_carrying_fee_auto
+    self.post_info.try(:sum_k_from_short_carrying_fee).to_f
+  end
+  #扣到货短途
+  def amount_k_to_short_carrying_fee_auto
+    self.post_info.try(:sum_k_to_short_carrying_fee).to_f
+  end
+
   #统计票据数
   def amount_bills_auto
     self.post_info.try(:carrying_bills).try(:size).to_i
@@ -39,9 +52,9 @@ class GoodsFeeSettlementList < ActiveRecord::Base
     self.amount_bills_auto + self.amount_bills.to_i
   end
   #收入总计
-  #收入=手续费+货款扣运费+实领金额
+  #收入=手续费+货款扣运费+ 扣保险费 + 扣发货短途 + 扣到货短途 + 实领金额
   def sum_income_fee
-    self.amount_hand_fee + self.amount_hand_fee_auto  + self.amount_k_carrying_fee_auto + self.amount_k_carrying_fee +  self.amount_fee
+    self.amount_hand_fee + self.amount_hand_fee_auto  + self.amount_k_carrying_fee_auto + self.amount_k_carrying_fee +  self.amount_k_insured_fee_auto + self.amount_k_insured_fee + self.amount_k_from_short_carrying_fee_auto + self.amount_k_from_short_carrying_fee + self.amount_k_to_short_carrying_fee + self.amount_k_to_short_carrying_fee_auto + self.amount_fee
   end
   #支出合计
   def sum_spending_fee

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926091238) do
+ActiveRecord::Schema.define(:version => 20120929052528) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -418,19 +418,22 @@ ActiveRecord::Schema.define(:version => 20120926091238) do
   add_index "goods_exceptions", ["user_id"], :name => "index_goods_exceptions_on_user_id"
 
   create_table "goods_fee_settlement_lists", :force => true do |t|
-    t.date     "bill_date",                                                              :null => false
-    t.integer  "org_id",                                                                 :null => false
+    t.date     "bill_date",                                                                         :null => false
+    t.integer  "org_id",                                                                            :null => false
     t.integer  "user_id"
     t.string   "note"
-    t.integer  "post_info_id",                                                           :null => false
-    t.decimal  "amount_fee",            :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "amount_goods_fee",      :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "amount_hand_fee",       :precision => 15, :scale => 2, :default => 0.0
-    t.decimal  "amount_k_carrying_fee", :precision => 15, :scale => 2, :default => 0.0
-    t.integer  "amount_bills",                                         :default => 0
-    t.string   "state",                                                :default => "DR", :null => false
-    t.datetime "created_at",                                                             :null => false
-    t.datetime "updated_at",                                                             :null => false
+    t.integer  "post_info_id",                                                                      :null => false
+    t.decimal  "amount_fee",                       :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_goods_fee",                 :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_hand_fee",                  :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_k_carrying_fee",            :precision => 15, :scale => 2, :default => 0.0
+    t.integer  "amount_bills",                                                    :default => 0
+    t.string   "state",                                                           :default => "DR", :null => false
+    t.datetime "created_at",                                                                        :null => false
+    t.datetime "updated_at",                                                                        :null => false
+    t.decimal  "amount_k_insured_fee",             :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_k_from_short_carrying_fee", :precision => 15, :scale => 2, :default => 0.0
+    t.decimal  "amount_k_to_short_carrying_fee",   :precision => 15, :scale => 2, :default => 0.0
   end
 
   create_table "goods_nos", :force => true do |t|

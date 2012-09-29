@@ -63,7 +63,7 @@
       <%end%>
       <%if can? :cancel,resource%>
         <li>
-          <%= link_to image_tag("minus-button.png",:alt =>"运单注销"), self.send("cancel_#{resource_class.model_name.underscore}_path",resource),:method => :put,:title => "运单注销",:class => "tipsy btn_invalidate",:confirm => "注销后,该运单将不能再使用,您确定吗？" %>
+          <%= link_to image_tag("minus-button.png",:alt =>"运单注销"), self.send("cancel_#{resource_class.model_name.underscore}_path",resource),:method => :put,:title => "运单注销",:class => "tipsy btn_cancel" %>
         </li>
       <%end%>
 
