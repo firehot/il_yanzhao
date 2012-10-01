@@ -13,6 +13,7 @@ module CarryingBillExtend
         before_save :cal_hand_fee
       end
     end
+    private
     #instance methods
     #保存票据成功后,设置原始费用
     def set_original_fee

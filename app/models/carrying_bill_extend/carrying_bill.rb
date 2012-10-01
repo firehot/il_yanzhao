@@ -258,26 +258,12 @@ module CarryingBillExtend
       self.build_return_bill(return_attr)
     end
 
-    private
-    def set_customer
-      if customer_code.blank?
-        self.from_customer = nil
-      elsif Vip.exists?(:code => customer_code,:name => from_customer_name,:is_active => true)
-        self.from_customer = Vip.where(:is_active => true).find_by_code(customer_code)
-      end
-    end
-    #重置票据
-    def reset_bill
-      self.update_attributes(:load_list_id => nil,:distribution_list_id => nil,:deliver_info_id => nil,:settlement_id => nil,:refound_id => nil,:payment_list_id => nil,:pay_info_id => nil,:post_info_id => nil,:transit_info_id => nil,:completed => false)
-    end
-
     #重写to_s方法
     def to_s
       "#{self.bill_no}/#{self.goods_no}"
     end
 
     module ClassMethods
-
       #导出短信文本
       def export_sms_txt_for_arrive(ids=[])
         #去除固定电话和空号

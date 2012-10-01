@@ -133,6 +133,12 @@ module CarryingBillExtend
           end
           end
           end
+          private
+          #重置票据
+          def reset_bill
+            self.update_attributes(:load_list_id => nil,:distribution_list_id => nil,:deliver_info_id => nil,:settlement_id => nil,:refound_id => nil,:payment_list_id => nil,:pay_info_id => nil,:post_info_id => nil,:transit_info_id => nil,:completed => false)
+          end
+
           #根据运单不同情况设置completed标志
           #现金付/回执付/无代收货款,自动置结束标记
           def set_completed_settlemented
