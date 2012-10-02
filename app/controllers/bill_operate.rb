@@ -49,4 +49,3 @@ module BillOperate
     end
   end
 end
-

@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 #退货单
 class ReturnBill < CarryingBill
   before_validation :generate_goods_no

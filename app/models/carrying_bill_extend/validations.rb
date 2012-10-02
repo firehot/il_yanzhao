@@ -25,8 +25,11 @@ module CarryingBillExtend
         #验证运单号码是否正确
         validates_format_of :goods_no, :with => /(\d{6})(\p{any}{2})(\d{1,10})-(\d{1,10})/
         validates_presence_of :bill_date,:pay_type,:from_customer_name,:to_customer_name,:from_org_id,:goods_info
-        validates_presence_of :from_customer_mobile,:to_customer_mobile,:on => :create
-        validates_length_of :from_customer_mobile,:to_customer_mobile, :is => 11,:on => :create
+
+        #退货单不限制手机号码
+        validates_presence_of :from_customer_mobile,:to_customer_mobile,:on => :create,:unless => Proc.new {|bill| bill.type == 'ReturnBill'}
+        validates_length_of :from_customer_mobile,:to_customer_mobile, :is => 11,:on => :create,:unless => Proc.new {|bill| bill.type == 'ReturnBill'}
+
         validates_numericality_of :insured_fee,:goods_num
         validates_numericality_of :goods_fee,:from_short_carrying_fee,:to_short_carrying_fee,:less_than => 100000
         validates :customer_code,:customer_code => true
