@@ -10,7 +10,7 @@
       <th class='customer'>发货人~收货人</th>
       <th class='pay_typeter'>付款方式</th>
       <th class="carrying_fee_th" style='display : none;'>运费[提]</th>
-      <th class="insured_fee_th" style='display : none;'>保险费[提]</th>
+      <th class="insured_fee_th">保险费[提]</th>
       <th class="from_short_carrying_fee_th" style='display : none;'>发货短途[提]</th>
       <th class="to_short_carrying_fee_th" style='display : none;'>到货短途[提]</th>
       <th class="carrying_fee_th_total">
@@ -54,7 +54,7 @@
         <td class="carrying_fee_th" style='display : none;'>
           <%=bill.carrying_fee_th %>
         </td>
-        <td class="insured_fee_th" style='display : none;'><%=bill.insured_fee_th%></td>
+        <td class="insured_fee_th"><%=bill.insured_fee_th%></td>
         <td class="from_short_carrying_fee_th" style='display : none;'><%=bill.from_short_carrying_fee_th%></td>
         <td class="to_short_carrying_fee_th" style='display : none;'><%=bill.to_short_carrying_fee_th%></td>
         <td class="carrying_fee_th_total"><%= bill.carrying_fee_th_total%></th>
@@ -78,7 +78,7 @@
       <td class='customer'>总计:</td>
       <td class='pay_type'><%=resource.carrying_bills.count%>票</td>
       <td class="carrying_fee_th" style='display : none;'><%=resource.sum_carrying_fee_th%></td>
-      <td class="insured_fee_th" style='display : none;'><%=resource.sum_insured_fee_th%></td>
+      <td class="insured_fee_th"><%=resource.sum_insured_fee_th%></td>
       <td class="from_short_carrying_fee_th" style='display : none;'><%=resource.sum_from_short_carrying_fee_th%></td>
       <td class="to_short_carrying_fee_th" style='display : none;'><%=resource.sum_to_short_carrying_fee_th%></td>
       <td class="carrying_fee_th_total"><%= resource.sum_carrying_fee_th_total %></td>

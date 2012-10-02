@@ -11,7 +11,7 @@
       <th class='bill_date' style='display : none;'>开票日期</th>
       <th class='pay_type'>付款方式</th>
       <th class="carrying_fee_th" style='display : none;'>运费[提]</th>
-      <th class="insured_fee_th" style='display : none;'>保价费[提]</th>
+      <th class="insured_fee_th">保价费[提]</th>
       <th class="from_short_carrying_fee_th" style='display : none;'>发货短途[提]</th>
       <th class="to_short_carrying_fee_th" style='display : none;'>到货短途[提]</th>
       <th class="carrying_fee_th_total">
@@ -59,7 +59,7 @@
             <%=bill.carrying_fee_th %>
           </td>
 
-          <td class="insured_fee_th" style='display : none;'><%=bill.insured_fee_th%></td>
+          <td class="insured_fee_th"><%=bill.insured_fee_th%></td>
           <td class="from_short_carrying_fee_th" style='display : none;'><%=bill.from_short_carrying_fee_th%></td>
           <td class="to_short_carrying_fee_th" style='display : none;'><%=bill.to_short_carrying_fee_th%></td>
           <td class="carrying_fee_th_total"><%=bill.carrying_fee_th_total%></td>
@@ -84,7 +84,7 @@
         <td class='bill_date' style='display : none;'>&nbsp;</td>
         <td class='pay_type'><%=bills.size%>票</td>
         <td class="carrying_fee_th" style='display : none;'><%=bills.sum(&:carrying_fee_th)%></td>
-        <td class="insured_fee_th" style='display : none;'><%=bills.sum(&:insured_fee_th)%></td>
+        <td class="insured_fee_th"><%=bills.sum(&:insured_fee_th)%></td>
         <td class="from_short_carrying_fee_th" style='display : none;'><%=bills.sum(&:from_short_carrying_fee_th)%></td>
         <td class="to_short_carrying_fee_th" style='display : none;'><%=bills.sum(&:to_short_carrying_fee_th)%></td>
         <td class="carrying_fee_th_total"><%=bills.sum(&:carrying_fee_th_total)%></td>
