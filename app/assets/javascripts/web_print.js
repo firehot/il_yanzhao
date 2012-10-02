@@ -506,7 +506,7 @@ jQuery(function($) {
 			top: "2mm",
 			left: "0",
 			width: "210mm",
-			height: "120mm",
+			height: "160mm",
 			content: table_doc.wrap('<div></div>').parent().html()
 		};
 		$.print_html(config);
