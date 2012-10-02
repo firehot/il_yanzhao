@@ -102,7 +102,7 @@ module ApplicationHelper
   #返回: {:show_fields => "",:hidden_fields => ""}
   def show_or_hidden_fields(cp_name_or_key = controller_name)
     search_key = cp_name_or_key.to_sym
-    default_show_fields = %w[.order_no .bill_no .goods_no .from_to .customer .pay_type .carrying_fee .goods_fee .insured_fee .note]
+    default_show_fields = %w[.order_no .bill_no .goods_no .from_to .customer .pay_type .carrying_fee .goods_fee .note]
     default_hide_fields = %w[.insured_fee .carrying_fee_th .k_carrying_fee .insured_fee_th .k_insured_fee .from_short_carrying_fee .from_short_carrying_fee_th .k_from_short_carrying_fee .to_short_carrying_fee .to_short_carrying_fee_th .k_to_short_carrying_fee .carrying_fee_total .carrying_fee_th_total .k_carrying_fee_total .transit_carrying_fee .transit_hand_fee .agent_carying_fee .th_amount .k_hand_fee .act_pay_fee .transit_company .transit_bill_no .transit_to_phone,.state .from_short_fee_state .to_short_fee_state .send_date .stranded_days .deliver_date .pay_date .phone_notice_state_for_arrive .sms_notice_state_for_arrive]
     controller_show_or_hide_fields = {
       :load_lists => {:show_fields => %w[.insured_fee .carrying_fee_total],:hide_fields => []},
