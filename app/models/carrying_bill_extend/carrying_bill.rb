@@ -97,7 +97,7 @@ module CarryingBillExtend
     #Added at 2012-9-23
     #扣运费合计 = 扣运费 + 扣保险费 + 扣到货短途 + 扣发货短途
     def k_carrying_fee_total
-      self.k_carrying_fee + self.k_insured_fee + self.k_from_short_carrying_fee + self.k_to_short_carrying_fee
+      self.k_carrying_fee + self.k_from_short_carrying_fee + self.k_to_short_carrying_fee
     end
 
     #实提货款 原货款 - 扣运费 - 扣手续费
@@ -116,8 +116,7 @@ module CarryingBillExtend
     #NOTE 2012-09-23
     #运费支付方式为提货付时: 提货应收 = 提付运费 - 中转手续费 - 中转运费 - 中转运费 + 货款 + 保险费 + 发货短途 + 收货短途
     def th_amount
-      amount = self.carrying_fee_th - self.transit_hand_fee - self.transit_carrying_fee + self.goods_fee
-      amount += self.insured_fee + self.from_short_carrying_fee + self.to_short_carrying_fee if self.pay_type == PayType::PAY_TYPE_TH
+      amount = self.carrying_fee_th - self.transit_hand_fee - self.transit_carrying_fee + self.goods_fee + self.insured_fee_th + self.from_short_carrying_fee_th + self.to_short_carrying_fee_th
       amount
     end
 
@@ -127,7 +126,7 @@ module CarryingBillExtend
     #NOTE 运费合计 = 运费 + 保险费 + 发货地短途 + 到货地短途
 
     def carrying_fee_total
-      carrying_fee + insured_fee + from_short_carrying_fee + to_short_carrying_fee
+      carrying_fee  + from_short_carrying_fee + to_short_carrying_fee
     end
     #提付运费合计
     #运费支付方式=提货付 提付运费合计 = 运费 + 保价费
@@ -137,7 +136,7 @@ module CarryingBillExtend
     #付款方式为提货付时:提付运费合计 = 运费 + 保险费 + 发货地短途 + 到货地短途
     def carrying_fee_th_total
       ret = 0
-      ret = carrying_fee + insured_fee + from_short_carrying_fee + to_short_carrying_fee if pay_type.eql?(PayType::PAY_TYPE_TH)
+      ret = carrying_fee  + from_short_carrying_fee + to_short_carrying_fee if pay_type.eql?(PayType::PAY_TYPE_TH)
       ret
     end
 
@@ -337,10 +336,10 @@ module CarryingBillExtend
         #将hash key转换为symbol
         sum_info.merge!(Hash[sum_info_tmp.map{ |k, v| [k.to_sym, (v.blank? ? 0 : v)] }])
         #运费合计 运费+保险费+发货短途 + 到货短途
-        sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] + sum_info[:sum_insured_fee] + sum_info[:sum_from_short_carrying_fee] + sum_info[:sum_to_short_carrying_fee]
+        sum_info[:sum_carrying_fee_total] = sum_info[:sum_carrying_fee] +  sum_info[:sum_from_short_carrying_fee] + sum_info[:sum_to_short_carrying_fee]
 
         #从货款扣运费合计
-        sum_info[:sum_k_carrying_fee_total] = sum_info[:sum_k_carrying_fee] + sum_info[:sum_k_insured_fee] + sum_info[:sum_k_from_short_carrying_fee] + sum_info[:sum_k_to_short_carrying_fee]
+        sum_info[:sum_k_carrying_fee_total] = sum_info[:sum_k_carrying_fee] +  sum_info[:sum_k_from_short_carrying_fee] + sum_info[:sum_k_to_short_carrying_fee]
 
         #实提货款合计
         sum_info[:sum_act_pay_fee] = sum_info[:sum_goods_fee] - sum_info[:sum_k_hand_fee] - sum_info[:sum_transit_hand_fee] - sum_info[:sum_k_carrying_fee_total]
@@ -348,9 +347,9 @@ module CarryingBillExtend
         #提付运费大于零时,才有代收运费,否则代收运费为0
         sum_info[:sum_agent_carrying_fee] = sum_info[:sum_carrying_fee_th] - sum_info[:sum_transit_carrying_fee] if sum_info[:sum_carrying_fee_th] > 0
         #提付运费合计
-        sum_info[:sum_carrying_fee_th_total] = sum_info[:sum_carrying_fee_th] + sum_info[:sum_insured_fee_th] + sum_info[:sum_from_short_carrying_fee_th] + sum_info[:sum_to_short_carrying_fee_th]
+        sum_info[:sum_carrying_fee_th_total] = sum_info[:sum_carrying_fee_th] + sum_info[:sum_from_short_carrying_fee_th] + sum_info[:sum_to_short_carrying_fee_th]
         #提货应收合计
-        sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th_total] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
+        sum_info[:sum_th_amount] = sum_info[:sum_carrying_fee_th_total] + sum_info[:sum_insured_fee_th] - sum_info[:sum_transit_carrying_fee] -  sum_info[:sum_transit_hand_fee] + sum_info[:sum_goods_fee]
         sum_info
       end
       protected

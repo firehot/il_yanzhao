@@ -262,12 +262,12 @@ jQuery(function($) {
 		var carrying_fee = parseFloat($('#carrying_fee').val());
 		var from_short_carrying_fee = parseFloat($('#from_short_carrying_fee').val());
 		var to_short_carrying_fee = parseFloat($('#to_short_carrying_fee').val());
-		var sum_carrying_fee = carrying_fee + from_short_carrying_fee + to_short_carrying_fee + insured_fee;
+		var sum_carrying_fee = carrying_fee + from_short_carrying_fee + to_short_carrying_fee ;
 		$('#sum_carrying_fee').text(sum_carrying_fee);
 		//计算总金额合计
 		var goods_fee = parseFloat($('#goods_fee').val());
-		var sum_fee = sum_carrying_fee;
-		$('#sum_fee').text(sum_fee);
+		//var sum_fee = sum_carrying_fee;
+		//$('#sum_fee').text(sum_fee);
 
 	};
 
@@ -1381,13 +1381,13 @@ jQuery(function($) {
 
 	//处理运费合计点击切换显示明细
 	$('.btn_carrying_fee_total_toogle').livequery('click', function() {
-		$('.insured_fee,.from_short_carrying_fee,.to_short_carrying_fee').toggle();
+		$('.from_short_carrying_fee,.to_short_carrying_fee').toggle();
 	});
 	$('.btn_carrying_fee_th_total_toogle').livequery('click', function() {
-		$('.carrying_fee_th,.insured_fee_th,.from_short_carrying_fee_th,.to_short_carrying_fee_th').toggle();
+		$('.carrying_fee_th,.from_short_carrying_fee_th,.to_short_carrying_fee_th').toggle();
 	});
 	$('.btn_k_carrying_fee_total_toogle').livequery('click', function() {
-		$('.k_carrying_fee,.k_insured_fee,.k_from_short_carrying_fee,.k_to_short_carrying_fee').toggle();
+		$('.k_carrying_fee,.k_from_short_carrying_fee,.k_to_short_carrying_fee').toggle();
 	});
 
 	//运单注销,显示修改备注
