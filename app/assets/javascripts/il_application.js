@@ -1125,11 +1125,11 @@ jQuery(function($) {
 
 	//根据参数显示或隐藏字段
 	//render shared/carrying_bills/table时使用
-	$('[data-showFields]').livequery(function() {
+	$('[data-showfields]').livequery(function() {
 		$($(this).data('showfields')).show();
 
 	});
-	$('[data-hideFields]').livequery(function() {
+	$('[data-hidefields]').livequery(function() {
 		$($(this).data('hidefields')).hide();
 
 	});

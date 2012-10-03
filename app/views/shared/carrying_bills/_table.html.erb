@@ -1,5 +1,5 @@
 <% sum_info = search_sum;if params[:without_paginate].present? ;bills = @search.all;else;bills = collection;end;%>
-<table class="table <%=params[:rpt_type]%>" id="bills_table" data-ids='<%=search_ids%>' data-sum = '<%=sum_info.to_json%>' data-showFields='<%=gen_fields_selector(defined?(show_fields) ? show_fields : "")%>' data-hideFields='<%=gen_fields_selector(defined?(hide_fields) ? hide_fields : "",false)%>'>
+<table class="table <%=params[:rpt_type]%>" id="bills_table" data-ids='<%=search_ids%>' data-sum = '<%=sum_info.to_json%>' data-showfields='<%=gen_fields_selector(defined?(show_fields) ? show_fields : "")%>' data-hidefields='<%=gen_fields_selector(defined?(hide_fields) ? hide_fields : "",false)%>'>
   <thead>
     <tr class='select_bill_bar' style='display : none;'>
       <th class="cbx_select_bill" style='display : none;'>&nbsp;</th>
