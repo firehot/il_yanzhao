@@ -51,7 +51,7 @@ class Settlement < ActiveRecord::Base
   end
 
   def sum_carrying_fee_th_total
-    sum_carrying_fee_th + sum_insured_fee_th + sum_from_short_carrying_fee_th + sum_to_short_carrying_fee_th
+    sum_carrying_fee_th  + sum_from_short_carrying_fee_th + sum_to_short_carrying_fee_th
   end
   def sum_transit_hand_fee
     self.carrying_bills.sum(:transit_hand_fee)
@@ -71,7 +71,7 @@ class Settlement < ActiveRecord::Base
 
 
   def sum_th_amount
-    self.sum_goods_fee + self.sum_carrying_fee_th_total - self.sum_transit_hand_fee - self.sum_transit_carrying_fee
+    self.sum_goods_fee + + sum_insured_fee_th + self.sum_carrying_fee_th_total - self.sum_transit_hand_fee - self.sum_transit_carrying_fee
   end
 
   #导出到csv
@@ -94,4 +94,3 @@ class Settlement < ActiveRecord::Base
       ]}
   end
 end
-
