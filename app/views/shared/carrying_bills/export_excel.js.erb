@@ -4,7 +4,7 @@ var table_doc = $(table);
 var show_fields = '<%=params[:show_fields]%>';
 var hide_fields = '<%=params[:hide_fields]%>';
 //如果显示carrying_fee_total,carrying_fee_total_th,k_carrying_fee_total,则显示关联发货短途及到货短途
-var show_relate_fields;
+var show_relate_fields="";
 
 if(show_fields.indexOf('.carrying_fee_total') != -1)
 show_relate_fields +=',.from_short_carrying_fee,.to_short_carrying_fee';
@@ -16,6 +16,7 @@ if(show_fields.indexOf('.k_carrying_fee_total') != -1)
 show_relate_fields +=',.k_from_short_carrying_fee,.k_to_short_carrying_fee';
 
 show_fields += show_relate_fields;
+alert(show_fields);
 table_doc.find(show_fields).removeClass('hide');
 table_doc.find(hide_fields).remove();
 table_doc.find(".hide").remove();
