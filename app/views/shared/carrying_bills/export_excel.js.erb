@@ -19,7 +19,7 @@ show_fields += show_relate_fields;
 table_doc.find(show_fields).removeClass('hide');
 table_doc.find(hide_fields).remove();
 table_doc.find(".hide").remove();
-table_doc.find('th,td').css({border : 'thin solid #000'});
+table_doc.find('tr').css({borderBottom : 'thin solid #000'});
 var set_style = function(work_sheet){
   work_sheet.Columns.ColumnWidth = 7;
   work_sheet.Columns('A:A').ColumnWidth = 5;
