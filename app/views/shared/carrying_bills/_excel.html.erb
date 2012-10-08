@@ -1,5 +1,5 @@
 <%sum_info = search_sum%>
-<table class="table">
+<table  style='border-collapse : collapse;border : thin solid #000;' class="table">
   <thead>
     <tr class='text-center'>
       <th class="first">序号</th>
@@ -59,7 +59,7 @@
   </thead>
   <tbody>
     <% @search.all(:include => [:from_org,:to_org,:transit_org,:user]).each_with_index do |bill,index| %>
-      <tr class="<%= cycle("odd", "even") %>" >
+      <tr>
         <td><%= index + 1 %></td>
         <td class='bill_date'><%=bill.bill_date.strftime('%y-%m-%d')%></td>
         <td class='bill_no'>&nbsp;<%=bill.bill_no%></td>

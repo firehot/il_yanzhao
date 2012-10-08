@@ -6,7 +6,7 @@
     <td>返款单位:</td>
     <td colspan='2'><%=@refound.from_org.name%></td>
     <td>收款单位:</td>
-    <td colspan='2' style='border : thin solid #000;'><%= @refound.to_org.name %></td>
+    <td colspan='2'><%= @refound.to_org.name %></td>
     <td>返款日期:</td>
     <td><%= @refound.bill_date.strftime('%Y-%m-%d') %></td>
     <td>经手人:</td>
@@ -15,7 +15,7 @@
   </tr>
   <tr>
     <td>备注:</td>
-    <td colspan='13' style='border : thin solid #000;'><%=@refound.note %></td>
+    <td colspan='13'><%=@refound.note %></td>
     <td>状态:</td>
     <td><%= @refound.human_state_name %></td>
   </tr>
