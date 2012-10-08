@@ -5,5 +5,5 @@
 
 %>
 var table =$('<%= escape_javascript(render partial) %>').wrap("<div />");
-table.find('td').css({border : "thin solid #000"});
+//table.find('td').css({border : "thin solid #000"});
 $.export_excel(table.html());
