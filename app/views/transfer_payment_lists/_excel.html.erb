@@ -4,72 +4,72 @@
       <th colspan='14' style='text-align : center;font-size : 14px;'>代收货款支付清单(<%=@transfer_payment_list.bank.name%>)</th>
     </tr>
     <tr>
-      <td style='border : thin solid #000;'>支付单位:</td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.org %></td>
-      <td style='border : thin solid #000;'>经手人:</td>
-      <td style='border : thin solid #000;'><%= @transfer_payment_list.user %></td>
-      <td style='border : thin solid #000;'>清单日期:</td>
-      <td colspan='3' style='border : thin solid #000;'><%= @transfer_payment_list.bill_date.strftime('%Y-%m-%d') %></td>
+      <td>支付单位:</td>
+      <td><%=@transfer_payment_list.org %></td>
+      <td>经手人:</td>
+      <td><%= @transfer_payment_list.user %></td>
+      <td>清单日期:</td>
+      <td><%= @transfer_payment_list.bill_date.strftime('%Y-%m-%d') %></td>
       <td colspan='4' style='border : thin solid #000;'>&nbsp;</td>
-      <td style='border : thin solid #000;'>状态:</td>
-      <td style='border : thin solid #000;'><%= @transfer_payment_list.human_state_name %></td>
+      <td>状态:</td>
+      <td><%= @transfer_payment_list.human_state_name %></td>
     </tr>
     <tr>
-      <td style='border : thin solid #000;'>备注:</td>
-      <td colspan='13' style='border : thin solid #000;'><%=@transfer_payment_list.note %></td>
+      <td>备注:</td>
+      <td colspan='13'><%=@transfer_payment_list.note %></td>
     </tr>
     <tr>
-      <th style='border : thin solid #000;'>序号</th>
-      <th style='border : thin solid #000;'>单据编号</th>
-      <th style='border : thin solid #000;'>实付代收货款</th>
-      <th style='border : thin solid #000;'>帐号</th>
-      <th style='border : thin solid #000;'>客户姓名</th>
-      <th style='border : thin solid #000;'>客户编号</th>
-      <th style='border : thin solid #000;'>开户行</th>
-      <th style='border : thin solid #000;'>原代收货款</th>
-      <th style='border : thin solid #000;'>扣运费</th>
-      <th style='border : thin solid #000;'>扣手续费</th>
-      <th style='border : thin solid #000;'>扣保险费</th>
-      <th style='border : thin solid #000;'>扣发货短途</th>
-      <th style='border : thin solid #000;'>扣到货短途</th>
-      <th style='border : thin solid #000;'>货号</th>
+      <th>序号</th>
+      <th>单据编号</th>
+      <th>实付代收货款</th>
+      <th>帐号</th>
+      <th>客户姓名</th>
+      <th>客户编号</th>
+      <th>开户行</th>
+      <th>原代收货款</th>
+      <th>扣运费</th>
+      <th>扣手续费</th>
+      <th>扣保险费</th>
+      <th>扣发货短途</th>
+      <th>扣到货短途</th>
+      <th>货号</th>
     </tr>
   </thead>
   <tbody>
     <%@transfer_payment_list.carrying_bills.sort_by {|bill| bill.payment_list_sort_seq}.each_with_index do |bill,index| %>
-      <tr>
-        <td style='border : thin solid #000;'><%= index + 1 %></td>
-        <td style='border : thin solid #000;'>&nbsp;<%= bill.bill_no %></td>
-        <td style='border : thin solid #000;'>&nbsp;<%= bill.act_pay_fee %></td>
-        <td style='border : thin solid #000;'>&nbsp;<%= bill.from_customer.bank_card %></td>
-        <td style='border : thin solid #000;'>&nbsp;<%= bill.from_customer.name %></td>
-        <td style='border : thin solid #000;'>&nbsp;<%= bill.from_customer.code %></td>
-        <td style='border : thin solid #000;'><%= bill.from_customer.bank.name%></td>
-        <td style='border : thin solid #000;'><%= bill.goods_fee%></td>
-        <td style='border : thin solid #000;'><%= bill.k_carrying_fee%></td>
-        <td style='border : thin solid #000;'><%= bill.k_hand_fee%></td>
-        <td style='border : thin solid #000;'><%= bill.k_insured_fee%></td>
-        <td style='border : thin solid #000;'><%= bill.k_from_short_carrying_fee%></td>
-        <td style='border : thin solid #000;'><%= bill.k_to_short_carrying_fee%></td>
-        <td style='border : thin solid #000;'><%= bill.goods_no %></td>
+      <tr style='border : thin solid #000;'>
+        <td><%= index + 1 %></td>
+        <td>&nbsp;<%= bill.bill_no %></td>
+        <td>&nbsp;<%= bill.act_pay_fee %></td>
+        <td>&nbsp;<%= bill.from_customer.bank_card %></td>
+        <td>&nbsp;<%= bill.from_customer.name %></td>
+        <td>&nbsp;<%= bill.from_customer.code %></td>
+        <td><%= bill.from_customer.bank.name%></td>
+        <td><%= bill.goods_fee%></td>
+        <td><%= bill.k_carrying_fee%></td>
+        <td><%= bill.k_hand_fee%></td>
+        <td><%= bill.k_insured_fee%></td>
+        <td><%= bill.k_from_short_carrying_fee%></td>
+        <td><%= bill.k_to_short_carrying_fee%></td>
+        <td><%= bill.goods_no %></td>
       </tr>
     <% end %>
   </tbody>
   <tfoot>
     <tr style='border-bottom : thin solid #000;'>
-      <td colspan='2' style='text-align : right;border : thin solid #000;'>合计</td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.to_a.sum(&:act_pay_fee)%></td>
-      <td style='text-align : right;border : thin solid #000;'></td>
-      <td style='text-align : right;border : thin solid #000;'></td>
-      <td style='text-align : right;border : thin solid #000;'></td>
-      <td style='text-align : right;border : thin solid #000;'></td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.sum(:goods_fee)%></td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_carrying_fee)%></td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.sum(:k_hand_fee)%></td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_insured_fee)%></td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_from_short_carrying_fee)%></td>
-      <td style='border : thin solid #000;'><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_to_short_carrying_fee)%></td>
-      <td style='border : thin solid #000;'></td>
+      <td colspan='2'>合计</td>
+      <td><%=@transfer_payment_list.carrying_bills.to_a.sum(&:act_pay_fee)%></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%=@transfer_payment_list.carrying_bills.sum(:goods_fee)%></td>
+      <td><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_carrying_fee)%></td>
+      <td><%=@transfer_payment_list.carrying_bills.sum(:k_hand_fee)%></td>
+      <td><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_insured_fee)%></td>
+      <td><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_from_short_carrying_fee)%></td>
+      <td><%=@transfer_payment_list.carrying_bills.to_a.sum(&:k_to_short_carrying_fee)%></td>
+      <td></td>
     </tr>
   </tfoot>
 </table>
