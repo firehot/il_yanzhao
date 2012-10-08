@@ -185,5 +185,9 @@ module ApplicationHelper
     ret_arr = show_or_hidden_fields(c_name).map {|k,v| "\"#{k}\" : \"#{v}\""}
     ret_arr.join(",")
   end
+  #去除render 中的回车换行和空格
+  def minify_html(html_str)
+    html_str.gsub!(/\n/,"")
+  end
 end
 

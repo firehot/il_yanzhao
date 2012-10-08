@@ -10,6 +10,12 @@ class BaseController < InheritedResources::Base
     @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search])
     set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
+  #压缩js response
+  require "jsmin"
+  def minify(content)
+    min = Smurf::Javascript.new(content)
+    min.minified
+  end
   private
   #排序方法
   #见http://asciicasts.com/episodes/228-sortable-table-columns

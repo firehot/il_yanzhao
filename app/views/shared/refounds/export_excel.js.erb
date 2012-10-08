@@ -4,6 +4,7 @@
   partial = "shared/refounds/excel_group" if params[:show_group]
 
 %>
-var table =$('<%= escape_javascript(render partial) %>').wrap("<div />");
+var render_table = '<%= escape_javascript(render partial)%>'.replace(/\n\s*/g,"");
+var table =$(render_table).wrap("<div />");
 //table.find('td').css({border : "thin solid #000"});
 $.export_excel(table.html());

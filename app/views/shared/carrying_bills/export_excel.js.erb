@@ -1,4 +1,8 @@
-var table_doc =$('<%= escape_javascript(render "shared/carrying_bills/excel") %>').wrap("<div />");
+//删除换行和空格
+var render_table = '<%= escape_javascript(render "shared/carrying_bills/excel")%>'.replace(/\n\s*/g,"");
+alert(render_table);
+var table_doc =$(render_table).wrap("<div />");
+
 //处理显示问题
 var show_fields = '<%=params[:show_fields]%>';
 var hide_fields = '<%=params[:hide_fields]%>';
