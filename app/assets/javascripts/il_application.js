@@ -177,7 +177,7 @@ jQuery(function($) {
 					return c[p];
 				})
 			};
-			return function(table_str, func_set_style, set_location) {
+			return function(table_str, func_set_style) {
 				try {
 					if (func_set_style) func_set_style($(table_str));
 				}
@@ -187,21 +187,19 @@ jQuery(function($) {
 					table: table_str
 				};
 				data = uri + base64(format(template, ctx));
-				if ( !! set_location) window.location.href = data;
-				else return data;
+				window.location.href = data;
 			}
 		} (),
 		//导出excel并压缩后下载
 		export_excel_zip: function() {
-			return function(table_str, func_set_style) {
-				var zip_data = $.export_excel(table_str, func_set_style, false);
+			return function(table_str) {
+				var zip_data = table_str;
 				var zip = new JSZip();
-				zip.file("carrying_bill.html", zip_data);
+				zip.file("bills.xls", zip_data);
 				var content = zip.generate();
 				location.href = "data:application/zip;base64," + content;
 			}
-		}(),
-
+		} (),
 		//模拟mouseclick
 		fireClick: function(el) {
 			if (!el) return;

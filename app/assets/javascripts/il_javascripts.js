@@ -15,6 +15,7 @@
 //= require jquery.blockUI
 //= require jquery.hotkeys
 //= require ufd
+//= require jszip/jszip
 //= require enter2tab
 //= require bill_selector
 //= require il_application
