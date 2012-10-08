@@ -85,7 +85,6 @@
       <li>
         <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), collection_path(:search => params[:search],:format => :csv),:title => "导出为EXCEL",:class => "tipsy"  %>
       </li>
-
       -->
       <li>
         <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), self.send("export_excel_#{controller_name.tableize}_path",:search => params[:search],:show_fields => params[:show_fields],:hide_fields => params[:hide_fields],:sort => params[:sort],:direction => params[:direction]),:title => "导出为EXCEL",:class => "btn_export_excel tipsy"  %>

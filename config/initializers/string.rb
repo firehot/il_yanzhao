@@ -26,11 +26,10 @@ class String
   def encode_convert(s, to, from)
     require 'iconv'
     begin
-      converter = Iconv.new(to, from)
+      converter = Iconv.new("#{to}//IGNORE", "#{from}//IGNORE")
       converter.iconv(s)
     rescue
       s
     end
   end
 end
-
