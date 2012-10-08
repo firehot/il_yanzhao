@@ -196,7 +196,7 @@ jQuery(function($) {
 				var zip_data = table_str;
 				var zip = new JSZip();
 				zip.file("bills.xls", zip_data);
-				var content = zip.generate();
+				var content = zip.generate({compression : "DEFLATE"});
 				location.href = "data:application/zip;base64," + content;
 			}
 		} (),
