@@ -69,9 +69,7 @@
         <td class='from_customer'><%=bill.from_customer_name%></td>
         <td class='to_customer'><%=bill.to_customer_name%></td>
         <td class='pay_type'><%=pay_type_des(bill.pay_type) %></td>
-
         <td class="goods_fee"><%=bill.goods_fee %></td>
-
         <td class="carrying_fee">
           <%=bill.carrying_fee %>
         </td>
@@ -81,7 +79,6 @@
         <td class="k_carrying_fee hide">
           <%=bill.k_carrying_fee %>
         </td>
-
         <td class="insured_fee hide">
           <%=bill.insured_fee %>
         </td>
@@ -91,7 +88,6 @@
         <td class="k_insured_fee hide">
           <%=bill.k_insured_fee %>
         </td>
-
         <td class="from_short_carrying_fee hide">
           <%=bill.from_short_carrying_fee %>
         </td>
@@ -101,8 +97,6 @@
         <td class="k_from_short_carrying_fee hide">
           <%=bill.k_from_short_carrying_fee %>
         </td>
-
-
         <td class="to_short_carrying_fee hide">
           <%=bill.to_short_carrying_fee %>
         </td>
@@ -112,8 +106,6 @@
         <td class="k_to_short_carrying_fee hide">
           <%=bill.k_to_short_carrying_fee %>
         </td>
-
-
         <td class="carrying_fee_total hide">
           <%=bill.carrying_fee_total %>
         </td>
@@ -123,22 +115,16 @@
         <td class="k_carrying_fee_total hide">
           <%=bill.k_carrying_fee_total %>
         </td>
-
         <td class="transit_carrying_fee hide"><%=bill.transit_carrying_fee%></td>
         <td class="transit_hand_fee hide"><%=bill.transit_hand_fee%></td>
         <td class="agent_carrying_fee hide"><%=bill.agent_carrying_fee%></td>
-
         <td class="th_amount hide">
           <%=bill.th_amount %>
         </td>
-
         <td class="k_hand_fee hide"><%=bill.k_hand_fee%></td>
         <td class="act_pay_fee hide"><%= bill.act_pay_fee %></td>
-
         <td class="note">
-          <div style='width : 50px;height : 30px;overflow : hidden;'>
-            <%= bill.note %>
-          </div>
+          <%= bill.note %>
         </td>
         <td class="state"><%= bill.human_state_name %></td>
         <td class="from_short_fee_state hide"><%= bill.human_from_short_fee_state_name %></td>
@@ -149,53 +135,42 @@
   </tbody>
   <tfoot>
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>总计</td>
-      <td><%=sum_info[:sum_count]%>票</td>
-
-      <td class="goods_fee"><%=sum_info[:sum_goods_fee]%></td>
-
-      <td class="carrying_fee"><%=sum_info[:sum_carrying_fee]%></td>
-      <td class="carrying_fee_th hide"><%=sum_info[:sum_carrying_fee_th]%></td>
-      <td class="k_carrying_fee hide"><%=sum_info[:sum_k_carrying_fee]%></td>
-
-      <td class="insured_fee hide"><%=sum_info[:sum_insured_fee]%></td>
-      <td class="insured_fee_th hide"><%=sum_info[:sum_insured_fee_th]%></td>
-      <td class="k_insured_fee hide"><%=sum_info[:sum_k_insured_fee]%></td>
-
-      <td class="from_short_carrying_fee hide"><%=sum_info[:sum_from_short_carrying_fee]%></td>
-      <td class="from_short_carrying_fee_th hide"><%=sum_info[:sum_from_short_carrying_fee_th]%></td>
-      <td class="k_from_short_carrying_fee hide"><%=sum_info[:sum_k_from_short_carrying_fee]%></td>
-
-      <td class="to_short_carrying_fee hide"><%=sum_info[:sum_to_short_carrying_fee]%></td>
-      <td class="to_short_carrying_fee_th hide"><%=sum_info[:sum_to_short_carrying_fee_th]%></td>
-      <td class="k_to_short_carrying_fee hide"><%=sum_info[:sum_k_to_short_carrying_fee]%></td>
-
-      <td class="carrying_fee_total hide"><%=sum_info[:sum_carrying_fee_total]%></td>
-      <td class="carrying_fee_th_total hide"><%=sum_info[:sum_carrying_fee_th_total]%></td>
-      <td class="k_carrying_fee_total hide"><%=sum_info[:sum_k_carrying_fee_total]%></td>
-
-      <td class="transit_carrying_fee hide"><%=sum_info[:sum_transit_carrying_fee]%></td>
-      <td class="transit_hand_fee hide"><%=sum_info[:sum_transit_hand_fee]%></td>
-      <td class="agent_carrying_fee hide"><%=sum_info[:sum_agent_carrying_fee]%></td>
-
-      <td class="th_amount hide"><%=sum_info[:sum_th_amount]%></td>
-
-      <td class="k_hand_fee hide"><%=sum_info[:sum_k_hand_fee]%></td>
-
-      <td class="act_pay_fee hide"><%= sum_info[:sum_act_pay_fee] %></td>
-
-      <td class='note'>&nbsp;</td>
-      <td class='state'>&nbsp;</td>
-      <td class='from_short_fee_state hide'>&nbsp;</td>
-      <td class='to_short_fee_state hide'>&nbsp;</td>
-      <td class='stranded_days hide'>&nbsp;</td>
-    </tr>
-  </tfoot>
-</table>
+      <td/>
+        <td/>
+          <td/>
+            <td/>
+              <td/>
+                <td/>
+                  <td/>
+                    <td>总计</td>
+                    <td><%=sum_info[:sum_count]%>票</td>
+                    <td class="goods_fee"><%=sum_info[:sum_goods_fee]%></td>
+                    <td class="carrying_fee"><%=sum_info[:sum_carrying_fee]%></td>
+                    <td class="carrying_fee_th hide"><%=sum_info[:sum_carrying_fee_th]%></td>
+                    <td class="k_carrying_fee hide"><%=sum_info[:sum_k_carrying_fee]%></td>
+                    <td class="insured_fee hide"><%=sum_info[:sum_insured_fee]%></td>
+                    <td class="insured_fee_th hide"><%=sum_info[:sum_insured_fee_th]%></td>
+                    <td class="k_insured_fee hide"><%=sum_info[:sum_k_insured_fee]%></td>
+                    <td class="from_short_carrying_fee hide"><%=sum_info[:sum_from_short_carrying_fee]%></td>
+                    <td class="from_short_carrying_fee_th hide"><%=sum_info[:sum_from_short_carrying_fee_th]%></td>
+                    <td class="k_from_short_carrying_fee hide"><%=sum_info[:sum_k_from_short_carrying_fee]%></td>
+                    <td class="to_short_carrying_fee hide"><%=sum_info[:sum_to_short_carrying_fee]%></td>
+                    <td class="to_short_carrying_fee_th hide"><%=sum_info[:sum_to_short_carrying_fee_th]%></td>
+                    <td class="k_to_short_carrying_fee hide"><%=sum_info[:sum_k_to_short_carrying_fee]%></td>
+                    <td class="carrying_fee_total hide"><%=sum_info[:sum_carrying_fee_total]%></td>
+                    <td class="carrying_fee_th_total hide"><%=sum_info[:sum_carrying_fee_th_total]%></td>
+                    <td class="k_carrying_fee_total hide"><%=sum_info[:sum_k_carrying_fee_total]%></td>
+                    <td class="transit_carrying_fee hide"><%=sum_info[:sum_transit_carrying_fee]%></td>
+                    <td class="transit_hand_fee hide"><%=sum_info[:sum_transit_hand_fee]%></td>
+                    <td class="agent_carrying_fee hide"><%=sum_info[:sum_agent_carrying_fee]%></td>
+                    <td class="th_amount hide"><%=sum_info[:sum_th_amount]%></td>
+                    <td class="k_hand_fee hide"><%=sum_info[:sum_k_hand_fee]%></td>
+                    <td class="act_pay_fee hide"><%= sum_info[:sum_act_pay_fee] %></td>
+                    <td class='note'/>
+                      <td class='state'/>
+                        <td class='from_short_fee_state hide'/>
+                          <td class='to_short_fee_state hide'/>
+                            <td class='stranded_days hide'/>
+                            </tr>
+                          </tfoot>
+                        </table>
