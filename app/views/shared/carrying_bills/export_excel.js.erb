@@ -1,6 +1,5 @@
-var table ='<%= escape_javascript(render "shared/carrying_bills/excel") %>';
+var table_doc =$('<%= escape_javascript(render "shared/carrying_bills/excel") %>').wrap("<div />");
 //处理显示问题
-var table_doc = $(table);
 var show_fields = '<%=params[:show_fields]%>';
 var hide_fields = '<%=params[:hide_fields]%>';
 //如果显示carrying_fee_total,carrying_fee_total_th,k_carrying_fee_total,则显示关联发货短途及到货短途
@@ -19,7 +18,7 @@ show_fields += show_relate_fields;
 table_doc.find(show_fields).removeClass('hide');
 table_doc.find(hide_fields).remove();
 table_doc.find(".hide").remove();
-table_doc.css({border : 'thin solid #000'});
+//table_doc.css({border : 'thin solid #000'});
 var set_style = function(work_sheet){
   work_sheet.Columns.ColumnWidth = 7;
   work_sheet.Columns('A:A').ColumnWidth = 5;
@@ -27,4 +26,4 @@ var set_style = function(work_sheet){
   work_sheet.Columns(4).ColumnWidth = 15; //货号
 
 };
-$.export_excel(table_doc.wrap('<div />').html(),set_style);
+$.export_excel(table_doc.html(),set_style);
