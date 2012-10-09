@@ -1,6 +1,6 @@
 <%if params[:action] == "show"%>
   <li>
-    <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), export_excel_cash_payment_list_path(resource),:title => "导出为EXCEL",:class => "tipsy btn_export_excel"  %>
+    <%= link_to image_tag("document-excel-table.png",:alt => "导出为EXCEL"), export_excel_cash_payment_list_path(resource),:title => "导出为EXCEL",:class => "tipsy"  %>
   </li>
   <%if can? :export_sms_txt,resource%>
     <li>

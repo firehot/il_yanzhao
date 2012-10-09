@@ -43,6 +43,8 @@ gem "rails_config", "~> 0.3.1"
 gem 'marshaled_attributes',"~> 0.1.0"
 #在线更新表结构
 gem "lhm", "~> 1.1.0"
+#html解析工具
+gem "nokogiri", "~> 1.5.5"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

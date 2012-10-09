@@ -16,6 +16,10 @@ class RefoundsController < BaseController
   #GET /refounds/:id/export_excel
   def export_excel
     @refound = resource_class.find(params[:id],:include => [:from_org,:to_org,:user,:carrying_bills])
+    partial = "excel"
+    partial = "excel_group" if params[:show_group].present?
+    xls = render_to_string(:partial => partial,:layout => false)
+    send_data show_or_hide_fields_for_export(xls),:filename => "refund.xls"
   end
 end
 

@@ -20,6 +20,8 @@ class SettlementsController < BaseController
   #GET load_list/1/export_excel
   def export_excel
     @settlement = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
+    xls = render_to_string(:partial => "excel",:layout => false)
+    send_data show_or_hide_fields_for_export(xls),:filename => "settlement.xls"
   end
 
   #直接返款处理

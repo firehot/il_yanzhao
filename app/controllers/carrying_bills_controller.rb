@@ -22,6 +22,8 @@ class CarryingBillsController < BaseController
   #GET carrying_bills/export_excel
   def export_excel
     @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search]).order(sort_column + ' ' + sort_direction)
+    xls = render_to_string(:partial => "shared/carrying_bills/excel",:layout => false)
+    send_data show_or_hide_fields_for_export(xls),:filename => "bill.xls"
   end
 
   #导出短信群发文本

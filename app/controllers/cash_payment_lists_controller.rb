@@ -15,6 +15,8 @@ class CashPaymentListsController < BaseController
   end
   def export_excel
     @cash_payment_list = resource_class.find(params[:id],:include => [:org,:user,:carrying_bills])
+    xls = render_to_string(:partial => "excel",:layout => false)
+    send_data show_or_hide_fields_for_export(xls),:filename => "cash_payment_list.xls"
   end
   #Get cash_payment_lists/:id/export_sms_txt:format
   #导出短信群发文本
