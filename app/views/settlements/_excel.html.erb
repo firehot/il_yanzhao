@@ -1,17 +1,17 @@
 <table cellspacing='0' cellpadding='0' border='0' style='border-collapse : collapse;border : thin solid #000;'>
   <thead>
     <tr>
-      <td colspan='16' style='text-align : center;font-size : 14px;'>(<%="#{@settlement.org_name}-#{@settlement.bill_date}" %>)结算员交款清单</td>
+      <th colspan='16' style='text-align : center;font-size : 14px;'>(<%="#{@settlement.org_name}-#{@settlement.bill_date}" %>)结算员交款清单</th>
     </tr>
     <tr>
-      <td colspan='2'>货款</td>
-      <td colspan='2'>+运费[提]</td>
-      <td colspan='2'>+保险费[提]</td>
-      <td colspan='2'>+发货短途[提]</td>
-      <td colspan='2'>+到货短途[提]</td>
-      <td colspan='2'>-中转运费</td>
-      <td colspan='2'>-中转手续费</td>
-      <td colspan='2'>合计</td>
+      <th colspan='2'>货款</th>
+      <th colspan='2'>+运费[提]</th>
+      <th colspan='2'>+保险费[提]</th>
+      <th colspan='2'>+发货短途[提]</th>
+      <th colspan='2'>+到货短途[提]</th>
+      <th colspan='2'>-中转运费</th>
+      <th colspan='2'>-中转手续费</th>
+      <th colspan='2'>合计</th>
     </tr>
     <tr>
       <td colspan='2'><span id='settlement_sum_goods_fee'><%= resource.sum_goods_fee %></span></td>

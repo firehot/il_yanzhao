@@ -5,7 +5,7 @@
 <%end%>
 <%if params[:action] == "index"%>
   <li>
-    <%= link_to image_tag("document-excel-table.png",:alt => "导出未EXCEL"), collection_path(:search => params[:search],:format => :csv),:title => "导出为EXCEL",:class => "tipsy"  %>
+    <%= link_to image_tag("document-excel-table.png",:alt => "导出EXCEL"), collection_path(:search => params[:search],:format => :csv),:title => "导出为EXCEL",:class => "tipsy"  %>
   </li>
 <%end%>
 <%if params[:action] == "show" and can? :print,resource%>

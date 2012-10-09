@@ -16,6 +16,27 @@ class BaseController < InheritedResources::Base
     min = Smurf::Javascript.new(content)
     min.minified
   end
+  #处理导出文件时的显示或隐藏字段
+  def show_or_hide_fields_for_export(html_str)
+    require 'nokogiri'
+    doc = Nokogiri::HTML(html_str)
+    #处理显示问题
+    show_fields = params[:show_fields]
+    hide_fields = params[:hide_fields]
+    #如果显示carrying_fee_total,carrying_fee_total_th,k_carrying_fee_total,则显示关联发货短途及到货短途
+    show_relate_fields = ""
+    show_relate_fields +=',.from_short_carrying_fee,.to_short_carrying_fee' if show_fields.try(:include?,'.carrying_fee_total')
+    show_relate_fields +=',.from_short_carrying_fee_th,.to_short_carrying_fee_th' if show_fields.try(:include?,'.carrying_fee_th_total')
+    show_relate_fields +=',.k_from_short_carrying_fee,.k_to_short_carrying_fee' if show_fields.try(:include?,'.k_carrying_fee_total')
+    show_fields += show_relate_fields if show_fields.present?
+
+    doc.css(show_fields).remove_class('hide') if show_fields.present?
+    doc.css(hide_fields).remove() if hide_fields.present?
+    doc.css(".hide").remove()
+    doc.css('th').attr("style","border : thin solid #000;text-align : center;")
+    doc.css('td').attr("style","border : thin solid #000;")
+    doc.to_s
+  end
   private
   #排序方法
   #见http://asciicasts.com/episodes/228-sortable-table-columns

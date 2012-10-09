@@ -15,6 +15,8 @@ class LoadListsController < BaseController
   #GET load_list/1/export_excel
   def export_excel
     @load_list = resource_class.find(params[:id],:include => [:from_org,:to_org,:user,:carrying_bills])
+    xls = render_to_string(:partial => "excel",:layout => false)
+    send_data show_or_hide_fields_for_export(xls),:filename => "load_lists.xls"
   end
   #GET load_list/:id/build_act_load_list
   def build_act_load_list
