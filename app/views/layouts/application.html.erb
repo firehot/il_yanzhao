@@ -10,7 +10,7 @@
   </head>
   <body>
     <!--全局的show_or_hide_fields-->
-    <span style='display : none;' id='global_data' data-show_or_hidden_fields=<%=show_or_hidden_fields.to_json%>></span>
+    <span style='display : none;' id='global_data' data-show_or_hidden_fields=<%=show_or_hidden_fields.to_json%> ></span>
     <div id="container">
       <div id="header">
         <h1 id='client_name'><%=image_tag "#{IlConfig.client_logo}",:id => 'logo' %>&nbsp;&nbsp;<%= link_to "#{IlConfig.client_name}", :root %></h1>

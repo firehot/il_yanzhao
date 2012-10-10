@@ -59,9 +59,10 @@
       <tr>
         <td>保险费</td>
         <td>
+
           <!--分公司不用输入保险费-->
           <% if current_user.default_org.in_summary? %>
-            <%=f.text_field :insured_fee,:id => "insured_fee",:readonly => true,:size => 15 %>
+            <%=f.text_field :insured_fee,:id => "insured_fee",:readonly => true,"data-carrying_fee_gte_on_insured_fee" =>IlConfig.carrying_fee_gte_on_insured_fee,"data-config_insured_fee" =>IlConfig.insured_fee,:size => 15 %>
           <%else %>
             <%= f.text_field :insured_fee,:id => "insured_fee",:value => 0,:readonly => true,:size => 15 %>
           <%end %>

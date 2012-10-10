@@ -11,6 +11,5 @@ class ReceiveRefoundsController < RefoundsController
     @search = end_of_association_chain.accessible_by(current_ability,:read_arrive).search(params[:search])
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
-
 end
 

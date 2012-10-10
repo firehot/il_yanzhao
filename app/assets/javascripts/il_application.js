@@ -196,7 +196,9 @@ jQuery(function($) {
 				var zip_data = table_str;
 				var zip = new JSZip();
 				zip.file("bills.xls", zip_data);
-				var content = zip.generate({compression : "DEFLATE"});
+				var content = zip.generate({
+					compression: "DEFLATE"
+				});
 				location.href = "data:application/zip;base64," + content;
 			}
 		} (),
@@ -268,9 +270,19 @@ jQuery(function($) {
 		}
 		else $('#pay_type option').attr('disabled', false);
         */
-		var insured_fee = parseFloat($('#insured_fee').val());
 		//计算运费合计
 		var carrying_fee = parseFloat($('#carrying_fee').val());
+		//运费大于指定金额时才产生保险费
+		if ( !! $('#insured_fee').attr('data-carrying_fee_gte_on_insured_fee')) {
+			var carrying_fee_gte = parseFloat($('#insured_fee').data('carrying_fee_gte_on_insured_fee'));
+			var config_insured_fee = parseFloat($('#insured_fee').data('config_insured_fee'));
+            //FIXME 修改运费值会触发change事件,该代码会执行两次
+			if (carrying_fee < carrying_fee_gte) $('#insured_fee').val(0);
+			else $('#insured_fee').val(config_insured_fee);
+
+		}
+
+		var insured_fee = parseFloat($('#insured_fee').val());
 		var from_short_carrying_fee = parseFloat($('#from_short_carrying_fee').val());
 		var to_short_carrying_fee = parseFloat($('#to_short_carrying_fee').val());
 		var sum_carrying_fee = carrying_fee + from_short_carrying_fee + to_short_carrying_fee;
