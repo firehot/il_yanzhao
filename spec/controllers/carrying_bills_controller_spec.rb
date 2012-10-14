@@ -61,7 +61,16 @@ describe CarryingBillsController do
       put :cancel,:id => @carrying_bill
       assigns[:carrying_bill].should be_canceled
     end
-
+  end
+  #测试运单批量删除功能
+  describe "DELETE carrying_bills/batch_destroy" do
+    it "应该能够成功删除多条运单信息" do
+      bills = [Factory(:computer_bill).id,Factory(:hand_bill).id]
+      request.env["HTTP_REFERER"]=carrying_bills_path
+      lambda do
+        delete :batch_destroy, :bill_ids => bills,:format => :js
+      end.should change(CarryingBill,:count).by(-2)
+    end
   end
 end
 

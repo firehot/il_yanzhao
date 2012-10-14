@@ -272,6 +272,8 @@ IlYanzhao::Application.routes.draw do
     put :reset,:on => :member
     put :invalidate,:on => :member
     put :cancel,:on => :member
+    #批量删除
+    delete :batch_destroy,:on => :collection
   end
 
   resources :computer_bills do

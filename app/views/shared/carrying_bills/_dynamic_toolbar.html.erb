@@ -106,6 +106,13 @@
           </li>
         <%end%>
       <%end%>
+
+      <%if can? :batch_destroy,CarryingBill %>
+        <li>
+          <%= link_to image_tag("mouse--minus.png",:alt => "批量删除运单"), batch_destroy_carrying_bills_path(:format => :js),:method => :delete,:remote => true,:title => "批量删除运单[草稿]",:confirm =>"所有选中的草稿状态运单将被删除,不可恢复,确定要删除吗?",:class => "bill_selector tipsy"  %>
+        </li>
+      <%end%>
+
     <%end%>
     <%if params[:action] == "rpt_turnover"%>
       <li>

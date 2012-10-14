@@ -613,7 +613,7 @@ jQuery(function($) {
 		$.getScript(this.href);
 		return false;
 	});
-	$('form.bill_selector').livequery(function() {
+	$('.bill_selector').livequery(function() {
 		$(this).form_with_select_bills();
 	});
 

@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 #运单controller基础类
-require 'iconv'
 class CarryingBillsController < BaseController
   #查询服务,去除layout
   layout false,:only => [:search_service_page,:search_service]
@@ -18,6 +17,13 @@ class CarryingBillsController < BaseController
       format.csv {send_data resource_class.to_csv(@search)}
     end
   end
+  #DELETE carrying_bills/batch_destroy
+  def batch_destroy
+    @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).search(params[:search]).order(sort_column + ' ' + sort_direction)
+    bill_ids = params[:bill_ids]
+    delete_bills = resource_class.destroy_all(:id => bill_ids,:state => :billed) if bill_ids.present?
+    flash[:notice] = "成功删除了#{delete_bills.size}张运单!"
+  end
   #导出查询结果为excel
   #GET carrying_bills/export_excel
   def export_excel
@@ -29,6 +35,7 @@ class CarryingBillsController < BaseController
   #导出短信群发文本
   #GET carrying_bills/export_sms_txt.txt
   def export_sms_txt
+    require 'iconv'
     respond_to do |format|
       format.text do
         #FIXME 垃圾短信公司,客户端软件不支持utf-8格式的导出文件,只能进行转换
