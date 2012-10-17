@@ -41,4 +41,3 @@ class TransferPaymentList < PaymentList
       ]}
   end
 end
-
