@@ -166,7 +166,12 @@ module ApplicationHelper
       :post_infos => {
         :hide_fields => %w[.carrying_fee],
         :show_fields => %w[.k_insured_fee .k_carrying_fee_total .k_hand_fee .transit_hand_fee .act_pay_fee]
+      },
+      :short_fee_infos => {
+        :hide_fields => %w[.carrying_fee .note .goods_fee],
+        :show_fields => %w[.from_short_carrying_fee .to_short_carrying_fee]
       }
+
     }
 
     return {} if controller_show_or_hide_fields[search_key].blank?

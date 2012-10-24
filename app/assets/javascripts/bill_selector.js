@@ -38,10 +38,12 @@ jQuery(function($) {
 			});
 			//给显示票据详细信息的链接添加fancybox属性
 			$('.show_link').addClass('fancybox');
+            /*
 			$('.show_link').each(function() {
 				var href = $(this).attr('href');
 				$(this).attr('href', href + '.js');
 			});
+            */
 			$.bill_selector.set_checkbox();
 			$.bill_selector.update_html();
 

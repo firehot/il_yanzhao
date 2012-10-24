@@ -8,4 +8,8 @@
     <%= f.input :note,:as => :string,:input_html => {:size => 60} %>
   <% end %>
 <% end%>
-<%= render "form_before" %>
+<%if params[:show_batch].present?%>
+  <%= render "form_after_batch" %>
+<% else %>
+  <%= render "form_before" %>
+<% end %>

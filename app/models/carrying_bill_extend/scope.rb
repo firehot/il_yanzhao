@@ -28,8 +28,14 @@ module CarryingBillExtend
         scope :sum_goods_fee_out,lambda {|from_org_ids,date_from,date_to| select('from_org_id,sum(goods_fee) as sum_goods_fee_out').where(:from_org_id => from_org_ids,:state => ["paid",'posted'] ,:updated_at => date_from..date_to).group('from_org_id')}
 
         scope :with_association,:include => [:from_org,:to_org,:transit_org,:send_list_line,:short_fee_info_lines,:user,:notice_lines]
+      #给定机构待报销的运单列表
+      #条件: (from_org_id = $org_id AND from_short_carrying_fee > 0 AND from_short_fee_state ='draft') OR (to_org_id = $org_id AND to_short_carrying_fee > 0 AND to_short_fee_state = 'draft')
+        scope :bills_with_from_short_carrying_fee,lambda{|cur_org_id| where("carrying_bills.from_org_id = ? AND from_short_carrying_fee > 0 AND from_short_fee_state ='draft'",cur_org_id)}
+        scope :bills_with_to_short_carrying_fee,lambda{|cur_org_id| where("carrying_bills.to_org_id = ? AND to_short_carrying_fee > 0 AND to_short_fee_state = 'draft'",cur_org_id)}
+        #便于在前端页面可以使用
+        search_methods :bills_with_from_short_carrying_fee,:bills_with_to_short_carrying_fee
       end
-    end
+   end
     #below define instance methods
     #class methods
     module ClassMethods ; end

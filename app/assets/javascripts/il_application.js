@@ -276,7 +276,7 @@ jQuery(function($) {
 		if ( !! $('#insured_fee').attr('data-carrying_fee_gte_on_insured_fee')) {
 			var carrying_fee_gte = parseFloat($('#insured_fee').data('carrying_fee_gte_on_insured_fee'));
 			var config_insured_fee = parseFloat($('#insured_fee').data('config_insured_fee'));
-            //FIXME 修改运费值会触发change事件,该代码会执行两次
+			//FIXME 修改运费值会触发change事件,该代码会执行两次
 			if (carrying_fee < carrying_fee_gte) $('#insured_fee').val(0);
 			else $('#insured_fee').val(config_insured_fee);
 
@@ -685,10 +685,40 @@ jQuery(function($) {
 			if (bill_info.from_org_id != org_id && bill_info.to_org_id != org_id) $(this).remove();
 			if (bill_info.from_org_id == org_id && (bill_info["from_short_fee_saved?"] || bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
 			if (bill_info.to_org_id == org_id && (bill_info["to_short_fee_saved?"] || bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
-			$('#bills_table_body').trigger('tr_changed');
-
+			$('#bills_、table_body').trigger('tr_changed');
 		}
 	});
+	//生成短途运费报销清单时,绑定查询条件
+	$('#btn_generate_from_short_fee_info,#btn_generate_to_short_fee_info').bind('ajax:before', function() {
+		var scope_param = {};
+		if ($(this).attr("id") == "btn_generate_from_short_fee_info") scope_param = {
+			"search[bills_with_from_short_carrying_fee]": $('#from_org_id_or_to_org_id').val()
+		};
+		if ($(this).attr("id") == "btn_generate_to_short_fee_info") scope_param = {
+			"search[bills_with_to_short_carrying_fee]": $('#from_org_id_or_to_org_id').val()
+		};
+
+		var params = {
+			"search[refound_bill_date_gte]": $('#refound_bill_date_gte').val(),
+			"search[refound_bill_date_lte]": $('#refound_bill_date_lte').val(),
+			"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "settlemented", "invalided", "canceled"],
+			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
+			"without_paginate": true //不分页
+			//以下设定运单列表中的显示及隐藏字段,设定为css选择符
+		};
+		$.extend(params,scope_param,$.show_or_hidden_fields_obj);
+		$(this).data('params', params);
+	}).bind('ajax:complete', function() {
+		if ($('#bills_table').length == 0) return;
+		var sum_info = $('#bills_table').data('sum');
+		var ids = $('#bills_table').data('ids');
+		$('#short_fee_info_form').data('params', {
+			'bill_ids[]': ids
+		});
+	});
+
+	//短途运费的显示需要重新计算,
+	//因计算短途运费时
 	$('#deliver_info_form,#cash_pay_info_form,#transit_info_form,#transit_deliver_info_form,#short_fee_info_form,#goods_exception_form,#send_list_form,#send_list_post_form').livequery(function() {
 		$(this).bind('ajax:before', function() {
 			var bill_els = $('[data-bill]');
@@ -1422,4 +1452,6 @@ jQuery(function($) {
 		}
 	});
 });
+
+$('#bills_table_body').trigger('tr_changed');
 

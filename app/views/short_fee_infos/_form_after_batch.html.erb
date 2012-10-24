@@ -1,0 +1,11 @@
+<div class='actions-bar'>
+  <%=label_tag "查询运单信息:"%>
+  <%=text_field_tag :refound_bill_date_gte,Date.today.beginning_of_month,:readonly => true,:class => "datepicker",:size => 15%>
+  <%=label_tag "~"%>
+  <%=text_field_tag :refound_bill_date_lte,Date.today.end_of_month,:readonly => true,:class => "datepicker",:size => 15%>
+  <%= link_to image_tag("plus-white.png") + "报销发货短途运费",carrying_bills_path,:remote => true,:id=>"btn_generate_from_short_fee_info", :class => 'tipsy sexybutton sexysimple sexyblue',:title => "生成短途运费报销清单" %>
+  <%= link_to image_tag("plus-white.png") + "报销到货短途运费",carrying_bills_path,:remote => true,:id=>"btn_generate_to_short_fee_info", :class => 'tipsy sexybutton sexysimple sexygreen',:title => "生成短途运费报销清单" %>
+</div>
+<hr/>
+<div id="table_wrap">
+</div>
