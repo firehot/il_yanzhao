@@ -692,10 +692,12 @@ jQuery(function($) {
 	$('#btn_generate_from_short_fee_info,#btn_generate_to_short_fee_info').bind('ajax:before', function() {
 		var scope_param = {};
 		if ($(this).attr("id") == "btn_generate_from_short_fee_info") scope_param = {
-			"search[bills_with_from_short_carrying_fee]": $('#from_org_id_or_to_org_id').val()
+			"search[bills_with_from_short_carrying_fee]": $('#from_org_id_or_to_org_id').val(),
+			"hide_fields": ".to_short_carrying_fee,.goods_fee"
 		};
 		if ($(this).attr("id") == "btn_generate_to_short_fee_info") scope_param = {
-			"search[bills_with_to_short_carrying_fee]": $('#from_org_id_or_to_org_id').val()
+			"search[bills_with_to_short_carrying_fee]": $('#from_org_id_or_to_org_id').val(),
+			"hide_fields": ".from_short_carrying_fee,.goods_fee"
 		};
 
 		var params = {
@@ -704,9 +706,9 @@ jQuery(function($) {
 			"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "settlemented", "invalided", "canceled"],
 			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
 			"without_paginate": true //不分页
-			//以下设定运单列表中的显示及隐藏字段,设定为css选择符
 		};
-		$.extend(params,scope_param,$.show_or_hidden_fields_obj);
+        //以下设定运单列表中的显示及隐藏字段,设定为css选择符
+		$.extend(params, $.show_or_hidden_fields_obj, scope_param);
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
