@@ -703,7 +703,7 @@ jQuery(function($) {
 		var params = {
 			"search[refound_bill_date_gte]": $('#refound_bill_date_gte').val(),
 			"search[refound_bill_date_lte]": $('#refound_bill_date_lte').val(),
-			"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "settlemented", "invalided", "canceled"],
+			"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "invalided", "canceled"],
 			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
 			"without_paginate": true //不分页
 		};
