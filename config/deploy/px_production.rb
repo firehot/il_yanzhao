@@ -46,10 +46,4 @@ task :update_database_yml do
   replacements.each do |pattern, sub|
     run "sed -i 's@#{pattern}@#{sub}@' #{release_path}/config/database.yml"
   end
-  replacements = {
-    '郑州创艺信息系统有限公司' => '河南迪富信息系统有限公司'
-  }
-  replacements.each do |pattern, sub|
-    run "sed -i 's@#{pattern}@#{sub}@' #{release_path}/app/views/shared/_footer.html.erb"
-  end
 end
