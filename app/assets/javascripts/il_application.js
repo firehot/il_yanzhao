@@ -274,8 +274,16 @@ jQuery(function($) {
 		var carrying_fee = parseFloat($('#carrying_fee').val());
 		//运费大于指定金额时才产生保险费
 		if ( !! $('#insured_fee').attr('data-carrying_fee_gte_on_insured_fee')) {
+			//得到org数组,判断
+			var orgs = $('#global_data').data('orgs');
+			var carrying_fee_set_special = null;
+			var to_org_id = $('#to_org_id').val();
+			$.each(orgs, function(index,org) {
+				if (org["id"] == to_org_id) carrying_fee_set_special = org["carrying_fee_gte_on_insured_fee"]
+			});
 			var carrying_fee_gte = parseFloat($('#insured_fee').data('carrying_fee_gte_on_insured_fee'));
 			var config_insured_fee = parseFloat($('#insured_fee').data('config_insured_fee'));
+			if (carrying_fee_set_special) carrying_fee_gte = parseFloat(carrying_fee_set_special);
 			//FIXME 修改运费值会触发change事件,该代码会执行两次
 			if (carrying_fee < carrying_fee_gte) $('#insured_fee').val(0);
 			else $('#insured_fee').val(config_insured_fee);
@@ -293,6 +301,7 @@ jQuery(function($) {
 		//$('#sum_fee').text(sum_fee);
 	};
 
+	$('form.carrying_bill').live("change", calculate_carrying_bill).livequery(calculate_carrying_bill);
 	//双击某条记录打开详细信息
 	//tr[data-dblclick]
 	$('#bills_table,table.table[id$="index_table"]').livequery('dblclick', function(evt) {
@@ -426,7 +435,6 @@ jQuery(function($) {
 
 	};
 	$('form.computer_bill #customer_code,form.transit_bill #customer_code,form.auto_calculate_computer_bill #customer_code,').live('change', search_customer_by_code);
-	$('form.carrying_bill').live("change", calculate_carrying_bill).livequery(calculate_carrying_bill);
 
 	//根据不同的运单录入界面,隐藏部分字段
 	$('form.computer_bill,form.auto_calculate_computer_bill').livequery(function() {
@@ -707,7 +715,7 @@ jQuery(function($) {
 			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
 			"without_paginate": true //不分页
 		};
-        //以下设定运单列表中的显示及隐藏字段,设定为css选择符
+		//以下设定运单列表中的显示及隐藏字段,设定为css选择符
 		$.extend(params, $.show_or_hidden_fields_obj, scope_param);
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {

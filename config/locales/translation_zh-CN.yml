@@ -304,6 +304,7 @@ zh-CN:
         customer_level_configs: "VIP分级设置"  #g
         is_yard: "中转货场"
         is_summary: "总部"
+        carrying_fee_gte_on_insured_fee: "保险费限制(大于等于运费金额,不限制为空)"
         order_by: "排序"
 
       distribution_list:

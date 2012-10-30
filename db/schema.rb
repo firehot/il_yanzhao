@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014084753) do
+ActiveRecord::Schema.define(:version => 20121030024220) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -643,22 +643,23 @@ ActiveRecord::Schema.define(:version => 20121014084753) do
   end
 
   create_table "orgs", :force => true do |t|
-    t.string   "name",            :limit => 60,                    :null => false
-    t.string   "simp_name",       :limit => 20
+    t.string   "name",                            :limit => 60,                                                   :null => false
+    t.string   "simp_name",                       :limit => 20
     t.integer  "parent_id"
-    t.string   "phone",           :limit => 60
-    t.boolean  "is_active",                     :default => true,  :null => false
-    t.string   "manager",         :limit => 20
-    t.string   "location",        :limit => 60
-    t.string   "code",            :limit => 20
-    t.string   "lock_input_time", :limit => 20
-    t.string   "type",            :limit => 20
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-    t.string   "py",              :limit => 20
-    t.boolean  "is_yard",                       :default => false
-    t.integer  "order_by",                      :default => 0
-    t.boolean  "is_summary",                    :default => false
+    t.string   "phone",                           :limit => 60
+    t.boolean  "is_active",                                                                    :default => true,  :null => false
+    t.string   "manager",                         :limit => 20
+    t.string   "location",                        :limit => 60
+    t.string   "code",                            :limit => 20
+    t.string   "lock_input_time",                 :limit => 20
+    t.string   "type",                            :limit => 20
+    t.datetime "created_at",                                                                                      :null => false
+    t.datetime "updated_at",                                                                                      :null => false
+    t.string   "py",                              :limit => 20
+    t.boolean  "is_yard",                                                                      :default => false
+    t.integer  "order_by",                                                                     :default => 0
+    t.boolean  "is_summary",                                                                   :default => false
+    t.decimal  "carrying_fee_gte_on_insured_fee",               :precision => 15, :scale => 2
   end
 
   add_index "orgs", ["code"], :name => "index_orgs_on_code"

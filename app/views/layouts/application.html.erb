@@ -9,8 +9,6 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <!--全局的show_or_hide_fields-->
-    <span style='display : none;' id='global_data' data-show_or_hidden_fields=<%=show_or_hidden_fields.to_json%> ></span>
     <div id="container">
       <div id="header">
         <h1 id='client_name'><%=image_tag "#{IlConfig.client_logo}",:id => 'logo' %>&nbsp;&nbsp;<%= link_to "#{IlConfig.client_name}", :root %></h1>
@@ -75,5 +73,7 @@
   <%flash.each do |key, msg| %>
     <%= jquery_notify_bar(key, msg, :cls => key, :animation_speed => 'normal', :delay => 2000) %>
   <%end %>
+  <!--全局的show_or_hide_fields-->
+  <span style='display : none;' id='global_data' data-show_or_hidden_fields=<%=show_or_hidden_fields.to_json%> data-orgs = <%=orgs_to_json_on_view%> ></span>
 </html>
 

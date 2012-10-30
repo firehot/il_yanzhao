@@ -70,6 +70,10 @@ module OrgsHelper
     ret_array << ["(空)",""] if show_bottom_blank
     ret_array
   end
+  #转换为json，在页面上使用
+  def orgs_to_json_on_view
+    Org.where(:is_active => true).all.to_json(:only => [:id,:name,:simp_name,:parent_id,:code,:carrying_fee_gte_on_insured_fee,:is_yard,:is_summary])
+  end
   private
   #根据登录情况得到可以显示的中转货厂
   def get_current_yards
