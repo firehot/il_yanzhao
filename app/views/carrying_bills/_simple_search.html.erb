@@ -28,7 +28,7 @@
 
     <%= f.input :pay_type_eq,:label => "支付方式",:as => :select,:collection => CarryingBill.pay_types %>
     <%= f.input :type_eq,:label => "运单类型",:as => :select,:collection => bill_types_for_select %>
-
+    <%= f.input :state_eq,:label => "票据状态",:as => :select,:collection => states_for_select  %>
 
     <%= f.input :print_counter_gte,:label => "票据打印次数",:as => :select,:collection => print_counter_for_select  %>
 

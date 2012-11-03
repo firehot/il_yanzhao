@@ -278,7 +278,7 @@ jQuery(function($) {
 			var orgs = $('#global_data').data('orgs');
 			var carrying_fee_set_special = null;
 			var to_org_id = $('#to_org_id').val();
-			$.each(orgs, function(index,org) {
+			$.each(orgs, function(index, org) {
 				if (org["id"] == to_org_id) carrying_fee_set_special = org["carrying_fee_gte_on_insured_fee"]
 			});
 			var carrying_fee_gte = parseFloat($('#insured_fee').data('carrying_fee_gte_on_insured_fee'));
@@ -693,28 +693,47 @@ jQuery(function($) {
 			if (bill_info.from_org_id != org_id && bill_info.to_org_id != org_id) $(this).remove();
 			if (bill_info.from_org_id == org_id && (bill_info["from_short_fee_saved?"] || bill_info.from_short_carrying_fee == 0 || bill_info.from_short_fee_state == 'offed')) $(this).remove();
 			if (bill_info.to_org_id == org_id && (bill_info["to_short_fee_saved?"] || bill_info.to_short_carrying_fee == 0 || bill_info.to_short_fee_state == 'offed')) $(this).remove();
-			$('#bills_、table_body').trigger('tr_changed');
+			$('#bills_table_body').trigger('tr_changed');
 		}
 	});
 	//生成短途运费报销清单时,绑定查询条件
-	$('#btn_generate_from_short_fee_info,#btn_generate_to_short_fee_info').bind('ajax:before', function() {
+	$('#btn_generate_from_short_fee_info,#btn_generate_to_short_fee_info,#btn_generate_from_short_fee_info_cash,#btn_generate_to_short_fee_info_cash').bind('ajax:before', function() {
 		var scope_param = {};
-		if ($(this).attr("id") == "btn_generate_from_short_fee_info") scope_param = {
+		var ele_id = $(this).attr("id");
+		if (ele_id == "btn_generate_from_short_fee_info" || ele_id == "btn_generate_from_short_fee_info_cash") scope_param = {
 			"search[bills_with_from_short_carrying_fee]": $('#from_org_id_or_to_org_id').val(),
 			"hide_fields": ".to_short_carrying_fee,.goods_fee"
 		};
-		if ($(this).attr("id") == "btn_generate_to_short_fee_info") scope_param = {
+		if (ele_id == "btn_generate_to_short_fee_info" || ele_id == "btn_generate_to_short_fee_info_cash") scope_param = {
 			"search[bills_with_to_short_carrying_fee]": $('#from_org_id_or_to_org_id').val(),
 			"hide_fields": ".from_short_carrying_fee,.goods_fee"
 		};
+		var params = {};
+		if (ele_id == "btn_generate_from_short_fee_info" || ele_id == "btn_generate_to_short_fee_info") {
 
-		var params = {
-			"search[refound_bill_date_gte]": $('#refound_bill_date_gte').val(),
-			"search[refound_bill_date_lte]": $('#refound_bill_date_lte').val(),
-			"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "invalided", "canceled"],
-			"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
-			"without_paginate": true //不分页
-		};
+			params = {
+                //只报销提付、及货款扣支付方式的运单
+                "search[pay_type_in][]" : ['TH','KG'],
+				"search[refound_bill_date_gte]": $('#refound_bill_date_gte').val(),
+				"search[refound_bill_date_lte]": $('#refound_bill_date_lte').val(),
+				"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "settlemented", "invalided", "canceled"],
+				"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
+				"without_paginate": true //不分页
+			};
+		}
+		if (ele_id == "btn_generate_from_short_fee_info_cash" || ele_id == "btn_generate_to_short_fee_info_cash") {
+
+			params = {
+                //只报销现付、及回执付的运单
+                "search[pay_type_in][]" : ['CA','RE'],
+				"search[settlement_bill_date_gte]": $('#refound_bill_date_gte').val(),
+				"search[settlement_bill_date_lte]": $('#refound_bill_date_lte').val(),
+				"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "invalided", "canceled"],
+				"search[type_in][]": ['ComputerBill', 'HandBill', 'ReturnBill', 'TransitBill', 'HandTransitBill', 'AutoCalculateComputerBill'],
+				"without_paginate": true //不分页
+			};
+		}
+
 		//以下设定运单列表中的显示及隐藏字段,设定为css选择符
 		$.extend(params, $.show_or_hidden_fields_obj, scope_param);
 		$(this).data('params', params);
