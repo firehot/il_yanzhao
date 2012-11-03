@@ -735,7 +735,8 @@ jQuery(function($) {
 		}
 
 		//以下设定运单列表中的显示及隐藏字段,设定为css选择符
-		$.extend(params, $.show_or_hidden_fields_obj, scope_param);
+		$.extend(params, $.show_or_hidden_fields_obj, scope_param,{"search[short_fee_info_lines_short_fee_info_org_id_ne]" : $('#from_org_id_or_to_org_id').val()});
+
 		$(this).data('params', params);
 	}).bind('ajax:complete', function() {
 		if ($('#bills_table').length == 0) return;
