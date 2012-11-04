@@ -121,14 +121,14 @@ module CarryingBillExtend
           state_machine :from_short_fee_state,:initial => :draft,:namespace => :from_short_fee do
             #发货地短途运费核销
             event :write_off  do
-              transition :draft => :offed
+              transition :draft => :saved,:saved => :offed
             end
           end
           #短途运费状态声明
           state_machine :to_short_fee_state,:initial => :draft,:namespace => :to_short_fee do
             #发货地短途运费核销
             event :write_off  do
-              transition :draft => :offed
+              transition :draft => :saved,:saved => :offed
             end
           end
           end

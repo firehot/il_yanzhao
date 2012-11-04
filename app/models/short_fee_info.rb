@@ -20,7 +20,7 @@ class ShortFeeInfo < ActiveRecord::Base
       end
     end
     event :write_off do
-      transition :draft =>:offed
+      transition :draft => :saved,:saved => :offed
     end
   end
 

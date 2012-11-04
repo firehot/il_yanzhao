@@ -195,12 +195,13 @@ module CarryingBillExtend
       t_state
     end
     #是否已保存短途信息
-    def from_short_fee_saved?
-      self.short_fee_info_lines.joins(:short_fee_info).where("short_fee_infos.org_id = ?",self.from_org_id).exists?
-    end
-    def to_short_fee_saved?
-      self.short_fee_info_lines.joins(:short_fee_info).where("short_fee_infos.org_id = ?",self.to_org_id).exists?
-    end
+
+#    def from_short_fee_saved?
+#      self.short_fee_info_lines.joins(:short_fee_info).where("short_fee_infos.org_id = ?",self.from_org_id).exists?
+#    end
+#    def to_short_fee_saved?
+#      self.short_fee_info_lines.joins(:short_fee_info).where("short_fee_infos.org_id = ?",self.to_org_id).exists?
+#    end
 
     #机打运单编号从4000000开始
     #生成票据编号

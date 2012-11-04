@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#coding: utf-8
 class ShortFeeInfosController < BaseController
   table :bill_date,:org,:human_state_name,:sum_write_off_fee,:write_off_date,:note
   def create
@@ -8,6 +7,7 @@ class ShortFeeInfosController < BaseController
     params[:bill_ids].each do |id|
       bill.short_fee_info_lines.build(:carrying_bill_id => id)
     end
+    bill.write_off
     create!
   end
   #GET search
@@ -36,4 +36,3 @@ class ShortFeeInfosController < BaseController
     get_collection_ivar || set_collection_ivar(@search.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 end
-
