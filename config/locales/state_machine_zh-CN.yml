@@ -34,10 +34,12 @@ zh-CN:
         from_short_fee_state:
           states:
             draft: "草稿"
+            saved: "已保存"
             offed: "已核销"
         to_short_fee_state:
           states:
             draft: "草稿"
+            saved: "已保存"
             offed: "已核销"
 
 
@@ -126,6 +128,7 @@ zh-CN:
         state:
           states:
             draft: "草稿"
+            saved: "已保存"
             offed: "已核销"
 
       transit_deliver_info:
