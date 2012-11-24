@@ -150,6 +150,10 @@ class CarryingBillsController < BaseController
       bill_nos = params[:bill_nos].split(',')
       @carrying_bills = CarryingBill.where(:bill_no => bill_nos)
     end
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @carrying_bills.to_xml(:skip_types => true,:dasherize => false)}
+    end
   end
   #显示多运单查询界面
   #GET carrying_bills/multi_bills_search

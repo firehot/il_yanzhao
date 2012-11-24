@@ -596,13 +596,16 @@ ActiveRecord::Schema.define(:version => 20121124020156) do
   add_index "load_list_with_barcode_lines", ["load_list_with_barcode_id"], :name => "index_load_list_with_barcode_lines_on_load_list_with_barcode_id"
 
   create_table "load_list_with_barcodes", :force => true do |t|
-    t.integer  "to_org_id",  :null => false
-    t.string   "bill_no"
-    t.date     "bill_date",  :null => false
+    t.integer  "to_org_id",                                       :null => false
+    t.string   "bill_no",      :limit => 20
+    t.date     "bill_date",                                       :null => false
     t.text     "note"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "state",                      :default => "draft", :null => false
+    t.date     "confirm_date"
+    t.integer  "confirmer_id"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "load_lists", :force => true do |t|

@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 IlYanzhao::Application.routes.draw do
 
-  resources :load_list_with_barcodes
+  resources :load_list_with_barcodes do
+    put :confirm,:on => :member
+  end
 
   resources :auto_calculate_computer_bills do
     get :search,:on => :collection

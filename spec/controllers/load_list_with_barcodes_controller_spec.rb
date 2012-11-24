@@ -19,7 +19,7 @@ describe LoadListWithBarcodesController do
   describe "POST create" do
     it "the load_list should success create with nested attributes" do
       lambda do
-        post :create,:load_list_with_barcode => {:to_org_id => Factory(:ay),:bill_no => "bill_no","load_list_with_barcode_lines_attributes" => {"0" => {"barcode" => "00140000003003002"},"1" => {"barcode" => "00140000003003004"}}}
+        post :create,:format => :xml,:load_list_with_barcode => {:to_org_id => Factory(:ay),:bill_no => "bill_no","load_list_with_barcode_lines_attributes" => {"0" => {"barcode" => "00140000003003002"},"1" => {"barcode" => "00140000003003004"}}}
       end.should change(LoadListWithBarcode,:count).by(1)
     end
   end

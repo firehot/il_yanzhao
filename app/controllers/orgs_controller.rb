@@ -7,7 +7,7 @@ class OrgsController < BaseController
   def index
     @orgs = Org.search(params[:search]).order('parent_id ASC,created_at DESC')
     respond_to do |format|
-      format.xml {render :xml => @orgs}
+      format.xml {render :xml => @orgs.to_xml(:dasherize => false,:skip_types => true)}
       format.html
     end
   end
