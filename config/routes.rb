@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 IlYanzhao::Application.routes.draw do
 
+  resources :load_list_with_barcodes
+
   resources :auto_calculate_computer_bills do
     get :search,:on => :collection
     get :export_excel,:on => :collection
@@ -104,6 +106,7 @@ IlYanzhao::Application.routes.draw do
     match "new_session_default",:to => "sessions#new_session_default",:via => :get,:as => :user_root
     #保存用户设置
     match  "update_session_default",:to => "sessions#update_session_default",:via => :put,:as => :update_session_default
+    match  "sign_in_mobile" => "sessions#sign_in_mobile",:via => :put,:as => :sign_in_mobile
   end
 
   resources :users do

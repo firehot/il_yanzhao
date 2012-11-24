@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104013803) do
+ActiveRecord::Schema.define(:version => 20121124020156) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -584,6 +584,26 @@ ActiveRecord::Schema.define(:version => 20121104013803) do
   add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
   add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
   add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
+
+  create_table "load_list_with_barcode_lines", :force => true do |t|
+    t.integer  "load_list_with_barcode_id",                                    :null => false
+    t.string   "barcode",                   :limit => 20,                      :null => false
+    t.string   "state",                                   :default => "draft", :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
+  end
+
+  add_index "load_list_with_barcode_lines", ["load_list_with_barcode_id"], :name => "index_load_list_with_barcode_lines_on_load_list_with_barcode_id"
+
+  create_table "load_list_with_barcodes", :force => true do |t|
+    t.integer  "to_org_id",  :null => false
+    t.string   "bill_no"
+    t.date     "bill_date",  :null => false
+    t.text     "note"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "load_lists", :force => true do |t|
     t.date     "bill_date"

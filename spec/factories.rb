@@ -630,3 +630,13 @@ Factory.define :notice_line do |nl|
   nl.calling_text "13567894567"
   nl.sms_text "13567894567"
 end
+#条码装车清单
+Factory.define :load_list_with_barcode do |l|
+  l.association :to_org,:factory => :ay
+  l.note "test"
+end
+#条码装车单明细
+Factory.define :load_list_with_barcode_line do |l|
+  l.association :load_list_with_barcode,:factory => :load_list_with_barcode
+  l.barcode "0134000004008002"
+end
