@@ -3,7 +3,7 @@ class OrgsController < BaseController
   #使用http缓存数据到客户端
   http_cache :index,:last_modified => Proc.new {|c| c.send(:last_modified)},:etag => Proc.new {|c| c.send(:etag,"org_index")}
   skip_before_filter :authenticate_user!,:only => [:index]
-  skip_load_and_authorize_resource
+  skip_authorize_resource :only => :index
 
   #提取所有机构
   def index
