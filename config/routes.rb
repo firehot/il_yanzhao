@@ -164,6 +164,7 @@ IlYanzhao::Application.routes.draw do
 
   resources :vips do
     get :search,:on => :collection
+    put :syn_from_customer_name,:on => :member
   end
 
   resources :customers

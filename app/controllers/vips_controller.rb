@@ -13,5 +13,12 @@ class VipsController < BaseController
       format.csv {send_data resource_class.to_csv(@search)}
     end
   end
+  #同步运单的发货人名称
+  #PUT vip/:id/syn_from_customer_name
+  def syn_from_customer_name
+    @vip = Vip.find(params[:id])
+    @vip.syn_from_customer_name
+    flash[:notice]="同步发货人名称完毕!"
+    render :action => :show
+  end
 end
-

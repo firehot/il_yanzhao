@@ -7,6 +7,7 @@ class Vip <  Customer
   belongs_to :bank
   belongs_to :org
   belongs_to :config_transit
+  has_many :carrying_bills,:foreign_key => :from_customer_id
   validates :name,:id_number,:org_id,:bank_id,:mobile,:presence => true
   validates :code,:uniqueness => true
   validates :bank_card,:length => {:maximum => 30}
@@ -23,6 +24,14 @@ class Vip <  Customer
       :only => [],
       :methods => [:org,:name,:code,:phone,:mobile,:address,:bank,:bank_card]
     }
+  end
+
+  #同步运单发货人姓名
+  #param only_in_complete 只是同步未完成的运单
+  def syn_from_customer_name
+    if self.carrying_bills.present?
+      self.carrying_bills.update_all(:from_customer_name => self.name)
+    end
   end
 
   private

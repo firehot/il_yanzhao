@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124020156) do
+ActiveRecord::Schema.define(:version => 20121208051449) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false
@@ -1075,6 +1075,7 @@ ActiveRecord::Schema.define(:version => 20121124020156) do
     t.decimal "goods_fee",                      :precision => 10, :scale => 2, :default => 0.0
     t.string  "state",            :limit => 20
     t.integer "from_customer_id"
+    t.decimal "act_pay_fee",                    :precision => 19, :scale => 2
   end
 
 end
