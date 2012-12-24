@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208051449) do
+ActiveRecord::Schema.define(:version => 20121224133805) do
 
   create_table "act_load_list_lines", :force => true do |t|
     t.integer  "carrying_bill_id",                :null => false

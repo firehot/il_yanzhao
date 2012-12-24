@@ -22,4 +22,3 @@ class RefoundsController < BaseController
     send_data show_or_hide_fields_for_export(xls),:filename => "refund.xls"
   end
 end
-
