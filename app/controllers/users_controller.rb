@@ -12,7 +12,7 @@ class UsersController < BaseController
   end
   def update_password
     @user = current_user
-    if @user.update_attributes(params[:user])
+    if @user.update_with_password(params[:user])
       flash[:success]="更新密码成功!"
       render :show
     else
