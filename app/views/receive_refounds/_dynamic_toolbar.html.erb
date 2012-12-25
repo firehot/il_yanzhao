@@ -18,7 +18,7 @@
 
     <%if cannot? :read_arrive,resource_class and can? :read_confirmed,resource_class%>
       <li class="first">
-        <%= link_to image_tag("grid-snap.png",:alt => "待确认收款清单") , collection_path("search[state_eq]" => :refunded),:title => "待确认收款清单",:class => "tipsy"  %>
+        <%= link_to image_tag("grid-snap.png",:alt => "待确认收款清单") , collection_path("search[state_eq]" => :refunded_confirmed),:title => "待确认收款清单",:class => "tipsy"  %>
       </li>
     <%end%>
 
