@@ -4,12 +4,12 @@ jQuery(function($) {
 	//扩展jQuery function
 	$.extend({
 		/*
-          功能：将货币数字（阿拉伯数字）(小写)转化成中文(大写）
-          参数：Num为字符型,小数点之后保留两位,例：Arabia_to_Chinese("1234.06")
-          说明：
-          1.目前本转换仅支持到 拾亿（元） 位，金额单位为元，不能为万元，最小单位为分
-          2.不支持负数
-         */
+           功能：将货币数字（阿拉伯数字）(小写)转化成中文(大写）
+           参数：Num为字符型,小数点之后保留两位,例：Arabia_to_Chinese("1234.06")
+           说明：
+           1.目前本转换仅支持到 拾亿（元） 位，金额单位为元，不能为万元，最小单位为分
+           2.不支持负数
+           */
 		num2chinese: function(Num) {
 			for (i = Num.length - 1; i >= 0; i--) {
 				Num = Num.replace(",", "") //替换tomoney()中的“,”
@@ -256,19 +256,19 @@ jQuery(function($) {
 
 	var calculate_carrying_bill = function() {
 		/*FIXME 取消保险费计算,直接从系统设置中读取
-		//计算保价费合计
-		var insured_amount = parseFloat($('#insured_amount').val());
-		var insured_rate = parseFloat($('#insured_rate').val());
-		var insured_fee = Math.ceil(insured_amount * insured_rate / 1000);
-		$('#insured_fee').val(insured_fee);
-		//2012-02-03 如果保价费金额 > 0 则运费支付方式直接设为现金付,且不可更改
-		if (insured_fee > 0) {
-			$('#pay_type').val('CA');
-			$('#pay_type option').attr('disabled', true);
-			$('#pay_type option[value="CA"]').attr('disabled', false);
+        //计算保价费合计
+        var insured_amount = parseFloat($('#insured_amount').val());
+        var insured_rate = parseFloat($('#insured_rate').val());
+        var insured_fee = Math.ceil(insured_amount * insured_rate / 1000);
+        $('#insured_fee').val(insured_fee);
+        //2012-02-03 如果保价费金额 > 0 则运费支付方式直接设为现金付,且不可更改
+        if (insured_fee > 0) {
+        $('#pay_type').val('CA');
+        $('#pay_type option').attr('disabled', true);
+        $('#pay_type option[value="CA"]').attr('disabled', false);
 
-		}
-		else $('#pay_type option').attr('disabled', false);
+        }
+        else $('#pay_type option').attr('disabled', false);
         */
 		//计算运费合计
 		var carrying_fee = parseFloat($('#carrying_fee').val());
@@ -364,65 +364,65 @@ jQuery(function($) {
 
 	});
 	/*
-	//处理查询票据表单
-	$('#search_bill_form').livequery(function() {
-		//判断是否传递了发货地与到货地
-		var attach_params = {};
-		if ($('#from_org_id').val() != "") {
-			$('#search_from_org_id_eq').val($('#from_org_id').val()).trigger('change');
-			if ($('#set_disable').val() != '') {
-				$('#search_from_org_id_eq').attr('disabled', true);
-				jQuery.extend(attach_params, {
-					"search[from_org_id_eq]": $('#from_org_id').val()
-				});
-			}
-		}
+    //处理查询票据表单
+    $('#search_bill_form').livequery(function() {
+//判断是否传递了发货地与到货地
+var attach_params = {};
+if ($('#from_org_id').val() != "") {
+$('#search_from_org_id_eq').val($('#from_org_id').val()).trigger('change');
+if ($('#set_disable').val() != '') {
+$('#search_from_org_id_eq').attr('disabled', true);
+jQuery.extend(attach_params, {
+"search[from_org_id_eq]": $('#from_org_id').val()
+});
+}
+}
 
-		if ($('#to_org_id').val() != "") {
-			$('#search_to_org_id_or_transit_org_id_eq').val($('#to_org_id').val()).trigger('change');
+if ($('#to_org_id').val() != "") {
+$('#search_to_org_id_or_transit_org_id_eq').val($('#to_org_id').val()).trigger('change');
 
-			if ($('#set_disable').val() != '') {
-				$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
-				jQuery.extend(attach_params, {
-					"search[to_org_id_eq]": $('#to_org_id').val()
-				});
-			}
-		}
+if ($('#set_disable').val() != '') {
+$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
+jQuery.extend(attach_params, {
+"search[to_org_id_eq]": $('#to_org_id').val()
+});
+}
+}
 
-		if ($('#transit_org_id').val() != "") {
+if ($('#transit_org_id').val() != "") {
 
-			$('#search_to_org_id_or_transit_org_id_eq').val($('#transit_org_id').val()).trigger('change');
+$('#search_to_org_id_or_transit_org_id_eq').val($('#transit_org_id').val()).trigger('change');
 
-			if ($('#set_disable').val() != '') {
-				$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
-				jQuery.extend(attach_params, {
-					"search[to_org_id_or_transit_org_id_eq]": $('#transit_org_id').val()
-				});
-			}
+if ($('#set_disable').val() != '') {
+$('#search_to_org_id_or_transit_org_id_eq').attr('disabled', true);
+jQuery.extend(attach_params, {
+"search[to_org_id_or_transit_org_id_eq]": $('#transit_org_id').val()
+});
+}
 
-		}
+}
 
-		if ($('#state_eq').val() != "") {
-			$('#search_state_eq').val($('#state_eq').val()).trigger('change');
+if ($('#state_eq').val() != "") {
+$('#search_state_eq').val($('#state_eq').val()).trigger('change');
 
-			if ($('#set_disable').val() != '') {
-				$('#search_state_eq').attr('disabled', true);
-				jQuery.extend(attach_params, {
-					"search[state_eq]": $('#state_eq').val()
-				});
-			}
-		}
-		if ($('#type_in').length > 0) {
-			var types = $('#type_in').data('type');
-			jQuery.extend(attach_params, {
-				"search[type_in][]": types
-			});
+if ($('#set_disable').val() != '') {
+$('#search_state_eq').attr('disabled', true);
+jQuery.extend(attach_params, {
+"search[state_eq]": $('#state_eq').val()
+});
+}
+}
+if ($('#type_in').length > 0) {
+var types = $('#type_in').data('type');
+jQuery.extend(attach_params, {
+"search[type_in][]": types
+});
 
-		}
-		$('#search_bill_form').data('params', attach_params);
+}
+$('#search_bill_form').data('params', attach_params);
 
-	});
-        */
+});
+*/
 	//根据客户编号查询查询客户信息
 	var search_customer_by_code = function() {
 		var code = $(this).val();
@@ -712,8 +712,8 @@ jQuery(function($) {
 		if (ele_id == "btn_generate_from_short_fee_info" || ele_id == "btn_generate_to_short_fee_info") {
 
 			params = {
-                //只报销提付、及货款扣支付方式的运单
-                "search[pay_type_in][]" : ['TH','KG'],
+				//只报销提付、及货款扣支付方式的运单
+				"search[pay_type_in][]": ['TH', 'KG'],
 				"search[refound_bill_date_gte]": $('#refound_bill_date_gte').val(),
 				"search[refound_bill_date_lte]": $('#refound_bill_date_lte').val(),
 				"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "settlemented", "invalided", "canceled"],
@@ -724,8 +724,8 @@ jQuery(function($) {
 		if (ele_id == "btn_generate_from_short_fee_info_cash" || ele_id == "btn_generate_to_short_fee_info_cash") {
 
 			params = {
-                //只报销现付、及回执付的运单
-                "search[pay_type_in][]" : ['CA','RE'],
+				//只报销现付、及回执付的运单
+				"search[pay_type_in][]": ['CA', 'RE'],
 				"search[settlement_bill_date_gte]": $('#refound_bill_date_gte').val(),
 				"search[settlement_bill_date_lte]": $('#refound_bill_date_lte').val(),
 				"search[state_ni][]": ["billed", "loaded", "shipped", "reached", "returned", "distributed", "deliveried", "invalided", "canceled"],
@@ -1012,16 +1012,16 @@ jQuery(function($) {
 	});
 
 	/*
-	//客户提款结算清单
-	//实领金额变化时,更新余额
-	var cal_rest_fee = function() {
-		var amount_fee = parseFloat($('#post_info_amount_fee').val());
-		var sum_pay_fee = parseFloat($('#sum_pay_fee').val());
-		var rest_fee = amount_fee - sum_pay_fee;
-		$('#sum_rest_fee').val(rest_fee);
+//客户提款结算清单
+//实领金额变化时,更新余额
+var cal_rest_fee = function() {
+var amount_fee = parseFloat($('#post_info_amount_fee').val());
+var sum_pay_fee = parseFloat($('#sum_pay_fee').val());
+var rest_fee = amount_fee - sum_pay_fee;
+$('#sum_rest_fee').val(rest_fee);
 
-	};
-        */
+};
+*/
 
 	$('#btn_generate_post_info').bind('ajax:before', function() {
 		var params = {
@@ -1288,12 +1288,14 @@ jQuery(function($) {
 		if ($.cookies.get('il_notify_' + notify.id)) $('#notify-bar').hide();
 		else $('#notify-bar').show();
 	});
+    /*
 	//关闭提醒
 	$('span.notify-close').click(function() {
 		var notify = $('[data-notify]').data('notify');
 		$.cookies.set('il_notify_' + notify.id, notify.notify_text);
 		$('#notify-bar').hide();
 	});
+    */
 	//日营业额统计图单击选中
 	$('#rpt_turnover').click(function(evt) { //单击某条记录选中
 		var target_el = $(evt.target).parent('tr');
@@ -1481,7 +1483,20 @@ jQuery(function($) {
 			$(".btn_cancel").attr('href', origin_href + "?cancel_note=" + ret);
 		}
 	});
-});
+	//滚动信息
+	$('#notify-bar marquee').marquee('pointer').mouseover(function() {
+		$(this).trigger('stop');
+	}).mouseout(function() {
+		$(this).trigger('start');
+	}).mousemove(function(event) {
+		if ($(this).data('drag') == true) {
+			this.scrollLeft = $(this).data('scrollX') + ($(this).data('x') - event.clientX);
+		}
+	}).mousedown(function(event) {
+		$(this).data('drag', true).data('x', event.clientX).data('scrollX', this.scrollLeft);
+	}).mouseup(function() {
+		$(this).data('drag', false);
+	});
 
-$('#bills_table_body').trigger('tr_changed');
+});
 

@@ -17,6 +17,7 @@
 //= require ufd
 //= require jszip/jszip
 //= require jszip/jszip-deflate
+//= require marquee
 //= require enter2tab
 //= require bill_selector
 //= require il_application
