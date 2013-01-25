@@ -49,8 +49,9 @@
           <!--<span class='notify-close'><a title='关闭提醒信息'>x</a></span>-->
           <span class='notify-text' data-notify='<%=Notify.last.to_json%>'>
             <marquee behavior="scroll" scrollamount="1" direction="left">
-              <%=Notify.current_notify_text %></span>
+              <%=Notify.current_notify_text %>
             </marquee>
+          </span>
         <%end%>
       </div>
       <div id="wrapper" class="wat-cf">

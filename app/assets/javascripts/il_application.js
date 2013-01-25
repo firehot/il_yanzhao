@@ -1484,7 +1484,7 @@ $('#sum_rest_fee').val(rest_fee);
 		}
 	});
 	//滚动信息
-	$('#notify-bar marquee').marquee('pointer').mouseover(function() {
+	$('#notify-bar marquee').marquee('pointer');/*.mouseover(function() {
 		$(this).trigger('stop');
 	}).mouseout(function() {
 		$(this).trigger('start');
@@ -1497,6 +1497,7 @@ $('#sum_rest_fee').val(rest_fee);
 	}).mouseup(function() {
 		$(this).data('drag', false);
 	});
+    */
 
 });
 
