@@ -57,8 +57,7 @@ ActiveRecord::Schema.define(:version => 20130109013542) do
     t.datetime "updated_at",                      :null => false
   end
 
-  create_table "carrying_bills", :id => false, :force => true do |t|
-    t.integer  "id",                                                                                                  :null => false
+  create_table "carrying_bills", :force => true do |t|
     t.date     "bill_date",                                                                                           :null => false
     t.string   "bill_no",                          :limit => 30,                                                      :null => false
     t.string   "goods_no",                         :limit => 30,                                                      :null => false
@@ -88,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20130109013542) do
     t.text     "note"
     t.string   "type",                             :limit => 100
     t.string   "state",                            :limit => 20
-    t.boolean  "completed",                                                                      :default => false,   :null => false
+    t.boolean  "completed",                                                                      :default => false
     t.integer  "user_id"
     t.datetime "created_at",                                                                                          :null => false
     t.datetime "updated_at",                                                                                          :null => false
@@ -491,7 +490,7 @@ ActiveRecord::Schema.define(:version => 20130109013542) do
   add_index "journals", ["org_id"], :name => "index_journals_on_org_id"
   add_index "journals", ["user_id"], :name => "index_journals_on_user_id"
 
-  create_table "lhma_2012_08_10_15_10_44_905_carrying_bills", :force => true do |t|
+  create_table "lhma_2013_03_27_18_51_28_903_carrying_bills", :force => true do |t|
     t.date     "bill_date",                                                                                          :null => false
     t.string   "bill_no",                          :limit => 30,                                                     :null => false
     t.string   "goods_no",                         :limit => 30,                                                     :null => false
@@ -554,36 +553,36 @@ ActiveRecord::Schema.define(:version => 20130109013542) do
     t.integer  "print_counter",                                                                 :default => 0,       :null => false
   end
 
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
-  add_index "lhma_2012_08_10_15_10_44_905_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["area_id"], :name => "index_carrying_bills_on_area_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["bill_date"], :name => "index_carrying_bills_on_bill_date"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["bill_no"], :name => "index_carrying_bills_on_bill_no"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["completed"], :name => "index_carrying_bills_on_completed"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["deliver_info_id"], :name => "index_carrying_bills_on_deliver_info_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["from_customer_id"], :name => "index_carrying_bills_on_from_customer_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["from_customer_name"], :name => "index_carrying_bills_on_from_customer_name"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["from_org_id"], :name => "index_carrying_bills_on_from_org_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["from_short_fee_state"], :name => "index_carrying_bills_on_from_short_fee_state"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["goods_no"], :name => "index_carrying_bills_on_goods_no"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["load_list_id"], :name => "index_carrying_bills_on_load_list_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["original_bill_id"], :name => "index_carrying_bills_on_original_bill_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["pay_info_id"], :name => "index_carrying_bills_on_pay_info_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["pay_type"], :name => "index_carrying_bills_on_pay_type"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["payment_list_id"], :name => "index_carrying_bills_on_payment_list_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["post_info_id"], :name => "index_carrying_bills_on_post_info_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["print_counter"], :name => "index_carrying_bills_on_print_counter"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["refound_id"], :name => "index_carrying_bills_on_refound_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["settlement_id"], :name => "index_carrying_bills_on_settlement_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["state"], :name => "index_carrying_bills_on_state"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["to_customer_id"], :name => "index_carrying_bills_on_to_customer_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["to_customer_name"], :name => "index_carrying_bills_on_to_customer_name"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["to_org_id"], :name => "index_carrying_bills_on_to_org_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["to_short_fee_state"], :name => "index_carrying_bills_on_to_short_fee_state"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["transit_bill_no"], :name => "index_carrying_bills_on_transit_bill_no"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["transit_deliver_info_id"], :name => "index_carrying_bills_on_transit_deliver_info_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["transit_info_id"], :name => "index_carrying_bills_on_transit_info_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["transit_org_id"], :name => "index_carrying_bills_on_transit_org_id"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["type"], :name => "index_carrying_bills_on_type"
+  add_index "lhma_2013_03_27_18_51_28_903_carrying_bills", ["user_id"], :name => "index_carrying_bills_on_user_id"
 
   create_table "load_list_with_barcode_lines", :force => true do |t|
     t.integer  "load_list_with_barcode_id",                                    :null => false
