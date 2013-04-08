@@ -12,6 +12,7 @@ set :repository,  "."
 set :branch, "upgrade_to_rails32"
 set :deploy_via, :copy
 set :copy_cache, true
+
 #
 set :scm, :git
 server "127.0.0.1",:app,:web,:db,:primary => true
