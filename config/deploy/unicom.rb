@@ -22,7 +22,7 @@ default_run_options[:pty]=true
 set :deploy_to,"~/app/il_unicom"
 
 #不再使用rvm 使用rbenv部署
-set :rbenv_ruby_version, "1.9.3-p392"
+set :rbenv_ruby_version, "1.9.3-p385"
 #set rvm support
 #set :rvm_ruby_string, '1.9.3@rails32_gemset'
 #若rvm以user wide 安装,则rvm相关信息设置如下
@@ -44,7 +44,7 @@ before "deploy:assets:precompile", :update_database_yml
 desc "根据不同的staging修改数据库名称"
 task :update_database_yml do
   replacements = {
-    'il_yanzhao_r32_production' => 'il_yanzhao_production'
+    'il_yanzhao_r32_production' => 'unicom_production'
   }
   replacements.each do |pattern, sub|
     run "sed -i 's@#{pattern}@#{sub}@' #{release_path}/config/database.yml"

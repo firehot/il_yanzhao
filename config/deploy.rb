@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-set :stages, %w(production px_production local_server cx_production)
+set :stages, %w(production px_production local_server cx_production unicom)
 set :default_stage, "local_server"
 require 'capistrano/ext/multistage'
 namespace :rvm do
