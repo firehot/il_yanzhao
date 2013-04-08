@@ -2,7 +2,7 @@
 require 'bundler/capistrano'
 require "capistrano-rbenv"
 set :rails_env,   "production"
-set :unicorn_env, "production"
+set :unicorn_env, "unicom_production"
 set :app_env,     "production"
 
 #add bundler support
@@ -11,7 +11,7 @@ set :application, "il_unicom"
 set :repository,  "."
 set :branch, "upgrade_to_rails32"
 set :deploy_via, :copy
-set :copy_cache, true
+#set :copy_cache, true
 
 #
 set :scm, :git
