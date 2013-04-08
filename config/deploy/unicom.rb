@@ -16,7 +16,7 @@ set :deploy_via, :copy
 #
 set :scm, :git
 server "127.0.0.1",:app,:web,:db,:primary => true
-set :user,"root"
+set :user,"chengdh"
 set :use_sudo,false
 default_run_options[:pty]=true
 
