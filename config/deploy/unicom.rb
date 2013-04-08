@@ -2,7 +2,7 @@
 require 'bundler/capistrano'
 require "capistrano-rbenv"
 set :rails_env,   "production"
-set :unicorn_env, "unicom_production"
+set :unicorn_env, "production"
 set :app_env,     "production"
 
 #add bundler support
