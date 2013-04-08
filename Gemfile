@@ -75,6 +75,7 @@ group :development do
   gem 'rvm-capistrano','~> 1.1.0'
   gem "capistrano-unicorn", "~> 0.1.6"
   gem "rails-footnotes",'~> 3.7.8'
+  gem 'capistrano-rbenv','~> 1.0.2'
 
   #在unix、linux运行环境下不需要
   #gem "win32-open3"   #ruby 1.8
