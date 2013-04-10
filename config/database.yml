@@ -65,4 +65,4 @@ production:
   #socket: /tmp/mysql.sock
   #socket: /var/run/mysqld/mysqld.sock
   #centos mysql socket location
-  socket: /var/lib/mysqld/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
