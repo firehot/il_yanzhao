@@ -11,19 +11,19 @@ set :application, "il_unicom"
 set :repository,  "."
 set :branch, "upgrade_to_rails32"
 set :deploy_via, :copy
-#set :copy_cache, true
+set :copy_cache, true
 
 #
 set :scm, :git
 server "127.0.0.1",:app,:web,:db,:primary => true
-set :user,"chengdh"
+set :user,"root"
 set :use_sudo,false
 default_run_options[:pty]=true
 
 set :deploy_to,"~/app/il_unicom"
 
 #不再使用rvm 使用rbenv部署
-set :rbenv_ruby_version, "1.9.3-p385"
+set :rbenv_ruby_version, "1.9.3-p392"
 #set rvm support
 #set :rvm_ruby_string, '1.9.3@rails32_gemset'
 #若rvm以user wide 安装,则rvm相关信息设置如下
