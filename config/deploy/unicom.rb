@@ -20,7 +20,7 @@ set :remote_copy_dir, "/tmp"
 #
 set :scm, :git
 server "127.0.0.1",:app,:web,:db,:primary => true
-set :user,"root"
+set :user,"lmis"
 set :use_sudo,false
 default_run_options[:pty]=true
 
