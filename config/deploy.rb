@@ -9,7 +9,7 @@ namespace :rvm do
 end
 
 namespace :deploy do
-  after "deploy:create_symlink","rvm:trust_rvmrc"
+  #after "deploy:create_symlink","rvm:trust_rvmrc"
   #自定义系统维护界面
   namespace :web do
     task :disable do
