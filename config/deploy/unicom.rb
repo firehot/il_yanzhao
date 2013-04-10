@@ -12,7 +12,10 @@ set :repository,  "."
 set :branch, "upgrade_to_rails32"
 set :deploy_via, :copy
 set :copy_cache, true
-
+#本地部署时,gzip出现问题,参考
+#http://stackoverflow.com/questions/8590341/capistrano-gzip-stdin-unexpected-end-of-file-interruption
+set :copy_dir, "/home/#{local_user}/tmp"
+set :remote_copy_dir, "/tmp"
 #
 set :scm, :git
 server "127.0.0.1",:app,:web,:db,:primary => true
