@@ -24,7 +24,7 @@ set :user,"lmis"
 set :use_sudo,false
 default_run_options[:pty]=true
 
-set :deploy_to,"~/app/il_unicom"
+#set :deploy_to,"~/app/il_unicom"
 
 #不再使用rvm 使用rbenv部署
 set :rbenv_ruby_version, "1.9.3-p392"
